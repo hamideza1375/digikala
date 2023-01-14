@@ -9,7 +9,7 @@ const card2 = (p) => {
     <Span style={style} h={h?h:300} w={'90%'} as={'center'} br={4} border={border.length?border:[1]} {...p} >
 
      {p.src && <Span h={'45%'} >
-        <Img style={{height:'100%', borderTopRightRadius:4, borderTopLeftRadius:4}}  src={p.src} />
+        <Img f={1} style={{borderTopRightRadius:4, borderTopLeftRadius:4}}  src={p.src} />
       </Span>}
 
       <Span h={p.src?'55%':'100%'} bgcolor={bgcolor} >

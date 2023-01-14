@@ -10,7 +10,7 @@ function Card(prop) {
       <Pressable
         {...prop}
         style={[{
-          borderWidth: border[0], borderRadius: 5,
+           borderRadius: 5,
           borderColor:
             !border[1] && (
               !bgcolor && '#fbb' ||
@@ -38,7 +38,7 @@ function Card(prop) {
           width: '100%',
           alignSelf: 'center'
         }, style]}>
-        <View style={{ padding: 12, alignItems: 'flex-start', }} >
+        <View style={{ padding: 12, alignItems: 'flex-start', borderWidth: border[0], borderColor:border[1], borderRadius:3 }} >
           {header &&
             <View style={{ width: '100%', paddingVertical: 12, paddingHorizontal: 5, }}>
               <Text
@@ -126,7 +126,7 @@ function Card(prop) {
         <Pressable
           {...prop}
           style={[{
-            borderWidth: border[0], borderRadius: 5,
+             borderRadius: 5,
             borderColor:
               !border[1] && (
                 !bgcolor && '#fdb' ||
@@ -152,7 +152,7 @@ function Card(prop) {
             width: '100%',
             alignSelf: 'center'
           }, style]}>
-          <View style={{ padding: 12, alignItems: 'flex-start', }} >
+          <View style={{ padding: 12, alignItems: 'flex-start', borderWidth: border[0], borderColor:border[1], borderRadius:3 }} >
             {header &&
               <View style={{ width: '100%', paddingVertical: 12, paddingHorizontal: 5 }}>
                 <Text
@@ -230,7 +230,7 @@ function Card(prop) {
           <Pressable
             {...prop}
             style={[{
-              borderWidth: border[0], borderRadius: 5, minHeight: 115, width: '100%', position: 'relative',
+               borderRadius: 5, minHeight: 115, width: '100%', position: 'relative',
               borderColor:
                 !border[1] && (
                   !bgcolor && '#fbb' ||
@@ -257,7 +257,7 @@ function Card(prop) {
               ,
 
             }, style]}>
-            <View style={[{ padding: 12, }]} >
+            <View style={[{ padding: 12,borderWidth: border[0], borderColor:border[1], borderRadius:3 }]} >
               {header &&
                 <View style={[{
                   paddingHorizontal: 5, paddingVertical: 12, width: '70%'
@@ -380,7 +380,7 @@ function Card(prop) {
             <Pressable
               {...prop}
               style={[{
-                borderWidth: border[0], borderRadius: 5, minHeight: 115, width: '100%', position: 'relative',
+                 borderRadius: 5, minHeight: 115, width: '100%', position: 'relative',
                 borderColor:
                   !border[1] && (
                     !bgcolor && '#fdb' ||
@@ -405,7 +405,7 @@ function Card(prop) {
                 ,
               }, style]}>
 
-              <View style={{ padding: 12 }} >
+              <View style={{ padding: 12, borderWidth: border[0], borderColor:border[1], borderRadius:3 }} >
                 {header &&
                   <View style={[{
                     paddingHorizontal: 5, paddingVertical: 12, width: '70%'

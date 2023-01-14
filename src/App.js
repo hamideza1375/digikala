@@ -84,8 +84,8 @@ const Mobile = () => {
           <Tab.Group>
             <Tab.Screen name="Home" options={{ title: 'home', headerShown: false }} {..._children(Home)} />
             <Tab.Screen name="ChildWork" options={{title: 'home'}} {..._children(ChildWork)} />
-            <Tab.Screen name="SingleWork" options={({ route }) => ({ title: route.params.title })} {..._children(SingleWork)} />
-            <Tab.Screen name="FinallWorkPayment" options={({ route }) => ({ title: route.params.title })} {..._children(FinallWorkPayment)} />
+            <Tab.Screen name="SingleWork" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleWork)} />
+            <Tab.Screen name="FinallWorkPayment" options={({ route }) => ({ title: 'route.params.title' })} {..._children(FinallWorkPayment)} />
           </Tab.Group>
 
           <Tab.Group screenOptions={{ headerShown: false }} >
@@ -102,11 +102,11 @@ const Mobile = () => {
 
           <Tab.Group>
             <Tab.Screen initialParams={{ key: 'admin' }} name="TitleTable" options={{ title: 'پنل ادمین', headerShown: false }} {..._children(TitleTable)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="ChildTable" options={({ route }) => ({ title: route.params.title, header: (props) => <Row bgcolor='#fff' style={{ shadowRadius: 7, shadowOpacity: .2, marginTop: Platform.OS === 'ios' ? 40 : 0, justifyContent: 'space-around' }} mb={5} ><Input alignSelf='center' mt={5} mb={2} w='80%' placeholderColor='red' iconColor='#777' border={[1, '#aaa']} icon='search' value={p.textSearch} onChangeText={(text) => { _food(props).sercher(text); p.settextSearch(text) }} placeholder="جستجو" /><Micon name='arrow-back' onPress={() => { props.navigation.navigate('AdminTitleAllFood') }} style={{ height: 42, width: 35, marginTop: 17, textAlign: 'center' }} size={27} /></Row> })} {..._children(ChildTable)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="EditTitle" options={({ route }) => ({ title: route.params.title })} {..._children(EditTitle)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="EditChild" options={({ route }) => ({ title: route.params.title })} {..._children(EditChild)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="ChildTable" options={({ route }) => ({ title: 'route.params.title', header: (props) => <Row bgcolor='#fff' style={{ shadowRadius: 7, shadowOpacity: .2, marginTop: Platform.OS === 'ios' ? 40 : 0, justifyContent: 'space-around' }} mb={5} ><Input alignSelf='center' mt={5} mb={2} w='80%' placeholderColor='red' iconColor='#777' border={[1, '#aaa']} icon='search' value={p.textSearch} onChangeText={(text) => { _food(props).sercher(text); p.settextSearch(text) }} placeholder="جستجو" /><Micon name='arrow-back' onPress={() => { props.navigation.navigate('AdminTitleAllFood') }} style={{ height: 42, width: 35, marginTop: 17, textAlign: 'center' }} size={27} /></Row> })} {..._children(ChildTable)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="EditTitle" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditTitle)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="EditChild" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditChild)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="CreateTitle" options={({ route }) => ({ title: 'ساخت دسته ی اغذیه' })} {..._children(CreateTitle)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="CreateChild" options={({ route }) => ({ title: `ساخت دسته برای ${route.params.title}` })} {..._children(CreateChild)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="CreateChild" options={({ route }) => ({ title: `ساخت دسته برای ${'route.params.title'}` })} {..._children(CreateChild)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="AddAdmin" options={{ title: 'اضافه کردن ادمین' }} {..._children(AddAdmin)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="Notifee" options={{ title: 'ارسال نوتیفیکیشن' }} {..._children(Notifee)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="ChangeAdmin" options={{ title: 'تعویض ادمین' }} {..._children(ChangeAdmin)} />
@@ -161,7 +161,8 @@ const linking = {
     screens: {
       Home: '/Home',
       ChildWork: '/ChildWork',
-      SingleWork: '/SingleWork:id',
+      SingleWork: '/SingleWork',
+      // SingleWork: '/SingleWork:id',
       FinallWorkPayment: '/FinallWorkPayment',
       Register: '/Register',
       Login: '/Login',

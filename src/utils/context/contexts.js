@@ -122,7 +122,7 @@ function State() {
   ])
 
 
-  const [category, setcategory] = useState([
+  const [group, setgroup] = useState([
     { id: '1', title:'موبایل', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
     { id: '2', title:'تبلت', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
     { id: '3', title:'هدفون و هنزفیری', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
@@ -214,7 +214,7 @@ function State() {
   ])
 
 
-  const [Similar, setSimilar] = useState([
+  const [similar, setsimilar] = useState([
     { id: '1', title:'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
     { id: '2', title:'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
     { id: '3', title:'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
@@ -264,11 +264,11 @@ function State() {
 
     slider, setslider,
     popular, setpopular,
-    Similar, setSimilar,
+    similar, setsimilar,
     offers, setoffers,
     comment, setcomment,
 
-    category, setcategory,
+    group, setgroup,
     childMobile, setchildMobile,
     childTablet, setchildTablet,
     childheadphone, setchildheadphone,

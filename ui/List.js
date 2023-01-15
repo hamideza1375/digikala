@@ -9,6 +9,10 @@ function App() {
     <Div style={{ flex: 1, direction: 'rtl', borderWidth: 2, }} >
 
       <List
+        h={35}
+        sh={{ r: 5, o: .5 }}
+        br={5}
+        // m_icon='arrow-left'
         style={{ shadowRadius: 7, shadowOpacity: 2, shadowColor: '#555', }}
         color='black'
         bgcolor='green'
@@ -31,6 +35,10 @@ function App() {
       />
 
       <List
+        h={35}
+        sh={{ r: 5, o: .5 }}
+        br={5}
+        // m_icon='arrow-left'
         hidden={hidden} sethidden={sethidden}
         fontSize={25}
         iconSize={35}
@@ -42,6 +50,10 @@ function App() {
         body="سلام"
       />
       <List
+        h={35}
+        sh={{ r: 5, o: .5 }}
+        br={5}
+        // m_icon='arrow-left'
         hidden={hidden} sethidden={sethidden}
         fontSize={25}
         iconSize={35}
@@ -53,6 +65,10 @@ function App() {
         body="سلام"
       />
       <List
+        h={35}
+        sh={{ r: 5, o: .5 }}
+        br={5}
+        // m_icon='arrow-left'
         hidden={hidden} sethidden={sethidden}
         fontSize={25}
         iconSize={35}
@@ -65,6 +81,10 @@ function App() {
       />
 
       <List
+        h={35}
+        sh={{ r: 5, o: .5 }}
+        br={5}
+        // m_icon='arrow-left'
         hidden={hidden} sethidden={sethidden}
         fontSize={25}
         iconSize={35}

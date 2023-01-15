@@ -1,27 +1,43 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Animated, StyleSheet, View, Text, TouchableOpacity, Pressable } from "react-native";
+import A_icon from 'react-native-vector-icons/dist/AntDesign';
+import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-export default function App({ sethidden, hidden, onPress, style, header, body, bodyRow, color, bgcolor, icon, icon2, iconSize, fontSize, iconPress, icon2Press }) {
+export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon, sethidden, hidden, onPress, style, header, body, bodyRow, color, bgcolor, icon, icon2, iconSize, fontSize, iconPress, icon2Press }) {
 
+  const [show, setshow] = useState(true)
+  const [mIcon, setmIcon] = useState(m_icon)
   const ref = useRef()
 
   useEffect(() => {
     ref?.current && ref.current.setNativeProps({ style: { height: 0 } })
+
+    setTimeout(() => {
+    setshow(!show)
+    if (!iconPress && m_icon === 'arrow-left') setmIcon('arrow-left')
+    }, 200);
+
   }, [hidden])
 
 
   return (
     <>
       <Pressable
-      onPressIn={() => { sethidden(!hidden); setTimeout(() => { sethidden(!hidden) }, 1) }}
-      onPress={() => {
-        () => { sethidden(!hidden); setTimeout(() => { sethidden(!hidden) }, 2) };
-        setTimeout(() => {
-          ref.current && ref.current.setNativeProps({ style: { height: null } })
-        }, 100);
+        onPressIn={() => { sethidden(!hidden); setTimeout(() => { sethidden(!hidden) }, 1) }}
+        onPress={() => {
+          setTimeout(() => {
+            if (!iconPress && m_icon === 'arrow-left') show?setmIcon('arrow-left'):setmIcon('arrow-drop-down');
+          }, 210);
+          () => {
+            sethidden(!hidden); setTimeout(() => { sethidden(!hidden) }, 2)
+          };
+          setTimeout(() => {
+            ref.current && ref.current.setNativeProps({ style: { height: !show ? null : 0 } })
+            setshow(!show)
+          }, 100);
 
-      }}
+        }}
         // onPressIn={onPress}
         activeOpacity={1}
         style={[styles.headView,
@@ -36,11 +52,15 @@ export default function App({ sethidden, hidden, onPress, style, header, body, b
             bgcolor == "yellow" && "orange" ||
             bgcolor && bgcolor
         }
-          , { borderRadius: 3 }, style]}>
+          , { borderRadius: br,height:h,width:w, shadowRadius: sh.r, shadowOpacity: sh.o, shadowColor: sh.c, shadowOffset: sh.of, }, style]}>
         <Text
-           style={[styles.headText, { color: color && color || 'white' }, { fontSize: fontSize ? fontSize : 17 }]}>{header}</Text>
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: 105 }}>
+          style={[styles.headText, { color: color && color || 'white' }, { fontSize: fontSize ? fontSize : 17 }]}>{header}</Text>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          {a_icon2 && <A_icon onPress={icon2Press} name={a_icon2} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
+          {m_icon2 && <M_icon onPress={icon2Press} name={m_icon2} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
           {icon2 && <Icon onPress={icon2Press} name={icon2} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
+          {a_icon && <A_icon onPress={iconPress} name={a_icon} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
+          {m_icon && <M_icon onPress={iconPress} name={mIcon} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
           {icon && <Icon onPress={iconPress} name={icon} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
         </View>
       </Pressable>
@@ -78,7 +98,6 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   headView: {
-    marginVertical: 5,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

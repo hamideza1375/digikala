@@ -346,6 +346,7 @@ function State() {
     videoUrl, setvideoUrl,
     price, setprice,
     title, settitle,
+    useState,
     spacePrice, courseIdValidator, truncate, jwt_decode, localStorage, Alert, useEffect, useMemo, Keyboard, BackHandler, ToastAndroid, Dimensions,
   }
 }

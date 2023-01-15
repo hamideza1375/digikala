@@ -21,7 +21,7 @@ export { default as Table } from './components/Table'
 export { default as Slider } from './components/Slider'
 export { default as ScrollSlider } from './components/ScrollSlider'
 export { default as SearchBar } from './components/SearchBar'
-export { Textarea,Input, CheckBox } from './formComponent/FormComponent'
+export { Textarea,Input, CheckBox, CheckBoxRadius } from './formComponent/FormComponent'
 // import { Input as _Input } from './formComponent/FormComponent'
 
 import setStyleRef from './classToStyle/setClassToStyle';
@@ -202,9 +202,12 @@ export const FlatList = (props) => {
   else if (width > 1100) column = colomn6
 
   return (
-   <Component flatlist={true} {...props}
-    numColumns={props.numColumns?props.numColumns:column}
-    key={props.numColumns?props.numColumns:column}
+   <Component 
+   {...props}
+   flatlist={true} 
+   keyExtractor={item => item._id}
+   numColumns={props.numColumns?props.numColumns:column}
+   key={props.numColumns?props.numColumns:column}
     Component={_FlatList}
   />
   )
@@ -212,7 +215,7 @@ export const FlatList = (props) => {
 
 export const FlatListHorizontal = (props) => <Component flatlist={true} {...props} horizontal={true} Component={_FlatList} />
 
-export const Vlist = (props) => <VirtualizedList keyExtractor={item => item.id} getItemCount={(data) => data.length} getItem={(data, index) => (data[index])} {...props}/>
+export const Vlist = (props) => <VirtualizedList keyExtractor={item => item._id} getItemCount={(data) => data.length} getItem={(data, index) => (data[index])} {...props}/>
 
 export const H1 = (props) => <_text {...props} initalClass={s.h1} />
 

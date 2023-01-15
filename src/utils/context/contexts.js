@@ -11,9 +11,9 @@ import { courseIdValidator } from '../../utils/IdValidator';
 import { truncate } from '../../utils/helpers';
 import PropTypes from 'prop-types';
 
-import {} from '../../services/adminService'
-import {} from '../../services/workService'
-import {} from '../../services/userService'
+import { } from '../../services/adminService'
+import { } from '../../services/workService'
+import { } from '../../services/userService'
 
 function State() {
   const _width = Dimensions.get('window').width;
@@ -70,196 +70,208 @@ function State() {
   const [showActivityHome, setshowActivityHome] = useState(true)
   const [$, set$] = useState()
   const [host] = useState(localhost)
-  const [changeRegister,setchangeRegister] = useState(false)
-  
-  const [sdCardFilter,setsdCardFilter] = useState('')
-  const [ramFilter,setramFilter] = useState('')
-  const [cpuCoreFilter,setcpuCoreFilter] = useState('')
-  const [cameraFilter,setcameraFilter] = useState('')
-  const [priceFilter,setpriceFilter] = useState('')
-  
-  const [sdCardFilterTo,setsdCardFilterTo] = useState('')
-  const [ramFilterTo,setramFilterTo] = useState('')
-  const [cpuCoreFilterTo,setcpuCoreFilterTo] = useState('')
-  const [cameraFilterTo,setcameraFilterTo] = useState('')
-  const [priceFilterTo,setpriceFilterTo] = useState('')
-  
-  const [fourG,setfourG] = useState(false)
-  const [fiveG,setfiveG] = useState(false)
-  const [showDropdownFilter,setshowDropdownFilter] = useState(false)
-  const [showDropdownFilter2,setshowDropdownFilter2] = useState(false)
+  const [changeRegister, setchangeRegister] = useState(false)
+
+  const [sdCardFilter, setsdCardFilter] = useState('')
+  const [ramFilter, setramFilter] = useState('')
+  const [cpuCoreFilter, setcpuCoreFilter] = useState('')
+  const [cameraFilter, setcameraFilter] = useState('')
+  const [priceFilter, setpriceFilter] = useState('')
+
+  const [sdCardFilterTo, setsdCardFilterTo] = useState('')
+  const [ramFilterTo, setramFilterTo] = useState('')
+  const [cpuCoreFilterTo, setcpuCoreFilterTo] = useState('')
+  const [cameraFilterTo, setcameraFilterTo] = useState('')
+  const [priceFilterTo, setpriceFilterTo] = useState('')
+
+  const [fourG, setfourG] = useState(false)
+  const [fiveG, setfiveG] = useState(false)
+  const [showDropdownFilter, setshowDropdownFilter] = useState(false)
+  const [showDropdownFilter2, setshowDropdownFilter2] = useState(false)
   const [$input] = useState(new Map())
-  const [showFilterModal,setshowFilterModal] = useState(false)
-  
+  const [showFilterModal, setshowFilterModal] = useState(false)
+
   const useEffect = (call, state) => { useFocusEffect(useCallback(() => call(), state)) }
   const refInput = useRef()
 
 
 
   const [slider, setslider] = useState([
-    { id: '1', image:require('../../assets/images/a1.jpg')},
-    { id: '2', image:require('../../assets/images/a2.jpg') },
-    { id: '3', image:require('../../assets/images/a3.jpg') },
-    { id: '4', image:require('../../assets/images/a7.jpg') },
-    { id: '5', image:require('../../assets/images/a1.jpg') },
-    { id: '6', image:require('../../assets/images/a2.jpg') },
-    { id: '7', image:require('../../assets/images/a3.jpg') },
-    { id: '8', image:require('../../assets/images/a7.jpg') },
+    { _id: '1', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', image: require('../../assets/images/a7.jpg') },
   ])
 
 
   const [array, setarray] = useState([
-    { id: '1', title:'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
   const [group, setgroup] = useState([
-    { id: '1', title:'موبایل', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'تبلت', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'هدفون و هنزفیری', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'لوازم جانبی', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'سیمکارت', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
+    { _id: '1', title: 'موبایل', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'تبلت', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'هدفون و هنزفیری', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'لوازم جانبی', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'سیمکارت', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
   ])
 
 
   const [childMobile, setchildMobile] = useState([
-    { id: '1', title:'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
   const [childTablet, setchildTablet] = useState([
-    { id: '1', title:'tablet1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'tablet2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'tablet3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'tablet4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'tablet5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'tablet6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'tablet7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'tablet8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'tablet9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'tablet10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'tablet1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'tablet2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'tablet3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'tablet4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'tablet5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'tablet6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'tablet7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'tablet8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'tablet9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'tablet10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
   const [childheadphone, setchildheadphone] = useState([
-    { id: '1', title:'headphon1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'headphon2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'headphon3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'headphon4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'headphon5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'headphon6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'headphon7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'headphon8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'headphon9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'headphon10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'headphon1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'headphon2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'headphon3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'headphon4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'headphon5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'headphon6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'headphon7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'headphon8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'headphon9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'headphon10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
   const [childmunition, setchildmunition] = useState([
-    { id: '1', title:'glass1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'glass2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'glass3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'glass4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'glass5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'glass6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'glass7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'glass8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'glass9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'glass10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'glass1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'glass2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'glass3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'glass4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'glass5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'glass6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'glass7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'glass8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'glass9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'glass10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
   const [childSimCard, setchildSimCard] = useState([
-    { id: '1', title:'simkart1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'simkart2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'simkart3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'simkart4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'simkart5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'simkart6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'simkart7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'simkart8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'simkart9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'simkart10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'simkart1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'simkart2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'simkart3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'simkart4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'simkart5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'simkart6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'simkart7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'simkart8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'simkart9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'simkart10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
   const [popular, setpopular] = useState([
-    { id: '1', title:'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
   const [similar, setsimilar] = useState([
-    { id: '1', title:'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
 
   const [offers, setoffers] = useState([
-    { id: '1', title:'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel:50 , color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '2', title:'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel:30, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '3', title:'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel:40, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '4', title:'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:150, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '5', title:'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel:10, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg') },
-    { id: '6', title:'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel:50, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
-    { id: '7', title:'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a3.jpg') },
-    { id: '8', title:'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel:8, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a7.jpg') },
-    { id: '9', title:'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel:1, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a1.jpg')},
-    { id: '10', title:'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel:0, color:['red','blue'], guarantee :'guarantee ', image:require('../../assets/images/a2.jpg') },
+    { _id: '1', title: 'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', title: 'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', availabel: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', title: 'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', availabel: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', title: 'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', title: 'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', availabel: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', title: 'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', availabel: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', title: 'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', title: 'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', availabel: 8, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a7.jpg') },
+    { _id: '9', title: 'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', availabel: 1, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a1.jpg') },
+    { _id: '10', title: 'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', availabel: 0, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../../assets/images/a2.jpg') },
   ])
 
 
 
   const [comment, setcomment] = useState([
-    { id: '1', image:require('../../assets/images/a1.jpg')},
-    { id: '2', image:require('../../assets/images/a2.jpg') },
-    { id: '3', image:require('../../assets/images/a3.jpg') },
-    { id: '4', image:require('../../assets/images/a7.jpg') },
-    { id: '5', image:require('../../assets/images/a1.jpg') },
-    { id: '6', image:require('../../assets/images/a2.jpg') },
-    { id: '7', image:require('../../assets/images/a3.jpg') },
-    { id: '8', image:require('../../assets/images/a7.jpg') },
+    { _id: '1', image: require('../../assets/images/a1.jpg') },
+    { _id: '2', image: require('../../assets/images/a2.jpg') },
+    { _id: '3', image: require('../../assets/images/a3.jpg') },
+    { _id: '4', image: require('../../assets/images/a7.jpg') },
+    { _id: '5', image: require('../../assets/images/a1.jpg') },
+    { _id: '6', image: require('../../assets/images/a2.jpg') },
+    { _id: '7', image: require('../../assets/images/a3.jpg') },
+    { _id: '8', image: require('../../assets/images/a7.jpg') },
   ])
+
+
+  const [brandFilter, setbrandFilter] = useState([
+    { _id: '1', name: 'همه' },
+    { _id: '2', name: 'سامسونگ' },
+    { _id: '3', name: 'آیفون' },
+    { _id: '4', name: 'شیایومی' },
+    { _id: '5', name: 'هوآوی' },
+    { _id: '6', name: 'نوکیا' },
+  ])
+
+
 
 
   return {
     $input,
-    showDropdownFilter,setshowDropdownFilter,
-    showDropdownFilter2,setshowDropdownFilter2,
+    showDropdownFilter, setshowDropdownFilter,
+    showDropdownFilter2, setshowDropdownFilter2,
     array, setarray,
 
     slider, setslider,
@@ -275,23 +287,26 @@ function State() {
     childmunition, setchildmunition,
     childSimCard, setchildSimCard,
 
-    sdCardFilter,setsdCardFilter,
-    ramFilter,setramFilter,
-    cpuCoreFilter,setcpuCoreFilter,
-    cameraFilter,setcameraFilter,
-    priceFilter,setpriceFilter,
+    sdCardFilter, setsdCardFilter,
+    ramFilter, setramFilter,
+    cpuCoreFilter, setcpuCoreFilter,
+    cameraFilter, setcameraFilter,
+    priceFilter, setpriceFilter,
 
-    sdCardFilterTo,setsdCardFilterTo,
-    ramFilterTo,setramFilterTo,
-    cpuCoreFilterTo,setcpuCoreFilterTo,
-    cameraFilterTo,setcameraFilterTo,
-    priceFilterTo,setpriceFilterTo,
+    sdCardFilterTo, setsdCardFilterTo,
+    ramFilterTo, setramFilterTo,
+    cpuCoreFilterTo, setcpuCoreFilterTo,
+    cameraFilterTo, setcameraFilterTo,
+    priceFilterTo, setpriceFilterTo,
 
-    fourG,setfourG,
-    fiveG,setfiveG,
-    
-    changeRegister,setchangeRegister,
-    showFilterModal,setshowFilterModal,
+    fourG, setfourG,
+    fiveG, setfiveG,
+
+    brandFilter, setbrandFilter,
+
+
+    changeRegister, setchangeRegister,
+    showFilterModal, setshowFilterModal,
     replaceInput, setreplaceInput,
     several, setseveral,
     sendMessage, setsendMessage,

@@ -3,21 +3,23 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect, useRef } from "react";
 import { View, Platform } from "react-native";
 import { Button, Div, Form, Icon, Init, P, SearchBar, Span } from "./Components/Html";
-import _404 from "./other/404";
+import _404 from "./Components/404/404";
 import { initialState } from "./state/initialState";
 import { adminState } from "./state/adminState";
-import { workState } from "./state/workState";
+import { clientState } from "./state/clientState";
 import { userState } from "./state/userState";
-import { propTypes, states, contextStates } from "./utils/context/contexts";
+import { propTypes, states, contextStates } from "./state/context/contexts";
 import ToastProvider, { Toast } from "./utils/toast";
-import { Layout, header } from "./other/Layout";
-import { rtl } from "./other/rtl"
+import { Layout, header } from "./Components/Layout/Layout";
+import { rtl } from "./utils/rtl"
 import { LogBox } from 'react-native';
 
-import Home from './screens/work/Home'
-import ChildWork from './screens/work/ChildWork'
-import SingleWork from './screens/work/SingleWork'
-import FinallWorkPayment from './screens/work/FinallWorkPayment'
+import Home from './screens/client/Home'
+import ChildItems from './screens/client/ChildItems'
+import ChildOffers from "./screens/client/ChildOffers";
+import ChildPopulars from "./screens/client/ChildPopulars";
+import SingleItems from './screens/client/SingleItems'
+import BeforePayment from './screens/client/BeforePayment'
 
 import Register from "./screens/user/Register";
 import Login from "./screens/user/Login";
@@ -28,6 +30,9 @@ import LastPayment from "./screens/user/LastPayment";
 import SendProposal from "./screens/user/SendProposal";
 import Payment from "./screens/user/Payment";
 import Location from "./screens/user/Location";
+import Profile from "./screens/user/Profile";
+import CreateComment from "./screens/user/CreateComment";
+import EditComment from "./screens/user/EditComment";
 
 import AddAdmin from "./screens/admin/AddAdmin";
 import Notifee from "./screens/admin/Notifee";
@@ -60,7 +65,7 @@ const Mobile = () => {
   const toast = new Toast(allState)
   const p = { ...allState, toast }
   initialState(p)
-  const _food = ({ navigation, route }) => new workState({ ...p, navigation, route })
+  const _food = ({ navigation, route }) => new clientState({ ...p, navigation, route })
   const _user = ({ navigation, route }) => new userState({ ...p, navigation, route })
   const _admin = ({ navigation, route }) => new adminState({ ...p, navigation, route })
   const reducer = (props) => ({ _food: _food(props), _user: _user(props), _admin: _admin(props), })
@@ -83,9 +88,11 @@ const Mobile = () => {
         <Tab.Navigator screenOptions={() => { return { headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center', ...icon } }} >
           <Tab.Group>
             <Tab.Screen name="Home" options={{ title: 'home', headerShown: false }} {..._children(Home)} />
-            <Tab.Screen name="ChildWork" options={{title: 'home'}} {..._children(ChildWork)} />
-            <Tab.Screen name="SingleWork" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleWork)} />
-            <Tab.Screen name="FinallWorkPayment" options={({ route }) => ({ title: 'route.params.title' })} {..._children(FinallWorkPayment)} />
+            <Tab.Screen name="ChildItems" options={{title: 'home'}} {..._children(ChildItems)} />
+            <Tab.Screen name="ChildOffers" options={{title: 'home'}} {..._children(ChildOffers)} />
+            <Tab.Screen name="ChildPopulars" options={{title: 'home'}} {..._children(ChildPopulars)} />
+            <Tab.Screen name="SingleItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleItems)} />
+            <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: 'route.params.title' })} {..._children(BeforePayment)} />
           </Tab.Group>
 
           <Tab.Group screenOptions={{ headerShown: false }} >
@@ -98,6 +105,9 @@ const Mobile = () => {
             <Tab.Screen name="LastPayment" options={{ title: 'آخرین خرید' }} {..._children(LastPayment, '100')} />
             <Tab.Screen name="Payment" options={{ title: 'پرداخت' }} {..._children(Payment, '100')} />
             <Tab.Screen name="Location" options={{ title: 'نقشه', headerShown: Platform.OS !== 'ios' ? false : true }} {..._children(Location)} />
+            <Tab.Screen name="Profile" options={{ title: 'پروفایل' }} {..._children(Profile)} />
+            <Tab.Screen name="CreateComment" options={{ title: 'پروفایل' }} {..._children(CreateComment)} />
+            <Tab.Screen name="EditComment" options={{ title: 'پروفایل' }} {..._children(EditComment)} />
           </Tab.Group>
 
           <Tab.Group>
@@ -126,9 +136,13 @@ const Mobile = () => {
 }
 
 
-propTypes(ChildWork)
-propTypes(SingleWork)
-propTypes(FinallWorkPayment)
+propTypes(Home)
+propTypes(ChildItems)
+propTypes(ChildOffers)
+propTypes(ChildPopulars)
+propTypes(SingleItems)
+propTypes(BeforePayment)
+
 propTypes(Register)
 propTypes(Login)
 propTypes(ForgetPass)
@@ -136,8 +150,12 @@ propTypes(ResetPass)
 propTypes(Logout)
 propTypes(SendProposal)
 propTypes(LastPayment)
+propTypes(Profile)
 propTypes(Payment)
 propTypes(Location)
+propTypes(CreateComment)
+propTypes(EditComment)
+
 propTypes(TitleTable)
 propTypes(ChildTable)
 propTypes(EditTitle)
@@ -160,10 +178,13 @@ const linking = {
   config: {
     screens: {
       Home: '/Home',
-      ChildWork: '/ChildWork',
-      SingleWork: '/SingleWork',
-      // SingleWork: '/SingleWork:id',
-      FinallWorkPayment: '/FinallWorkPayment',
+      ChildItems: '/ChildItems',
+      ChildOffers: '/ChildOffers',
+      ChildPopulars: '/ChildPopulars',
+      SingleItems: '/SingleItems',
+      // SingleItems: '/SingleItems:id',
+      BeforePayment: '/BeforePayment',
+
       Register: '/Register',
       Login: '/Login',
       ForgetPass: '/ForgetPass',
@@ -171,7 +192,12 @@ const linking = {
       Logout: '/Logout',
       SendProposal: '/SendProposal',
       LastPayment: '/LastPayment',
+      Profile: '/Profile',
+      Location: '/Location',
       Payment: '/Payment',
+      CreateComment: '/CreateComment',
+      EditComment: '/EditComment',
+
       AddAdmin: '/AddAdmin',
       Notifee: '/Notifee',
       ChangeAdmin: '/ChangeAdmin',
@@ -186,7 +212,6 @@ const linking = {
       EditTitle: '/EditTitle:id',
       EditChild: '/EditChild:id',
       CreateChild: '/CreateChild:id',
-      Location: '/Location',
       NotFound: '*'
     },
   },

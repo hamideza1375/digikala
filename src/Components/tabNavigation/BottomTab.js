@@ -3,7 +3,7 @@ import { View, StyleSheet, Keyboard, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
 
-const Drawer = ({ group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" }) => {
+const BottomTab = ({ group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" }) => {
   const navigation = useNavigation()
   const [show, setshow] = useState(true)
 
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Drawer
+export default BottomTab

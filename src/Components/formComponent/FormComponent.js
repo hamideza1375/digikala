@@ -58,19 +58,19 @@ export const CheckBox = (props) => {
 };
 
 export const CheckBoxRadius = (p) => {
-  const { itemName, setfilterBrand, filterBrand, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onClick } = p;
+  const { itemName, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onClick } = p;
 
   const ref = useRef();
   //! const show = useRef({show:false});
   //!or
-  const show = useRef({name:itemName});
-  const refshow = show.current
+  const _show = useRef({ name: itemName });
+  const refshow = _show.current
 
   useEffect(() => {
     ref.current.setNativeProps({ style: { backgroundColor: "#fff" } })
     refshow.show = false
     p.refObject(refshow)
-  }, [filterBrand])
+  }, [show])
 
   useEffect(() => {
     if (itemName == 'همه') {
@@ -85,7 +85,7 @@ export const CheckBoxRadius = (p) => {
       ref={ref} style={[{ backgroundColor: 'white', width: 20, height: 20, borderRadius: 50, borderWidth: border[0], borderColor: border[1], margin: m, alignSelf, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginHorizontal: mh, marginVertical: mv }, p.style]}>
       <_icon onPress={() => {
         onClick && onClick()
-        setfilterBrand(!filterBrand)
+        setshow(!show)
         setTimeout(() => {
           ref.current.setNativeProps({ style: { backgroundColor: '#2c1' } })
           refshow.show = true

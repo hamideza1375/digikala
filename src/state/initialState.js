@@ -1,6 +1,5 @@
 import { useNavigation } from '@react-navigation/native'
 import Axios from 'axios'
-import React from 'react'
 
 export const initialState = (p) => {
   const navigation = useNavigation()

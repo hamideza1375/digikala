@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { Div } from '../Html';
 
-const Drawer = ({ group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" }) => {
+const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" }) => {
   const navigation = useNavigation()
 
   return (
@@ -76,4 +76,4 @@ const styles = StyleSheet.create({
 
 })
 
-export default Drawer
+export default TopTab

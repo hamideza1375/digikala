@@ -1,2 +1,5 @@
-const rtl =()=>{}
-export default rtl
+import { I18nManager } from 'react-native';
+
+export const rtl =()=>{
+
+}

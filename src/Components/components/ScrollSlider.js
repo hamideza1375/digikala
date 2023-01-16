@@ -42,28 +42,28 @@ function ScrollSlider(p) {
 
 
   return (
-    <View onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
-
+    <View
+    // <View onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
       onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10) }} >
       <View
-        // style={{width:p.width - 200, alignItems:'center', justifyContent:'center'}}
-        // onStartShouldSetResponder={()=>{ if (Platform.OS === 'web') ref.current.setNativeProps({ style: { overflow: 'auto' } });}}
         onMoveShouldSetResponderCapture={(e) => {
           setscroll2(false)
           if (Platform.OS === 'web') {
             if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') {
               ref.current.setNativeProps({ style: { overflowX: 'auto' } });
-              // console.log(scroll + das[0] - das[das.length - 1]);
               das.push(e.nativeEvent.pageX)
               ref.current.scrollToOffset({ animated: true, offset: scroll + das[0] - das[das.length - 1] })
-              setscroll(scroll + das[0] - das[das.length - 1])
-            }
+            //   if ((scroll < 10) && (scroll > 0)) {
+            //   setscroll(scroll + das[0] - das[das.length - 1])
+            // }
+          }
           }
           setscroll2(false)
 
         }}
       >
         <FlatList
+        showsHorizontalScrollIndicator={Platform.OS !== 'web' ? false : !navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows'? true:false }
           // initialScrollIndex={0}
           // inverted
           dir='ltr'
@@ -81,7 +81,8 @@ function ScrollSlider(p) {
           // contentInset={{ left: 0 }}
           onScroll={(e) => { setscroll(e.nativeEvent.contentOffset.x) }}
           // dir='ltr'
-          style={[(navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') && { overflow: 'hidden' }, { height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
+          style={[{ height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
+          // style={[(navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') && { overflow: 'hidden' }, { height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
         />
       </View>
     </View>

@@ -1,53 +1,75 @@
 import React from 'react'
-import { Card2, P, Span } from '../../../../Components/Html'
+import { Card2, P, Press, Row, Span } from '../../../../Components/Html'
+import Modal from '../../../Modal'
 
 const Specifications = (p) => {
   return (
     <Span minw={280} w='100%' ai='center' jc='center' >
       <Card2 h={320} w='100%' style={{ borderColor: 'silver', backgroundColor: 'white' }}
         coulumn1={
-          <Span mt={10} >
-            <Span mr={12} fd='row' >
-              <P>نوع پردازنده cpu:</P>
-              <P>نوع پردازنده cpu:</P>
+          <Span mt={5} fg={1} jc='center'>
+            <Span mr={12} fd='row' ai='center'>
+              <P>نوع پردازنده cpu: </P>
+              <P fs={10.5} color='#333'>{p.specifications.cpu}</P>
             </Span>
           </Span>
         }
         coulumn2={
-          <Span>
-            <Span mr={12} fd='row' >
-              <P>رم:</P>
-              <P>رم:</P>
+          <Span fg={1} jc='center'>
+            <Span mr={12} fd='row' ai='center'>
+              <P>رم: </P>
+              <P fs={10.5} color='#333'>{p.specifications.ram}</P>
             </Span>
           </Span>
         }
         coulumn3={
-          <Span>
-            <Span mr={12} fd='row' >
-              <P>حافظه ی داخلی:</P>
-              <P>حافظه ی داخلی:</P>
+          <Span fg={1} jc='center'>
+            <Span mr={12} fd='row' ai='center'>
+              <P>حافظه ی داخلی: </P>
+              <P fs={10.5} color='#333'>{p.specifications.memory}</P>
             </Span>
           </Span>
         }
         coulumn4={
-          <Span>
-            <Span mr={12} fd='row' >
-              <P>دوربین:</P>
-              <P>دوربین:</P>
+          <Span fg={1} jc='center'>
+            <Span mr={12} fd='row' ai='center'>
+              <P>دوربین: </P>
+              <P fs={10.5} color='#333' >{p.specifications.camera}</P>
             </Span>
           </Span>
         }
-        c5={.5} coulumn5={
-          <Span f={.8} jc='center'>
-            <Span ml={12} as='flex-end'>
-              <P >نمایش مشخصات کامل کلیک کنید »</P>
+        coulumn5={
+          <Span fg={1} jc='center'>
+            <Span mr={12} fd='row' ai='center'>
+              <P>صفحه نمایش: </P>
+              <P fs={10.5} color='#333' >{p.specifications.display}</P>
             </Span>
+          </Span>
+        }
+
+        c6={.5} coulumn6={
+          <Span f={.8} jc='center'>
+            <Press onClick={() => { p.setshowModal(true) }} ml={12} as='flex-end'>
+              <P fs={10.5} color='#333'>نمایش مشخصات کامل کلیک کنید »</P>
+            </Press>
           </Span>
         }
       >
       </Card2>
 
+      <Modal {...p} style={{ width: '100%', height: '100%', paddingTop: 33 }} >
 
+        <Span w='100%'>
+          {p.allSpecifications.map((item,index) => (
+            <Row key={index} ai='center' mv={5} >
+              <P>{item.key}: </P>
+              <P fs={10.5} color='#333' >{item.value}</P>
+            </Row>
+          ))
+          }
+        </Span>
+
+      </Modal>
     </Span>
   )
 }

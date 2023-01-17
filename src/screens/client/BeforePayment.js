@@ -3,7 +3,7 @@ import { Span } from '../../Components/Html'
 
 const BeforePayment = () => {
   return (
-    <Span>FinallWorkPayment</Span>
+    <Span>BeforePayment</Span>
   )
 }
 

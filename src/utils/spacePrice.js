@@ -56,7 +56,7 @@
 
 
 const spacePrice = (inputPrice) => {
-  let newNumber = (inputPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  let newNumber = (inputPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.')
   return newNumber
 }
 

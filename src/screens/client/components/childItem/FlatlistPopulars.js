@@ -1,12 +1,12 @@
 import React from 'react'
 import { FlatList, Span } from '../../../../Components/Html'
-import CardItem from './CardItem'
+import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistPopulars = (p) => {
 
   return (
     <FlatList
-      colomn={1} colomn1={1} colomn2={2} colomn3={2}
+      colomn={1} colomn1={2} colomn2={2} colomn3={2}
       colomn4={3} colomn5={4} colomn6={5}
       data={p.populars}
       renderItem={({ item, index }) => (

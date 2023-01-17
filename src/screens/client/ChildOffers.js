@@ -25,11 +25,7 @@ const ChildOffers = (p) => {
           <FlatlistOffers {...p} />
         </Span>
 
-        <Span f={1} minw={150} >
-          <Scroll>
             <FilterList {...p} />
-          </Scroll>
-        </Span>
         <Chat {...p} />
       </Span>
 

@@ -1,12 +1,11 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Scroll, Span } from '../../Components/Html'
+import { Icon, M_icon, Scroll, Span } from '../../Components/Html'
 import Chat from './components/home/Chat'
 import FilterList from './components/childItem/FilterList'
 import FlatlistChild from './components/childItem/FlatlistChildItem'
 
 const ChildItems = (p) => {
-
   // p.useEffect(() => {
   //   p.navigation.setOptions({
   //     header: () =>
@@ -25,20 +24,14 @@ const ChildItems = (p) => {
           <FlatlistChild {...p} />
         </Span>
 
-        <Span f={1} minw={150} >
-          <Scroll>
-            <FilterList {...p} />
-          </Scroll>
-        </Span>
+        <FilterList {...p} />
+
         <Chat {...p} />
       </Span>
-
     </Span>
-
   )
 }
 
 export default ChildItems
-
 
 // هرکس که نظر میده بتونه لایک کنه و اگه لایک کرده بود بزن این کاربر این کالارا پیشنهاد میکند و ستاره رو فقط افرادی که دانلود کردن بتونن بدن

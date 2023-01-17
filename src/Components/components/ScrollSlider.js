@@ -72,7 +72,7 @@ function ScrollSlider(p) {
           horizontal
           {...p}
           renderItem={p.renderItem}
-          contentContainerStyle={[{ flexGrow: 1 }, p.ccStyle]}
+          contentContainerStyle={[{ flexGrow: 1, direction:'rtl' }, p.ccStyle]}
           onLayout={(e) => { let layoutWidth = e.nativeEvent.layout.width; setTimeout(() => { setscrollWidth(layoutWidth); }, 2000); width = p.width; let int = setInterval(sum, 4000); function sum() { if (scroll2) open() } setinterval(int) }}
           onContentSizeChange={(e) => { setcontentSize(e); }}
           // scrollEventThrottle={0}

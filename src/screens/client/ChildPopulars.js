@@ -25,11 +25,8 @@ const ChildPopulars = (p) => {
           <FlatlistPopulars {...p} />
         </Span>
 
-        <Span f={1} minw={150} >
-          <Scroll>
-            <FilterList {...p} />
-          </Scroll>
-        </Span>
+        <FilterList {...p} />
+
         <Chat {...p} />
       </Span>
 

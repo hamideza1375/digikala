@@ -172,11 +172,28 @@ export const Span = (props) => <Component {...props} Component={View} />
 
 export const Press = (props) => <Component onPress={props.onClick} {...props} style={[props.onClick && Platform.OS === 'web' && { cursor: 'pointer' }, props.style]} Component={Pressable} />
 
+// export const PressView = (props) => 
+// Platform.OS === 'web'?
+// <Component onPress={props.onClick} {...props} style={[props.onClick && Platform.OS === 'web' && { cursor: 'pointer' }, props.style]} Component={Pressable} />
+// :
+// <Component onTouchEnd={props.onClick} {...props} Component={View} /> 
+
+
 export const PressView = (props) => 
-Platform.OS === 'web'?
-<Component onPress={props.onClick} {...props} style={[props.onClick && Platform.OS === 'web' && { cursor: 'pointer' }, props.style]} Component={Pressable} />
-:
-<Component onTouchEnd={props.onClick} {...props} Component={View} /> 
+<Component onPress={props.onClick} {...props} style={[props.onClick && Platform.OS === 'web' && { cursor: 'pointer' }, props.style]} Component={Pressable} >
+  <View style={{width:'100%',height:'100%'}} >
+    {props.children}
+  </View>
+</Component>
+
+
+export const PressScrollView = (props) => 
+<Component onPress={props.onClick} {...props} style={[props.onClick && Platform.OS === 'web' && { cursor: 'pointer' }, props.style]} Component={Pressable} >
+  <ScrollView style={{width:'100%',height:'100%'}} >
+    {props.children}
+  </ScrollView>
+</Component>
+
 
 
 export const ImgBackground = (props) => <Component source={props.src} {...props} Component={ImageBackground} />

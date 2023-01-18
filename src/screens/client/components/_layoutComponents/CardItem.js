@@ -1,8 +1,10 @@
 import { useFocusEffect } from '@react-navigation/native'
 import React, { useCallback, useState } from 'react'
 import { Text } from 'react-native'
-import { A_icon, Card2, Icon, M_icon, P, Row, Span } from '../../../../Components/Html'
+import Icon from 'react-native-vector-icons/dist/FontAwesome5'
+import { A_icon, Card2,  M_icon, P, Row, Span } from '../../../../Components/Html'
 import seconder from '../../../../utils/seconder'
+
 
 const CardItem = ({ item, spacePrice, offers, h = 240, w = 200, style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {
 
@@ -24,16 +26,15 @@ const CardItem = ({ item, spacePrice, offers, h = 240, w = 200, style, sh = { r:
       coulumn1={<Span mt={8} w={'100%'}><P fs={11} ta='center' as='center' >{item.title}</P></Span>}
       coulumn2={<Span bgcolor='#eee' fd='row' h={35} jc='center' w={'100%'}>
         <Span ai='center' w={'25%'} h={35} border={[0, 'silver']} pt={1} >
-          {/* <Icon name='microchip' size={16} style={{ transform: [{ scaleY: .6 }] }} /> */}
           <M_icon name='memory' size={16} />
           <P fs={8} mt={1} ta='center' >{item.cpuCore} هسته</P>
         </Span>
         <Span ai='center' w={'25%'} h={35} brw={1} border={[0, 'silver']} pt={1}>
-          <A_icon name='hdd' size={16} />
+          <Icon name='hdd' size={16} />
           <P fs={8} mt={1} ta='center' >{item.sdCard} گیگ </P>
         </Span>
         <Span ai='center' w={'25%'} h={35} brw={1} border={[0, 'silver']} pt={1} >
-          <M_icon name='sd-card' size={16} style={{ transform: [{ rotate: '90deg' }] }} />
+          <Icon name='memory' size={16} />
           <P fs={8} mt={1} ta='center' >{item.ram} گیگ</P>
         </Span>
         <Span ai='center' w={'25%'} h={35} brw={1} border={[0, 'silver']} pt={1} >

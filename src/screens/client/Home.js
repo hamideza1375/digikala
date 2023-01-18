@@ -1,5 +1,5 @@
 import React from 'react'
-import { Span, Slider, Scroll, Div } from '../../Components/Html'
+import { Span, Slider, Scroll, Div, Container, Container2, ContainerTab } from '../../Components/Html'
 import Chat from './components/home/Chat'
 import Group from './components/home/Group'
 import SliderOffers from './components/home/SliderOffers'
@@ -10,8 +10,8 @@ import s from './style/client.module.scss'
 
 function Home(p) {
   return (
-    <Span f={1} >
-      <Scroll >
+    <ContainerTab >
+      <Scroll>
         <Div>
           <Slider data={p.slider} {...p} onClick={() => { alert(8) }} />
         </Div>
@@ -38,7 +38,7 @@ function Home(p) {
 
       </Scroll>
       <Chat />
-    </Span>
+    </ContainerTab>
   )
 }
 

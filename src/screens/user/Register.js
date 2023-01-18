@@ -1,11 +1,15 @@
 import React from 'react'
-import { Span } from '../../Components/Html'
+import { ContainerTab, Form, Span } from '../../Components/Html'
 
 const Register = () => {
   return (
-    <Span>
-      Register
-    </Span>
+    <ContainerTab ai='center' jc='center' bgcolor='#fafafa'>
+      <Span w='90%' f={.98} border={[1, 'silver']} p={8} sh={{ r: 7, o: .3, c: '#aaa' }}>
+        <Span w='100%' f={1} border={[1, 'silver']} sh={{ r: 5, o: .2, c: '#aaa' }} >
+          <Form f ph e p bgcolor='#fff' ch />
+        </Span>
+      </Span>
+    </ContainerTab>
   )
 }
 

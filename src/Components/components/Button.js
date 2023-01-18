@@ -24,7 +24,7 @@ const _Button = React.forwardRef((props, ref) => {
 })
 
 const Button = React.forwardRef((props, ref) => {
-  const { as, style, outline, fs = 15, p, pt, pb, pl, pr, pv, ph, h = 46, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f } = props;
+  const { maxw,minw,maxh,minh,as, style, outline, fs = 15, p=5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f } = props;
 
 
 
@@ -33,7 +33,7 @@ const Button = React.forwardRef((props, ref) => {
       <_Button
         ref={ref}
         {...props}
-        style={[
+        style={[{maxWidth:maxw,minWidth:minw,maxHeight:maxh,minHeight:minh},
           {
             backgroundColor: (bgcolor == 'red') && '#f33' ||
               (!bgcolor) && '#0099ff' ||

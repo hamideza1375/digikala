@@ -41,14 +41,14 @@ import DeleteAdmin from "./screens/admin/DeleteAdmin";
 
 import Address from "./screens/admin/Address";
 import DeleteAllAddress from "./screens/admin/DeleteAllAddress";
-import ListAvailable from "./screens/admin/ListAvailable";
+import ListUnAvailable from "./screens/admin/ListUnAvailable";
 import GetProposal from "./screens/admin/GetProposal";
-import TitleTable from "./screens/admin/TitleTable";
-import ChildTable from "./screens/admin/ChildTable";
-import EditTitle from "./screens/admin/EditTitle";
-import EditChild from "./screens/admin/EditChild";
-import CreateTitle from "./screens/admin/CreateTitle";
-import CreateChild from "./screens/admin/CreateChild";
+import TableGroupItems from "./screens/admin/TableGroupItems";
+import TableChildItems from "./screens/admin/TableChildItems";
+import EditGroupItem from "./screens/admin/EditGroupItem";
+import EditChildItem from "./screens/admin/EditChildItem";
+import CreateGroupItem from "./screens/admin/CreateGroupItem";
+import CreateChildItem from "./screens/admin/CreateChildItem";
 import chart from "./screens/admin/chart";
 // import GetProposal from "./screens/admin/DeleteTitle";
 
@@ -81,7 +81,7 @@ const Mobile = () => {
 
   const height = Platform.OS === 'web' ? '100vh' : '100%'
   return (
-    <Span h={height} w='100%' onClick={() => { p.$input.get('dropdownDrawer')?.current.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}>
+    <Span h={height} w='100%' minw={280} onClick={() => { p.$input.get('dropdownDrawer')?.current.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}>
       <contextStates.Provider value={p}>
         <Init ref={(e) => allState.set$(e)} id={'s'} />
         <ToastProvider {...p} />
@@ -92,7 +92,7 @@ const Mobile = () => {
             <Tab.Screen name="ChildOffers" options={{title: 'home'}} {..._children(ChildOffers)} />
             <Tab.Screen name="ChildPopulars" options={{title: 'home'}} {..._children(ChildPopulars)} />
             <Tab.Screen name="SingleItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleItems)} />
-            <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: 'route.params.title' })} {..._children(BeforePayment)} />
+            <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: 'route.params.title', headerStyle:{backgroundColor:'#ddd'}})} {..._children(BeforePayment)} />
           </Tab.Group>
 
           <Tab.Group screenOptions={{ headerShown: false }} >
@@ -111,19 +111,19 @@ const Mobile = () => {
           </Tab.Group>
 
           <Tab.Group>
-            <Tab.Screen initialParams={{ key: 'admin' }} name="TitleTable" options={{ title: 'پنل ادمین', headerShown: false }} {..._children(TitleTable)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="ChildTable" options={({ route }) => ({ title: 'route.params.title', header: (props) => <Row bgcolor='#fff' style={{ shadowRadius: 7, shadowOpacity: .2, marginTop: Platform.OS === 'ios' ? 40 : 0, justifyContent: 'space-around' }} mb={5} ><Input alignSelf='center' mt={5} mb={2} w='80%' placeholderColor='red' iconColor='#777' border={[1, '#aaa']} icon='search' value={p.textSearch} onChangeText={(text) => { _food(props).sercher(text); p.settextSearch(text) }} placeholder="جستجو" /><Micon name='arrow-back' onPress={() => { props.navigation.navigate('AdminTitleAllFood') }} style={{ height: 42, width: 35, marginTop: 17, textAlign: 'center' }} size={27} /></Row> })} {..._children(ChildTable)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="EditTitle" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditTitle)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="EditChild" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditChild)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="CreateTitle" options={({ route }) => ({ title: 'ساخت دسته ی اغذیه' })} {..._children(CreateTitle)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="CreateChild" options={({ route }) => ({ title: `ساخت دسته برای ${'route.params.title'}` })} {..._children(CreateChild)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="TitleTable" options={{ title: 'پنل ادمین', headerShown: false }} {..._children(TableGroupItems)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="TableChildItems" options={({ route }) => ({ title: 'route.params.title', header: (props) => <Row bgcolor='#fff' style={{ shadowRadius: 7, shadowOpacity: .2, marginTop: Platform.OS === 'ios' ? 40 : 0, justifyContent: 'space-around' }} mb={5} ><Input alignSelf='center' mt={5} mb={2} w='80%' placeholderColor='red' iconColor='#777' border={[1, '#aaa']} icon='search' value={p.textSearch} onChangeText={(text) => { _food(props).sercher(text); p.settextSearch(text) }} placeholder="جستجو" /><Micon name='arrow-back' onPress={() => { props.navigation.navigate('AdminTitleAllFood') }} style={{ height: 42, width: 35, marginTop: 17, textAlign: 'center' }} size={27} /></Row> })} {..._children(TableChildItems)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="EditTitle" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditGroupItem)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="EditChild" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditChildItem)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="CreateTitle" options={({ route }) => ({ title: 'ساخت دسته ی اغذیه' })} {..._children(CreateGroupItem)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="CreateChild" options={({ route }) => ({ title: `ساخت دسته برای ${'route.params.title'}` })} {..._children(CreateChildItem)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="AddAdmin" options={{ title: 'اضافه کردن ادمین' }} {..._children(AddAdmin)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="Notifee" options={{ title: 'ارسال نوتیفیکیشن' }} {..._children(Notifee)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="ChangeAdmin" options={{ title: 'تعویض ادمین' }} {..._children(ChangeAdmin)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAdmin" options={{ title: 'حذف ادمین' }} {..._children(DeleteAdmin)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAllAddress" options={{ title: 'حذف آدرس ها', headerShown: true, header: (props) => <Row fd={'row'} style={[Platform.OS === 'ios' && { marginTop: 40 }, { width: '100%', justifyContent: 'center', backgroundColor: '#fff', marginBottom: 8 }]} ><Input border={[1, '#888']} h={42} m={'auto'} mv={10} w={'85%'} alignSelf='center' value={p.textSearch} onChangeText={(text) => { p.settextSearch(text); const fd = p._address.filter(f => f.fullname.includes(text) || f.phone == text); p.setallAddress(fd) }} p="جستجو" icon={'search'} />{<Micon name='arrow-back' onPress={() => { props.navigation.navigate('AdminTitleAllFood') }} style={{ height: 42, width: 35, marginTop: 17, left: -5, textAlign: 'center' }} size={27} />}</Row> }} {..._children(DeleteAllAddress)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="Address" options={{ title: 'اضافه کردن ادمین' }} {..._children(Address)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="ListAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListAvailable)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="ListAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="chart" options={{ title: 'chart' }} {..._children(chart)} />
           </Tab.Group>
@@ -156,19 +156,19 @@ propTypes(Location)
 propTypes(CreateComment)
 propTypes(EditComment)
 
-propTypes(TitleTable)
-propTypes(ChildTable)
-propTypes(EditTitle)
-propTypes(EditChild)
-propTypes(CreateTitle)
-propTypes(CreateChild)
+propTypes(TableGroupItems)
+propTypes(TableChildItems)
+propTypes(EditGroupItem)
+propTypes(EditChildItem)
+propTypes(CreateGroupItem)
+propTypes(CreateChildItem)
 propTypes(AddAdmin)
 propTypes(Notifee)
 propTypes(ChangeAdmin)
 propTypes(DeleteAdmin)
 propTypes(DeleteAllAddress)
 propTypes(Address)
-propTypes(ListAvailable)
+propTypes(ListUnAvailable)
 propTypes(GetProposal)
 propTypes(chart)
 
@@ -208,7 +208,7 @@ const linking = {
       Address: '/Address',
       TitleTable: '/TitleTable',
       CreateTitle: '/CreateTitle',
-      ChildTable: '/ChildTable:id',
+      TableChildItems: '/TableChildItems:id',
       EditTitle: '/EditTitle:id',
       EditChild: '/EditChild:id',
       CreateChild: '/CreateChild:id',
@@ -233,7 +233,7 @@ else {
   App = () => {
     return (
       <NavigationContainer linking={linking} >
-        <View flex={1} style={{ minHeight: '100vh' }} dir='rtl' >
+        <View flex={1} style={{ minHeight: '100vh'}} dir='rtl' >
           <Mobile />
         </View>
       </NavigationContainer>

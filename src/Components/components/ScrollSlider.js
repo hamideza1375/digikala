@@ -23,7 +23,7 @@ function ScrollSlider(p) {
     }
   };
 
-  if (count + 1 === p.data.length) { clearInterval(interval) }
+  if (count >= p.data.length) { clearInterval(interval) }
   if (!scroll2) { clearInterval(interval) }
 
   if (p.width !== width) {
@@ -68,7 +68,7 @@ function ScrollSlider(p) {
           // inverted
           dir='ltr'
           ref={ref}
-          keyExtractor={item => item.id}
+          // keyExtractor={item => item._id}
           horizontal
           {...p}
           renderItem={p.renderItem}

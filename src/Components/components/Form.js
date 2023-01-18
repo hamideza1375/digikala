@@ -139,7 +139,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
     <ScrollView contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]} style={[{ backgroundColor: bgcolor, borderRadius: 3, marginTop: mt }, Platform.OS === 'web' ? webStyle : nativeStyle]} >
 
       <View style={[styles.viewContainer, { paddingTop: top }, style]} >
-        <View style={[{ transform: [{ scaleY: sizeY }], padding: 10, paddingBottom: 25 },flexDirection === 'row' && Platform.OS !== 'web' ?{flexDirection: 'row', flexWrap: 'wrap'}:{}]}>
+        <View style={[{ transform: [{ scaleY: sizeY }], padding: 10, paddingBottom: 25 },flexDirection === 'row' && Platform.OS === 'web' ?{flexDirection: 'row', flexWrap: 'wrap'}:{}]}>
 
           {f &&
             <Frm

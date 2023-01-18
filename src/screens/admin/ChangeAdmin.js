@@ -1,12 +1,7 @@
-import React from 'react'
-import { Span } from '../../Components/Html'
+import React from 'react';
+import {Form} from '../../Components/Html'
 
-const ChangeAdmin = () => {
-  return (
-    <Span>
-      ChangeAdmin
-    </Span>
-  )
+export default function ChangeAdmin(p){
+  const sendChangeAdmin = () => p._admin.changeAdmin()
+  return <Form webStyle={{height:'calc(100vh - 68px)'}} ph _input {...p} onClick={() => sendChangeAdmin()} />
 }
-
-export default ChangeAdmin

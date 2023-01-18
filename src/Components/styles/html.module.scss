@@ -2,6 +2,10 @@
     height: 100vh;
 }
 
+.ContainerWeb2 {
+    height: calc(100vh - 64px);
+}
+
 .Container {
     flex: 1
 }

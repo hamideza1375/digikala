@@ -1,12 +1,48 @@
 import React from 'react'
-import { Span } from '../../Components/Html'
+import { Text, View, FlatList, Platform } from 'react-native';
+import { Button } from '../../Components/Html';
+import CardDeleteAllAddress from './components/deleteAllAddress/CardDeleteallAddress';
 
-const DeleteAllAddress = () => {
-  return (
-    <Span>
-      DeleteAllAddress
-    </Span>
-  )
+const DeleteAllAddress = (p) => {
+
+	// p._admin.getAllAddress()
+	// p._admin.totalAllAddress()
+	const deleteAllAddress = () => p._admin.deleteAllAddress()
+
+	return (
+		<View style={[{ flexGrow: 1, width: '100%', backgroundColor: '#eee' },]} >
+			{p.allAddress.length ? <Button w='90%' mb={10} alignSelf='center' bgcolor='red' onPress={() => deleteAllAddress()} >حذف همه</Button> : <></>}
+
+			{p.showBtn && <Button alignSelf='center' outline w='90%' bgcolor='silver' color='#999' onPress={() => { p.setshowBtn(!p.showBtn) }} >جمع ماه گذشته از {p.oldPrice?.split("=") && p.oldPrice.split("=")[0]} = {p.oldPrice?.split("=") && p.spacePrice(p.oldPrice.split("=")[1])} تومان</Button>}
+			<Button alignSelf='center' outline bgcolor='black' w={'90%'} border={[0, '#999']} onPress={() => { p.setshowBtn(!p.showBtn) }} > جمع از تاریخ {p.fromMomemt} = {p.spacePrice(p.totalPrices)} تومان</Button>
+
+			{
+				p.allAddress?.length ?
+
+					<FlatList
+						initialNumToRender={3}
+						keyExtractor={(f) => f && f._id.toString()}
+						data={p.allAddress}
+						contentContainerStyle={{ paddingBottom: 55, }}
+						renderItem={({ item, index }) => (
+							<View key={item._id} style={{
+								alignSelf: 'center',
+								borderWidth: .3,
+								borderColor: '#888',
+								width: '90%',
+								marginVertical: 15,
+								paddingHorizontal: 15,
+								paddingTop: 15,
+								backgroundColor: '#f5f5f5',
+								borderRadius: 4
+							}}>
+								<CardDeleteAllAddress {...p} />
+							</View>
+						)} />
+					: <></>
+			}
+		</View>
+	)
 }
 
 export default DeleteAllAddress

@@ -1,12 +1,9 @@
-import React from 'react'
-import { Span } from '../../Components/Html'
+import React from "react";
+import { View } from 'react-native';
 
-const Location = () => {
-  return (
-    <Span>
-      Location
-    </Span>
-  )
-}
-
-export default Location
+const Logout = (p) => {
+  // p._user.logout()
+  // p._food.removeReload()
+  return <View />;
+};
+export default Logout;

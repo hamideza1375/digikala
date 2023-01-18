@@ -1,12 +1,14 @@
-import React from 'react'
-import { Span } from '../../Components/Html'
+import React from 'react';
+import { Container } from '../../Components/Html';
+import Frame from '../../Components/other/Frame';
 
-const Payment = () => {
+function Payment(p) {
+  // p._user.getLastPayment()
+
   return (
-    <Span>
-      Payment
-    </Span>
+    <Container >
+      <Frame source={{ uri: p.route.params.url }} />
+    </Container>
   )
 }
-
-export default Payment
+export default Payment;

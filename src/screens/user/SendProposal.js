@@ -1,12 +1,7 @@
-import React from 'react'
-import { Span } from '../../Components/Html'
+import React from 'react';
+import {Form} from '../../Components/Html';
 
-const SendProposal = () => {
-  return (
-    <Span>
-      SendProposal
-    </Span>
-  )
-}
+export default function SendProposal (p) {
+  return <Form mAutoFocus m c {...p} onClick={() => p._user.sendProposal()} />
+};
 
-export default SendProposal

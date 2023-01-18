@@ -34,6 +34,7 @@ export function singleItems() {
     {id:'3',key:'دوربین',value:'64'},
   ])
 
+
   this.showComment = {
     comment, setcomment,
     colorItem, setcolorItem,
@@ -41,7 +42,7 @@ export function singleItems() {
     guarantee, setguarantee,
     specifications, setspecifications,
     allSpecifications, setallSpecifications,
-    singlePrice, setsinglePrice
+    singlePrice, setsinglePrice,
   }
 
 }

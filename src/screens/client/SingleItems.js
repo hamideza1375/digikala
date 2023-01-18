@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Br, Div, P, Scroll, Span } from '../../Components/Html'
+import { Br, Container2, Div, P, Scroll, Span } from '../../Components/Html'
 import Chat from './components/home/Chat'
 import Obligations from './components/singleItem/Obligations'
 import Description from './components/singleItem/Description'
@@ -23,7 +23,7 @@ const SingleItems = (p) => {
     // });
   }, [])
   return (
-    <Span f={1} style={{ maxHeight: Platform.OS === 'web' ? 'calc(100vh - 65px)' : '100%' }} >
+    <Container2>
       <Scroll >
         <Span bgcolor='#fff' w='100%' h={50} >
           <P pr={10} mt={14} fw='bold'>گوشی موبایل شیایومی مدل 12</P>
@@ -65,7 +65,7 @@ const SingleItems = (p) => {
         </Span>
       </Scroll>
       <Chat {...p} />
-    </Span>
+    </Container2>
   )
 }
 

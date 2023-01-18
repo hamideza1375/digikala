@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { Div } from '../Html';
 
-const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" }) => {
+const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#ddd", activeColor = "#aad" }) => {
   const navigation = useNavigation()
 
   return (
@@ -13,9 +13,11 @@ const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#777"
           <View key={key} style={styles.routeView} >
             <Pressable
               onPress={() => navigation.navigate(item.name)}
-              style={[styles.pressableActive, { borderBottomColor: name === item.name ? "#47f" : "#f5f5f5", borderBottomWidth: name === item.name ? 2 : 0 }]} >
+              style={[styles.pressableActive,]} >
               <Text style={[styles.textActive,
               { color: name === item.name ? activeColor : color }]}>{item.title}</Text>
+              <View 
+              style={[styles.borderActive, { borderBottomColor: name === item.name ? "#9af" : "#f5f5f5", borderBottomWidth: name === item.name ? 3 : 0 }]} ></View>
             </Pressable>
           </View>
         ))}
@@ -64,7 +66,7 @@ const styles = StyleSheet.create({
   pressableActive: {
     backgroundColor: 'transparent',
     width: '100%',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     flex: 1,
     paddingBottom: 5,
   },
@@ -73,7 +75,11 @@ const styles = StyleSheet.create({
     color: '#777',
     textAlign: 'center',
   },
-
+  borderActive: {
+    minHeight: '50%',
+    width:'95%',
+    marginHorizontal:'auto',
+  }
 })
 
 export default TopTab

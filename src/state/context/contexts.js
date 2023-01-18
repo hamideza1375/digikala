@@ -6,6 +6,7 @@ import { singleItems } from './client/singleItems';
 import { showHome } from './client/home';
 import { initial } from './initial';
 import { services } from './services/servicesState';
+import { beforePayment } from './client/beforePayment';
 
 function State() {
   const home = new showHome()
@@ -13,7 +14,8 @@ function State() {
   const single = new singleItems()
   const init = new initial()
   const service = new services()
-
+  const _beforePayment = new beforePayment()
+  
   return {
     ...filter.systemFilter,
     ...single.showComment,
@@ -23,6 +25,7 @@ function State() {
     ...service.adminService,
     ...service.clientService,
     ...service.userService,
+    ..._beforePayment.table
   }
 }
 export const states = () => State()

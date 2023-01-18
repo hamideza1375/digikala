@@ -10,6 +10,7 @@ export { default as Button } from './components/Button'
 export { default as Card } from './components/Card'
 export { default as Card2 } from './components/Card2'
 export { default as Dropdown } from './components/Dropdown'
+export { default as Drawer2 } from './components/Drawer2'
 export { default as Form } from './components/Form'
 export { default as List } from './components/List'
 export { default as Loading } from './components/Loading'
@@ -163,6 +164,10 @@ export const Init = React.forwardRef((props, ref) => {
 
 
 export const Container = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb : s.Container} {...props} Component={View} />
+
+export const Container2 = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb2 : s.Container} {...props} Component={View} />
+
+export const ContainerTab = (props) => <Component initalClass={s.Container} {...props} Component={View} />
 
 export const Div = (props) => <Component initalClass={s.div} {...props} Component={View} />
 

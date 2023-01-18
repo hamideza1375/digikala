@@ -17,7 +17,7 @@ export const Layout = (p) => {
   //     if (p._key === '120') { p.setnavigateUser(p.route.name) }
   //   }
   // }, []))
-  const drawer = [{ name: 'Profile', title: 'پروفایل' }, { name: 'LastPayment', title: 'خرید آخر' }, { name: 'Logout', title: 'خروج از حساب کاربری' }]
+  const drawer = [{ name: 'Profile', title: 'پروفایل' },  { name: 'Logout', title: 'خروج از حساب کاربری' }]
   const topUser = [{ name: 'Register', title: 'ثبت نام' }, { name: 'Login', title: 'ورود' }]
 
   const drawer2 = [
@@ -37,9 +37,9 @@ export const Layout = (p) => {
 
   return (
     <View style={{ flex: 1, paddingHorizontal: Platform.OS === 'ios' ? (p.width > p.height ? 35 : 0) : 0 }} >
-      <SafeAreaView style={{ backgroundColor: p.route.name === 'Profile' ? '#bbf' : '#fff' }} />
+      <SafeAreaView/>
 
-      {p.route.name === 'Profile' | p.route.name === 'LastPayment' | p.route.name === 'Login' | p.route.name === 'Register' | p.route.name === 'Home' | p.route.name === 'AdminTitleAllFood' ?
+      { p.route.name === 'Login' | p.route.name === 'Register' | p.route.name === 'Home' ?
         <View style={{ flex: 1, overflow: 'hidden' }}>
           {
             p.route.name === 'Login' && (
@@ -56,17 +56,9 @@ export const Layout = (p) => {
             ||
             p.route.name === 'Home' &&
             <HomePage {...p} bottom={bottom} />
-            ||
-
-            p.route.name === 'AdminTitleAllFood' &&
-            <Drawer name={p.route.name} title={'پنل ادمین'} group={drawer2} iconRight={{ name: 'home', onClick: () => { p.navigation.navigate('Home') } }} bgcolor="#fff" style={[{ shadowRadius: 9, shadowOffset: { width: .1, height: .1 }, shadowOpacity: .15 }, Platform.OS === 'web' && { overflow: 'hidden' }]}>
-              {p.children}
-            </Drawer>
-
           }
         </View>
         :
-
         <View flex={1} >
           {p.children}
         </View>}

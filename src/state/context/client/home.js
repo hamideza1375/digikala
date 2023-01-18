@@ -15,8 +15,6 @@ export function showHome() {
     { _id: '4', image: require('../../../assets/images/a7.jpg') },
     { _id: '5', image: require('../../../assets/images/a1.jpg') },
     { _id: '6', image: require('../../../assets/images/a2.jpg') },
-    { _id: '7', image: require('../../../assets/images/a3.jpg') },
-    { _id: '8', image: require('../../../assets/images/a7.jpg') },
   ])
 
 

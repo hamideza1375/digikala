@@ -1,35 +1,39 @@
 import React, { useRef, useState } from 'react'
 import { ScrollView } from 'react-native';
-import { Img, ScrollHorizontal, Span, M_icon, Press } from '../Html'
+import { Img, ScrollHorizontal, Span, M_icon, Press, Badge, Row } from '../Html'
 
-var count = 1,
+var count = 0,
   width,
-  plus=true,
+  plus = true,
   minus
 
 function Slider(p) {
 
+  const [badgeActive, setbadgeActive] = useState(0)
 
   const ref = useRef()
 
   const [interval, setinterval] = useState(true)
 
   const open = () => {
-    { ref.current && ref.current.scrollTo({ x: p.width * count, y: 0, animated: true }); }
+    if(ref.current) {ref.current.scrollTo({ x: p.width * count, y: 0, animated: true }); setbadgeActive(count) }
     if (count === 0) { plus = true; minus = false }
-    if (count === 7) { minus = true; plus = false }
-    if (minus) { count = count - 1 }
-    if (plus) { count += 1 }
+    if (count === 5) { minus = true; plus = false }
+    if (minus) { count = count - 1}
+    if (plus) { count += 1}
+    
   };
 
   const right = () => {
     if (count !== 0) count = count - 1
     ref.current && ref.current.scrollTo({ x: p.width * count, y: 0, animated: true });
+    setbadgeActive(count)
   };
 
   const left = () => {
-    if (count !== 7) count += 1
+    if (count !== 5) count += 1
     ref.current && ref.current.scrollTo({ x: p.width * count, y: 0, animated: true });
+    setbadgeActive(count)
   };
 
 
@@ -57,13 +61,23 @@ function Slider(p) {
         }
         setinterval(int)
       }} style={{ height: 260, width: p.width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
-       {p.data.map(({image},index)=>(
-         <Press key={index} onClick={p.onClick} w={p.width} ><Img w='100%' h={300} src={image} /></Press>
-         ))
-      }  
+        {p.data.map(({ image }, index) => (
+          <Press key={index} onClick={p.onClick} w={p.width} ><Img w='100%' h={300} src={image} /></Press>
+        ))
+        }
       </ScrollView>
-      <M_icon onClick={right} size={30} name="arrow-back-ios" style={{ paddingVertical:5,position: 'absolute', zIndex: 10, left: 10, top: 130, color: '#222' }} />
-      <M_icon onClick={left} size={30} name="arrow-forward-ios" style={{ paddingVertical:5,position: 'absolute', zIndex: 10, right: 10, top: 130, color: '#222' }} />
+      <M_icon onClick={right} size={30} name="arrow-back-ios" style={{ paddingVertical: 5, position: 'absolute', zIndex: 10, left: 10, top: 130, color: '#222' }} />
+      <M_icon onClick={left} size={30} name="arrow-forward-ios" style={{ paddingVertical: 5, position: 'absolute', zIndex: 10, right: 10, top: 130, color: '#222' }} />
+
+      <Row pos='absolute' b={15} w='100%' jc='center' >
+        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 5?'#0cf':'#fff8'}/></Span>
+        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 4?'#0cf':'#fff8'}/></Span>
+        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 3?'#0cf':'#fff8'}/></Span>
+        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 2?'#0cf':'#fff8'}/></Span>
+        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 1?'#0cf':'#fff8'}/></Span>
+        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 0?'#0cf':'#fff8'}/></Span>
+      </Row>
+
     </Span>
   )
 }

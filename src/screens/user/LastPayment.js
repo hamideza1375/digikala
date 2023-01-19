@@ -1,5 +1,5 @@
 import React from 'react'
-import { Span, P, Container } from '../../Components/Html'
+import { Span, P, Container } from '../../other/Components/Html'
 
 const LastPayment = (p) => {
   // p._user.getLastPayment()

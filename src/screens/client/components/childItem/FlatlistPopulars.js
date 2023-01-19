@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList, Span } from '../../../../Components/Html'
+import { FlatList, Span } from '../../../../other/Components/Html'
 import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistPopulars = (p) => {

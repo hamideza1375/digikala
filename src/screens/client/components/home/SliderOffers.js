@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Platform } from 'react-native'
-import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../Components/Html'
-import LinearGradient from '../../../../Components/other/LinearGradient'
-import seconder from '../../../../utils/seconder'
+import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
+import LinearGradient from '../../../../other/Components/other/LinearGradient'
+import seconder from '../../../../other/utils/seconder'
 import s from '../../style/client.module.scss'
 import CardItem from '../_layoutComponents/CardItem'
 
@@ -22,11 +22,11 @@ const SliderOffers = (p) => {
   return (
     <>
       <Div>
-        <Img class={s.o_img} style={{ position: 'absolute', top: 20, left: 2, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass2.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 25, left: 50, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass1.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 255, right: 55, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass1.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 251, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass2.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 265, left: 15, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass12.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 20, left: 2, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass2.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 25, left: 50, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass1.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 255, right: 55, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass1.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 251, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass2.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 265, left: 15, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass12.png')} />
         <Div>
           <Div class={s.o_offerGlass2} t={0}></Div>
           <Div class={s.o_offerGlass} t={0}></Div>

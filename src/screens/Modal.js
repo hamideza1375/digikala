@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal as _Modal } from '../Components/Html'
+import { Modal as _Modal } from '../other/Components/Html'
 
 const Modal = (p) => {
   return (

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Scroll, Span, Drawer2, P, Row } from '../../Components/Html'
+import { Container, Scroll, Span, Drawer2, P, Row } from '../../other/Components/Html'
 const Profile = (p) => {
   return (
     <Container fd='row'>

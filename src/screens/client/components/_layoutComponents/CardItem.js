@@ -2,8 +2,8 @@ import { useFocusEffect } from '@react-navigation/native'
 import React, { useCallback, useState } from 'react'
 import { Text } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5'
-import { A_icon, Card2,  M_icon, P, Row, Span } from '../../../../Components/Html'
-import seconder from '../../../../utils/seconder'
+import { A_icon, Card2,  M_icon, P, Row, Span } from '../../../../other/Components/Html'
+import seconder from '../../../../other/utils/seconder'
 
 
 const CardItem = ({ item, spacePrice, offers, h = 240, w = 200, style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {

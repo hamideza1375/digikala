@@ -1,6 +1,6 @@
 import React from 'react';
-import { Container } from '../../Components/Html';
-import Frame from '../../Components/other/Frame';
+import { Container } from '../../other/Components/Html';
+import Frame from '../../other/Components/other/Frame';
 
 function Payment(p) {
   // p._user.getLastPayment()

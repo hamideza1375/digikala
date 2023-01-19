@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Img, P, ScrollSlider, Span } from '../../../../Components/Html'
-import LinearGradient from '../../../../Components/other/LinearGradient'
+import { Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
+import LinearGradient from '../../../../other/Components/other/LinearGradient'
 
 const Group = (p) => {
   return (

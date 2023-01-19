@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { M_icon, Span } from '../../../../Components/Html'
+import { M_icon, Span } from '../../../../other/Components/Html'
 
 const Chat = (p) => {
   return (

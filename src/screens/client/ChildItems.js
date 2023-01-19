@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Icon, M_icon, Scroll, Span } from '../../Components/Html'
+import { Icon, M_icon, Scroll, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import FilterList from './components/childItem/FilterList'
 import FlatlistChild from './components/childItem/FlatlistChildItem'
@@ -14,7 +14,7 @@ const ChildItems = (p) => {
   //           <P fs={10} mh={7} >موبایل تبلت</P>
   //           <P fs={10} mh={7} >هدفون هنزفیری</P>
   //           <P fs={10} mh={7} >لوازم جانبی</P>
-  //         </Span>} src={require('../../assets/images/logo.png')} />
+  //         </Span>} src={require('../../other/assets/images/logo.png')} />
   //   });
   // }, [])
   return (

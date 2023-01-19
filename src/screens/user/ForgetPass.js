@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, Span, P } from '../../Components/Html'
+import { Input, Button, Span, P } from '../../other/Components/Html'
 
 const ForgetPass = (p) => {
   // p._user.setreplaceInput()

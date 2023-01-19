@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Br, Container2, Div, P, Scroll, Span } from '../../Components/Html'
+import { Br, Container2, Div, P, Scroll, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import Obligations from './components/singleItem/Obligations'
 import Description from './components/singleItem/Description'
@@ -19,7 +19,7 @@ const SingleItems = (p) => {
     //         <P fs={10} mh={7} >موبایل تبلت</P>
     //         <P fs={10} mh={7} >هدفون هنزفیری</P>
     //         <P fs={10} mh={7} >لوازم جانبی</P>
-    //       </Span>} src={require('../../assets/images/logo.png')} />
+    //       </Span>} src={require('../../other/assets/images/logo.png')} />
     // });
   }, [])
   return (

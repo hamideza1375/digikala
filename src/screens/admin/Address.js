@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, FlatList } from 'react-native';
-import { Input } from '../../Components/Html';
+import { Input } from '../../other/Components/Html';
 import CardAddress from './components/Address/CardAddress';
 
 const Address = (p) => {

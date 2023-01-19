@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form} from '../../Components/Html';
+import {Form} from '../../other/Components/Html';
 
 const CreateGroupItem = (p) => {
   const sendCreateTitleFood = () => p._admin.createTitleFood()

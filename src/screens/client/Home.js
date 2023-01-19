@@ -1,5 +1,5 @@
 import React from 'react'
-import { Span, Slider, Scroll, Div, Container, Container2, ContainerTab } from '../../Components/Html'
+import { Span, Slider, Scroll, Div, Container, Container2, ContainerTab } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import Group from './components/home/Group'
 import SliderOffers from './components/home/SliderOffers'

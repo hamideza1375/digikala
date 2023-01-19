@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Scroll, Span } from '../../Components/Html'
+import { Scroll, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import FilterList from './components/childItem/FilterList'
 import FlatlistPopulars from './components/childItem/FlatlistPopulars'
@@ -15,7 +15,7 @@ const ChildPopulars = (p) => {
   //           <P fs={10} mh={7} >موبایل تبلت</P>
   //           <P fs={10} mh={7} >هدفون هنزفیری</P>
   //           <P fs={10} mh={7} >لوازم جانبی</P>
-  //         </Span>} src={require('../../assets/images/logo.png')} />
+  //         </Span>} src={require('../../other/assets/images/logo.png')} />
   //   });
   // }, [])
   return (

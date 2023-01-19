@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContainerTab, Form, Span } from '../../Components/Html'
+import { ContainerTab, Form, Span } from '../../other/Components/Html'
 
 const Register = () => {
   return (

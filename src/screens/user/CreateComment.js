@@ -1,5 +1,5 @@
 import React from 'react'
-import { Span } from '../../Components/Html'
+import { Span } from '../../other/Components/Html'
 
 const createComment = () => {
   return (

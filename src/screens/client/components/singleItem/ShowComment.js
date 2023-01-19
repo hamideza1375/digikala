@@ -1,5 +1,5 @@
 import React from 'react'
-import { A_icon, Badge, Card, Icon, P, Scroll, Span } from '../../../../Components/Html'
+import { A_icon, Badge, Card, Icon, P, Scroll, Span } from '../../../../other/Components/Html'
 
 const ShowComment = (p) => {
   return (

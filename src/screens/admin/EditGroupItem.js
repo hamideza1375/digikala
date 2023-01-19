@@ -1,6 +1,6 @@
 import React from 'react'
-import {Form} from '../../Components/Html';
-import  Title from '../../utils/setTitle';
+import {Form} from '../../other/Components/Html';
+import  Title from '../../other/utils/setTitle';
 
 const EditGroupItem = (p) => {
   Title()

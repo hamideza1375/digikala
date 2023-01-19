@@ -1,4 +1,4 @@
-import {axios, localhost} from '../utils/axios/axios'
+import {axios, localhost} from '../other/utils/axios/axios'
 
 // food
 export const delete1 = (id) => axios.delete(`${localhost}/deletefood/${id}`)

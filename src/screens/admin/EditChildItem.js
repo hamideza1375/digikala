@@ -1,7 +1,7 @@
 import React from 'react'
 import { View } from 'react-native';
-import {Form} from '../../Components/Html';
-import Title from '../../utils/setTitle';
+import {Form} from '../../other/Components/Html';
+import Title from '../../other/utils/setTitle';
 
 const EditChildItem = (p) => {
   Title()

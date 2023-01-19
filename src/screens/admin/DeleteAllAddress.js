@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, FlatList, Platform } from 'react-native';
-import { Button } from '../../Components/Html';
+import { Button } from '../../other/Components/Html';
 import CardDeleteAllAddress from './components/deleteAllAddress/CardDeleteallAddress';
 
 const DeleteAllAddress = (p) => {

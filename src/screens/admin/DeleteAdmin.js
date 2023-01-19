@@ -1,5 +1,5 @@
 import React from 'react';
-import {Div, Form, Span} from '../../Components/Html'
+import {Div, Form, Span} from '../../other/Components/Html'
 import { ScrollView, Text, View } from 'react-native';
 
 export default function DeleteAdmin (p) {

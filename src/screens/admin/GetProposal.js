@@ -1,5 +1,5 @@
 import React from 'react'
-import { FlatList } from '../../Components/Html'
+import { FlatList } from '../../other/Components/Html'
 import GetProposalCard from './components/getProposal/GetProposalCard'
 import GetProposalNavbar from './components/getProposal/GetProposalNavbar'
 

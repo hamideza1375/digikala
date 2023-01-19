@@ -1,7 +1,7 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../Components/Html'
-import LinearGradient from '../../../../Components/other/LinearGradient'
+import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
+import LinearGradient from '../../../../other/Components/other/LinearGradient'
 import s from '../../style/client.module.scss'
 import CardItem from '../_layoutComponents/CardItem'
 
@@ -10,12 +10,12 @@ const SliderPopulars = (p) => {
     <>
       <Div>
 
-        <Img class={s.o_img} style={{ position: 'absolute', top: 255, left: 35, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass23.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 20, left: 2, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass2.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 25, left: 50, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass1.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 255, right: 55, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass1.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 251, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass2.png')} />
-        <Img class={s.o_img} style={{ position: 'absolute', top: 265, left: 15, zIndex: -1, width: 88, height: 88 }} src={require('../../../../assets/images/glass12.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 255, left: 35, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass23.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 20, left: 2, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass2.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 25, left: 50, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass1.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 255, right: 55, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass1.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 251, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass2.png')} />
+        <Img class={s.o_img} style={{ position: 'absolute', top: 265, left: 15, zIndex: -1, width: 88, height: 88 }} src={require('../../../../other/assets/images/glass12.png')} />
 
         <Span fd='row' ai='center' mt={8}>
           <P mr={15} fs={15} color='#444' >محبوب ترین ها</P>

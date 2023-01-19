@@ -1,5 +1,5 @@
 import React from 'react'
-import { Div, P, Span } from '../../../../Components/Html'
+import { Div, P, Span } from '../../../../other/Components/Html'
 
 const GetProposalCard = (p) => {
   return (

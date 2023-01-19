@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card2, Img, P, Span } from '../../../../Components/Html'
+import { Card2, Img, P, Span } from '../../../../other/Components/Html'
 
 const Obligations = (p) => {
   return (
@@ -9,7 +9,7 @@ const Obligations = (p) => {
       <Card2 w='100%' h={'auto'} border={[0]}
         coulumn1={
           <Span h={'100%'} w={'100%'} jc='center' ai='center' >
-            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../assets/images/payPostMethod.png')} size={30} />
+            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../other/assets/images/payPostMethod.png')} size={30} />
           </Span>
         }
         coulumn2={
@@ -24,7 +24,7 @@ const Obligations = (p) => {
       <Card2 h={'auto'} border={[0]}
         coulumn1={
           <Span h={'100%'} w={'100%'} jc='center' ai='center' >
-            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../assets/images/guaranteeIcon.png')} size={30} />
+            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../other/assets/images/guaranteeIcon.png')} size={30} />
           </Span>
         }
         coulumn2={
@@ -39,7 +39,7 @@ const Obligations = (p) => {
       <Card2 h={'auto'} border={[0]}
         coulumn1={
           <Span h={'100%'} w={'100%'} jc='center' ai='center' >
-            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../assets/images/originalPostMethod.png')} size={30} />
+            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../other/assets/images/originalPostMethod.png')} size={30} />
           </Span>
         }
         coulumn2={
@@ -54,7 +54,7 @@ const Obligations = (p) => {
       <Card2 h={'auto'} border={[0]}
         coulumn1={
           <Span h={'100%'} w={'100%'} jc='center' ai='center' >
-            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../assets/images/7dayPostMethod.png')} size={30} />
+            <Img br={2} bgcolor='white' w={40} h={30} src={require('../../../../other/assets/images/7dayPostMethod.png')} size={30} />
           </Span>
         }
         coulumn2={

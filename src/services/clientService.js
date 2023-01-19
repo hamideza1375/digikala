@@ -1,4 +1,4 @@
-import { axios, localhost} from '../utils/axios/axios'
+import {axios, localhost} from '../other/utils/axios/axios'
 
 // comment
 export const post = (id, queryId, data) => axios.post(`${localhost}/createcommentchildfood/${id}?id=${queryId}`, data)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge, Button, Card2, Div, P, Press, Span } from '../../../../Components/Html'
+import { Badge, Button, Card2, Div, P, Press, Span } from '../../../../other/Components/Html'
 
 const Description = (p) => {
   const [color, setcolor] = p.useState()

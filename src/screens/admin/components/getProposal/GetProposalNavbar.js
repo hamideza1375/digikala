@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Icon, M_icon, Span } from '../../../../Components/Html'
+import { Icon, M_icon, Span } from '../../../../other/Components/Html'
 
 const GetProposalNavbar = (p) => {
   const [mapId] = useState(new Map())

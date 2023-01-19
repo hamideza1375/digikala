@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form} from '../../Components/Html'
+import {Form} from '../../other/Components/Html'
 
 const Notifee = (p) => {
   p.useEffect(()=>{return()=>{p.settitle('');p.setInfo('')}},[])

@@ -1,5 +1,5 @@
 import React from 'react'
-import { P, Span, Table } from '../../../../Components/Html'
+import { P, Span, Table } from '../../../../other/Components/Html'
 
 const BeforePaymentTable = (p) => {
   return (

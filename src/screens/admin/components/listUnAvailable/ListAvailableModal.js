@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { Modal, Button } from '../../../../Components/Html';
+import { Modal, Button } from '../../../../other/Components/Html';
 
 const ListAvailableModal = (p) => {
   const sendTrueAvailable = () => p._admin.sendAvailable()

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from '../../../../Components/Html';
+import { Table } from '../../../../other/Components/Html';
 
 
 const GroupItemsTableComponent = (p) => {

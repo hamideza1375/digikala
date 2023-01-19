@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card2, P, Press, Row, Span } from '../../../../Components/Html'
+import { Card2, P, Press, Row, Span } from '../../../../other/Components/Html'
 import Modal from '../../../Modal'
 
 const Specifications = (p) => {

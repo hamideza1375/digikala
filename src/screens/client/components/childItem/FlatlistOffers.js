@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { FlatList, Span } from '../../../../Components/Html'
-import seconder from '../../../../utils/seconder'
+import { FlatList, Span } from '../../../../other/Components/Html'
+import seconder from '../../../../other/utils/seconder'
 import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistOffers = (p) => {

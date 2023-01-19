@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form, Span} from '../../Components/Html'
+import {Form, Span} from '../../other/Components/Html'
 
 export const ResetPass = (p) => {
    const resetpassword =()=> p._user.resetpassword()

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pagination, Loading, Button, Span } from '../../Components/Html';
+import { Pagination, Loading, Button, Span } from '../../other/Components/Html';
 import s from "./style/Admin.module.scss"
 import ChildItemTableComponent from './components/chidItemTable/ChildItemTableComponent';
 import TableChildItemsModal from './components/chidItemTable/TableChildItemsModal';

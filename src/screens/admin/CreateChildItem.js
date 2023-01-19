@@ -1,5 +1,5 @@
 import React from 'react'
-import {Form} from '../../Components/Html';
+import {Form} from '../../other/Components/Html';
 
 const CreateChildItem = (p) => {
   const sendCreateChildFood = () => p._admin.createChild()

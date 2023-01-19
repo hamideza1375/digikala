@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Icon, P, Press, Row, Span } from '../../../../Components/Html'
+import { Button, Icon, P, Press, Row, Span } from '../../../../other/Components/Html'
 
 const BottomTabBeforePayment = (p) => {
   return (

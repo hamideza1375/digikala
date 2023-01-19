@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native';
-import { Button } from '../../../../Components/Html';
+import { Button } from '../../../../other/Components/Html';
 
 const CardAddress = (p) => {
   const deleteAddress = (_id) => p._admin.deleteAddress(_id)

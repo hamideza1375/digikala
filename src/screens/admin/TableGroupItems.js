@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loading, Button, Scroll, Span } from '../../Components/Html';
+import { Loading, Button, Scroll, Span } from '../../other/Components/Html';
 import s from "./style/Admin.module.scss"
 import Modal from './Modal';
 import GroupItemsTableComponent from './components/tableGroupItems/GroupItemsTableComponent';

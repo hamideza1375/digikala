@@ -1,5 +1,5 @@
 import React from 'react'
-import { Img, Span } from '../../../../Components/Html'
+import { Img, Span } from '../../../../other/Components/Html'
 
 const Banner = () => {
   return (
@@ -11,10 +11,10 @@ const Banner = () => {
               flex: 1,
               // aspectRatio: 1.5, 
               resizeMode: 'stretch',
-            }} source={require('../../../../assets/images/banner1.png')} />
+            }} source={require('../../../../other/assets/images/banner1.png')} />
         </Span>
         <Span f={1} h={150} mh={4} br={5} sh={{o:1,r:6,c:'#b77a'}} >
-          <Img style={{resizeMode: 'stretch'}} br={5} f={1} src={require('../../../../assets/images/banner2.png')} />
+          <Img style={{resizeMode: 'stretch'}} br={5} f={1} src={require('../../../../other/assets/images/banner2.png')} />
         </Span>
       </Span>
       {/* <img style={{objectFit}} /> */}

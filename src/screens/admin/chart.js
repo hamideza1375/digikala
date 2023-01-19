@@ -1,10 +1,10 @@
 import React from 'react'
-import { Span } from '../../Components/Html'
+import { Span } from '../../other/Components/Html'
 
-const chart = () => {
+const Chart = () => {
   return (
     <Span>chart</Span>
   )
 }
 
-export default chart
+export default Chart

@@ -1,17 +1,17 @@
 import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { View, Platform } from "react-native";
-import { Button, Div, Form, Icon, Init, P, SearchBar, Span } from "./Components/Html";
-import _404 from "./Components/404/404";
+import { Init, Span } from "./other/Components/Html";
+import _404 from "./other/Components/404/404";
 import { initialState } from "./state/initialState";
 import { adminState } from "./state/adminState";
 import { clientState } from "./state/clientState";
 import { userState } from "./state/userState";
 import { propTypes, states, contextStates } from "./state/context/contexts";
-import ToastProvider, { Toast } from "./utils/toast";
-import { Layout, header } from "./Components/Layout/Layout";
-import { rtl } from "./utils/rtl"
+import ToastProvider, { Toast } from "./other/utils/toast";
+import { Layout, header } from "./other/Layout/Layout";
+import { rtl } from "./other/utils/rtl"
 import { LogBox } from 'react-native';
 
 import Home from './screens/client/Home'
@@ -49,8 +49,7 @@ import EditGroupItem from "./screens/admin/EditGroupItem";
 import EditChildItem from "./screens/admin/EditChildItem";
 import CreateGroupItem from "./screens/admin/CreateGroupItem";
 import CreateChildItem from "./screens/admin/CreateChildItem";
-import chart from "./screens/admin/chart";
-// import GetProposal from "./screens/admin/DeleteTitle";
+import Chart from "./screens/admin/Chart";
 
 rtl()
 LogBox.ignoreAllLogs();
@@ -125,7 +124,7 @@ const Mobile = () => {
             <Tab.Screen initialParams={{ key: 'admin' }} name="Address" options={{ title: 'اضافه کردن ادمین' }} {..._children(Address)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="ListAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="chart" options={{ title: 'chart' }} {..._children(chart)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="Chart" options={{ title: 'chart' }} {..._children(Chart)} />
           </Tab.Group>
           
           <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
@@ -170,48 +169,48 @@ propTypes(DeleteAllAddress)
 propTypes(Address)
 propTypes(ListUnAvailable)
 propTypes(GetProposal)
-propTypes(chart)
+propTypes(Chart)
 
 
 const linking = {
-  prefixes: ['localhost:3000://', 'http://localhost:3000'],
+  // prefixes: ['localhost:3000://', 'http://localhost:3000'],
   config: {
     screens: {
-      Home: '/Home',
-      ChildItems: '/ChildItems',
-      ChildOffers: '/ChildOffers',
-      ChildPopulars: '/ChildPopulars',
-      SingleItems: '/SingleItems',
-      // SingleItems: '/SingleItems:id',
-      BeforePayment: '/BeforePayment',
+      Home: '/home',
+      ChildItems: '/childitems',
+      ChildOffers: '/childoffers',
+      ChildPopulars: '/childpopulars',
+      SingleItems: '/singleitems',
+      BeforePayment: '/beforepayment',
 
-      Register: '/Register',
-      Login: '/Login',
-      ForgetPass: '/ForgetPass',
-      ResetPass: '/ResetPass',
-      Logout: '/Logout',
-      SendProposal: '/SendProposal',
-      LastPayment: '/LastPayment',
-      Profile: '/Profile',
-      Location: '/Location',
-      Payment: '/Payment',
-      CreateComment: '/CreateComment',
-      EditComment: '/EditComment',
+      Register: '/register',
+      Login: '/login',
+      ForgetPass: '/forgetpass',
+      ResetPass: '/resetpass',
+      Logout: '/logout',
+      SendProposal: '/sendproposal',
+      LastPayment: '/lastpayment',
+      Profile: '/profile',
+      Location: '/location',
+      Payment: '/payment',
+      CreateComment: '/createcomment',
+      EditComment: '/editcomment',
 
-      AddAdmin: '/AddAdmin',
-      Notifee: '/Notifee',
-      ChangeAdmin: '/ChangeAdmin',
-      DeleteAdmin: '/DeleteAdmin',
-      DeleteAllAddress: '/DeleteAllAddress',
-      ListAvailable: '/ListAvailable',
-      GetProposal: '/GetProposal',
-      Address: '/Address',
-      TitleTable: '/TitleTable',
-      CreateTitle: '/CreateTitle',
-      TableChildItems: '/TableChildItems:id',
-      EditTitle: '/EditTitle:id',
-      EditChild: '/EditChild:id',
-      CreateChild: '/CreateChild:id',
+      AddAdmin: '/addadmin',
+      Notifee: '/notifee',
+      Chart: '/chart',
+      ChangeAdmin: '/changeadmin',
+      DeleteAdmin: '/deleteadmin',
+      DeleteAllAddress: '/deletealladdress',
+      ListUnAvailable: '/listunAvailable',
+      GetProposal: '/getproposal',
+      Address: '/address',
+      TableGroupItems: '/tablegroupitems',
+      CreateGroupItem: '/creategroupItem',
+      TableChildItems: '/tablechilditems:id',
+      EditGroupItem: '/editgroupitem:id',
+      EditChildItem: '/editchilditem:id',
+      CreateChildItem: '/createchilditem:id',
       NotFound: '*'
     },
   },

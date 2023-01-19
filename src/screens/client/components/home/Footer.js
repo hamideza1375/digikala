@@ -1,6 +1,6 @@
 import React from 'react'
-import share from '../../../../utils/share'
-import { Icon, Img, P, Span } from '../../../../Components/Html'
+import share from '../../../../other/utils/share'
+import { Icon, Img, P, Span } from '../../../../other/Components/Html'
 
 const Footer = () => {
   return (
@@ -12,7 +12,7 @@ const Footer = () => {
             <P color='white' >مجوز های ما</P>
           </Span>
           <Span w={70} h={70} mr={7} mt={12} border={[1, 'white']} >
-            <Img f={1} src={require('../../../../assets/images/etemadElectronic.png')} />
+            <Img f={1} src={require('../../../../other/assets/images/etemadElectronic.png')} />
           </Span>
         </Span>
         <Span border={[0, 'white']} mt={10} btw={1} w={'60%'} pb={4} pt={8} mr={9} >

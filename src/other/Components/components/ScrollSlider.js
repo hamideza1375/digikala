@@ -4,46 +4,39 @@ import { FlatListHorizontal, ScrollHorizontal } from '../Html'
 // import s from './style.module.scss'
 const array = [{ id: '1', title: 'node', price: '909', color: 'red' }, { id: '2', title: 'react', price: '787', color: 'green' }, { id: '2', title: 'react', price: '787', color: 'pink' }];
 
-var count = 1,
+var
   width,
   das = []
 
 function ScrollSlider(p) {
   const ref = useRef()
   const [scroll, setscroll] = useState(0)
-  const [scrollWidth, setscrollWidth] = useState(0)
-  const [contentSize, setcontentSize] = useState(0)
   const [scroll2, setscroll2] = useState(true)
-  const [interval, setinterval] = useState(true)
+
+  const count = useRef({ count: 1 })
+  const interval = useRef({ interval: null })
 
   const open = () => {
     if (scroll2) {
-      { ref.current && ref.current.scrollToIndex({ index: count }); }
-      count += 1
+      { ref.current && ref.current.scrollToIndex({ index: count.current.count }); }
+      count.current.count = count.current.count + 1
     }
   };
 
-  if (count >= p.data.length) { clearInterval(interval) }
-  if (!scroll2) { clearInterval(interval) }
+  if (count.current.count >= p.data.length) { clearInterval(interval.current.interval) }
+  if (!scroll2) { clearInterval(interval.current.interval) }
 
-  if (p.width !== width) {
-    ref.current && ref.current.scrollToOffset({ animated: true, offset: 0 });
-    count = 1
-    interval && clearInterval(interval)
-  }
 
   p.useEffect(() => {
     return () => (
-      clearInterval(interval)
+      clearInterval(interval.current.interval)
     )
   }, [])
-
-  !scroll2 && clearInterval(interval)
 
 
   return (
     <View
-    // <View onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
+      // <View onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
       onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10) }} >
       <View
         onMoveShouldSetResponderCapture={(e) => {
@@ -53,17 +46,17 @@ function ScrollSlider(p) {
               ref.current.setNativeProps({ style: { overflowX: 'auto' } });
               das.push(e.nativeEvent.pageX)
               ref.current.scrollToOffset({ animated: true, offset: scroll + das[0] - das[das.length - 1] })
-            //   if ((scroll < 10) && (scroll > 0)) {
-            //   setscroll(scroll + das[0] - das[das.length - 1])
-            // }
-          }
+              //   if ((scroll < 10) && (scroll > 0)) {
+              //   setscroll(scroll + das[0] - das[das.length - 1])
+              // }
+            }
           }
           setscroll2(false)
 
         }}
       >
         <FlatList
-        showsHorizontalScrollIndicator={Platform.OS !== 'web' ? false : !navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows'? true:false }
+          showsHorizontalScrollIndicator={Platform.OS !== 'web' ? false : !navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows' ? true : false}
           // initialScrollIndex={0}
           // inverted
           dir='ltr'
@@ -72,9 +65,9 @@ function ScrollSlider(p) {
           horizontal
           {...p}
           renderItem={p.renderItem}
-          contentContainerStyle={[{ flexGrow: 1, direction:'rtl' }, p.ccStyle]}
-          onLayout={(e) => { let layoutWidth = e.nativeEvent.layout.width; setTimeout(() => { setscrollWidth(layoutWidth); }, 2000); width = p.width; let int = setInterval(sum, 4000); function sum() { if (scroll2) open() } setinterval(int) }}
-          onContentSizeChange={(e) => { setcontentSize(e); }}
+          contentContainerStyle={[{ flexGrow: 1, direction: 'rtl' }, p.ccStyle]}
+          onLayout={(e) => { let layoutWidth = e.nativeEvent.layout.width; width = p.width; let int = setInterval(sum, 4000); function sum() { open() } interval.current.interval = int }}
+          // onContentSizeChange={(e) => { setcontentSize(e); }}
           // scrollEventThrottle={0}
           // alwaysBounceHorizontal={false}
           // alwaysBounceVertical={false}
@@ -82,7 +75,7 @@ function ScrollSlider(p) {
           onScroll={(e) => { setscroll(e.nativeEvent.contentOffset.x) }}
           // dir='ltr'
           style={[{ height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
-          // style={[(navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') && { overflow: 'hidden' }, { height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
+        // style={[(navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') && { overflow: 'hidden' }, { height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
         />
       </View>
     </View>

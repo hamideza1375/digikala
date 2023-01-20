@@ -1,14 +1,17 @@
-import React from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Platform } from 'react-native'
-import { Br, Container2, Div, P, Scroll, Span } from '../../other/Components/Html'
+import { Br, Container2, Div, Loading, P, Scroll, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
-import Obligations from './components/singleItem/Obligations'
-import Description from './components/singleItem/Description'
-import ImageDisplay from './components/singleItem/ImageDisplay'
-import SliderSimilars from './components/singleItem/SliderSimilars'
-import ShowComment from './components/singleItem/ShowComment'
-import Specifications from './components/singleItem/Specifications'
-import Footer from './components/home/Footer'
+
+const Obligations = lazy(() => import('./components/singleItem/Obligations'));
+const Description = lazy(() => import('./components/singleItem/Description'));
+const ImageDisplay = lazy(() => import('./components/singleItem/ImageDisplay'));
+const SliderSimilars = lazy(() => import('./components/singleItem/SliderSimilars'));
+const ShowComment = lazy(() => import('./components/singleItem/ShowComment'));
+const Specifications = lazy(() => import('./components/singleItem/Specifications'));
+const Footer = lazy(() => import('./components/home/Footer'));
+
+
 
 const SingleItems = (p) => {
   p.useEffect(() => {
@@ -55,13 +58,19 @@ const SingleItems = (p) => {
         </Span>
         <Br />
         <Span>
-          <SliderSimilars {...p} />
+          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+            <SliderSimilars {...p} />
+          </Suspense>
         </Span>
         <Div>
-          <ShowComment {...p} />
+          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+            <ShowComment {...p} />
+          </Suspense>
         </Div>
         <Span>
-          <Footer {...p} />
+          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+            <Footer {...p} />
+          </Suspense>
         </Span>
       </Scroll>
       <Chat {...p} />

@@ -14,42 +14,42 @@ import { Layout, header } from "./other/Layout/Layout";
 import { rtl } from "./other/utils/rtl"
 import { LogBox } from 'react-native';
 
-import Home from './screens/client/Home'
-import ChildItems from './screens/client/ChildItems'
-import ChildOffers from "./screens/client/ChildOffers";
-import ChildPopulars from "./screens/client/ChildPopulars";
-import SingleItems from './screens/client/SingleItems'
-import BeforePayment from './screens/client/BeforePayment'
+import Home from './views/client/Home'
+import ChildItems from './views/client/ChildItems'
+import ChildOffers from "./views/client/ChildOffers";
+import ChildPopulars from "./views/client/ChildPopulars";
+import SingleItems from './views/client/SingleItems'
+import BeforePayment from './views/client/BeforePayment'
 
-import Register from "./screens/user/Register";
-import Login from "./screens/user/Login";
-import ForgetPass from "./screens/user/ForgetPass";
-import ResetPass from "./screens/user/ResetPass";
-import Logout from "./screens/user/Logout";
-import LastPayment from "./screens/user/LastPayment";
-import SendProposal from "./screens/user/SendProposal";
-import Payment from "./screens/user/Payment";
-import Location from "./screens/user/Location";
-import Profile from "./screens/user/Profile";
-import CreateComment from "./screens/user/CreateComment";
-import EditComment from "./screens/user/EditComment";
+import Register from "./views/user/Register";
+import Login from "./views/user/Login";
+import ForgetPass from "./views/user/ForgetPass";
+import ResetPass from "./views/user/ResetPass";
+import Logout from "./views/user/Logout";
+import LastPayment from "./views/user/LastPayment";
+import SendProposal from "./views/user/SendProposal";
+import Payment from "./views/user/Payment";
+import Location from "./views/user/Location";
+import Profile from "./views/user/Profile";
+import CreateComment from "./views/user/CreateComment";
+import EditComment from "./views/user/EditComment";
 
-import AddAdmin from "./screens/admin/AddAdmin";
-import Notifee from "./screens/admin/Notifee";
-import ChangeAdmin from "./screens/admin/ChangeAdmin";
-import DeleteAdmin from "./screens/admin/DeleteAdmin";
+import AddAdmin from "./views/admin/AddAdmin";
+import Notifee from "./views/admin/Notifee";
+import ChangeAdmin from "./views/admin/ChangeAdmin";
+import DeleteAdmin from "./views/admin/DeleteAdmin";
 
-import Address from "./screens/admin/Address";
-import DeleteAllAddress from "./screens/admin/DeleteAllAddress";
-import ListUnAvailable from "./screens/admin/ListUnAvailable";
-import GetProposal from "./screens/admin/GetProposal";
-import TableGroupItems from "./screens/admin/TableGroupItems";
-import TableChildItems from "./screens/admin/TableChildItems";
-import EditGroupItem from "./screens/admin/EditGroupItem";
-import EditChildItem from "./screens/admin/EditChildItem";
-import CreateGroupItem from "./screens/admin/CreateGroupItem";
-import CreateChildItem from "./screens/admin/CreateChildItem";
-import Chart from "./screens/admin/Chart";
+import Address from "./views/admin/Address";
+import DeleteAllAddress from "./views/admin/DeleteAllAddress";
+import ListUnAvailable from "./views/admin/ListUnAvailable";
+import GetProposal from "./views/admin/GetProposal";
+import TableGroupItems from "./views/admin/TableGroupItems";
+import TableChildItems from "./views/admin/TableChildItems";
+import EditGroupItem from "./views/admin/EditGroupItem";
+import EditChildItem from "./views/admin/EditChildItem";
+import CreateGroupItem from "./views/admin/CreateGroupItem";
+import CreateChildItem from "./views/admin/CreateChildItem";
+import Chart from "./views/admin/Chart";
 
 rtl()
 LogBox.ignoreAllLogs();

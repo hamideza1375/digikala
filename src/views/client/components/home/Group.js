@@ -15,7 +15,7 @@ const Group = (p) => {
           {...p}
           h={180} ccStyle={{ height: 180, justifyContent:'center' }}
           style={Platform.OS !== 'web' ? { paddingRight: 290 } : { paddingRight: 10, }}
-          data={[...p.group,...p.group,...p.group]}
+          data={p.group}
           renderItem={({ item, index }) => (
             <Span w={105} h={100} as='center' >
               <Span w={90} h={95} as='center'>

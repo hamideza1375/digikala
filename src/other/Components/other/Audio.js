@@ -4,7 +4,7 @@ import Slider from '@react-native-community/slider';
 import Sound from 'react-native-sound';
 import Loading from '../components/Loading';
 import Badge from '../components/Badge';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 
 const Audio = (props) => {

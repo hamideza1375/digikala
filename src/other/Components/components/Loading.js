@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useRef } from "react";
 import { ActivityIndicator, View, Text, Animated, Easing, Platform } from "react-native";
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { useFocusEffect } from '@react-navigation/native';
 
 const Loading = (props) => {

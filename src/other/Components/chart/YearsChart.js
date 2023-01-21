@@ -1,12 +1,14 @@
 import moment from 'moment-jalaali'
-import React, { Suspense, useEffect, useRef, useState } from 'react'
-import { Container, Container2, P, Scroll, Span, } from '../../other/Components/Html'
+import React, { useEffect, useRef, useState } from 'react'
+import { P, Span, } from '../Html'
 var
   pushMond = [],
-  pushMond2 = [],
-  pushDay2 = []
+  pushMond2 = []
 
 const Chart = (p) => {
+
+  const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w=350, h=200 } = p
+
 
   const pushArrayRef = useRef([])
   const pushArrayRef2 = useRef([])
@@ -200,89 +202,89 @@ const Chart = (p) => {
 
 
   return (
-    <Container2 >
+    <>
 
-      <Span w={450} h={220} as='center' bgcolor={'#00f2'} jc='center' ai='center' fd='row-reverse' >
+      <Span w={400} h={220} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} >{pushMond2[pushMond2.length - 12]?.array.reduce((total, number) => total + number)}</P>
+            <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.array.reduce((total, number) => total + number)}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2.5).toFixed()}</P>
+            <P fs={7.5} color={color} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2.5).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2).toFixed()}</P>
+            <P fs={7.5} color={color} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 1.5).toFixed()}</P>
+            <P fs={7.5} color={color} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 1.5).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} >{pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number)}</P>
+            <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number)}</P>
           </Span>
         </Span>
 
 
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
-          <Span w='100%' h='100%' bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers12 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers11 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers10 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers9 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers8 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers7 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers6 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers5 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers4 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers3 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers2 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+          <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
+            <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers12 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers11 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers10 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers9 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers8 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers7 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers6 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers5 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers4 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers3 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers2 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
+            <Span h='100%' f={1} maxw={rodWidth}  ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
           </Span>
           {/* //! */}
           <Span w='100%' h={5} fd='row-reverse' jc='center' >
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 12]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 11]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 11]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 10]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 10]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 9]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 9]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 8]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 8]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 7]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 6]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 6]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 5]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 5]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 4]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 4]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 3]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 3]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 2]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 2]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} >{pushMond2[pushMond2.length - 1]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
             </Span>
           </Span>
 
         </Span>
       </Span>
 
-    </Container2>
+    </>
   )
 }
 

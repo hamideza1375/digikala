@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { StyleSheet, Animated, Pressable } from 'react-native'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Icon2 from 'react-native-vector-icons/dist/AntDesign';
 import Icon3 from 'react-native-vector-icons/dist/MaterialIcons';
 

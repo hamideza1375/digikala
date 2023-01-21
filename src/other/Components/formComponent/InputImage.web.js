@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Animated, KeyboardAvoidingView, Text, View } from "react-native";
-import Icon from "react-native-vector-icons/dist/FontAwesome";
+import Icon from "react-native-vector-icons/dist/FontAwesome5";
 import Swiper from '../components/Swiper'
 import { M_icon } from "../Html";
 

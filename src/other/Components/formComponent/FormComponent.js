@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, TextInput, Platform } from 'react-native';
-import _icon from 'react-native-vector-icons/dist/FontAwesome';
+import _icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Micon from 'react-native-vector-icons/dist/MaterialIcons';
 import setStyleRef from '../classToStyle/setClassToStyle';
 import { Press, Span } from '../Html';

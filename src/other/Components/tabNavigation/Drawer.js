@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React, { useRef, useState } from 'react'
 import { Dimensions, View, Text, StyleSheet, Animated, Pressable, Platform, ScrollView } from 'react-native'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 const width = Dimensions.get('window').width;
 
 const Drawer = ({ color='#222',group, children, name, title, bgcolor = '#fff', style, icon ,iconRight, header}) => {

@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import { Animated, StyleSheet, View, Text, TouchableOpacity, Pressable } from "react-native";
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 
 export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon, sethidden, hidden, onPress, style, header, body, bodyRow, color, bgcolor, icon, icon2, iconSize, fontSize, iconPress, icon2Press }) {
 

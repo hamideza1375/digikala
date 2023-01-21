@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal as _Modal, Platform, Pressable, ScrollView, StyleSheet, View } from "react-native";
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 
 
 export default function Modal({style, children, setshow, show, onClick, onHide }) {

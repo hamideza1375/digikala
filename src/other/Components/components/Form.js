@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { KeyboardAvoidingView, Pressable, View, Text, TextInput, Image, StyleSheet, ScrollView, Dimensions, Animated, Platform } from 'react-native'
 import { Input, Button, CheckBox, Swiper } from '../Html'
 import yub from '../../utils/yub'
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import A_icon from 'react-native-vector-icons/dist/AntDesign';
+import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
 const newObj = new Proxy({}, yub);
 import { useFocusEffect } from '@react-navigation/native';
 import Frm from '../formComponent/Frm'
@@ -254,7 +255,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {pr &&
             <Frm
-              icon="dollar"
+              icon="dollar-sign"
               p=" قیمت "
               iconLeft={prIconLeft}
               iconRight={prIconRight}
@@ -393,7 +394,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
                 <View style={[styles.viewCaptcha, { height: 28, alignItems: 'center' }]}>
 
                   <Image source={{ uri: `${host}/captcha.png/${rand}` }} style={styles.imageCaptcha} />
-                  <Icon name="refresh" color="#66bbff" size={22}
+                  <M_icon name="refresh" color="#66bbff" size={22}
                     onPressIn={() => setchangeRand(true)}
                     onPress={() => {
                       setchangeRand(true)
@@ -430,60 +431,60 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
                   {!star1 ?
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => setstar1(true)}>
-                      <Icon name='star-o' size={26} color='orange' />
+                      <A_icon name='staro' size={26} color='orange' />
                     </Pressable>
                     :
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar1(false); setstar2(false); setstar3(false); setstar4(false); setstar5(false) }}>
-                      <Icon name='star' size={26} color='orange' />
+                      <A_icon name='star' size={26} color='orange' />
                     </Pressable>
                   }
 
                   {!star2 ?
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar1(true); setstar2(true); }}>
-                      <Icon name='star-o' size={26} color='orange' />
+                      <A_icon name='staro' size={26} color='orange' />
                     </Pressable>
                     :
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar2(false); setstar3(false); setstar4(false); setstar5(false) }}>
-                      <Icon name='star' size={26} color='orange' />
+                      <A_icon name='star' size={26} color='orange' />
                     </Pressable>
                   }
 
                   {!star3 ?
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar1(true); setstar2(true); setstar3(true); }}>
-                      <Icon name='star-o' size={26} color='orange' />
+                      <A_icon name='staro' size={26} color='orange' />
                     </Pressable>
                     :
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar5(false); setstar4(false); setstar3(false); }}>
-                      <Icon name='star' size={26} color='orange' />
+                      <A_icon name='star' size={26} color='orange' />
                     </Pressable>
                   }
 
                   {!star4 ?
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar1(true); setstar2(true); setstar3(true); setstar4(true); }}>
-                      <Icon name='star-o' size={26} color='orange' />
+                      <A_icon name='staro' size={26} color='orange' />
                     </Pressable>
                     :
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar4(false); setstar5(false); }}>
-                      <Icon name='star' size={26} color='orange' />
+                      <A_icon name='star' size={26} color='orange' />
                     </Pressable>
                   }
 
                   {!star5 ?
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar1(true); setstar2(true); setstar3(true); setstar4(true); setstar5(true) }}>
-                      <Icon name='star-o' size={26} color='orange' />
+                      <A_icon name='staro' size={26} color='orange' />
                     </Pressable>
                     :
                     <Pressable style={{ height: 40, justifyContent: 'center', marginRight: 7 }}
                       onPress={() => { setstar5(false) }}>
-                      <Icon name='star' size={26} color='orange' />
+                      <A_icon name='star' size={26} color='orange' />
                     </Pressable>
                   }
 

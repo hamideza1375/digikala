@@ -1,6 +1,6 @@
 import React from 'react'
 import { Animated as _Animated, StyleSheet as _StyleSheet, View, Text, Image, ScrollView, TouchableOpacity, Platform, FlatList as _FlatList, VirtualizedList, Pressable, ImageBackground, Dimensions } from 'react-native';
-import _icon from 'react-native-vector-icons/dist/FontAwesome';
+import _icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Aicon from 'react-native-vector-icons/dist/AntDesign';
 import Micon from 'react-native-vector-icons/dist/MaterialIcons';
 import s from './styles/html.module.scss'
@@ -22,6 +22,8 @@ export { default as Table } from './components/Table'
 export { default as Slider } from './components/Slider'
 export { default as ScrollSlider } from './components/ScrollSlider'
 export { default as SearchBar } from './components/SearchBar'
+export { default as DaysChart } from './chart/DaysChart'
+export { default as YearsChart } from './chart/YearsChart'
 export { Textarea,Input, CheckBox, CheckBoxRadius } from './formComponent/FormComponent'
 // import { Input as _Input } from './formComponent/FormComponent'
 
@@ -252,6 +254,12 @@ export const H5 = (props) => <_text {...props} initalClass={s.h5} />
 export const H6 = (props) => <_text {...props} initalClass={s.h6} />
 
 export const P = (props) => <_text {...props} initalClass={s.p} />
+
+export const Pl = (props) => <_text {...props} initalClass={s.p} ff='IRANSansWeb-Light' />
+
+export const Pfa = (props) => <_text fs={16} fw='bold' {...props} ff='B Baran Regular' />
+
+export const Py = (props) => <_text fw='bold' {...props} ff='Yekan Bakh Regular' />
 
 export const I = (props) => <_text {...props} initalClass={s.i} />
 

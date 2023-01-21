@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Pressable, View } from "react-native";
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
 

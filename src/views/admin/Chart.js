@@ -1,23 +1,39 @@
 import moment from 'moment-jalaali'
 import React, { Suspense, useEffect, useRef, useState } from 'react'
-import { VictoryChart, VictoryTheme, VictoryBar, VictoryLine, VictoryBoxPlot, VictoryArea, VictoryScatter, VictoryAxis, VictoryPolarAxis, Background, VictoryHistogram } from 'victory'
 import { Container, Container2, P, Scroll, Span, } from '../../other/Components/Html'
-var pushArray33 = [],
-  pushArray2 = [],
-  pushArray3 = [],
-  pushArray4 = [],
-  pushArray5 = [],
-  pushArray6 = [],
-  pushArray7 = [],
+var
   pushDay = [],
+  pushMond = [],
+  pushMond2 = [],
   pushDay2 = []
 
 const Chart = (p) => {
 
+  const pushArrayRef = useRef([])
+  const pushArrayRef2 = useRef([])
+  const pushArrayRef3 = useRef([])
+  const pushArrayRef4 = useRef([])
+  const pushArrayRef5 = useRef([])
+  const pushArrayRef6 = useRef([])
+  const pushArrayRef7 = useRef([])
+  const pushArrayRef8 = useRef([])
+  const pushArrayRef9 = useRef([])
+  const pushArrayRef10 = useRef([])
+  const pushArrayRef11 = useRef([])
+  const pushArrayRef12 = useRef([])
 
-  const pushArra = useRef([])
-
-  let pushArray = pushArra.current
+  let pushArray = pushArrayRef.current
+  let pushArray2 = pushArrayRef2.current
+  let pushArray3 = pushArrayRef3.current
+  let pushArray4 = pushArrayRef4.current
+  let pushArray5 = pushArrayRef5.current
+  let pushArray6 = pushArrayRef6.current
+  let pushArray7 = pushArrayRef7.current
+  let pushArray8 = pushArrayRef8.current
+  let pushArray9 = pushArrayRef9.current
+  let pushArray10 = pushArrayRef10.current
+  let pushArray11 = pushArrayRef11.current
+  let pushArray12 = pushArrayRef12.current
 
   const [totalNumbers, settotalNumbers] = useState([])
 
@@ -33,166 +49,205 @@ const Chart = (p) => {
 
   const [totalNumbers7, settotalNumbers7] = useState([])
 
-  const [data, setdata] = useState([])
+  const [totalNumbers8, settotalNumbers8] = useState([])
+
+  const [totalNumbers9, settotalNumbers9] = useState([])
+
+  const [totalNumbers10, settotalNumbers10] = useState([])
+
+  const [totalNumbers11, settotalNumbers11] = useState([])
+
+  const [totalNumbers12, settotalNumbers12] = useState([])
 
   const [sorteX, setsorteX] = useState([])
 
-  const [startX, setstartX] = useState(0)
-
-  const [endX, setendX] = useState(0)
-
-
-
-
 
   const userPayment = [
-    { _id: '1', day: new Date('2023-03-13 22:3:0'), name: 'reza', pricePayment: 100000 },
-    { _id: '2', day: new Date('2023-03-13 22:3:0'), name: 'ali', pricePayment: 100000 },
-    { _id: '3', day: new Date('2023-03-13 22:3:0'), name: 'sadegh', pricePayment: 100000 },
-    { _id: '4', day: new Date('2023-03-13 22:3:0'), name: 'mohamad', pricePayment: 200000 }, //! 120.000.0 / 4 = 100.000
 
-    { _id: '6', day: new Date('2023-03-14 22:3:0'), name: 'mojtaba', pricePayment: 500000 },
-    { _id: '7', day: new Date('2023-03-14 22:3:0'), name: 'hamed', pricePayment: 500000 },
-    { _id: '8', day: new Date('2023-03-14 22:3:0'), name: 'hamid', pricePayment: 500000 },
-    { _id: '9', day: new Date('2023-03-14 22:3:0'), name: 'farhad', pricePayment: 500000 },//! 200.000.0 / 4 = 500.000
 
-    { _id: '10', day: new Date('2023-03-15 22:3:0'), name: 'mojtaba', pricePayment: 600000 },
-    { _id: '11', day: new Date('2023-03-15 22:3:0'), name: 'hamed', pricePayment: 200000 },
-    { _id: '12', day: new Date('2023-03-15 22:3:0'), name: 'hamid', pricePayment: 600000 },
-    { _id: '13', day: new Date('2023-03-15 22:3:0'), name: 'farhad', pricePayment: 200000 }, //! 160.000.0 / 4 = 400.000
+    { _id: '1', day: new Date('2023-1-1 22:3:0'), name: 'reza', pricePayment: 200000 },
+    { _id: '2', day: new Date('2023-1-1 22:3:0'), name: 'ali', pricePayment: 2200000 },
+    { _id: '3', day: new Date('2023-1-1 22:3:0'), name: 'sadegh', pricePayment: 7200000 },
+    { _id: '4', day: new Date('2023-1-1 22:3:0'), name: 'mohamad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 100.000
 
-    { _id: '14', day: new Date('2023-03-16 22:3:0'), name: 'mojtaba', pricePayment: 500000 },
-    { _id: '15', day: new Date('2023-03-16 22:3:0'), name: 'hamed', pricePayment: 100000 },
-    { _id: '16', day: new Date('2023-03-16 22:3:0'), name: 'hamid', pricePayment: 500000 },
-    { _id: '17', day: new Date('2023-03-16 22:3:0'), name: 'farhad', pricePayment: 100000 }, //! 120.000.0 / 4 = 300.000
+    { _id: '6', day: new Date('2023-02-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '7', day: new Date('2023-02-1 22:3:0'), name: 'hamed', pricePayment: 3200000 },
+    { _id: '8', day: new Date('2023-02-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '9', day: new Date('2023-02-1 22:3:0'), name: 'farhad', pricePayment: 7200000 },//! 200.000.0 / 4 = 500.000
 
-    { _id: '18', day: new Date('2023-03-17 22:3:0'), name: 'mojtaba', pricePayment: 100000 },
-    { _id: '19', day: new Date('2023-03-17 22:3:0'), name: 'hamed', pricePayment: 100000 },
-    { _id: '20', day: new Date('2023-03-17 22:3:0'), name: 'hamid', pricePayment: 100000 },
-    { _id: '21', day: new Date('2023-03-17 22:3:0'), name: 'farhad', pricePayment: 100000 }, //! 120.000.0 / 4 = 100.000
+    { _id: '10', day: new Date('2023-03-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '11', day: new Date('2023-03-1 22:3:0'), name: 'hamed', pricePayment: 4200000 },
+    { _id: '12', day: new Date('2023-03-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '13', day: new Date('2023-03-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 160.000.0 / 4 = 400.000
 
-    { _id: '22', day: new Date('2023-03-18 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
-    { _id: '23', day: new Date('2023-03-18 22:3:0'), name: 'hamed', pricePayment: 200000 },
-    { _id: '24', day: new Date('2023-03-18 22:3:0'), name: 'hamid', pricePayment: 200000 },
-    { _id: '25', day: new Date('2023-03-18 22:3:0'), name: 'farhad', pricePayment: 200000 }, //! 400.000 / 4 = 100.000
+    { _id: '14', day: new Date('2023-04-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '15', day: new Date('2023-04-1 22:3:0'), name: 'hamed', pricePayment: 5200000 },
+    { _id: '16', day: new Date('2023-04-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '17', day: new Date('2023-04-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 300.000
 
-    { _id: '26', day: new Date('2023-03-19 22:3:0'), name: 'mojtaba', pricePayment: 720000 },
-    { _id: '27', day: new Date('2023-03-19 22:3:0'), name: 'hamed', pricePayment: 720000 },
-    { _id: '28', day: new Date('2023-03-19 22:3:0'), name: 'hamid', pricePayment: 720000 },
-    { _id: '29', day: new Date('2023-03-19 22:3:0'), name: 'farhad', pricePayment: 720000 }, //! 360.000.0 / 4 = 720.000
+    { _id: '18', day: new Date('2023-05-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '19', day: new Date('2023-05-1 22:3:0'), name: 'hamed', pricePayment: 6200000 },
+    { _id: '20', day: new Date('2023-05-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '21', day: new Date('2023-05-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 100.000
+
+    { _id: '22', day: new Date('2023-06-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '23', day: new Date('2023-06-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '24', day: new Date('2023-06-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '25', day: new Date('2023-06-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 400.000 / 4 = 200.000
+
+    { _id: '26', day: new Date('2023-07-1 22:3:0'), name: 'mojtaba', pricePayment: 1200000 },
+    { _id: '27', day: new Date('2023-07-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '28', day: new Date('2023-07-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '29', day: new Date('2023-07-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+
+    { _id: '30', day: new Date('2023-08-1 22:3:0'), name: 'mojtaba', pricePayment: 2200000 },
+    { _id: '31', day: new Date('2023-08-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '32', day: new Date('2023-08-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '33', day: new Date('2023-08-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+
+    { _id: '34', day: new Date('2023-09-1 22:3:0'), name: 'mojtaba', pricePayment: 3200000 },
+    { _id: '35', day: new Date('2023-09-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '36', day: new Date('2023-09-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '37', day: new Date('2023-09-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+
+    { _id: '38', day: new Date('2023-10-1 22:3:0'), name: 'mojtaba', pricePayment: 4200000 },
+    { _id: '39', day: new Date('2023-10-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '40', day: new Date('2023-10-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '41', day: new Date('2023-10-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+
+    { _id: '42', day: new Date('2023-11-1 22:3:0'), name: 'mojtaba', pricePayment: 5200000 },
+    { _id: '43', day: new Date('2023-11-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '44', day: new Date('2023-11-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '45', day: new Date('2023-11-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+
+    { _id: '46', day: new Date('2023-12-1 22:3:0'), name: 'mojtaba', pricePayment: 6200000 },
+    { _id: '47', day: new Date('2023-12-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '48', day: new Date('2023-12-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '49', day: new Date('2023-12-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
 
 
   ]
-
 
   useEffect(() => {
     pushArray = []
     pushArray2 = []
     pushArray3 = []
     pushDay = []
+    pushMond = []
+    pushMond2 = []
 
-    for (let i of userPayment) {
-      pushDay.push(moment(i.day).format('jD'))
+    if (userPayment.length)
+      for (let i of userPayment) {
+        pushDay.push(moment(i.day).format('jM'))
+        pushMond.push({ years: moment(i.day).format('jYYYY'), mond: moment(i.day).format('jM'), array: [] })
+      }
 
-    }
-
-    // console.log(moment(d).format('jYYYY/jM/jD hh:mm:ss'));
-
-    for (let i of pushDay) {
-      for (let n of pushDay) {
-        if (i != n) {
-          const find = pushDay2.find(f => f == n)
-          if (!find) {
-            pushDay2.push(n);
-          }
+    if (pushDay.length)
+      for (let i of pushDay) {
+        const find = pushDay2.find(f => f == i)
+        if (!find) {
+          pushDay2.push(i);
         }
       }
-    }
 
 
-
-    for (let i of userPayment) {
-
-      if (moment(i.day).format('jD') == pushDay2.sort()[pushDay2.length - 1]) pushArray.push(i.pricePayment)
-
-      if (moment(i.day).format('jD') == pushDay2.sort()[pushDay2.length - 2]) pushArray2.push(i.pricePayment)
-
-      if (moment(i.day).format('jD') == pushDay2.sort()[pushDay2.length - 3]) pushArray3.push(i.pricePayment)
-
-      if (moment(i.day).format('jD') == pushDay2.sort()[pushDay2.length - 4]) pushArray4.push(i.pricePayment)
-
-      if (moment(i.day).format('jD') == pushDay2.sort()[pushDay2.length - 5]) pushArray5.push(i.pricePayment)
-
-      if (moment(i.day).format('jD') == pushDay2.sort()[pushDay2.length - 6]) pushArray6.push(i.pricePayment)
-
-      if (moment(i.day).format('jD') == pushDay2.sort()[pushDay2.length - 7]) pushArray7.push(i.pricePayment)
-
-    }
+    if (pushMond.length)
+      for (let i of pushMond) {
+        const find = pushMond2.find(f => f.years == i.years && f.mond == i.mond)
+        if (!find) {
+          pushMond2.push(i);
+        }
+      }
 
 
-    settotalNumbers(pushArray.reduce((total, number) => total + number) / pushArray.length)
-    settotalNumbers2(pushArray2.reduce((total, number) => total + number) / pushArray2.length)
-    settotalNumbers3(pushArray3.reduce((total, number) => total + number) / pushArray3.length)
-    settotalNumbers4(pushArray4.reduce((total, number) => total + number) / pushArray4.length)
-    settotalNumbers5(pushArray5.reduce((total, number) => total + number) / pushArray5.length)
-    settotalNumbers6(pushArray6.reduce((total, number) => total + number) / pushArray6.length)
-    settotalNumbers7(pushArray7.reduce((total, number) => total + number) / pushArray7.length)
+    // if (userPayment.length)
+    // for (let i of userPayment) {
+    //   if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 1].mond) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
+    // }
 
-    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7].sort()
 
+    if (userPayment.length)
+      for (let i of userPayment) {
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 1].mond) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 2].mond) pushMond2[pushMond2.length - 2].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 3].mond) pushMond2[pushMond2.length - 3].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 4].mond) pushMond2[pushMond2.length - 4].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 5].mond) pushMond2[pushMond2.length - 5].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 6].mond) pushMond2[pushMond2.length - 6].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 7].mond) pushMond2[pushMond2.length - 7].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 8].mond) pushMond2[pushMond2.length - 8].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 9].mond) pushMond2[pushMond2.length - 9].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 10].mond) pushMond2[pushMond2.length - 10].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 11].mond) pushMond2[pushMond2.length - 11].array.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 12].mond) pushMond2[pushMond2.length - 12].array.push(i.pricePayment)
+
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 1].mond) pushArray.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 2].mond) pushArray2.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 3].mond) pushArray3.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 4].mond) pushArray4.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 5].mond) pushArray5.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 6].mond) pushArray6.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 7].mond) pushArray7.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 8].mond) pushArray8.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 9].mond) pushArray9.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 10].mond) pushArray10.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 11].mond) pushArray11.push(i.pricePayment)
+        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 12].mond) pushArray12.push(i.pricePayment)
+      }
+
+
+    // console.log('pushMond', pushMond2[pushMond2.length - 12].mond, pushMond2[pushMond2.length - 12].years, pushMond2[pushMond2.length - 12].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 11].mond, pushMond2[pushMond2.length - 11].years, pushMond2[pushMond2.length - 11].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 10].mond, pushMond2[pushMond2.length - 10].years, pushMond2[pushMond2.length - 10].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 9].mond, pushMond2[pushMond2.length - 9].years, pushMond2[pushMond2.length - 9].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 8].mond, pushMond2[pushMond2.length - 8].years, pushMond2[pushMond2.length - 8].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 7].mond, pushMond2[pushMond2.length - 7].years, pushMond2[pushMond2.length - 7].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 6].mond, pushMond2[pushMond2.length - 6].years, pushMond2[pushMond2.length - 6].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 5].mond, pushMond2[pushMond2.length - 5].years, pushMond2[pushMond2.length - 5].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 4].mond, pushMond2[pushMond2.length - 4].years, pushMond2[pushMond2.length - 4].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 3].mond, pushMond2[pushMond2.length - 3].years, pushMond2[pushMond2.length - 3].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 2].mond, pushMond2[pushMond2.length - 2].years, pushMond2[pushMond2.length - 2].array.reduce((total, number) => total + number));
+    // console.log('pushMond', pushMond2[pushMond2.length - 1].mond, pushMond2[pushMond2.length - 1].years, pushMond2[pushMond2.length - 1].array.reduce((total, number) => total + number));
+
+
+    pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number) / pushArray.length)
+    pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number) / pushArray2.length)
+    pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number) / pushArray3.length)
+    pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number) / pushArray4.length)
+    pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number) / pushArray5.length)
+    pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number) / pushArray6.length)
+    pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number) / pushArray7.length)
+    pushArray8.length && settotalNumbers8(pushArray8.reduce((total, number) => total + number) / pushArray8.length)
+    pushArray9.length && settotalNumbers9(pushArray9.reduce((total, number) => total + number) / pushArray9.length)
+    pushArray10.length && settotalNumbers10(pushArray10.reduce((total, number) => total + number) / pushArray10.length)
+    pushArray11.length && settotalNumbers11(pushArray11.reduce((total, number) => total + number) / pushArray11.length)
+    pushArray12.length && settotalNumbers12(pushArray12.reduce((total, number) => total + number) / pushArray12.length)
+    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7, totalNumbers8, totalNumbers9, totalNumbers10, totalNumbers11, totalNumbers12].sort()
     setsorteX(sortpushArray)
-
-    console.log(sortpushArray);
-
-
-
-
-
-
-    setdata([
-      { x: pushDay2.sort()[pushDay2.length - 1], y: totalNumbers },
-      { x: pushDay2.sort()[pushDay2.length - 2], y: totalNumbers2 },
-      { x: pushDay2.sort()[pushDay2.length - 3], y: totalNumbers3 },
-      { x: pushDay2.sort()[pushDay2.length - 4], y: totalNumbers4 },
-      { x: pushDay2.sort()[pushDay2.length - 5], y: totalNumbers5 },
-      { x: pushDay2.sort()[pushDay2.length - 6], y: totalNumbers6 },
-      { x: pushDay2.sort()[pushDay2.length - 7], y: totalNumbers7 },
-    ])
 
   }, [totalNumbers])
 
-  // useEffect(() => {
-  //   console.log(
-  //     totalNumbers7,
-  //     totalNumbers6,
-  //     totalNumbers5,
-  //     totalNumbers4,
-  //     totalNumbers3,
-  //     totalNumbers2,
-  //     totalNumbers
-  //   );
-  // }, [totalNumbers])
 
   return (
     <Container2 >
 
-      <Span w={300} h={220} as='center' bgcolor={'#00f2'} jc='center' ai='center' fd='row-reverse' >
+      <Span w={450} h={220} as='center' bgcolor={'#00f2'} jc='center' ai='center' fd='row-reverse' >
 
-        <Span h='90%' w={5} jc='center' fd='column-reverse' >
+        <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{sorteX[sorteX.length - 7]}</P>
+            <P fs={8} >{pushMond2[pushMond2.length - 12]?.array.reduce((total, number) => total + number)}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{((sorteX[0] + sorteX[sorteX.length - 1]) / 2.5).toFixed()}</P>
+            <P fs={8} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2.5).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{((sorteX[0] + sorteX[sorteX.length - 1]) / 2).toFixed()}</P>
+            <P fs={8} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{((sorteX[0] + sorteX[sorteX.length - 1]) / 1.5).toFixed()}</P>
+            <P fs={8} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 1.5).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{sorteX[sorteX.length - 1]}</P>
+            <P fs={8} >{pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number)}</P>
           </Span>
         </Span>
 
@@ -200,126 +255,62 @@ const Chart = (p) => {
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
           <Span w='100%' h='100%' bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
-
-
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers7 / sorteX[sorteX.length - 1]) } maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers6 / sorteX[sorteX.length - 1]) } maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers5 / sorteX[sorteX.length - 1]) } maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers4 / sorteX[sorteX.length - 1]) } maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers3 / sorteX[sorteX.length - 1]) } maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers2 / sorteX[sorteX.length - 1]) } maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers / sorteX[sorteX.length - 1]) } maxh='100%' bgcolor='orange' /></Span>
-
-
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers12 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers11 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers10 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers9 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers8 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers7 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers6 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers5 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers4 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers3 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers2 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
+            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
           </Span>
           {/* //! */}
-          <Span w='90%' h={5} fd='row-reverse' jc='center'>
-            <Span f={1} h={5} ai='center'>
-              <P fs={8} >{pushDay2.sort()[pushDay2.length - 7]}</P>
+          <Span w='100%' h={5} fd='row-reverse' jc='center' >
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 12]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center'>
-              <P fs={8} >{pushDay2.sort()[pushDay2.length - 6]}</P>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 11]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center'>
-              <P fs={8} >{pushDay2.sort()[pushDay2.length - 5]}</P>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 10]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center'>
-              <P fs={8} >{pushDay2.sort()[pushDay2.length - 4]}</P>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 9]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center'>
-              <P fs={8} >{pushDay2.sort()[pushDay2.length - 3]}</P>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 8]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center'>
-              <P fs={8} >{pushDay2.sort()[pushDay2.length - 2]}</P>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 7]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center'>
-              <P fs={8} >{pushDay2.sort()[pushDay2.length - 1]}</P>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 6]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
+            </Span>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 5]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
+            </Span>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 4]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
+            </Span>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 3]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
+            </Span>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 2]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
+            </Span>
+            <Span f={1} h={5} ai='center' >
+              <P fs={8} >{pushMond2[pushMond2.length - 1]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
             </Span>
           </Span>
 
         </Span>
       </Span>
 
-
-
-      {/* <Span w={320} h={250} bgcolor='#00f2' ai='center' jc='center' mv='50' mh='auto' br={4} >
-        <VictoryChart theme={VictoryTheme.grayscale} style={{ parent: { border: "1px solid #ccc", borderRadius: 4 }, background: { fill: "transparent" } }} padding={{ top: 10, bottom: 10, left: 20, right: 20 }} >
-          <VictoryArea data={data} style={{ data: { fill: "#00f1", stroke: "silver", strokeWidth: 2, } }} />
-          <VictoryScatter data={data} style={{ data: { fill: "#08f5" } }} />
-        </VictoryChart>
-      </Span>
- */}
-
-
-
-
-
-      <Scroll f={1} ccStyle={{ flexGrow: 1, flexDirection: 'row', flexWrap: 'wrap' }} >
-        {/* <Span w={307} h={200} bgcolor='#00f2' ai='center' jc='center' mv='50' mh='auto' br={4} >
-          <VictoryChart style={{ parent: { border: "1px solid #ccc", borderRadius: 4 }, background: { fill: "transparent" } }} padding={{ top: 10, bottom: 10, left: 10, right: 10 }} >
-            <VictoryArea  padding={{ top: 10, bottom: 10, left: 10, right: 10 }} data={data} style={{ data: { fill: "#00f1", stroke: "silver", strokeWidth: 2, } }} />
-            <VictoryScatter data={data} style={{ data: { fill: "#08f5" } }} />
-            <VictoryAxis />
-          </VictoryChart>
-        </Span> */}
-        {/* 
-        <Span w={307} h={200} bgcolor='#00f2' ai='center' jc='center' mv='50' mh='auto' br={4} >
-          <VictoryChart theme={VictoryTheme.grayscale} style={{ parent: { border: "1px solid #ccc", borderRadius: 4 }, background: { fill: "transparent" } }} padding={{ top: 10, bottom: 10, left: 10, right: 10 }} >
-            <VictoryArea padding={{ top: 10, bottom: 10, left: 10, right: 10 }} data={data} style={{ data: { fill: "#00f1", stroke: "silver", strokeWidth: 2, } }} />
-            <VictoryScatter data={data} style={{ data: { fill: "#08f5" } }} />
-          </VictoryChart>
-        </Span> */}
-
-        {/* <Span w={307} h={200} bgcolor='#00f2' ai='center' jc='center' mv='50' mh='auto' br={4} >
-          <VictoryChart style={{ parent: { border: "1px solid #ccc", borderRadius: 4 }, background: { fill: "transparent" } }}  >
-            <VictoryArea padding={{ top: 10, bottom: 10, left: 10, right: 10 }} data={data} style={{ data: { fill: "#00f1", stroke: "silver", strokeWidth: 2, } }} />
-            <VictoryScatter data={data} style={{ data: { fill: "#08f5" } }} />
-            <VictoryAxis />
-          </VictoryChart>
-        </Span> */}
-
-
-
-        {/* <Span w={320} h={220} pt={15} bgcolor='#c43a3155' br={3} ai='center' jc='center' >
-          <Span w={300} h={200} br={3} >
-            <VictoryChart padding={{ top: 0, bottom: 0, left: 30, right: 30 }}>
-              <VictoryBar data={data} style={{ data: { fill: "#c43a3188", strokeWidth: 1, width: 35, } }} />
-              <VictoryAxis />
-            </VictoryChart>
-          </Span>
-        </Span> */}
-
-
-        {/* <Span w={320} h={220} pt={15} bgcolor='#c43a3155' br={3} ai='center' jc='center' >
-          <VictoryChart domainPadding={20}>
-            <VictoryBoxPlot
-            
-              boxWidth={10}
-              whiskerWidth={15}
-              data={[
-                { x: 1, y: [1, 2, 3, 5] },
-                { x: 1, y: [1, 2, 3, 5] },
-                { x: 1, y: [1, 2, 3, 5] },
-                { x: 2, y: [3, 2, 8, 10] },
-                { x: 3, y: [2, 8, 6, 5] },
-                { x: 4, y: [1, 3, 2, 9] }
-              ]}
-            />
-          </VictoryChart>
-        </Span> */}
-
-
-
-
-
-        {/* <Span w={300} h={200} bgcolor='#c43a3155' br={3} >
-            <VictoryChart>
-              <VictoryBar data={data} style={{ data: { fill: "#c43a31", strokeWidth: 2, width: 27 } }} />
-            </VictoryChart>
-          </Span> */}
-
-
-      </Scroll>
     </Container2>
   )
 }

@@ -2,7 +2,6 @@ import moment from 'moment-jalaali'
 import React, { Suspense, useEffect, useRef, useState } from 'react'
 import { Container, Container2, P, Scroll, Span, } from '../../other/Components/Html'
 var
-  pushDay = [],
   pushMond = [],
   pushMond2 = [],
   pushDay2 = []
@@ -65,149 +64,106 @@ const Chart = (p) => {
   const userPayment = [
 
 
-    { _id: '1', day: new Date('2023-1-1 22:3:0'), name: 'reza', pricePayment: 200000 },
-    { _id: '2', day: new Date('2023-1-1 22:3:0'), name: 'ali', pricePayment: 2200000 },
-    { _id: '3', day: new Date('2023-1-1 22:3:0'), name: 'sadegh', pricePayment: 7200000 },
-    { _id: '4', day: new Date('2023-1-1 22:3:0'), name: 'mohamad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 100.000
+    { _id: '1', day: new Date('2023-01-1 22:3:0'), name: 'reza', pricePayment: 200000 },
+    { _id: '2', day: new Date('2023-01-1 22:3:0'), name: 'ali', pricePayment: 2200000 },
+    { _id: '3', day: new Date('2023-01-1 22:3:0'), name: 'sadegh', pricePayment: 7200000 },
+    { _id: '4', day: new Date('2023-01-1 22:3:0'), name: 'mohamad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 100.000
 
-    { _id: '6', day: new Date('2023-02-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
-    { _id: '7', day: new Date('2023-02-1 22:3:0'), name: 'hamed', pricePayment: 3200000 },
-    { _id: '8', day: new Date('2023-02-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '9', day: new Date('2023-02-1 22:3:0'), name: 'farhad', pricePayment: 7200000 },//! 200.000.0 / 4 = 500.000
+    { _id: '6', day: new Date('2023-01-2 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '7', day: new Date('2023-01-2 22:3:0'), name: 'hamed', pricePayment: 3200000 },
+    { _id: '8', day: new Date('2023-01-2 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '9', day: new Date('2023-01-2 22:3:0'), name: 'farhad', pricePayment: 7200000 },//! 200.000.0 / 4 = 500.000
 
-    { _id: '10', day: new Date('2023-03-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
-    { _id: '11', day: new Date('2023-03-1 22:3:0'), name: 'hamed', pricePayment: 4200000 },
-    { _id: '12', day: new Date('2023-03-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '13', day: new Date('2023-03-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 160.000.0 / 4 = 400.000
+    { _id: '10', day: new Date('2023-01-3 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '11', day: new Date('2023-01-3 22:3:0'), name: 'hamed', pricePayment: 4200000 },
+    { _id: '12', day: new Date('2023-01-3 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '13', day: new Date('2023-01-3 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 160.000.0 / 4 = 400.000
 
-    { _id: '14', day: new Date('2023-04-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
-    { _id: '15', day: new Date('2023-04-1 22:3:0'), name: 'hamed', pricePayment: 5200000 },
-    { _id: '16', day: new Date('2023-04-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '17', day: new Date('2023-04-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 300.000
+    { _id: '14', day: new Date('2023-01-4 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '15', day: new Date('2023-01-4 22:3:0'), name: 'hamed', pricePayment: 5200000 },
+    { _id: '16', day: new Date('2023-01-4 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '17', day: new Date('2023-01-4 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 300.000
 
-    { _id: '18', day: new Date('2023-05-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
-    { _id: '19', day: new Date('2023-05-1 22:3:0'), name: 'hamed', pricePayment: 6200000 },
-    { _id: '20', day: new Date('2023-05-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '21', day: new Date('2023-05-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 100.000
+    { _id: '18', day: new Date('2023-01-5 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '19', day: new Date('2023-01-5 22:3:0'), name: 'hamed', pricePayment: 6200000 },
+    { _id: '20', day: new Date('2023-01-5 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '21', day: new Date('2023-01-5 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 120.000.0 / 4 = 100.000
 
-    { _id: '22', day: new Date('2023-06-1 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
-    { _id: '23', day: new Date('2023-06-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
-    { _id: '24', day: new Date('2023-06-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '25', day: new Date('2023-06-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 400.000 / 4 = 200.000
+    { _id: '22', day: new Date('2023-01-6 22:3:0'), name: 'mojtaba', pricePayment: 200000 },
+    { _id: '23', day: new Date('2023-01-6 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '24', day: new Date('2023-01-6 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '25', day: new Date('2023-01-6 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 400.000 / 4 = 200.000
 
-    { _id: '26', day: new Date('2023-07-1 22:3:0'), name: 'mojtaba', pricePayment: 1200000 },
-    { _id: '27', day: new Date('2023-07-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
-    { _id: '28', day: new Date('2023-07-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '29', day: new Date('2023-07-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+    { _id: '26', day: new Date('2023-01-7 22:3:0'), name: 'mojtaba', pricePayment: 1200000 },
+    { _id: '27', day: new Date('2023-01-7 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '28', day: new Date('2023-01-7 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '29', day: new Date('2023-01-7 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
 
-    { _id: '30', day: new Date('2023-08-1 22:3:0'), name: 'mojtaba', pricePayment: 2200000 },
-    { _id: '31', day: new Date('2023-08-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
-    { _id: '32', day: new Date('2023-08-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '33', day: new Date('2023-08-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+    { _id: '30', day: new Date('2023-01-8 22:3:0'), name: 'mojtaba', pricePayment: 2500000 },
+    { _id: '31', day: new Date('2023-01-8 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '32', day: new Date('2023-01-8 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '33', day: new Date('2023-01-8 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
 
-    { _id: '34', day: new Date('2023-09-1 22:3:0'), name: 'mojtaba', pricePayment: 3200000 },
-    { _id: '35', day: new Date('2023-09-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
-    { _id: '36', day: new Date('2023-09-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '37', day: new Date('2023-09-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
+    { _id: '34', day: new Date('2023-01-9 22:3:0'), name: 'mojtaba', pricePayment: 3200000 },
+    { _id: '35', day: new Date('2023-01-9 22:3:0'), name: 'hamed', pricePayment: 2200000 },
+    { _id: '36', day: new Date('2023-01-9 22:3:0'), name: 'hamid', pricePayment: 12200000 },
+    { _id: '37', day: new Date('2023-01-9 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
 
-    { _id: '38', day: new Date('2023-10-1 22:3:0'), name: 'mojtaba', pricePayment: 4200000 },
-    { _id: '39', day: new Date('2023-10-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
-    { _id: '40', day: new Date('2023-10-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '41', day: new Date('2023-10-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
-
-    { _id: '42', day: new Date('2023-11-1 22:3:0'), name: 'mojtaba', pricePayment: 5200000 },
-    { _id: '43', day: new Date('2023-11-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
-    { _id: '44', day: new Date('2023-11-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '45', day: new Date('2023-11-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
-
-    { _id: '46', day: new Date('2023-12-1 22:3:0'), name: 'mojtaba', pricePayment: 6200000 },
-    { _id: '47', day: new Date('2023-12-1 22:3:0'), name: 'hamed', pricePayment: 7200000 },
-    { _id: '48', day: new Date('2023-12-1 22:3:0'), name: 'hamid', pricePayment: 7200000 },
-    { _id: '49', day: new Date('2023-12-1 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
-
-
+    { _id: '38', day: new Date('2023-01-10 22:3:0'), name: 'mojtaba', pricePayment: 4200000 },
+    { _id: '39', day: new Date('2023-01-10 22:3:0'), name: 'hamed', pricePayment: 7200000 },
+    { _id: '40', day: new Date('2023-01-10 22:3:0'), name: 'hamid', pricePayment: 7200000 },
+    { _id: '41', day: new Date('2023-01-10 22:3:0'), name: 'farhad', pricePayment: 7200000 }, //! 360.000.0 / 4 = 720.000
   ]
 
   useEffect(() => {
     pushArray = []
     pushArray2 = []
     pushArray3 = []
-    pushDay = []
     pushMond = []
     pushMond2 = []
 
     if (userPayment.length)
       for (let i of userPayment) {
-        pushDay.push(moment(i.day).format('jM'))
-        pushMond.push({ years: moment(i.day).format('jYYYY'), mond: moment(i.day).format('jM'), array: [] })
+        pushMond.push({ monds: moment(i.day).format('jM'), days: moment(i.day).format('jD'), array: [] })
       }
 
-    if (pushDay.length)
-      for (let i of pushDay) {
-        const find = pushDay2.find(f => f == i)
-        if (!find) {
-          pushDay2.push(i);
-        }
-      }
 
 
     if (pushMond.length)
       for (let i of pushMond) {
-        const find = pushMond2.find(f => f.years == i.years && f.mond == i.mond)
+        const find = pushMond2.find(f => f.monds == i.monds && f.days == i.days)
         if (!find) {
           pushMond2.push(i);
         }
       }
 
 
-    // if (userPayment.length)
-    // for (let i of userPayment) {
-    //   if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 1].mond) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
-    // }
-
 
     if (userPayment.length)
       for (let i of userPayment) {
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 1].mond) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 2].mond) pushMond2[pushMond2.length - 2].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 3].mond) pushMond2[pushMond2.length - 3].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 4].mond) pushMond2[pushMond2.length - 4].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 5].mond) pushMond2[pushMond2.length - 5].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 6].mond) pushMond2[pushMond2.length - 6].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 7].mond) pushMond2[pushMond2.length - 7].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 8].mond) pushMond2[pushMond2.length - 8].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 9].mond) pushMond2[pushMond2.length - 9].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 10].mond) pushMond2[pushMond2.length - 10].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 11].mond) pushMond2[pushMond2.length - 11].array.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 12].mond) pushMond2[pushMond2.length - 12].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 1].days) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 2].days) pushMond2[pushMond2.length - 2].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 3].days) pushMond2[pushMond2.length - 3].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 4].days) pushMond2[pushMond2.length - 4].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 5].days) pushMond2[pushMond2.length - 5].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 6].days) pushMond2[pushMond2.length - 6].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 7].days) pushMond2[pushMond2.length - 7].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 8].days) pushMond2[pushMond2.length - 8].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 9].days) pushMond2[pushMond2.length - 9].array.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 10].days) pushMond2[pushMond2.length - 10].array.push(i.pricePayment)
 
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 1].mond) pushArray.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 2].mond) pushArray2.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 3].mond) pushArray3.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 4].mond) pushArray4.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 5].mond) pushArray5.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 6].mond) pushArray6.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 7].mond) pushArray7.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 8].mond) pushArray8.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 9].mond) pushArray9.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 10].mond) pushArray10.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 11].mond) pushArray11.push(i.pricePayment)
-        if (moment(i.day).format('jM') == pushMond2[pushMond2.length - 12].mond) pushArray12.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 1].days) pushArray.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 2].days) pushArray2.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 3].days) pushArray3.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 4].days) pushArray4.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 5].days) pushArray5.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 6].days) pushArray6.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 7].days) pushArray7.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 8].days) pushArray8.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 9].days) pushArray9.push(i.pricePayment)
+        if (moment(i.day).format('jD') == pushMond2[pushMond2.length - 10].days) pushArray10.push(i.pricePayment)
       }
 
-
-    // console.log('pushMond', pushMond2[pushMond2.length - 12].mond, pushMond2[pushMond2.length - 12].years, pushMond2[pushMond2.length - 12].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 11].mond, pushMond2[pushMond2.length - 11].years, pushMond2[pushMond2.length - 11].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 10].mond, pushMond2[pushMond2.length - 10].years, pushMond2[pushMond2.length - 10].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 9].mond, pushMond2[pushMond2.length - 9].years, pushMond2[pushMond2.length - 9].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 8].mond, pushMond2[pushMond2.length - 8].years, pushMond2[pushMond2.length - 8].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 7].mond, pushMond2[pushMond2.length - 7].years, pushMond2[pushMond2.length - 7].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 6].mond, pushMond2[pushMond2.length - 6].years, pushMond2[pushMond2.length - 6].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 5].mond, pushMond2[pushMond2.length - 5].years, pushMond2[pushMond2.length - 5].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 4].mond, pushMond2[pushMond2.length - 4].years, pushMond2[pushMond2.length - 4].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 3].mond, pushMond2[pushMond2.length - 3].years, pushMond2[pushMond2.length - 3].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 2].mond, pushMond2[pushMond2.length - 2].years, pushMond2[pushMond2.length - 2].array.reduce((total, number) => total + number));
-    // console.log('pushMond', pushMond2[pushMond2.length - 1].mond, pushMond2[pushMond2.length - 1].years, pushMond2[pushMond2.length - 1].array.reduce((total, number) => total + number));
 
 
     pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number) / pushArray.length)
@@ -220,9 +176,7 @@ const Chart = (p) => {
     pushArray8.length && settotalNumbers8(pushArray8.reduce((total, number) => total + number) / pushArray8.length)
     pushArray9.length && settotalNumbers9(pushArray9.reduce((total, number) => total + number) / pushArray9.length)
     pushArray10.length && settotalNumbers10(pushArray10.reduce((total, number) => total + number) / pushArray10.length)
-    pushArray11.length && settotalNumbers11(pushArray11.reduce((total, number) => total + number) / pushArray11.length)
-    pushArray12.length && settotalNumbers12(pushArray12.reduce((total, number) => total + number) / pushArray12.length)
-    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7, totalNumbers8, totalNumbers9, totalNumbers10, totalNumbers11, totalNumbers12].sort()
+    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7, totalNumbers8, totalNumbers9, totalNumbers10].sort()
     setsorteX(sortpushArray)
 
   }, [totalNumbers])
@@ -231,23 +185,23 @@ const Chart = (p) => {
   return (
     <Container2 >
 
-      <Span w={450} h={220} as='center' bgcolor={'#00f2'} jc='center' ai='center' fd='row-reverse' >
+      <Span w={350} h={200} as='center' bgcolor={'#00f2'} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{pushMond2[pushMond2.length - 12]?.array.reduce((total, number) => total + number)}</P>
+            <P fs={7.5} >{pushMond2[pushMond2.length - 10]?.array.reduce((total, number) => total + number)}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2.5).toFixed()}</P>
+            <P fs={7.5} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2.5).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2).toFixed()}</P>
+            <P fs={7.5} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 2).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 1.5).toFixed()}</P>
+            <P fs={7.5} >{((pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number) + sorteX[sorteX.length - 1]) / 1.5).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={8} >{pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number)}</P>
+            <P fs={7.5} >{pushMond2[pushMond2.length - 1]?.array.reduce((total, number) => total + number)}</P>
           </Span>
         </Span>
 
@@ -255,8 +209,6 @@ const Chart = (p) => {
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
           <Span w='100%' h='100%' bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers12 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
-            <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers11 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
             <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers10 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
             <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers9 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
             <Span h='100%' f={1} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers8 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor='orange' /></Span>
@@ -271,40 +223,34 @@ const Chart = (p) => {
           {/* //! */}
           <Span w='100%' h={5} fd='row-reverse' jc='center' >
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 12]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 10]?.monds}/{pushMond2[pushMond2.length - 10]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 11]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 9]?.monds}/{pushMond2[pushMond2.length - 9]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 10]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 8]?.monds}/{pushMond2[pushMond2.length - 8]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 9]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 7]?.monds}/{pushMond2[pushMond2.length - 7]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 8]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 6]?.monds}/{pushMond2[pushMond2.length - 6]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 7]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 5]?.monds}/{pushMond2[pushMond2.length - 5]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 6]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 4]?.monds}/{pushMond2[pushMond2.length - 4]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 5]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 3]?.monds}/{pushMond2[pushMond2.length - 3]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 4]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 2]?.monds}/{pushMond2[pushMond2.length - 2]?.days}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 3]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
-            </Span>
-            <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 2]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
-            </Span>
-            <Span f={1} h={5} ai='center' >
-              <P fs={8} >{pushMond2[pushMond2.length - 1]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
+              <P fs={7.5} >{pushMond2[pushMond2.length - 1]?.monds}/{pushMond2[pushMond2.length - 1]?.days}</P>
             </Span>
           </Span>
 

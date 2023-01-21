@@ -1,11 +1,11 @@
 import moment from 'moment-jalaali'
 import React, { useEffect, useRef, useState } from 'react'
-import { P, Span, } from '../../../../other/Components/Html'
+import { P, Span, } from '../Html'
 var
   pushMond = [],
   pushMond2 = []
 
-const Chart = (p) => {
+const YearsChartTotal = (p) => {
 
   const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w = 350, h = 200, data } = p
 
@@ -126,21 +126,20 @@ const Chart = (p) => {
       }
 
 
-      pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number) / pushArray.length)
-      pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number) / pushArray2.length)
-      pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number) / pushArray3.length)
-      pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number) / pushArray4.length)
-      pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number) / pushArray5.length)
-      pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number) / pushArray6.length)
-      pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number) / pushArray7.length)
-      pushArray8.length && settotalNumbers8(pushArray8.reduce((total, number) => total + number) / pushArray8.length)
-      pushArray9.length && settotalNumbers9(pushArray9.reduce((total, number) => total + number) / pushArray9.length)
-      pushArray10.length && settotalNumbers10(pushArray10.reduce((total, number) => total + number) / pushArray10.length)
-      pushArray11.length && settotalNumbers11(pushArray11.reduce((total, number) => total + number) / pushArray11.length)
-      pushArray12.length && settotalNumbers12(pushArray12.reduce((total, number) => total + number) / pushArray12.length)
-
-      let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7, totalNumbers8, totalNumbers9, totalNumbers10, totalNumbers11, totalNumbers12].sort()
-      setsorteX(sortpushArray)
+    pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number))
+    pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number))
+    pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number))
+    pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number))
+    pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number))
+    pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number))
+    pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number))
+    pushArray8.length && settotalNumbers8(pushArray8.reduce((total, number) => total + number))
+    pushArray9.length && settotalNumbers9(pushArray9.reduce((total, number) => total + number))
+    pushArray10.length && settotalNumbers10(pushArray10.reduce((total, number) => total + number))
+    pushArray11.length && settotalNumbers11(pushArray11.reduce((total, number) => total + number))
+    pushArray12.length && settotalNumbers12(pushArray12.reduce((total, number) => total + number))
+    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7, totalNumbers8, totalNumbers9, totalNumbers10, totalNumbers11, totalNumbers12].sort((a,b)=>a - b)
+    setsorteX(sortpushArray)
 
 
   }, [totalNumbers])
@@ -151,7 +150,7 @@ const Chart = (p) => {
 
       <Span w={400} h={220} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
-      <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
+        <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>
             <P fs={7.5} color={color} >{(sorteX[sorteX.length - 12] / 1).toFixed()}</P>
           </Span>
@@ -233,4 +232,4 @@ const Chart = (p) => {
   )
 }
 
-export default Chart
+export default YearsChartTotal

@@ -1,11 +1,11 @@
 import moment from 'moment-jalaali'
 import React, { useEffect, useRef, useState } from 'react'
-import { P, Span, } from '../../../../other/Components/Html'
+import { P, Span, } from '../Html'
 var
   pushMond = [],
   pushMond2 = []
 
-const Chart = (p) => {
+const YearsChartMean = (p) => {
 
   const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w = 350, h = 200, data } = p
 
@@ -233,4 +233,4 @@ const Chart = (p) => {
   )
 }
 
-export default Chart
+export default YearsChartMean

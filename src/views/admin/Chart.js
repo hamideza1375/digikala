@@ -1,10 +1,7 @@
 import React from 'react'
-import { H1, P, Pfa, Pj, Pl, Pt, Py, Span } from '../../other/Components/Html'
-import DaysChart from './components/chart/DaysChart'
-import YearsChart from './components/chart/YearsChart'
+import { Span, DaysChartMean, DaysChartTotal, YearsChartMean, YearsChartTotal } from '../../other/Components/Html'
 
 const Chart = () => {
-
   const data = [
 
     { _id: '1', date: new Date('2023-1-1 22:3:0'), name: 'reza', pricePayment: 200000 },
@@ -68,7 +65,7 @@ const Chart = () => {
 
     { _id: '46', date: new Date('2023-12-02 22:3:0'), name: 'mojtaba', pricePayment: 700000 },
     { _id: '47', date: new Date('2023-12-02 22:3:0'), name: 'hamed', pricePayment: 700000 },
-    
+
     { _id: '48', date: new Date('2023-12-03 22:3:0'), name: 'mojtaba', pricePayment: 1000000 },
     { _id: '49', date: new Date('2023-12-03 22:3:0'), name: 'hamed', pricePayment: 1000000 },
 
@@ -88,24 +85,39 @@ const Chart = () => {
     { _id: '58', date: new Date('2023-12-08 22:3:0'), name: 'hamed', pricePayment: 300 },
 
     { _id: '59', date: new Date('2023-12-09 22:3:0'), name: 'hamid', pricePayment: 40 },
-    { _id: '60', date: new Date('2023-12-09 22:3:0'), name: 'farhad', pricePayment:40 },
+    { _id: '60', date: new Date('2023-12-09 22:3:0'), name: 'farhad', pricePayment: 40 },
 
     { _id: '61', date: new Date('2023-12-10 22:3:0'), name: 'mojtaba', pricePayment: 350 },
     { _id: '62', date: new Date('2023-12-10 22:3:0'), name: 'hamed', pricePayment: 50 },
 
-    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 1000 },
-    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 7000000 },
+    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 100 },
+    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 100 },
+    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 100 },
+    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 10 },
+    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 100 },
+    { _id: '64', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 70 },
 
   ]
 
 
   return (
     <Span>
-      <Span f={1} ai='center' mt={20}>
-        <DaysChart data={data}/>
+      <Span fd='row' >
+        <Span f={1} ai='center' mt={20}>
+          <DaysChartMean data={data} />
+        </Span>
+        <Span f={1} ai='center' mt={20}>
+        <DaysChartTotal data={data} />
+        </Span>
       </Span>
-      <Span f={1} ai='center' mt={20}>
-        {/* <YearsChart data={data} /> */}
+
+      <Span fd='row' >
+        <Span f={1} ai='center' mt={20}>
+          <YearsChartMean data={data} />
+        </Span>
+        <Span f={1} ai='center' mt={20}>
+          <YearsChartTotal data={data} />
+        </Span>
       </Span>
     </Span>
   )

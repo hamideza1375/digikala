@@ -1,13 +1,13 @@
 import moment from 'moment-jalaali'
 import React, { useEffect, useRef, useState } from 'react'
-import { P, Span, } from '../../../../other/Components/Html'
+import { P, Span, } from '../Html'
 var
   pushMond = [],
   pushMond2 = []
 
-const Chart = (p) => {
+const DayChartTotal = (p) => {
 
-  const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w = 350, h = 200, data } = p
+  const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = 350, h = 200, data } = p
 
 
   const pushArrayRef = useRef([])
@@ -90,6 +90,14 @@ const Chart = (p) => {
       }
 
 
+      let a = pushArray.reduce((total, number) => total + number)
+      let a2 = pushArray2.reduce((total, number) => total + number)
+      let a3 = pushArray3.reduce((total, number) => total + number)
+      let a4 = pushArray4.reduce((total, number) => total + number)
+      let a5 = pushArray5.reduce((total, number) => total + number)
+      let a6 = pushArray6.reduce((total, number) => total + number)
+      let a7 = pushArray7.reduce((total, number) => total + number)
+
       pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number))
       pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number))
       pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number))
@@ -97,8 +105,9 @@ const Chart = (p) => {
       pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number))
       pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number))
       pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number))
-      let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7].sort()
-      setsorteX(sortpushArray)
+      let sortpushArray = [a, a2, a3, a4, a5, a6, a7]
+      let sortpushArray2 = sortpushArray.sort((a,b)=>a - b)
+      setsorteX(sortpushArray2)
 
 
   }, [totalNumbers])
@@ -109,9 +118,9 @@ const Chart = (p) => {
 
       <Span w={400} h={220} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
-        <Span h='90%' w={5} jc='center' fd='column' z={100}>
+        <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
+            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 7])}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
             <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
@@ -123,11 +132,11 @@ const Chart = (p) => {
             <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
+            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 1])}</P>
           </Span>
         </Span>
 
-
+ 
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
           <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
@@ -171,4 +180,4 @@ const Chart = (p) => {
   )
 }
 
-export default Chart
+export default DayChartTotal

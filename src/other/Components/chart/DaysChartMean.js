@@ -1,10 +1,10 @@
 import moment from 'moment-jalaali'
 import React, { useEffect, useRef, useState } from 'react'
-import { P, Span, } from '../../../../other/Components/Html'
+import { P, Span, } from '../Html'
 var pushMond = [],
   pushMond2 = []
 
-const DaysChart = (p) => {
+const DaysChartMean = (p) => {
 
   const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = 350, h = 200, data } = p
 
@@ -98,8 +98,9 @@ const DaysChart = (p) => {
     pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number) / pushArray5.length)
     pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number) / pushArray6.length)
     pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number) / pushArray7.length)
+    
 
-    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7].sort()
+    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7].sort((a,b)=>a - b)
     setsorteX(sortpushArray)
 
   }, [totalNumbers])
@@ -172,4 +173,4 @@ const DaysChart = (p) => {
   )
 }
 
-export default DaysChart
+export default DaysChartMean

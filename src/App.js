@@ -50,6 +50,7 @@ import EditChildItem from "./views/admin/EditChildItem";
 import CreateGroupItem from "./views/admin/CreateGroupItem";
 import CreateChildItem from "./views/admin/CreateChildItem";
 import Chart from "./views/admin/Chart";
+import PanelAdmin from "./views/admin/PanelAdmin";
 
 rtl()
 LogBox.ignoreAllLogs();
@@ -125,6 +126,7 @@ const Mobile = () => {
             <Tab.Screen initialParams={{ key: 'admin' }} name="ListAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="Chart" options={{ title: 'chart' }} {..._children(Chart)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin' }} {..._children(PanelAdmin)} />
           </Tab.Group>
           
           <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
@@ -170,6 +172,7 @@ propTypes(Address)
 propTypes(ListUnAvailable)
 propTypes(GetProposal)
 propTypes(Chart)
+propTypes(PanelAdmin)
 
 
 const linking = {
@@ -196,6 +199,7 @@ const linking = {
       CreateComment: '/createcomment',
       EditComment: '/editcomment',
 
+      PanelAdmin: '/paneladmin',
       AddAdmin: '/addadmin',
       Notifee: '/notifee',
       Chart: '/chart',

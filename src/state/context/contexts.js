@@ -7,6 +7,7 @@ import { showHome } from './client/home';
 import { initial } from './initial';
 import { services } from './services/servicesState';
 import { beforePayment } from './client/beforePayment';
+import { chart } from './admin/chart';
 
 function State() {
   const home = new showHome()
@@ -15,6 +16,7 @@ function State() {
   const init = new initial()
   const service = new services()
   const _beforePayment = new beforePayment()
+  const _chart = new chart()
   
   return {
     ...filter.systemFilter,
@@ -25,7 +27,8 @@ function State() {
     ...service.adminService,
     ...service.clientService,
     ...service.userService,
-    ..._beforePayment.table
+    ..._beforePayment.table,
+    ..._chart.chart
   }
 }
 export const states = () => State()

@@ -79,7 +79,7 @@ const YearsChartMean = (p) => {
     pushMond = []
     pushMond2 = []
 
-    if (data.length)
+    if (data?.length)
       for (let i of data) {
         pushMond.push({ years: moment(i.date).format('jYYYY'), mond: moment(i.date).format('jM'), array: [] })
       }
@@ -96,7 +96,7 @@ const YearsChartMean = (p) => {
 
 
 
-    if (data.length)
+    if (data?.length)
       for (let i of data) {
         if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 1]?.mond) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
         if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 2]?.mond) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)

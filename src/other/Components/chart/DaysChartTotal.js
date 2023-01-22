@@ -5,7 +5,7 @@ var
   pushMond = [],
   pushMond2 = []
 
-const DayChartTotal = (p) => {
+const DaysChartTotal = (p) => {
 
   const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = '100%', h = '100%', data } = p
 
@@ -54,7 +54,7 @@ const DayChartTotal = (p) => {
     pushMond = []
     pushMond2 = []
 
-    if (data.length)
+    if (data?.length)
       for (let i of data) {
         pushMond.push({ monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
       }
@@ -70,7 +70,7 @@ const DayChartTotal = (p) => {
       }
 
 
-    if (data.length)
+    if (data?.length)
       for (let i of data) {
         if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
         if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
@@ -172,4 +172,4 @@ const DayChartTotal = (p) => {
   )
 }
 
-export default DayChartTotal
+export default DaysChartTotal

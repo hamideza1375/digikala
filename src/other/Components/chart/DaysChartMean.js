@@ -53,7 +53,7 @@ const DaysChartMean = (p) => {
     pushMond = []
     pushMond2 = []
 
-    if (data.length)
+    if (data?.length)
       for (let i of data) {
         pushMond.push({ monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
       }
@@ -70,7 +70,7 @@ const DaysChartMean = (p) => {
 
 
 
-    if (data.length)
+    if (data?.length)
       for (let i of data) {
         if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
         if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)

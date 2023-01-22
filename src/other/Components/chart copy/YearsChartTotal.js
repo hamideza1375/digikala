@@ -188,40 +188,40 @@ const YearsChartTotal = (p) => {
           {/* //! */}
           <Span w='100%' h={5} fd='row-reverse' jc='center' >
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 11]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 11]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 10]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 10]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 9]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 9]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 8]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 8]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 6]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 6]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 5]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 5]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 4]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 4]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 3]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 3]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 2]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 2]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
             </Span>
           </Span>
 

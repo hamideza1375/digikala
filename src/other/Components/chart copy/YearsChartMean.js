@@ -5,7 +5,7 @@ var
   pushMond = [],
   pushMond2 = []
 
-const YearsChartTotal = (p) => {
+const YearsChartMean = (p) => {
 
   const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w='100%', h = '100%', data } = p
 
@@ -126,20 +126,21 @@ const YearsChartTotal = (p) => {
       }
 
 
-    pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number))
-    pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number))
-    pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number))
-    pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number))
-    pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number))
-    pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number))
-    pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number))
-    pushArray8.length && settotalNumbers8(pushArray8.reduce((total, number) => total + number))
-    pushArray9.length && settotalNumbers9(pushArray9.reduce((total, number) => total + number))
-    pushArray10.length && settotalNumbers10(pushArray10.reduce((total, number) => total + number))
-    pushArray11.length && settotalNumbers11(pushArray11.reduce((total, number) => total + number))
-    pushArray12.length && settotalNumbers12(pushArray12.reduce((total, number) => total + number))
-    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7, totalNumbers8, totalNumbers9, totalNumbers10, totalNumbers11, totalNumbers12].sort((a,b)=>a - b)
-    setsorteX(sortpushArray)
+      pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number) / pushArray.length)
+      pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number) / pushArray2.length)
+      pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number) / pushArray3.length)
+      pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number) / pushArray4.length)
+      pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number) / pushArray5.length)
+      pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number) / pushArray6.length)
+      pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number) / pushArray7.length)
+      pushArray8.length && settotalNumbers8(pushArray8.reduce((total, number) => total + number) / pushArray8.length)
+      pushArray9.length && settotalNumbers9(pushArray9.reduce((total, number) => total + number) / pushArray9.length)
+      pushArray10.length && settotalNumbers10(pushArray10.reduce((total, number) => total + number) / pushArray10.length)
+      pushArray11.length && settotalNumbers11(pushArray11.reduce((total, number) => total + number) / pushArray11.length)
+      pushArray12.length && settotalNumbers12(pushArray12.reduce((total, number) => total + number) / pushArray12.length)
+
+      let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7, totalNumbers8, totalNumbers9, totalNumbers10, totalNumbers11, totalNumbers12].sort((a,b)=>a - b)
+      setsorteX(sortpushArray)
 
 
   }, [totalNumbers])
@@ -150,7 +151,7 @@ const YearsChartTotal = (p) => {
 
       <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
-        <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
+      <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>
             <P fs={7.5} color={color} >{(sorteX[sorteX.length - 12] / 1).toFixed()}</P>
           </Span>
@@ -188,40 +189,40 @@ const YearsChartTotal = (p) => {
           {/* //! */}
           <Span w='100%' h={5} fd='row-reverse' jc='center' >
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 11]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 11]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 10]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 10]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 9]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 9]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 8]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 8]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 6]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 6]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 5]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 5]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 4]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 4]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 3]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 3]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 2]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 2]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
             </Span>
             <Span f={1} h={5} ai='center' >
-              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
+              <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.years.split('4')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
             </Span>
           </Span>
 
@@ -232,4 +233,4 @@ const YearsChartTotal = (p) => {
   )
 }
 
-export default YearsChartTotal
+export default YearsChartMean

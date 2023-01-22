@@ -7,7 +7,7 @@ var
 
 const YearsChartMean = (p) => {
 
-  const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w = 350, h = 200, data } = p
+  const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w='100%', h = '100%', data } = p
 
 
   const pushArrayRef = useRef([])
@@ -98,31 +98,31 @@ const YearsChartMean = (p) => {
 
     if (data.length)
       for (let i of data) {
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 1].mond) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 2].mond) pushMond2[pushMond2.length - 2].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 3].mond) pushMond2[pushMond2.length - 3].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 4].mond) pushMond2[pushMond2.length - 4].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 5].mond) pushMond2[pushMond2.length - 5].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 6].mond) pushMond2[pushMond2.length - 6].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 7].mond) pushMond2[pushMond2.length - 7].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 8].mond) pushMond2[pushMond2.length - 8].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 9].mond) pushMond2[pushMond2.length - 9].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 10].mond) pushMond2[pushMond2.length - 10].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 11].mond) pushMond2[pushMond2.length - 11].array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 12].mond) pushMond2[pushMond2.length - 12].array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 1]?.mond) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 2]?.mond) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 3]?.mond) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 4]?.mond) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 5]?.mond) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 6]?.mond) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 7]?.mond) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 8]?.mond) pushMond2[pushMond2.length - 8]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 9]?.mond) pushMond2[pushMond2.length - 9]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 10]?.mond) pushMond2[pushMond2.length - 10]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 11]?.mond) pushMond2[pushMond2.length - 11]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 12]?.mond) pushMond2[pushMond2.length - 12]?.array.push(i.pricePayment)
 
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 1].mond) pushArray.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 2].mond) pushArray2.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 3].mond) pushArray3.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 4].mond) pushArray4.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 5].mond) pushArray5.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 6].mond) pushArray6.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 7].mond) pushArray7.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 8].mond) pushArray8.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 9].mond) pushArray9.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 10].mond) pushArray10.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 11].mond) pushArray11.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 12].mond) pushArray12.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 1]?.mond) pushArray.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 2]?.mond) pushArray2.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 3]?.mond) pushArray3.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 4]?.mond) pushArray4.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 5]?.mond) pushArray5.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 6]?.mond) pushArray6.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 7]?.mond) pushArray7.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 8]?.mond) pushArray8.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 9]?.mond) pushArray9.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 10]?.mond) pushArray10.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 11]?.mond) pushArray11.push(i.pricePayment)
+        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 12]?.mond) pushArray12.push(i.pricePayment)
       }
 
 
@@ -149,7 +149,7 @@ const YearsChartMean = (p) => {
   return (
     <>
 
-      <Span w={400} h={220} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
+      <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
       <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>

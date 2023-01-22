@@ -6,7 +6,7 @@ var pushMond = [],
 
 const DaysChartMean = (p) => {
 
-  const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = 350, h = 200, data } = p
+  const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w='100%', h = '100%', data } = p
 
   const pushArrayRef = useRef([])
   const pushArrayRef2 = useRef([])
@@ -72,21 +72,21 @@ const DaysChartMean = (p) => {
 
     if (data.length)
       for (let i of data) {
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1].days) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2].days) pushMond2[pushMond2.length - 2].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3].days) pushMond2[pushMond2.length - 3].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4].days) pushMond2[pushMond2.length - 4].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5].days) pushMond2[pushMond2.length - 5].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6].days) pushMond2[pushMond2.length - 6].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7].days) pushMond2[pushMond2.length - 7].array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
 
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1].days) pushArray.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2].days) pushArray2.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3].days) pushArray3.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4].days) pushArray4.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5].days) pushArray5.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6].days) pushArray6.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7].days) pushArray7.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushArray.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushArray2.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days) pushArray3.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days) pushArray4.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days) pushArray5.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days) pushArray6.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushArray7.push(i.pricePayment)
       }
 
 

@@ -7,7 +7,7 @@ var
 
 const DayChartTotal = (p) => {
 
-  const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = 350, h = 200, data } = p
+  const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = '100%', h = '100%', data } = p
 
 
   const pushArrayRef = useRef([])
@@ -55,60 +55,51 @@ const DayChartTotal = (p) => {
     pushMond2 = []
 
     if (data.length)
-    for (let i of data) {
-      pushMond.push({ monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
-    }
-
-
-
-  if (pushMond.length)
-    for (let i of pushMond) {
-      const find = pushMond2.find(f => f.monds == i.monds && f.days == i.days)
-      if (!find) {
-        pushMond2.push(i);
+      for (let i of data) {
+        pushMond.push({ monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
       }
-    }
+
+
+
+    if (pushMond.length)
+      for (let i of pushMond) {
+        const find = pushMond2.find(f => f.monds == i.monds && f.days == i.days)
+        if (!find) {
+          pushMond2.push(i);
+        }
+      }
 
 
     if (data.length)
       for (let i of data) {
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1].days) pushMond2[pushMond2.length - 1].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2].days) pushMond2[pushMond2.length - 2].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3].days) pushMond2[pushMond2.length - 3].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4].days) pushMond2[pushMond2.length - 4].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5].days) pushMond2[pushMond2.length - 5].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6].days) pushMond2[pushMond2.length - 6].array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7].days) pushMond2[pushMond2.length - 7].array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
 
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1].days) pushArray.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2].days) pushArray2.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3].days) pushArray3.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4].days) pushArray4.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5].days) pushArray5.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6].days) pushArray6.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7].days) pushArray7.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushArray.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushArray2.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days) pushArray3.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days) pushArray4.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days) pushArray5.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days) pushArray6.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushArray7.push(i.pricePayment)
       }
 
 
-      let a = pushArray.reduce((total, number) => total + number)
-      let a2 = pushArray2.reduce((total, number) => total + number)
-      let a3 = pushArray3.reduce((total, number) => total + number)
-      let a4 = pushArray4.reduce((total, number) => total + number)
-      let a5 = pushArray5.reduce((total, number) => total + number)
-      let a6 = pushArray6.reduce((total, number) => total + number)
-      let a7 = pushArray7.reduce((total, number) => total + number)
+    pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number))
+    pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number))
+    pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number))
+    pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number))
+    pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number))
+    pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number))
+    pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number))
 
-      pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number))
-      pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number))
-      pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number))
-      pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number))
-      pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number))
-      pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number))
-      pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number))
-      let sortpushArray = [a, a2, a3, a4, a5, a6, a7]
-      let sortpushArray2 = sortpushArray.sort((a,b)=>a - b)
-      setsorteX(sortpushArray2)
-
+    let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7].sort((a, b) => a - b)
+    setsorteX(sortpushArray)
 
   }, [totalNumbers])
 
@@ -116,11 +107,11 @@ const DayChartTotal = (p) => {
   return (
     <>
 
-      <Span w={400} h={220} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
+      <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 7])}</P>
+            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
             <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
@@ -132,11 +123,11 @@ const DayChartTotal = (p) => {
             <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 1])}</P>
+            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
           </Span>
         </Span>
 
- 
+
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
           <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
@@ -149,6 +140,7 @@ const DayChartTotal = (p) => {
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} /></Span>
           </Span>
           {/* //! */}
+
           <Span w='100%' h={5} fd='row-reverse' jc='center' >
             <Span f={1} h={5} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.monds}/{pushMond2[pushMond2.length - 7]?.days}</P>

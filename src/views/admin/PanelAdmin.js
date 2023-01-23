@@ -30,10 +30,10 @@ const PanelAdmin = (p) => {
 
             <Scroll ccStyle={{ flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around' }} >
               <Span w={280} h={200} fg={1} m={4}>
-                <DaysChartTotal data={p.chartData} />
+                <DaysChartTotal data={p.chartData} {...p}/>
               </Span>
               <Span w={280} h={200} fg={1} m={4}>
-                <DaysChartMean data={p.chartData} />
+                <DaysChartMean data={p.chartData} {...p}/>
               </Span>
             </Scroll>
 
@@ -54,10 +54,10 @@ const PanelAdmin = (p) => {
 
             <Scroll ccStyle={{ flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around' }} >
               <Span w={280} h={200} fg={1} m={4}>
-                <YearsChartTotal data={p.chartData} />
+                <YearsChartTotal data={p.chartData} {...p} />
               </Span>
               <Span w={280} h={200} fg={1} m={4}>
-                <YearsChartMean data={p.chartData} />
+                <YearsChartMean data={p.chartData} {...p}/>
               </Span>
             </Scroll>
 

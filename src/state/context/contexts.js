@@ -28,7 +28,7 @@ function State() {
     ...service.clientService,
     ...service.userService,
     ..._beforePayment.table,
-    ..._chart.chart
+    ..._chart.chart,
   }
 }
 export const states = () => State()

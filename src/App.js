@@ -2,7 +2,7 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
 import { View, Platform } from "react-native";
-import { Init, Span } from "./other/Components/Html";
+import { Dropdown, Init, P, Span } from "./other/Components/Html";
 import _404 from "./other/Components/404/404";
 import { initialState } from "./state/initialState";
 import { adminState } from "./state/adminState";
@@ -81,18 +81,19 @@ const Mobile = () => {
 
   const height = Platform.OS === 'web' ? '100vh' : '100%'
   return (
-    <Span h={height} w='100%' minw={280} onClick={() => { p.$input.get('dropdownDrawer')?.current.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}>
+    <Span h={height} w='100%' minw={280} onClick={() => { p.setshownDropdown(false);p.$input.get('dropdownDrawer')?.current.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}>
       <contextStates.Provider value={p}>
         <Init ref={(e) => allState.set$(e)} id={'s'} />
+        <Dropdown root {...p}>{p.dropdownValue}</Dropdown>
         <ToastProvider {...p} />
         <Tab.Navigator screenOptions={() => { return { headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center', ...icon } }} >
           <Tab.Group>
             <Tab.Screen name="Home" options={{ title: 'home', headerShown: false }} {..._children(Home)} />
-            <Tab.Screen name="ChildItems" options={{title: 'home'}} {..._children(ChildItems)} />
-            <Tab.Screen name="ChildOffers" options={{title: 'home'}} {..._children(ChildOffers)} />
-            <Tab.Screen name="ChildPopulars" options={{title: 'home'}} {..._children(ChildPopulars)} />
+            <Tab.Screen name="ChildItems" options={{ title: 'home' }} {..._children(ChildItems)} />
+            <Tab.Screen name="ChildOffers" options={{ title: 'home' }} {..._children(ChildOffers)} />
+            <Tab.Screen name="ChildPopulars" options={{ title: 'home' }} {..._children(ChildPopulars)} />
             <Tab.Screen name="SingleItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleItems)} />
-            <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: 'route.params.title', headerStyle:{backgroundColor:'#ddd'}})} {..._children(BeforePayment)} />
+            <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: 'route.params.title', headerStyle: { backgroundColor: '#ddd' } })} {..._children(BeforePayment)} />
           </Tab.Group>
 
           <Tab.Group screenOptions={{ headerShown: false }} >
@@ -128,7 +129,7 @@ const Mobile = () => {
             <Tab.Screen initialParams={{ key: 'admin' }} name="Chart" options={{ title: 'chart' }} {..._children(Chart)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin' }} {..._children(PanelAdmin)} />
           </Tab.Group>
-          
+
           <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
         </Tab.Navigator >
       </contextStates.Provider>
@@ -236,7 +237,7 @@ else {
   App = () => {
     return (
       <NavigationContainer linking={linking} >
-        <View flex={1} style={{ minHeight: '100vh'}} dir='rtl' >
+        <View flex={1} style={{ minHeight: '100vh' }} dir='rtl' >
           <Mobile />
         </View>
       </NavigationContainer>

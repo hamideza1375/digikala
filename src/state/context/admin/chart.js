@@ -131,9 +131,10 @@ export function chart() {
 
   const [showProgressChartDropdown, setshowProgressChartDropdown] = useState()
 
+  
 
   this.chart = { 
     chartData,setchartData,
-    showProgressChartDropdown, setshowProgressChartDropdown
+    showProgressChartDropdown, setshowProgressChartDropdown,
    }
 }

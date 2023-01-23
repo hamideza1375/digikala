@@ -76,9 +76,17 @@ export function initial() {
   const refInput = useRef()
 
 
+  const [clientX, setclientX] = useState(0)
+  const [clientY, setclientY] = useState(0)
+  const [dropdownValue, setdropdownValue] = useState('')
+  const [shownDropdown, setshownDropdown] = useState(false)
 
 
   this.all = { 
+    clientX, setclientX,
+    clientY, setclientY,
+    dropdownValue, setdropdownValue,
+    shownDropdown, setshownDropdown,
     changeRegister, setchangeRegister,
     replaceInput, setreplaceInput,
     several, setseveral,

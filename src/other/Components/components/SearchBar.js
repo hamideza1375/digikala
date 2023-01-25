@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native';
-import { Button, Div, Dropdown, Icon, Img, Input, Modal, P, Press, Scroll, Span } from '../Html'
+import { Button, Div, Dropdown2, Icon, Img, Input, Modal, P, Press, Scroll, Span } from '../Html'
 import { context } from '../../../state/context/contexts'
 
 function SearchInput({ logoPress, row, array, setarray, Register, icon, src, iconPress, sort, setshowFilterModal, showFilterModal, bgcolor }) {
@@ -67,7 +67,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
         
         dropdown={
           
-        <Dropdown
+        <Dropdown2
           displayFlex
           $input={p.$input}
           textId='dropdownDrawer'
@@ -80,7 +80,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <P onClick={() => { settextSearch('phone2'); p.setshowDropdownFilter(!p.showDropdownFilter); /* p.$input.get('inputSearch')?.value && searcher(p.$input.get('inputSearch').value.toLowerCase()) */ }} fs={12}>phone2</P >
             </Span>
           </Span>
-        </Dropdown>
+        </Dropdown2>
         }
 
         $input={p.$input} textId='inputSearch' onFocus={() => { p.$input.get('dropdownDrawer')?.current.setNativeProps({ style: { display: 'flex', transform: [{ scale: 1 }] } }) }} w='30%' fg={1} icon="search" pColor={'#777'} border={[1, '#ccc']} autoCapitalize='none' autoCorrect={false} spellCheck={true} value={textSearch} onChange={e => { settextSearch(e.nativeEvent.text.toLowerCase()); searcher(e.nativeEvent.text.toLowerCase()) }} iconPress={() => { searcher(textSearch.toLowerCase()) }} placeholder="جستجو" mh={8} h={'85%'} mt={6} dr='rtl' style={{ minWidth: 140 }} >
@@ -114,7 +114,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <Span ><P textAlign='right' >قیمت</P></Span>
               <Span w='100%' fd='row'  >
                 <Span h={30} mt='auto' mb={-5} ml={5}>
-                  <Dropdown  bodyStyle={{right:20}}
+                  <Dropdown2  bodyStyle={{right:20}}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('1').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -151,7 +151,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                     </Span>
-                  </Dropdown>
+                  </Dropdown2>
                 </Span>
 
                 {/* //! اگه غیر از عدد چیز دیگه ای وارد کرد به صورت قرمز بنویس فقط عدد وارد کنید */}
@@ -170,7 +170,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <Span w='100%' fd='row' jc='flex-start' >
 
                 <Span h={30} mt='auto' mb={-5} ml={5} >
-                  <Dropdown h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25}  bodyStyle={{right:20}}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('2').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -207,7 +207,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                     </Span>
-                  </Dropdown>
+                  </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input2FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.sdCardFilter.toString()} onChangeText={(text) => { p.setsdCardFilter(text) }} />
                 <Input keyboardType='numeric' fs={p.sdCardFilterTo == 9999999999 ? 18 : 11} value={p.sdCardFilterTo == 9999999999 ? '♾' : p.sdCardFilterTo.toString()} w={100} placeholder='تا' onChangeText={(text) => { p.setsdCardFilterTo(text) }} />
@@ -222,7 +222,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <Span w='100%' fd='row' >
 
                 <Span h={30} mt='auto' mb={-5} ml={5}>
-                  <Dropdown h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25}  bodyStyle={{right:20}}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('3').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -255,7 +255,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                     </Span>
-                  </Dropdown>
+                  </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input3FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.ramFilter.toString()} onChangeText={(text) => { p.setramFilter(text) }} />
                 <Input keyboardType='numeric' fs={p.ramFilterTo === 9999999999 ? 18 : 11} w={100} placeholder='تا' value={p.ramFilterTo == 9999999999 ? '♾' : p.ramFilterTo.toString()} onChangeText={(text) => { p.setramFilterTo(text) }} />
@@ -272,7 +272,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
 
                 <Span h={30} mt='auto' mb={-5} ml={5}>
 
-                  <Dropdown h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25}  bodyStyle={{right:20}}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('4').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -305,7 +305,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                     </Span>
-                  </Dropdown>
+                  </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input4FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.cpuCoreFilter.toString()} onChangeText={(text) => { p.setcpuCoreFilter(text) }} />
                 <Input keyboardType='numeric' fs={p.cpuCoreFilterTo == 9999999999 ? 18 : 11} w={100} placeholder='تا' value={p.cpuCoreFilterTo == 9999999999 ? '♾' : p.cpuCoreFilterTo.toString()} onChangeText={(text) => { p.setcpuCoreFilterTo(text) }} />
@@ -322,7 +322,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
 
                 <Span h={30} mt='auto' mb={-5} ml={5}>
 
-                  <Dropdown h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25}  bodyStyle={{right:20}}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('5').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -359,7 +359,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                     </Span>
-                  </Dropdown>
+                  </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input5FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.cameraFilter.toString()} onChangeText={(text) => { p.setcameraFilter(text) }} />
                 <Input keyboardType='numeric' fs={p.cameraFilterTo == 9999999999 ? 18 : 11} w={100} placeholder='تا' value={p.cameraFilterTo == 9999999999 ? '♾' : p.cameraFilterTo.toString()} onChangeText={(text) => { p.setcameraFilterTo(text) }} />

@@ -69,26 +69,24 @@ const DaysChartTotal = (p) => {
         }
       }
 
-      // new Date().getMonth
 
     if (data?.length)
       for (let i of data) {
-        console.log(i.date.getMonth().toString());
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i.date.getMonth().toString()) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i.date.getMonth().toString()) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i.date.getMonth().toString()) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i.date.getMonth().toString()) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i.date.getMonth().toString()) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i.date.getMonth().toString()) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i.date.getMonth().toString()) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
 
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i.date.getMonth().toString()) pushArray.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i.date.getMonth().toString()) pushArray2.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i.date.getMonth().toString()) pushArray3.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i.date.getMonth().toString()) pushArray4.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i.date.getMonth().toString()) pushArray5.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i.date.getMonth().toString()) pushArray6.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i.date.getMonth().toString()) pushArray7.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray2.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray3.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray4.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray5.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray6.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray7.push(i.pricePayment)
       }
 
 

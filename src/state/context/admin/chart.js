@@ -81,6 +81,7 @@ export function chart() {
     { _id: '51', date: new Date('2023-11-12 22:3:0'), name: 'hamid', pricePayment: 40 , checkSend:1, queueSend:0, send:1},
     { _id: '52', date: new Date('2023-11-12 22:3:0'), name: 'farhad', pricePayment: 40 , checkSend:0, queueSend:1, send:0},
 
+    
     { _id: '55', date: new Date('2023-12-07 22:3:0'), name: 'hamid', pricePayment: 200 , checkSend:1, queueSend:0, send:0},
     { _id: '56', date: new Date('2023-12-07 22:3:0'), name: 'farhad', pricePayment: 600 , checkSend:0, queueSend:1, send:0},
 

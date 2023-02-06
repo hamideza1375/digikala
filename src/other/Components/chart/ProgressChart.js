@@ -33,7 +33,7 @@ const ProgressChart = (p) => {
 
     if (data?.length)
       for (let i of data) {
-        pushMond.push({ monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
+        pushMond.push({ date: i.date, monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
       }
 
 
@@ -52,29 +52,29 @@ const ProgressChart = (p) => {
         if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushArray.push(i.pricePayment)
         if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushArray7.push(i.pricePayment)
 
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && (i.checkSend === 1)) checkSend.push(i.checkSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && (i.checkSend === 1)) checkSend.push(i.checkSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && (i.checkSend === 1)) checkSend.push(i.checkSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && (i.checkSend === 1)) checkSend.push(i.checkSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && (i.checkSend === 1)) checkSend.push(i.checkSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && (i.checkSend === 1)) checkSend.push(i.checkSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && (i.checkSend === 1)) checkSend.push(i.checkSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.checkSend === 1)) checkSend.push(i.checkSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.checkSend === 1)) checkSend.push(i.checkSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.checkSend === 1)) checkSend.push(i.checkSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.checkSend === 1)) checkSend.push(i.checkSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.checkSend === 1)) checkSend.push(i.checkSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.checkSend === 1)) checkSend.push(i.checkSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.checkSend === 1)) checkSend.push(i.checkSend)
 
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && (i.queueSend === 1)) queueSend.push(i.queueSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && (i.queueSend === 1)) queueSend.push(i.queueSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && (i.queueSend === 1)) queueSend.push(i.queueSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && (i.queueSend === 1)) queueSend.push(i.queueSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && (i.queueSend === 1)) queueSend.push(i.queueSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && (i.queueSend === 1)) queueSend.push(i.queueSend)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && (i.queueSend === 1)) queueSend.push(i.queueSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.queueSend === 1)) queueSend.push(i.queueSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.queueSend === 1)) queueSend.push(i.queueSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.queueSend === 1)) queueSend.push(i.queueSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.queueSend === 1)) queueSend.push(i.queueSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.queueSend === 1)) queueSend.push(i.queueSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.queueSend === 1)) queueSend.push(i.queueSend)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.queueSend === 1)) queueSend.push(i.queueSend)
 
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && (i.send === 1)) send.push(i.send)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && (i.send === 1)) send.push(i.send)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && (i.send === 1)) send.push(i.send)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && (i.send === 1)) send.push(i.send)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && (i.send === 1)) send.push(i.send)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && (i.send === 1)) send.push(i.send)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && (i.send === 1)) send.push(i.send)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.send === 1)) send.push(i.send)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.send === 1)) send.push(i.send)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.send === 1)) send.push(i.send)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.send === 1)) send.push(i.send)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.send === 1)) send.push(i.send)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.send === 1)) send.push(i.send)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i?.date.getMonth().toString() && (i.send === 1)) send.push(i.send)
 
       }
   }, [])
@@ -98,13 +98,13 @@ const ProgressChart = (p) => {
           </Span>
         </Span>
         <Span w={'90%'} h={rodWidth} as={'center'} mt={10} fd='row' border={[1, 'silver']}>
-          <Span h={'100%'} f={send.length} bgcolor='#0b3'>
-            <Dropdown {...p} value={<P fs={11} ta='center' >نفر {send.length}</P>} />
+          <Span h={'100%'} f={send.length + 1} bgcolor='#0b3'>
+            <Dropdown {...p} top={true} value={<P fs={11} ta='center' >نفر {send.length} نفر {send.length} نفر {send.length} نفر {send.length} نفر {send.length} نفر {send.length}</P>} />
           </Span>
-          <Span h={'100%'} f={queueSend.length} bgcolor='#ee0'>
+          <Span h={'100%'} f={queueSend.length + 1} bgcolor='#ee0'>
             <Dropdown {...p} value={<P fs={11} ta='center' >نفر {queueSend.length}</P>} />
           </Span>
-          <Span h={'100%'} f={checkSend.length} bgcolor='#f33'>
+          <Span h={'100%'} f={checkSend.length + 1} bgcolor='#f33'>
             <Dropdown {...p} value={<P fs={11} ta='center' >نفر {checkSend.length}</P>} />
           </Span>
         </Span>

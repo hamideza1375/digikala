@@ -102,7 +102,7 @@ export const Component = React.forwardRef((props, ref) => {
 });
 
 export const _text = React.forwardRef((props, ref) => {
-  const { land, port, col1, col2, col3, col4,col5,col6, e, tsh = {}, p, pt, pb, pl, pr, pv, ph, h, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ta, as, fm, fs=13, bbc, btc, blc, brc, btw, bbw, blw, brw, btr, bbr, blr, brr, minw, maxw, minh, maxh, wb, ovflw, ovfl, ovflx, ovfly, lh, d, opc, pos, z, t, b, r, l, fw, ff='IRANSansWeb', tdl, tds, tdc, shc, sho, shr, shoff, tshc, tsho, tshr, tshoff, scale = null, rotate = null } = props;
+  const { land, port, col1, col2, col3, col4,col5,col6, e, tsh = {}, p, pt, pb, pl, pr, pv, ph, h, w, m, mt, mb, ml, mr, mv, mh, color='black', bgcolor, border = [], fg, f, ta, as, fm, fs=13, bbc, btc, blc, brc, btw, bbw, blw, brw, btr, bbr, blr, brr, minw, maxw, minh, maxh, wb, ovflw, ovfl, ovflx, ovfly, lh, d, opc, pos, z, t, b, r, l, fw, ff='IRANSansWeb', tdl, tds, tdc, shc, sho, shr, shoff, tshc, tsho, tshr, tshoff, scale = null, rotate = null } = props;
   const [innerHTML, setinnerHTML] = React.useState(null);
   let stl,
   _col ={},

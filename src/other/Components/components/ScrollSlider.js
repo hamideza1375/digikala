@@ -18,12 +18,12 @@ function ScrollSlider(p) {
 
   const open = () => {
     if (scroll2) {
-      { ref.current && ref.current.scrollToIndex({ index: count.current.count }); }
+      { ref.current &&  ref.current.scrollToIndex({ index: count.current.count }); }
       count.current.count = count.current.count + 1
     }
   };
 
-  if (count.current.count >= p.data.length) { clearInterval(interval.current.interval) }
+  if (count.current.count + 1 >= p.data.length) { clearInterval(interval.current.interval) }
   if (!scroll2) { clearInterval(interval.current.interval) }
 
 
@@ -37,10 +37,12 @@ function ScrollSlider(p) {
   return (
     <View
       // <View onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
-      onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10) }} >
+      onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10) }} 
+      onMoveShouldSetResponder={() => { setscroll2(false);  }} 
+      onTouchMove={() => { setscroll2(false);  }} >
       <View
-        onMoveShouldSetResponderCapture={(e) => {
-          setscroll2(false)
+        onMoveShouldSetResponder={(e) => {
+          setscroll2(!scroll2)
           if (Platform.OS === 'web') {
             if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') {
               ref.current.setNativeProps({ style: { overflowX: 'auto' } });
@@ -66,7 +68,7 @@ function ScrollSlider(p) {
           {...p}
           renderItem={p.renderItem}
           contentContainerStyle={[{ flexGrow: 1, direction: 'rtl' }, p.ccStyle]}
-          onLayout={(e) => { let layoutWidth = e.nativeEvent.layout.width; width = p.width; let int = setInterval(sum, 4000); function sum() { open() } interval.current.interval = int }}
+          onLayout={(e) => { let layoutWidth = e.nativeEvent.layout.width; width = p.width; let int = setInterval(sum, 4000); function sum() { if (scroll2) open() } interval.current.interval = int }}
           // onContentSizeChange={(e) => { setcontentSize(e); }}
           // scrollEventThrottle={0}
           // alwaysBounceHorizontal={false}

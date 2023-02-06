@@ -1,6 +1,6 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Scroll, Span } from '../../other/Components/Html'
+import { Container2, Scroll, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import FilterList from './components/childItem/FilterList'
 import FlatlistPopulars from './components/childItem/FlatlistPopulars'
@@ -19,7 +19,7 @@ const ChildPopulars = (p) => {
   //   });
   // }, [])
   return (
-    <Span style={{ maxHeight: Platform.OS === 'web' ? 'calc(100vh - 64px)' : '100%' }}>
+    <Container2>
       <Span fd='row-reverse' w='100%' f={1} mt={8} >
         <Span f={5} >
           <FlatlistPopulars {...p} />
@@ -30,7 +30,7 @@ const ChildPopulars = (p) => {
         <Chat {...p} />
       </Span>
 
-    </Span>
+    </Container2>
 
   )
 }

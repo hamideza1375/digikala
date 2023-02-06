@@ -88,6 +88,8 @@ const Mobile = () => {
         <ToastProvider {...p} />
         <Tab.Navigator screenOptions={() => { return { headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center', ...icon } }} >
           <Tab.Group>
+
+          <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin' }} {..._children(PanelAdmin)} />
             <Tab.Screen name="Home" options={{ title: 'home', headerShown: false }} {..._children(Home)} />
             <Tab.Screen name="ChildItems" options={{ title: 'home' }} {..._children(ChildItems)} />
             <Tab.Screen name="ChildOffers" options={{ title: 'home' }} {..._children(ChildOffers)} />
@@ -127,7 +129,7 @@ const Mobile = () => {
             <Tab.Screen initialParams={{ key: 'admin' }} name="ListAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="Chart" options={{ title: 'chart' }} {..._children(Chart)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin' }} {..._children(PanelAdmin)} />
+            {/* <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin' }} {..._children(PanelAdmin)} /> */}
           </Tab.Group>
 
           <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
@@ -139,41 +141,41 @@ const Mobile = () => {
 
 
 propTypes(Home)
-propTypes(ChildItems)
-propTypes(ChildOffers)
-propTypes(ChildPopulars)
-propTypes(SingleItems)
-propTypes(BeforePayment)
+// propTypes(ChildItems)
+// propTypes(ChildOffers)
+// propTypes(ChildPopulars)
+// propTypes(SingleItems)
+// propTypes(BeforePayment)
 
-propTypes(Register)
-propTypes(Login)
-propTypes(ForgetPass)
-propTypes(ResetPass)
-propTypes(Logout)
-propTypes(SendProposal)
-propTypes(LastPayment)
-propTypes(Profile)
-propTypes(Payment)
-propTypes(Location)
-propTypes(CreateComment)
-propTypes(EditComment)
+// propTypes(Register)
+// propTypes(Login)
+// propTypes(ForgetPass)
+// propTypes(ResetPass)
+// propTypes(Logout)
+// propTypes(SendProposal)
+// propTypes(LastPayment)
+// propTypes(Profile)
+// propTypes(Payment)
+// propTypes(Location)
+// propTypes(CreateComment)
+// propTypes(EditComment)
 
-propTypes(TableGroupItems)
-propTypes(TableChildItems)
-propTypes(EditGroupItem)
-propTypes(EditChildItem)
-propTypes(CreateGroupItem)
-propTypes(CreateChildItem)
-propTypes(AddAdmin)
-propTypes(Notifee)
-propTypes(ChangeAdmin)
-propTypes(DeleteAdmin)
-propTypes(DeleteAllAddress)
-propTypes(Address)
-propTypes(ListUnAvailable)
-propTypes(GetProposal)
-propTypes(Chart)
-propTypes(PanelAdmin)
+// propTypes(TableGroupItems)
+// propTypes(TableChildItems)
+// propTypes(EditGroupItem)
+// propTypes(EditChildItem)
+// propTypes(CreateGroupItem)
+// propTypes(CreateChildItem)
+// propTypes(AddAdmin)
+// propTypes(Notifee)
+// propTypes(ChangeAdmin)
+// propTypes(DeleteAdmin)
+// propTypes(DeleteAllAddress)
+// propTypes(Address)
+// propTypes(ListUnAvailable)
+// propTypes(GetProposal)
+// propTypes(Chart)
+// propTypes(PanelAdmin)
 
 
 const linking = {

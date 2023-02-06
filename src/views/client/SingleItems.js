@@ -37,20 +37,29 @@ const SingleItems = (p) => {
 
             <Span fg={1} mh={5} mt={20}>
               <Span w='95%'>
-                <Description {...p} />
+                <Suspense>
+                  <Description {...p} />
+                </Suspense>
               </Span>
             </Span>
 
             <Span fg={1} mh={5} mt={20}>
               <Span w='95%'>
-                <ImageDisplay {...p} />
+                <Suspense>
+                  <ImageDisplay {...p} />
+                </Suspense>
               </Span>
             </Span>
 
             <Span ai='center' fg={1} mh={5} mt={20}>
               <Span ai='center' w='95%'>
-                <Specifications {...p} />
-                <Obligations mt={15} {...p} />
+                <Suspense>
+                  <Specifications {...p} />
+                </Suspense>
+
+                <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+                  <Obligations mt={15} {...p} />
+                </Suspense>
               </Span>
             </Span>
 
@@ -58,7 +67,7 @@ const SingleItems = (p) => {
         </Span>
         <Br />
         <Span>
-          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+          <Suspense>
             <SliderSimilars {...p} />
           </Suspense>
         </Span>
@@ -68,7 +77,7 @@ const SingleItems = (p) => {
           </Suspense>
         </Div>
         <Span>
-          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+          <Suspense>
             <Footer {...p} />
           </Suspense>
         </Span>

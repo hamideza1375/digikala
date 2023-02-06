@@ -110,7 +110,7 @@ const DaysChartTotal = (p) => {
       <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
-          <Span f={1} h={5} ai='center'>
+          <Span f={1} h={5} ai='center' jc='center'>
             <P fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>

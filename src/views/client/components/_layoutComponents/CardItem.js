@@ -21,7 +21,7 @@ const CardItem = ({ item, spacePrice, offers, h = 240, w = 200, style, sh = { r:
   return (
     <Card2
       bgcolor={'#fff'} sh={sh}
-      style={[{ minWidth: 161, maxWidth: 300, borderColor: 'silver', width: '100%', flexGrow: 1, marginVertical: 15, height: h }, style]}
+      style={[{ minWidth: 161, maxWidth: 300, borderColor: 'silver', width: w, flexGrow: 1, marginVertical: 15, height: h }, style]}
       src={item.image}
       coulumn1={<Span mt={8} w={'100%'}><P fs={11} ta='center' as='center' >{item.title}</P></Span>}
       coulumn2={<Span bgcolor='#eee' fd='row' h={35} jc='center' w={'100%'}>

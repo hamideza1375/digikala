@@ -2,11 +2,11 @@ import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import React, { useCallback } from 'react'
 import { Platform, SafeAreaView, Pressable, View } from 'react-native';
 import TopTab from '../tabNavigation/TopTab';
-import BottomTab from '../tabNavigation/BottomTab';
-import Drawer from '../tabNavigation/Drawer';
-import { Icon, SearchBar, Span } from '../Html';
 
+import { Icon } from '../Html';
+import Drawer from '../tabNavigation/Drawer';
 import HomePage from './page/HomePage';
+
 
 
 export const Layout = (p) => {
@@ -17,7 +17,7 @@ export const Layout = (p) => {
   //     if (p._key === '120') { p.setnavigateUser(p.route.name) }
   //   }
   // }, []))
-  const drawer = [{ name: 'Profile', title: 'پروفایل' },  { name: 'Logout', title: 'خروج از حساب کاربری' }]
+  const drawer = [{ name: 'Profile', title: 'پروفایل' }, { name: 'Logout', title: 'خروج از حساب کاربری' }]
   const topUser = [{ name: 'Register', title: 'ثبت نام' }, { name: 'Login', title: 'ورود' }]
 
   const drawer2 = [
@@ -37,9 +37,9 @@ export const Layout = (p) => {
 
   return (
     <View style={{ flex: 1, paddingHorizontal: Platform.OS === 'ios' ? (p.width > p.height ? 35 : 0) : 0 }} >
-      <SafeAreaView/>
+      <SafeAreaView />
 
-      { p.route.name === 'Login' | p.route.name === 'Register' | p.route.name === 'Home' ?
+      {p.route.name === 'Login' | p.route.name === 'Register' | p.route.name === 'Home' ?
         <View style={{ flex: 1, overflow: 'hidden' }}>
           {
             p.route.name === 'Login' && (
@@ -54,8 +54,9 @@ export const Layout = (p) => {
               </TopTab>
             )
             ||
-            p.route.name === 'Home' &&
-            <HomePage {...p} bottom={bottom} />
+            p.route.name === 'Home' && (
+              HomePage
+            )
           }
         </View>
         :

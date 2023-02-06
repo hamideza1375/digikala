@@ -75,7 +75,9 @@ export function initial() {
   const useEffect = (call, state) => { useFocusEffect(useCallback(() => call(), state)) }
   const refInput = useRef()
 
-
+  const [dropdownRight,setdropdownRight,] = useState()
+  const [dropdownHeight, setdropdownHeight] = useState(0)
+  const [dropdownWidth, setdropdownWidth] = useState(0)
   const [clientX, setclientX] = useState(0)
   const [clientY, setclientY] = useState(0)
   const [dropdownValue, setdropdownValue] = useState('')
@@ -83,6 +85,9 @@ export function initial() {
 
 
   this.all = { 
+    dropdownRight,setdropdownRight,
+    dropdownWidth,setdropdownWidth,
+    dropdownHeight, setdropdownHeight,
     clientX, setclientX,
     clientY, setclientY,
     dropdownValue, setdropdownValue,

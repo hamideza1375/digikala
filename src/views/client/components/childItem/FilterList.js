@@ -33,7 +33,7 @@ const FilterList = (p) => {
         </Span>
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'برند'} bodyRow={
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'برند'} bodyRow={
             <Span>
               {p.brandFilterValue.map((child, index) => (
                 <Span key={index} fd='row' jc='space-between'>
@@ -52,7 +52,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'مقدار رم'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'مقدار رم'}
             bodyRow={
               <Span>
                 {p.ramFilterValue.map((child, index) => (
@@ -72,7 +72,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'تعداد هسته پردازشگر(cpu)'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'تعداد هسته پردازشگر(cpu)'}
             bodyRow={
               <Span>
                 {p.cpuCoreFilterValue.map((child, index) => (
@@ -92,7 +92,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'نوع شبکه اینترنت'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'نوع شبکه اینترنت'}
             bodyRow={
               <Span>
                 {p.networkFilterValue.map((child, index) => (
@@ -112,7 +112,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'سیستم عامل'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'سیستم عامل'}
             bodyRow={
               <Span>
                 {p.systemFilterValue.map((child, index) => (
@@ -132,7 +132,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'دوربین'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'دوربین'}
             bodyRow={
               <Span>
                 {p.cameraFilterValue.map((child, index) => (
@@ -152,7 +152,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'اندازه ی صفحه نمایش'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'اندازه ی صفحه نمایش'}
             bodyRow={
               <Span>
                 {p.displayFilterValue.map((child, index) => (
@@ -172,7 +172,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'رنگ'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'رنگ'}
             bodyRow={
               <Span>
                 {p.colorFilterValue.map((child, index) => (
@@ -192,7 +192,7 @@ const FilterList = (p) => {
 
 
         <Span>
-          <_list h={35} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'باطری'}
+          <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left' header={'باطری'}
             bodyRow={
               <Span>
                 {p.batteryFilterValue.map((child, index) => (

@@ -55,7 +55,7 @@ const DaysChartMean = (p) => {
 
     if (data?.length)
       for (let i of data) {
-        pushMond.push({ monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
+        pushMond.push({ date: i.date, monds: moment(i.date).format('jM'), days: moment(i.date).format('jD'), array: [] })
       }
 
 
@@ -69,26 +69,24 @@ const DaysChartMean = (p) => {
       }
 
 
-
     if (data?.length)
       for (let i of data) {
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
 
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushArray.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days) pushArray2.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days) pushArray3.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days) pushArray4.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days) pushArray5.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days) pushArray6.push(i.pricePayment)
-        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushArray7.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray2.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray3.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray4.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray5.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray6.push(i.pricePayment)
+        if (moment(i.date).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == i?.date.getMonth().toString()) pushArray7.push(i.pricePayment)
       }
-
 
 
     pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number) / pushArray.length)
@@ -112,7 +110,7 @@ const DaysChartMean = (p) => {
       <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
-          <Span f={1} h={5} ai='center'>
+          <Span f={1} h={5} ai='center' jc='center'>
             <P fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
           </Span>
           <Span f={1} h={5} ai='center'>

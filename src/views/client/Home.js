@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import { Span, Slider, Scroll, Div, Container, Container2, ContainerTab, P, Loading } from '../../other/Components/Html'
 import s from './style/client.module.scss'
 import Chat from './components/home/Chat'
-const Group = lazy(() => import('./components/home/Group'));
+import Group from './components/home/Group';
 const SliderOffers = lazy(() => import('./components/home/SliderOffers'));
 const SliderPopulars = lazy(() => import('./components/home/SliderPopulars'));
 const Banner = lazy(() => import('./components/home/Banner'));
@@ -27,11 +27,11 @@ function Home(p) {
           </Suspense>
         </Span>
 
-        <Div>
+        <Span mt={9} >
           <Suspense>
             <Banner {...p} />
           </Suspense>
-        </Div>
+        </Span>
 
         <Div>
           <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
@@ -39,11 +39,11 @@ function Home(p) {
           </Suspense>
         </Div>
 
-        <Div>
+        <Span>
           <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
             <Footer {...p} />
           </Suspense>
-        </Div>
+        </Span>
 
       </Scroll>
       <Chat />

@@ -17,11 +17,11 @@ const Group = (p) => {
           style={Platform.OS !== 'web' ? { paddingRight: 290 } : { paddingRight: 10, }}
           data={p.group}
           renderItem={({ item, index }) => (
-            <Span w={105} h={100} as='center' >
+            <Span w={105} h={115} as='center'>
               <Span w={90} h={95} as='center'>
-                <LinearGradient nativeStart={{ x: 1.5, y: 1.5 }} webStart={{ x: 7 }} colors={['#f5f', '#505', '#f5f']} style={{ borderRadius: 100, width: 90, height: 90, maxHeight: 105, justifyContent:'center', alignItems:'center' }} >
+                <LinearGradient nativeStart={{ x: 1.5, y: 1.5 }} webStart={{ x: 7 }} colors={['#f5f', '#505', '#f5f']} style={{ borderRadius: 100, width: 90, height: 90, maxHeight: 90, justifyContent:'center', alignItems:'center' }} >
                   <Span w={84} h={84} style={{ borderRadius: 100, backgroundColor: 'white', position: 'absolute' }} >
-                    <Img f={1} br={80} src={item.image} />
+                    <Img f={1} br={100} src={item.image} />
                   </Span>
                 </LinearGradient>
               </Span>

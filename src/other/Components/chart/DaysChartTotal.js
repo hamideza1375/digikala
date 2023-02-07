@@ -7,7 +7,7 @@ var
 
 const DaysChartTotal = (p) => {
 
-  const { color = '#a50a', borderColor = '#5208', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = '100%', h = '100%', data } = p
+  const { color = '#a50a', borderColor = '#a505', rodColor = '#d805', rodWidth = 'auto', bgcolor = '#d805', br = 4, w = '100%', h = '100%', data } = p
 
 
   const pushArrayRef = useRef([])
@@ -26,21 +26,21 @@ const DaysChartTotal = (p) => {
   let pushArray6 = pushArrayRef6.current
   let pushArray7 = pushArrayRef7.current
 
-  const [totalNumbers, settotalNumbers] = useState([])
+  const [totalNumbers, settotalNumbers] = useState(0.1)
 
-  const [totalNumbers2, settotalNumbers2] = useState([])
+  const [totalNumbers2, settotalNumbers2] = useState(0.1)
 
-  const [totalNumbers3, settotalNumbers3] = useState([])
+  const [totalNumbers3, settotalNumbers3] = useState(0.1)
 
-  const [totalNumbers4, settotalNumbers4] = useState([])
+  const [totalNumbers4, settotalNumbers4] = useState(0.1)
 
-  const [totalNumbers5, settotalNumbers5] = useState([])
+  const [totalNumbers5, settotalNumbers5] = useState(0.1)
 
-  const [totalNumbers6, settotalNumbers6] = useState([])
+  const [totalNumbers6, settotalNumbers6] = useState(0.1)
 
-  const [totalNumbers7, settotalNumbers7] = useState([])
+  const [totalNumbers7, settotalNumbers7] = useState(0.1)
 
-  const [sorteX, setsorteX] = useState([])
+  const [sorteX, setsorteX] = useState([1])
 
 
   useEffect(() => {
@@ -110,20 +110,20 @@ const DaysChartTotal = (p) => {
       <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
-          <Span f={1} h={5} ai='center' jc='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end' jc='center'>
+            <P style={{position:'absolute'}} w={200} fs={7.5} z={1111} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end'>
+            <P style={{position:'absolute'}} w={200} fs={7.5} z={1111} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end'>
+            <P style={{position:'absolute'}} w={200} fs={7.5} z={1111} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end'>
+            <P style={{position:'absolute'}} w={200} fs={7.5} z={1111} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end' >
+            <P style={{position:'absolute'}} w={200} fs={7.5} z={1111} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
           </Span>
         </Span>
 
@@ -161,26 +161,26 @@ const DaysChartTotal = (p) => {
             </Span>
           </Span>
           {/* //! */}
-          <Span w='100%' h={5} fd='row-reverse' jc='center' >
-            <Span f={1} h={5} ai='center' >
+          <Span w='100%' h={10} fd='row-reverse' jc='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.monds}/{pushMond2[pushMond2.length - 7]?.days}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 6]?.monds}/{pushMond2[pushMond2.length - 6]?.days}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 5]?.monds}/{pushMond2[pushMond2.length - 5]?.days}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 4]?.monds}/{pushMond2[pushMond2.length - 4]?.days}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 3]?.monds}/{pushMond2[pushMond2.length - 3]?.days}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 2]?.monds}/{pushMond2[pushMond2.length - 2]?.days}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.monds}/{pushMond2[pushMond2.length - 1]?.days}</P>
             </Span>
           </Span>

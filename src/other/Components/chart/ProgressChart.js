@@ -99,7 +99,7 @@ const ProgressChart = (p) => {
         </Span>
         <Span w={'90%'} h={rodWidth} as={'center'} mt={10} fd='row' border={[1, 'silver']}>
           <Span h={'100%'} f={send.length + 1} bgcolor='#0b3'>
-            <Dropdown {...p} top={true} value={<P fs={11} ta='center' >نفر {send.length} نفر {send.length} نفر {send.length} نفر {send.length} نفر {send.length} نفر {send.length}</P>} />
+            <Dropdown {...p} value={<P fs={11} ta='center' >نفر {send.length}</P>} />
           </Span>
           <Span h={'100%'} f={queueSend.length + 1} bgcolor='#ee0'>
             <Dropdown {...p} value={<P fs={11} ta='center' >نفر {queueSend.length}</P>} />

@@ -7,7 +7,7 @@ var
 
 const YearsChartTotal = (p) => {
 
-  const { color = '#a5fa', borderColor = '#52f8', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w = '100%', h = '100%', data } = p
+  const { color = '#a5fa', borderColor = '#a5f5', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w = '100%', h = '100%', data } = p
 
 
   const pushArrayRef = useRef([])
@@ -36,31 +36,31 @@ const YearsChartTotal = (p) => {
   let pushArray11 = pushArrayRef11.current
   let pushArray12 = pushArrayRef12.current
 
-  const [totalNumbers, settotalNumbers] = useState([])
+  const [totalNumbers, settotalNumbers] = useState(.1)
 
-  const [totalNumbers2, settotalNumbers2] = useState([])
+  const [totalNumbers2, settotalNumbers2] = useState(.1)
 
-  const [totalNumbers3, settotalNumbers3] = useState([])
+  const [totalNumbers3, settotalNumbers3] = useState(.1)
 
-  const [totalNumbers4, settotalNumbers4] = useState([])
+  const [totalNumbers4, settotalNumbers4] = useState(.1)
 
-  const [totalNumbers5, settotalNumbers5] = useState([])
+  const [totalNumbers5, settotalNumbers5] = useState(.1)
 
-  const [totalNumbers6, settotalNumbers6] = useState([])
+  const [totalNumbers6, settotalNumbers6] = useState(.1)
 
-  const [totalNumbers7, settotalNumbers7] = useState([])
+  const [totalNumbers7, settotalNumbers7] = useState(.1)
 
-  const [totalNumbers8, settotalNumbers8] = useState([])
+  const [totalNumbers8, settotalNumbers8] = useState(.1)
 
-  const [totalNumbers9, settotalNumbers9] = useState([])
+  const [totalNumbers9, settotalNumbers9] = useState(.1)
 
-  const [totalNumbers10, settotalNumbers10] = useState([])
+  const [totalNumbers10, settotalNumbers10] = useState(.1)
 
-  const [totalNumbers11, settotalNumbers11] = useState([])
+  const [totalNumbers11, settotalNumbers11] = useState(.1)
 
-  const [totalNumbers12, settotalNumbers12] = useState([])
+  const [totalNumbers12, settotalNumbers12] = useState(.1)
 
-  const [sorteX, setsorteX] = useState([])
+  const [sorteX, setsorteX] = useState([1])
 
 
   useEffect(() => {
@@ -153,20 +153,20 @@ const YearsChartTotal = (p) => {
       <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
-          <Span f={1} h={5} ai='center' jc='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 12] / 1).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end' jc='center'>
+            <P w={200} fs={7.5} color={color} >{(sorteX[sorteX.length - 12] / 1).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 12]) / 2) + (sorteX[sorteX.length - 12])) / 2).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end'>
+            <P w={200} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 12]) / 2) + (sorteX[sorteX.length - 12])) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 12]) / 2).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end'>
+            <P w={200} fs={7.5} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 12]) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 12]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end'>
+            <P w={200} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 12]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='center'>
-            <P fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
+          <Span f={1} h={5} ai='flex-end'>
+            <P w={200} fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
           </Span>
         </Span>
 
@@ -224,41 +224,41 @@ const YearsChartTotal = (p) => {
             </Span>
           </Span>
           {/* //! */}
-          <Span w='100%' h={5} fd='row-reverse' jc='center' >
-            <Span f={1} h={5} ai='center' >
+          <Span w='100%' h={10} fd='row-reverse' jc='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 11]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 11]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 10]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 10]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 9]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 9]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 8]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 8]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 7]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 6]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 6]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 5]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 5]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 4]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 4]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 3]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 3]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 2]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 2]?.mond}</P>
             </Span>
-            <Span f={1} h={5} ai='center' >
+            <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 1]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 1]?.mond}</P>
             </Span>
           </Span>

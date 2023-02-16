@@ -1,14 +1,14 @@
-import React, { useRef, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useCallback, useRef, useState } from 'react'
 import { FlatList, Platform, Text, View } from 'react-native'
 import { FlatListHorizontal, ScrollHorizontal } from '../Html'
 // import s from './style.module.scss'
 const array = [{ id: '1', title: 'node', price: '909', color: 'red' }, { id: '2', title: 'react', price: '787', color: 'green' }, { id: '2', title: 'react', price: '787', color: 'pink' }];
 
-var
-  width,
-  das = []
+var das = []
 
 function ScrollSlider(p) {
+  const {data, renderItem,h, style, ccStyle } = p
   const ref = useRef()
   const [scroll, setscroll] = useState(0)
   const [scroll2, setscroll2] = useState(true)
@@ -23,15 +23,15 @@ function ScrollSlider(p) {
     }
   };
 
-  if (count.current.count + 1 >= p.data.length) { clearInterval(interval.current.interval) }
+  if (count.current.count + 1 >= data.length) { clearInterval(interval.current.interval) }
   if (!scroll2) { clearInterval(interval.current.interval) }
 
 
-  p.useEffect(() => {
+  useFocusEffect(useCallback(() => {
     return () => (
       clearInterval(interval.current.interval)
     )
-  }, [])
+  }, []))
 
 
   return (
@@ -66,9 +66,9 @@ function ScrollSlider(p) {
           // keyExtractor={item => item._id}
           horizontal
           {...p}
-          renderItem={p.renderItem}
-          contentContainerStyle={[{ flexGrow: 1, direction: 'rtl' }, p.ccStyle]}
-          onLayout={(e) => { let layoutWidth = e.nativeEvent.layout.width; width = p.width; let int = setInterval(sum, 4000); function sum() { if (scroll2) open() } interval.current.interval = int }}
+          renderItem={renderItem}
+          contentContainerStyle={[{ flexGrow: 1, direction: 'rtl' }, ccStyle]}
+          onLayout={(e) => {  let int = setInterval(sum, 4000); function sum() { if (scroll2) open() } interval.current.interval = int }}
           // onContentSizeChange={(e) => { setcontentSize(e); }}
           // scrollEventThrottle={0}
           // alwaysBounceHorizontal={false}
@@ -76,7 +76,7 @@ function ScrollSlider(p) {
           // contentInset={{ left: 0 }}
           onScroll={(e) => { setscroll(e.nativeEvent.contentOffset.x) }}
           // dir='ltr'
-          style={[{ height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
+          style={[{ height: h ? h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, style]}
         // style={[(navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') && { overflow: 'hidden' }, { height: p.h ? p.h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, p.style]}
         />
       </View>

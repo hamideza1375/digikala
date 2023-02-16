@@ -1,13 +1,14 @@
-import React, { useRef, useState } from 'react'
+import { useFocusEffect } from '@react-navigation/native';
+import React, { useCallback, useRef, useState } from 'react'
 import { ScrollView } from 'react-native';
 import { Img, ScrollHorizontal, Span, M_icon, Press, Badge, Row } from '../Html'
 
 var count = 0,
-  width,
+  _width,
   plus = true,
   minus
 
-function Slider(p) {
+function Slider({width, style, onClick, data}) {
 
   const [badgeActive, setbadgeActive] = useState(0)
 
@@ -16,7 +17,7 @@ function Slider(p) {
   const [interval, setinterval] = useState(true)
 
   const open = () => {
-    if(ref.current) {ref.current.scrollTo({ x: p.width * count, y: 0, animated: true }); setbadgeActive(count) }
+    if(ref.current) {ref.current.scrollTo({ x: width * count, y: 0, animated: true }); setbadgeActive(count) }
     if (count === 0) { plus = true; minus = false }
     if (count === 5) { minus = true; plus = false }
     if (minus) { count = count - 1}
@@ -26,43 +27,44 @@ function Slider(p) {
 
   const right = () => {
     if (count !== 0) count = count - 1
-    ref.current && ref.current.scrollTo({ x: p.width * count, y: 0, animated: true });
+    ref.current && ref.current.scrollTo({ x: width * count, y: 0, animated: true });
     setbadgeActive(count)
   };
 
   const left = () => {
     if (count !== 5) count += 1
-    ref.current && ref.current.scrollTo({ x: p.width * count, y: 0, animated: true });
+    ref.current && ref.current.scrollTo({ x: width * count, y: 0, animated: true });
     setbadgeActive(count)
   };
 
 
-  if (p.width !== width) {
+  if (_width !== width) {
     ref.current && ref.current.scrollTo({ x: 0, y: 0, animated: true });
     count = 1
     interval && clearInterval(interval)
   }
 
-  p.useEffect(() => {
+  useFocusEffect(useCallback(() => {
     return () => (
       clearInterval(interval)
     )
-  }, [])
+  }, []))
 
 
   return (
 
-    <Span style={p.style} >
+    <Span style={style} >
       <ScrollView dir='ltr' horizontal ref={ref} onLayout={() => {
-        width = p.width
+        _width = width
         let int = setInterval(sum, 6000);
         function sum() {
           open()
         }
         setinterval(int)
-      }} style={{ height: 260, width: p.width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
-        {p.data.map(({ image }, index) => (
-          <Press key={index} onClick={p.onClick} w={p.width} ><Img w='100%' h={300} src={image} /></Press>
+      }} 
+      style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
+        {data.map(({ image }, index) => (
+          <Press key={index} onClick={onClick} w={width} ><Img w='100%' h={300} src={image} /></Press>
         ))
         }
       </ScrollView>

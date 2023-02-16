@@ -1,5 +1,6 @@
 import moment from 'moment-jalaali'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
+import spacePrice from '../../utils/spacePrice'
 import { Dropdown, P, Span, } from '../Html'
 
 var
@@ -25,7 +26,7 @@ const ProgressChart = (p) => {
   let pushArray7 = pushArrayRef7.current
 
 
-  p.useEffect(() => {
+  useEffect(() => {
     pushArray = []
     pushArray7 = []
     pushMond = []
@@ -99,13 +100,13 @@ const ProgressChart = (p) => {
         </Span>
         <Span w={'90%'} h={rodWidth} as={'center'} mt={10} fd='row' border={[1, 'silver']}>
           <Span h={'100%'} f={send.length + 1} bgcolor='#0b3'>
-            <Dropdown {...p} value={<P fs={11} ta='center' >نفر {send.length}</P>} />
+            <Dropdown value={<P fs={9} ta='center' >نفر {spacePrice((send.length).toFixed())}</P>} />
           </Span>
           <Span h={'100%'} f={queueSend.length + 1} bgcolor='#ee0'>
-            <Dropdown {...p} value={<P fs={11} ta='center' >نفر {queueSend.length}</P>} />
+            <Dropdown value={<P fs={9} ta='center' >نفر {spacePrice((queueSend.length).toFixed())}</P>} />
           </Span>
           <Span h={'100%'} f={checkSend.length + 1} bgcolor='#f33'>
-            <Dropdown {...p} value={<P fs={11} ta='center' >نفر {checkSend.length}</P>} />
+            <Dropdown value={<P fs={9} ta='center' >نفر {spacePrice((checkSend.length).toFixed())}</P>} />
           </Span>
         </Span>
         <Span h={20} w='90%' fd='row' jc='space-between'>

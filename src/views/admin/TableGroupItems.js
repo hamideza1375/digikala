@@ -15,7 +15,7 @@ const TableGroupItems = function (p) {
 
         <Span class={s.containTable} >
           {
-            !p.foods.length ?
+            !p.currentGroupItemTable.length ?
               <Loading style={{ top: 30 }} animating={p.foods.length ? false : true} />
               :
         <Span nativeStyle={{height:p.height - 150}} webStyle={{maxHeight:'calc(90vh - 75px)'}} >
@@ -25,7 +25,7 @@ const TableGroupItems = function (p) {
 
           }
 
-        <Modal showModal={p.showModal} setshowModal={p.setshowModal} id={p.id} message={'حذف شود؟ ' + " (" + p.foods[p.$food[1]]?.title + ')'} _admin={p._admin} />
+        {/* <Modal showModal={p.showModal} setshowModal={p.setshowModal} id={p.id} message={'حذف شود؟ ' + " (" + p.foods[p.$food[1]]?.title + ')'} _admin={p._admin} /> */}
         </Span>
       </Scroll>
 

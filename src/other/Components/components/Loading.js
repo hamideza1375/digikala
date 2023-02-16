@@ -3,13 +3,12 @@ import { ActivityIndicator, View, Text, Animated, Easing, Platform } from "react
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { useFocusEffect } from '@react-navigation/native';
 
-const Loading = (props) => {
-  const { setshowActivity, time=7100, scale, androidScale, left, right, top, bottom, pos } = props
+const Loading = ({ style, text, h, setshowActivity, time = 7100, scale, androidScale, left, right, top, bottom, pos, ...p }) => {
   const [showLoad, setshowLoad] = useState(true)
   useFocusEffect(useCallback(() => {
     let qq = setTimeout(() => {
       setshowLoad(false)
-    }, time );
+    }, time);
     return () => { clearInterval(qq); setshowActivity && setshowActivity(false) }
   }, []))
 
@@ -35,7 +34,7 @@ const Loading = (props) => {
 
 
   return (
-    <View height={props.h} style={[{ minWidth: '99%',maxWidth:'99%', justifyContent: 'center', alignItems: 'center', top: top ? top : 40, left, right, bottom, position: pos, zIndex: 1000, }, props.style]} >
+    <View height={h} style={[{ minWidth: '99%', maxWidth: '99%', justifyContent: 'center', alignItems: 'center', top: top ? top : 40, left, right, bottom, position: pos, zIndex: 1000, }, style]} >
       <View style={{ marginBottom: 'auto', }} >
         {showLoad ?
           <>
@@ -55,14 +54,14 @@ const Loading = (props) => {
 
                 </View>
                 :
-                < ActivityIndicator {...props} style={{ transform: [{ scale: scale ? scale : 2 }] }} />
+                < ActivityIndicator {...p} style={{ transform: [{ scale: scale ? scale : 2 }] }} />
             }
           </>
 
           :
           <View style={{ alignItems: 'center', width: '100%' }}>
             <Icon name="frown-o" size={55} style={[{ marginBottom: 10 }]} />
-            <Text children={props.text ? props.text : 'متأستفانه چیزی پیدا نشد'} />
+            <Text children={text ? text : 'متأستفانه چیزی پیدا نشد'} />
           </View>
         }
       </View>

@@ -5,7 +5,7 @@ import Swiper from '../components/Swiper'
 import { M_icon } from "../Html";
 
 
-function InputImage({ imIconLeft,imIconRight,imageUrl,setImageUrl,_imageUrl,newObj,img,styles, icon,p,accept}) {
+function InputImage({ plackTextTop,imIconLeft,imIconRight,imageUrl,setImageUrl,_imageUrl,newObj,img,styles, icon,p,accept}) {
  
 
 
@@ -21,7 +21,7 @@ function InputImage({ imIconLeft,imIconRight,imageUrl,setImageUrl,_imageUrl,newO
               iconLeft={imIconLeft}
               iconRight={imIconRight}
               >
-              <Text style={[styles.textinput, { marginTop: 5 }]} > {p}</Text>
+              {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} > {p}</Text>}
               <Animated.View style={[styles.animatedBorder,
               _imageUrl && !img &&
               {borderWidth: 1.2,borderColor:_imageUrl && !img?'red':'#222'}]} >

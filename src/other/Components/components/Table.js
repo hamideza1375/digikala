@@ -11,12 +11,12 @@ const Th = (props) => <View {...props} style={[{ flex: 1, backgroundColor: 'whit
   <H6 style={[{ textAlign: 'center', paddingVertical: 10, }, props.textStyle]}> {props.children}</H6></View>
 
 const Tb = (props) => <View style={[{ flex: 1, backgroundColor: 'white', borderColor: '#aaa', borderWidth: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 1.5 }, props.style]}>
-  <P style={[{ fontFamily: 'IRANSansWeb-light', textAlign: 'center', color: '#222', paddingVertical: 10, }, props.textStyle]}> {props.children}</P></View>
+  <P onClick={props.onPress} style={[{ fontFamily: 'IRANSansWeb-light', textAlign: 'center', color: '#222', paddingVertical: 10, }, props.textStyle]}> {props.children}</P></View>
 
 const Tbtn = (props) => <View style={[{ flex: 1, backgroundColor: 'white', borderColor: '#666', borderWidth: .8, justifyContent: 'center', alignItems: 'center', borderRadius: 1.5, }, props.style]}><Button {...props} textStyle={[{ fontSize: 15, textAlign: 'center' }, props.textStyle]} style={[{ width: '99.9%', flex: 1 }, { paddingHorizontal: 0 }]}>{props.children}</Button></View>
 let odd = [];
 
-function Table({ children, fontSize, mt = 0, border = [], object, setobject, h, w = '100%', body, header, color, btn1onClick, btn2onClick, btn3onClick, btn4onClick, btn5onClick, btn6onClick, btn7onClick, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn1Opacity, btn2Opacity, btn3Opacity, btn4Opacity, btn5Opacity, btn6Opacity, btn7Opacity
+function Table({titleClick, children, fontSize, mt = 0, border = [], object, setobject, h, w = '100%', body, header, color, btn1onClick, btn2onClick, btn3onClick, btn4onClick, btn5onClick, btn6onClick, btn7onClick, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn1Opacity, btn2Opacity, btn3Opacity, btn4Opacity, btn5Opacity, btn6Opacity, btn7Opacity
 }) {
   for (let i = 0; i <= 100; i++) {
     if (i % 2 == 0)
@@ -52,14 +52,14 @@ function Table({ children, fontSize, mt = 0, border = [], object, setobject, h, 
                         btn5onClick && n === 4 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn5onClick(); }} style={[bgColor(index), btn5Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn5}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
                           btn6onClick && n === 5 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn6onClick(); }} style={[bgColor(index), btn6Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn6}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
                             btn7onClick && n === 6 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn7onClick(); }} style={[bgColor(index), btn7Opacity && { opacity: item.available ? 1 : .3 }]} textStyle={{ fontSize }} bgcolor={btn7}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tbtn> :
-                              <Tb key={n} style={[bgColor(index)]} textStyle={[textStyle, { fontSize, width: '98%' }]}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tb>
+                              <Tb key={n} onPress={b === 'title' ?(titleClick):null} style={[bgColor(index)]} textStyle={[textStyle, { fontSize, width: '98%' }]}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b}</Tb>
               ))}
             </View>
 
           </>
         )}
       />
-      <Span p={5} w='100%' bgcolor={odd.includes(index - 1) ? color[0] : color[1]} ai='center' border={[1,border[1]]} btw={0} >{children}</Span>
+      <Span p={children?5:0} w='100%' bgcolor={odd.includes(index - 1) ? color[0] : color[1]} ai='center' border={[1,border[1]]} btw={0} >{children}</Span>
       {object[object.length - 1]?._id !== object[index]?._id && <ActivityIndicator style={{ alignSelf: 'center', transform: [{ scale: 1.2 }] }} />}
 
     </View>

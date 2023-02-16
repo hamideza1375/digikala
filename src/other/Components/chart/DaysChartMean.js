@@ -1,5 +1,6 @@
 import moment from 'moment-jalaali'
 import React, { useEffect, useRef, useState } from 'react'
+import spacePrice from '../../utils/spacePrice'
 import { Dropdown, P, Span, } from '../Html'
 var pushMond = [],
   pushMond2 = []
@@ -110,20 +111,20 @@ const DaysChartMean = (p) => {
       <Span w={w} h={h} bgcolor={bgcolor} br={br} jc='center' ai='center' fd='row-reverse' >
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
-          <Span f={1} h={5} ai='flex-end' jc='center'>
-            <P w={200} fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
+          <Span ml={-5} f={1} h={5} ai='flex-end' jc='center'>
+            <P w={70} fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='flex-end'>
-            <P w={200} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
+          <Span ml={-5} f={1} h={5} ai='flex-end'>
+            <P w={70} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='flex-end'>
-            <P w={200} fs={7.5} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2).toFixed()}</P>
+          <Span ml={-5} f={1} h={5} ai='flex-end'>
+            <P w={70} fs={7.5} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='flex-end'>
-            <P w={200} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
+          <Span ml={-5} f={1} h={5} ai='flex-end'>
+            <P w={70} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
           </Span>
-          <Span f={1} h={5} ai='flex-end'>
-            <P w={200} fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
+          <Span ml={-5} f={1} h={5} ai='flex-end'>
+            <P w={70} fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
           </Span>
         </Span>
 
@@ -132,31 +133,31 @@ const DaysChartMean = (p) => {
           {/* //! */}
           <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers7 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
-              <Dropdown {...p} value={<P fs={11} ta='center' >{totalNumbers7}</P>} />
+              <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers7).toFixed())}</P>} />
             </Span>
             </Span>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers6 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
-              <Dropdown {...p} value={<P fs={11} ta='center' >{totalNumbers6}</P>} />
+              <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers6).toFixed())}</P>} />
             </Span>
             </Span>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers5 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
-              <Dropdown {...p} value={<P fs={11} ta='center' >{totalNumbers5}</P>} />
+              <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers5).toFixed())}</P>} />
             </Span>
             </Span>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers4 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
-              <Dropdown {...p} value={<P fs={11} ta='center' >{totalNumbers4}</P>} />
+              <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers4).toFixed())}</P>} />
             </Span>
             </Span>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers3 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
-              <Dropdown {...p} value={<P fs={11} ta='center' >{totalNumbers3}</P>} />
+              <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers3).toFixed())}</P>} />
             </Span>
             </Span>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers2 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
-              <Dropdown {...p} value={<P fs={11} ta='center' >{totalNumbers2}</P>} />
+              <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers2).toFixed())}</P>} />
             </Span>
             </Span>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
-              <Dropdown {...p} value={<P fs={11} ta='center' >{totalNumbers}</P>} />
+              <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers).toFixed())}</P>} />
             </Span>
             </Span>
           </Span>

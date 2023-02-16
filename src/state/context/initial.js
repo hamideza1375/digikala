@@ -77,8 +77,6 @@ export function initial() {
 
   const [dropdownBottom, setdropdownBottom] = useState()
   const [dropdownRight,setdropdownRight] = useState()
-  const [dropdownHeight, setdropdownHeight] = useState(0)
-  const [dropdownWidth, setdropdownWidth] = useState(0)
   const [clientX, setclientX] = useState(0)
   const [clientY, setclientY] = useState(0)
   const [dropdownValue, setdropdownValue] = useState('')
@@ -88,8 +86,6 @@ export function initial() {
   this.all = { 
     dropdownBottom, setdropdownBottom,
     dropdownRight,setdropdownRight,
-    dropdownWidth,setdropdownWidth,
-    dropdownHeight, setdropdownHeight,
     clientX, setclientX,
     clientY, setclientY,
     dropdownValue, setdropdownValue,

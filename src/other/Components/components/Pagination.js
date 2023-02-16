@@ -9,8 +9,7 @@ const range = (from, to) => {
   return range;
 }
 
-function Pagination(props) {
-  const { currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, food, ass } = props;
+function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, food, ass }) {
 
   const fetchPageNumbers = () => {
     const totalPages = Math.ceil(food.length / pageLimit);

@@ -4,7 +4,7 @@ import { Input } from "./FormComponent";
 import Swiper from '../components/Swiper'
 
 
-export default function ({autoFocus=false,multiline=false,m_icon,iconPress,secureTextEntry,icon,textContentType, autoComplete,keyboardType='default',p, newObj,iconLeft, iconRight,  setBlur, getBlur, state, setState, styles, yub }) {
+export default function ({plackTextTop, autoFocus=false,multiline=false,m_icon,iconPress,secureTextEntry,icon,textContentType, autoComplete,keyboardType='default',p, newObj,iconLeft, iconRight,  setBlur, getBlur, state, setState, styles, yub }) {
  
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -54,7 +54,7 @@ export default function ({autoFocus=false,multiline=false,m_icon,iconPress,secur
           iconLeft={iconLeft}
           iconRight={iconRight}
         >
-          <Text style={[styles.textinput, { marginTop: 5 }, multiline && {marginVertical:5}]} >{p}</Text>
+          {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }, multiline && {marginVertical:5}]} >{p}</Text>}
           <Animated.View style={[styles.animatedBorder, getBlur &&  !yub && { borderWidth: 1.2, borderColor: iterPlt, transform: [{ translateX: fadeAnim }] },multiline && {height: '101.8%',minHeight: '101.8%'}]} >
             <Input
               textContentType={textContentType}

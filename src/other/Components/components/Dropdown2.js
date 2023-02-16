@@ -4,9 +4,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
 
-const Dropdown = (props) => {
-
-  const {bodyStyle,displayFlex,$input,textId,h, child, border = [.5, 'silver'], show, setshow, children, icon, a_icon, m_icon, color = '#aaa', showBgcolor = '#fff', style, iconFalse, top, onClick } = props
+const Dropdown = ({bodyStyle,displayFlex,$input,textId,h, child, border = [.5, 'silver'], show, setshow, children, icon, a_icon, m_icon, color = '#aaa', showBgcolor = '#fff', style, iconFalse, top, onClick }) => {
 
   const ref = useRef()
 

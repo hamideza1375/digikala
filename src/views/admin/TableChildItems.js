@@ -2,7 +2,6 @@ import React from 'react';
 import { Pagination, Loading, Button, Span } from '../../other/Components/Html';
 import s from "./style/Admin.module.scss"
 import ChildItemTableComponent from './components/chidItemTable/ChildItemTableComponent';
-import TableChildItemsModal from './components/chidItemTable/TableChildItemsModal';
 
 const TableChildItems = (p) => {
   // p._food.getChildFood()
@@ -21,15 +20,12 @@ const TableChildItems = (p) => {
             </Span>
           }
         </Span>
-        <>
-          <TableChildItemsModal {...p} />
-        </>
       </Span>
 
       <Span class={s.paginationContainer} >
-        {p.foodMap.get(p.route.params.id) &&
+        {p.childItemsTable &&
           <Pagination
-            food={p.foodMap.get(p.route.params.id)}
+            food={p.childItemsTable}
             setcurrent={p.setcurrent}
             pageLimit={p.pageLimit}
             ass={p.ass}

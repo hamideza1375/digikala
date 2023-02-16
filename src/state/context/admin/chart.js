@@ -74,17 +74,9 @@ export function chart() {
     { _id: '49', date: new Date('2023-12-04 22:3:0'), name: 'mojtaba', pricePayment: 1500000 , checkSend:0, queueSend:1, send:0},
     { _id: '50', date: new Date('2023-12-04 22:3:0'), name: 'hamed', pricePayment: 1500000 , checkSend:1, queueSend:0, send:0},
 
-    
     { _id: '53', date: new Date('2023-12-06 22:3:0'), name: 'mojtaba', pricePayment: 100 , checkSend:0, queueSend:1, send:0},
     { _id: '54', date: new Date('2023-12-06 22:3:0'), name: 'hamed', pricePayment: 600 , checkSend:1, queueSend:0, send:0},
     
-
-
-
-
-    { _id: '51', date: new Date('2023-11-12 22:3:0'), name: 'hamid', pricePayment: 40 , checkSend:1, queueSend:0, send:1},
-    { _id: '52', date: new Date('2023-11-12 22:3:0'), name: 'farhad', pricePayment: 40 , checkSend:0, queueSend:1, send:0},
-
     { _id: '55', date: new Date('2023-12-07 22:3:0'), name: 'hamid', pricePayment: 200 , checkSend:1, queueSend:0, send:0},
     { _id: '56', date: new Date('2023-12-07 22:3:0'), name: 'farhad', pricePayment: 600 , checkSend:0, queueSend:1, send:0},
 
@@ -101,7 +93,7 @@ export function chart() {
     { _id: '64', date: new Date('2023-12-11 22:3:0'), name: 'farhad', pricePayment: 100 , checkSend:0, queueSend:0, send:1},
 
     { _id: '65', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 500 , checkSend:1, queueSend:0, send:1},
-    { _id: '65', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 500 , checkSend:1, queueSend:0, send:0},
+    { _id: '67', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 500 , checkSend:1, queueSend:0, send:0},
     { _id: '66', date: new Date('2023-12-12 22:3:0'), name: 'farhad', pricePayment: 500 , checkSend:0, queueSend:0, send:1},
 
     // { _id: '67', date: new Date('2023-12-13 22:3:0'), name: 'farhad', pricePayment: 100 },

@@ -38,7 +38,9 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
   setorientation, setwidth, setheight,
   fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
   tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
-  input, setinput, _input,flexDirection
+  input, setinput, _input,flexDirection,
+  plackTextTop = true,
+  pb=25, pt=10
 }) => {
 
 
@@ -140,10 +142,11 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
     <ScrollView contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]} style={[{ backgroundColor: bgcolor, borderRadius: 3, marginTop: mt }, Platform.OS === 'web' ? webStyle : nativeStyle]} >
 
       <View style={[styles.viewContainer, { paddingTop: top }, style]} >
-        <View style={[{ transform: [{ scaleY: sizeY }], padding: 10, paddingBottom: 25 },flexDirection === 'row' && Platform.OS === 'web' ?{flexDirection: 'row', flexWrap: 'wrap'}:{}]}>
+        <View style={[{ transform: [{ scaleY: sizeY }], padding: 10, paddingBottom: pb , paddingTop:pt },flexDirection === 'row' && Platform.OS === 'web' ?{flexDirection: 'row', flexWrap: 'wrap'}:{}]}>
 
           {f &&
             <Frm
+            plackTextTop={plackTextTop}
               textContentType="username"
               autoComplete="username"
               icon='user'
@@ -161,6 +164,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {e &&
             <Frm
+            plackTextTop={plackTextTop}
               textContentType="emailAddress"
               autoComplete="email"
               keyboardType="email-address"
@@ -180,6 +184,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {ph &&
             <Frm
+            plackTextTop={plackTextTop}
               textContentType="telephoneNumber"
               autoComplete="tel"
               keyboardType="phone-pad"
@@ -199,6 +204,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {p &&
             <Frm
+            plackTextTop={plackTextTop}
               textContentType="password"
               autoComplete="password"
               icon={!secure ? "eye" : "eye-slash"}
@@ -219,6 +225,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {cp &&
             <Frm
+            plackTextTop={plackTextTop}
               textContentType="password"
               autoComplete="password"
               icon={!secure2 ? "eye" : "eye-slash"}
@@ -239,6 +246,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {t &&
             <Frm
+            plackTextTop={plackTextTop}
               m_icon="title"
               p="عنوان "
               iconLeft={tIconLeft}
@@ -255,6 +263,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {pr &&
             <Frm
+            plackTextTop={plackTextTop}
               icon="dollar-sign"
               p=" قیمت "
               iconLeft={prIconLeft}
@@ -272,6 +281,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {i &&
             <Frm
+            plackTextTop={plackTextTop}
             multiline
               icon="info"
               p=" توضیحات "
@@ -289,6 +299,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {m &&
             <Frm
+            plackTextTop={plackTextTop}
               p="پیام"
               iconLeft={false}
               iconRight={false}
@@ -308,7 +319,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
             <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10,flexGrow:1  }]}>
               <View style={[styles.viewInput, { minHeight: 90 }]} >
                 <Swiper>
-                  <Text style={[styles.textinput, { marginTop: 5 }]} ></Text>
+                  {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} ></Text>}
                   <Input
                     textContentType="telephoneNumber"
                     autoComplete="tel"
@@ -330,7 +341,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
               <View style={[styles.viewInput, { minHeight: 90 }]} >
 
                 <Swiper>
-                  <Text style={[styles.textinput, { marginTop: 5 }]} ></Text>
+                  {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} ></Text>}
 
                   <Input
                     m_icon="textsms"
@@ -347,6 +358,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
           }
 
           {im && <InputImage
+            plackTextTop={plackTextTop}
             icon='image'
             p='انتخاب عکس  '
             accept='image'
@@ -362,6 +374,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
           />}
 
           {v && <InputImage
+            plackTextTop={plackTextTop}
             icon='video-library'
             p='انتخاب ویدئو  '
             accept='video'
@@ -502,7 +515,8 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
             </View>
           }
 
-          <KeyboardAvoidingView behavior={"height"} style={{ height: 70, minHeight: 70, marginBottom: 15, width:'100%' }}>
+       { btn &&
+         <KeyboardAvoidingView behavior={"height"} style={{ height: 70, minHeight: 70, marginBottom: 15, width:'100%' }}>
             {btn && <Button
               onPressIn={() => {
                 setremember && setremember(changeremember ? (60000 * 60 * 24 * 365) : ('24h'))
@@ -578,7 +592,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
               style={[styles.btn]} >
               click
             </Button>}
-          </KeyboardAvoidingView>
+          </KeyboardAvoidingView>}
         </View>
       </View>
     </ScrollView >

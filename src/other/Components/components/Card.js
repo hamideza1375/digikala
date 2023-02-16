@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Image, Pressable, Platform } from 'react-native';
 
-function Card(prop) {
-
-  const { style, header, body, footer, bgcolor, color, alert, border = [1], img, dr = 'rtl', imageStyle, headerRow, footerRow, bodyRow } = prop
+function Card({ style, header, body, footer, bgcolor, color, alert, border = [1], img, dr = 'rtl', imageStyle, headerRow, footerRow, bodyRow, ...prop}) {
 
   const [heightLayout, setheightLayout] = useState(0)
 

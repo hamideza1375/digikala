@@ -36,7 +36,6 @@ const SliderOffers = (p) => {
           </Span>
 
           <ScrollSlider
-            {...p}
             style={[{ height: 300, minHeight: 300 }, Platform.OS !== 'web' ? { paddingRight: 290, height: 220 } : { paddingRight: 10, height: 220 }]}
             ccStyle={{ height: 300, minHeight: 300, justifyContent: 'center' }}
             data={p.offers}

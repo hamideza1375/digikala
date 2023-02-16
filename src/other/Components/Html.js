@@ -178,6 +178,9 @@ export const Div = (props) => <Component initalClass={s.div} {...props} Componen
 
 export const Row = (props) => <Component initalClass={s.row} {...props} Component={View} />
 
+export const Column = (props) => <Component {...props} Component={View} />
+
+
 export const Span = (props) => <Component {...props} Component={View} />
 
 export const Press = (props) => <Component onPress={props.onClick} {...props} style={[props.onClick && Platform.OS === 'web' && { cursor: 'pointer' }, props.style]} Component={Pressable} />

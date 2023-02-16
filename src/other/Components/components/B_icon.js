@@ -5,11 +5,8 @@ import Icon2 from 'react-native-vector-icons/dist/AntDesign';
 import Icon3 from 'react-native-vector-icons/dist/MaterialIcons';
 
 
-const B_icon = (prop) => {
+const B_icon = ({ as, p, pt, pb, pl, pr, pv, ph, m, mt, mb, ml, mr, mv, mh, color, bgcolor = "#02f", scale = 1,w=75,h=75, icon, a_icon,m_icon, border = [7,"#01c"], style, iconSize, iconPress, onPress, onClick }) => {
   
-  const { 
-    as, p, pt, pb, pl, pr, pv, ph, m, mt, mb, ml, mr, mv, mh,
-    color, bgcolor = "#02f", scale = 1,w=75,h=75, icon, a_icon,m_icon, border = [7,"#01c"], style, iconSize, iconPress, onClick } = prop
 
   const bgClr = bgcolor ?
     (bgcolor == 'red') && '#e22a' ||
@@ -52,7 +49,6 @@ const B_icon = (prop) => {
       style={[styles.animation,{width:w,height:h,alignSelf:as, padding:p, paddingTop:pt, paddingBottom:pb, paddingLeft:pl, paddingRight:pr, paddingVertical:pv, paddingHorizontal:ph, margin:m, marginTop:mt, marginBottom:mb, marginLeft:ml, marginRight:mr, marginVertical:mv, marginHorizontal:mh} ,
       { transform: [{ scale}], backgroundColor: iterPlt }, style]}>
       <Pressable
-        onStartShouldSetResponder={prop.onPress}
         style={[styles.pressable,{width:w,height:h, borderWidth:border[0]}, !onClick && {cursor:null},{
           borderColor:
             (bgcolor == 'red') && '#e22' ||

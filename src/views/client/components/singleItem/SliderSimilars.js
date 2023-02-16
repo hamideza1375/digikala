@@ -25,7 +25,6 @@ const SliderSimilars = (p) => {
           <Div class={s.p_offerGlass} t={0}></Div>
 
           <ScrollSlider
-            {...p}
             style={[{ height: 300, minHeight: 300 }, Platform.OS !== 'web' ? { paddingRight: 290, height: 220 } : { paddingRight: 10, height: 220 }]}
             ccStyle={{ justifyContent:'center', height: 300, minHeight: 300}}
             data={p.similar}

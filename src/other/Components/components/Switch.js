@@ -1,16 +1,16 @@
 import React from "react";
 import { Switch as _Switch } from "react-native";
-const Switch = (props) => {
+const Switch = ({ setIsEnabled, isEnabled, ...props }) => {
   return (
-      <_Switch
+    <_Switch
       dir='ltr'
       trackColor={{ false: "#767577", true: "#55ddff" }}
-      thumbColor={props.isEnabled ? "#f5dd4b" : "#f4f3f4"}
+      thumbColor={isEnabled ? "#f5dd4b" : "#f4f3f4"}
       ios_backgroundColor="#3e3e3e"
-      onValueChange={() => props.setIsEnabled(!props.isEnabled)}
-      value={props.isEnabled}
+      onValueChange={() => setIsEnabled(!isEnabled)}
+      value={isEnabled}
       {...props}
-      />
+    />
   );
 }
 export default Switch;

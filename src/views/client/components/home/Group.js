@@ -12,7 +12,6 @@ const Group = (p) => {
       </Span>
 
         <ScrollSlider
-          {...p}
           h={180} ccStyle={{ height: 180, justifyContent:'center' }}
           style={Platform.OS !== 'web' ? { paddingRight: 290 } : { paddingRight: 10, }}
           data={p.group}

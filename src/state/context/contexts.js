@@ -1,13 +1,18 @@
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
+import { services } from './services/servicesState';
+
+import { initial } from './initial';
 import { filterItems } from './client/filterItems';
 import { singleItems } from './client/singleItems';
 import { showHome } from './client/home';
-import { initial } from './initial';
-import { services } from './services/servicesState';
 import { beforePayment } from './client/beforePayment';
 import { chart } from './admin/chart';
+import { sellerTable } from './admin/sellers';
+import { groupItemTable } from './admin/tableGroupItem';
+import { childItemTable } from './admin/tableChildItems';
+import { ticketBox } from './user/ticketBox';
 
 function State() {
   const home = new showHome()
@@ -17,7 +22,10 @@ function State() {
   const service = new services()
   const _beforePayment = new beforePayment()
   const _chart = new chart()
-  
+  const _sellerTable = new sellerTable()
+  const _groupItemTable = new groupItemTable()
+const _childItemTable = new childItemTable()
+const _userTicketBox = new ticketBox()
   return {
     ...filter.systemFilter,
     ...single.showComment,
@@ -29,6 +37,10 @@ function State() {
     ...service.userService,
     ..._beforePayment.table,
     ..._chart.chart,
+    ..._sellerTable.sellerTable,
+    ..._groupItemTable.groupItemTable,
+    ..._childItemTable.childItemTable,
+    ..._userTicketBox.userTicketBox
   }
 }
 export const states = () => State()

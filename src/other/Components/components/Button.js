@@ -23,10 +23,7 @@ const _Button = React.forwardRef((props, ref) => {
 
 })
 
-const Button = React.forwardRef((props, ref) => {
-  const { maxw,minw,maxh,minh,as, style, outline, fs = 15, p=5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f } = props;
-
-
+const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outline, fs = 15, p=5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
 
   return (
     !outline ?
@@ -63,7 +60,7 @@ const Button = React.forwardRef((props, ref) => {
           {
             paddingHorizontal: ph, paddingVertical: pv, fontSize: fs, padding: p,
             paddingTop: pt, paddingBottom: pb, paddingLeft: pl, paddingRight: pr,
-          }, props.textStyle
+          }, textStyle
         ]} />
       :
       <_Button
@@ -88,7 +85,7 @@ const Button = React.forwardRef((props, ref) => {
         {
           paddingHorizontal: ph, paddingVertical: pv, fontSize: fs, padding: p,
           paddingTop: pt, paddingBottom: pb, paddingLeft: pl, paddingRight: pr
-        }, props.textStyle]} />
+        }, textStyle]} />
   );
 });
 

@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import Axios from 'axios'
 
-export const initialState = (p) => {
+export const initialController = (p) => {
   const navigation = useNavigation()
   p.useEffect(() => {
     var toastOK = () => { p.toast.success('موفق آمیز', '✅', 4000) }

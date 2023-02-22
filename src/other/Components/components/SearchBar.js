@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native';
 import { Button, Div, Dropdown2, Icon, Img, Input, Modal, P, Press, Scroll, Span } from '../Html'
-import { context } from '../../../state/context/contexts'
+import { context } from '../../../context/contexts'
 
 function SearchInput({ logoPress, row, array, setarray, Register, icon, src, iconPress, sort, setshowFilterModal, showFilterModal, bgcolor }) {
 
@@ -64,26 +64,24 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
 
 
         <Input
-        
-        dropdown={
-          
-        <Dropdown2
-          displayFlex
-          $input={p.$input}
-          textId='dropdownDrawer'
-          show={p.showDropdownFilter}
-          setshow={p.setshowDropdownFilter}
-          iconFalse
-        >
-          <Span ph={9} w={150}>
-            <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-              <P onClick={() => { settextSearch('phone2'); p.setshowDropdownFilter(!p.showDropdownFilter); /* p.$input.get('inputSearch')?.value && searcher(p.$input.get('inputSearch').value.toLowerCase()) */ }} fs={12}>phone2</P >
-            </Span>
-          </Span>
-        </Dropdown2>
-        }
+          dropdown={
+            <Dropdown2
+              displayFlex
+              $input={p.$input}
+              textId='dropdownDrawer'
+              show={p.showDropdownFilter}
+              setshow={p.setshowDropdownFilter}
+              iconFalse
+            >
+              <Span ph={9} w={150}>
+                <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
+                  <P onClick={() => { settextSearch('phone2'); p.setshowDropdownFilter(!p.showDropdownFilter); /* p.$input.get('inputSearch')?.value && searcher(p.$input.get('inputSearch').value.toLowerCase()) */ }} fs={12}>phone2</P >
+                </Span>
+              </Span>
+            </Dropdown2>
+          }
 
-        $input={p.$input} textId='inputSearch' onFocus={() => { p.$input.get('dropdownDrawer')?.current.setNativeProps({ style: { display: 'flex', transform: [{ scale: 1 }] } }) }} w='30%' fg={1} icon="search" pColor={'#777'} border={[1, '#ccc']} autoCapitalize='none' autoCorrect={false} spellCheck={true} value={textSearch} onChange={e => { settextSearch(e.nativeEvent.text.toLowerCase()); searcher(e.nativeEvent.text.toLowerCase()) }} iconPress={() => { searcher(textSearch.toLowerCase()) }} placeholder="جستجو" mh={8} h={'85%'} mt={6} dr='rtl' style={{ minWidth: 140 }} >
+          $input={p.$input} textId='inputSearch' onFocus={() => { p.$input.get('dropdownDrawer')?.current.setNativeProps({ style: { display: 'flex', transform: [{ scale: 1 }] } }) }} icon="search" iconSize={16} pColor={'#777'} border={[1, '#ccc']} autoCapitalize='none' autoCorrect={false} spellCheck={true} value={textSearch} onChange={e => { settextSearch(e.nativeEvent.text.toLowerCase()); searcher(e.nativeEvent.text.toLowerCase()) }} iconPress={() => { searcher(textSearch.toLowerCase()) }} placeholder="جستجو" mh={8} h={'85%'} mt={6} dr='rtl' fg={1} style={{ minWidth: 120, width: 120 }} >
 
 
         </Input>
@@ -114,7 +112,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <Span ><P textAlign='right' >قیمت</P></Span>
               <Span w='100%' fd='row'  >
                 <Span h={30} mt='auto' mb={-5} ml={5}>
-                  <Dropdown2  bodyStyle={{right:20}}
+                  <Dropdown2 bodyStyle={{ right: 20 }}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('1').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -170,7 +168,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <Span w='100%' fd='row' jc='flex-start' >
 
                 <Span h={30} mt='auto' mb={-5} ml={5} >
-                  <Dropdown2 h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25} bodyStyle={{ right: 20 }}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('2').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -222,7 +220,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <Span w='100%' fd='row' >
 
                 <Span h={30} mt='auto' mb={-5} ml={5}>
-                  <Dropdown2 h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25} bodyStyle={{ right: 20 }}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('3').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -272,7 +270,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
 
                 <Span h={30} mt='auto' mb={-5} ml={5}>
 
-                  <Dropdown2 h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25} bodyStyle={{ right: 20 }}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('4').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}
@@ -322,7 +320,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
 
                 <Span h={30} mt='auto' mb={-5} ml={5}>
 
-                  <Dropdown2 h={25}  bodyStyle={{right:20}}
+                  <Dropdown2 h={25} bodyStyle={{ right: 20 }}
                     onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('5').$({ zIndex: 10 }) }}
                     show={p.showDropdownFilter}
                     setshow={p.setshowDropdownFilter}

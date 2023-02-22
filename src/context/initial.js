@@ -1,14 +1,14 @@
 import { useRef, useState } from 'react';
-import { localhost } from '../../other/utils/axios/axios'
+import { localhost } from '../other/utils/axios/axios'
 import jwt_decode from "jwt-decode";
 import localStorage from '@react-native-async-storage/async-storage'
-import Alert from "../../other/utils/alert"
+import Alert from "../other/utils/alert"
 import { useCallback, useMemo } from "react";
 import { useFocusEffect } from '@react-navigation/native';
 import { Keyboard, BackHandler, ToastAndroid, Dimensions } from "react-native";
-import spacePrice from '../../other/utils/spacePrice';
-import { courseIdValidator } from '../../other/utils/IdValidator';
-import { truncate } from '../../other/utils/helpers';
+import spacePrice from '../other/utils/spacePrice';
+import { courseIdValidator } from '../other/utils/IdValidator';
+import { truncate } from '../other/utils/helpers';
 
 export function initial() {
 

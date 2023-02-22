@@ -1,7 +1,6 @@
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-import { services } from './services/servicesState';
 
 import { initial } from './initial';
 import { filterItems } from './client/filterItems';
@@ -19,22 +18,18 @@ function State() {
   const filter = new filterItems()
   const single = new singleItems()
   const init = new initial()
-  const service = new services()
   const _beforePayment = new beforePayment()
   const _chart = new chart()
   const _sellerTable = new sellerTable()
   const _groupItemTable = new groupItemTable()
-const _childItemTable = new childItemTable()
-const _userTicketBox = new ticketBox()
+  const _childItemTable = new childItemTable()
+  const _userTicketBox = new ticketBox()
   return {
     ...filter.systemFilter,
     ...single.showComment,
     ...home.logo,
     ...home.items,
     ...init.all,
-    ...service.adminService,
-    ...service.clientService,
-    ...service.userService,
     ..._beforePayment.table,
     ..._chart.chart,
     ..._sellerTable.sellerTable,

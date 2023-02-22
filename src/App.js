@@ -4,11 +4,11 @@ import React, { useEffect } from "react";
 import { View, Platform } from "react-native";
 import { Dropdown, Init, Input, P, Row, Span } from "./other/Components/Html";
 import _404 from "./other/Components/404/404";
-import { initialState } from "./state/initialState";
-import { adminState } from "./state/adminState";
-import { clientState } from "./state/clientState";
-import { userState } from "./state/userState";
-import { propTypes, states, contextStates } from "./state/context/contexts";
+import { initialController } from "./controllers/initialController";
+import { adminController } from "./controllers/adminController";
+import { clientController } from "./controllers/clientController";
+import { userController } from "./controllers/userController";
+import { propTypes, states, contextStates } from "./context/contexts";
 import ToastProvider, { Toast } from "./other/utils/toast";
 import { Layout, header } from "./other/Layout/Layout";
 import { rtl } from "./other/utils/rtl"
@@ -72,11 +72,11 @@ const Mobile = () => {
   const allState = states()
   const toast = new Toast(allState)
   const p = { ...allState, toast }
-  initialState(p)
-  const _food = ({ navigation, route }) => new clientState({ ...p, navigation, route })
-  const _user = ({ navigation, route }) => new userState({ ...p, navigation, route })
-  const _admin = ({ navigation, route }) => new adminState({ ...p, navigation, route })
-  const reducer = (props) => ({ _food: _food(props), _user: _user(props), _admin: _admin(props), })
+  initialController(p)
+  const _client = ({ navigation, route }) => new clientController({ ...p, navigation, route })
+  const _user = ({ navigation, route }) => new userController({ ...p, navigation, route })
+  const _admin = ({ navigation, route }) => new adminController({ ...p, navigation, route })
+  const reducer = (props) => ({ _client: _client(props), _user: _user(props), _admin: _admin(props), })
 
   const _children = (Component, key) => ({ children: (props) => <Layout _key={key} {...props} {...p}><Component {...props} {...p} {...reducer(props)} /></Layout> })
 
@@ -128,7 +128,7 @@ const Mobile = () => {
 
           <Tab.Group>
             <Tab.Screen initialParams={{ key: 'admin' }} name="TableGroupItems" options={{ title: 'پنل ادمین', headerShown: false }} {..._children(TableGroupItems)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="TableChildItems" options={({ route }) => ({ title: 'route.params.title'})} {..._children(TableChildItems)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="TableChildItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(TableChildItems)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="EditGroupItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditGroupItem)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="EditChildItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditChildItem)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="CreateGroupItem" options={({ route }) => ({ title: 'ساخت دسته ی اغذیه' })} {..._children(CreateGroupItem)} />
@@ -137,7 +137,7 @@ const Mobile = () => {
             <Tab.Screen initialParams={{ key: 'admin' }} name="Notifee" options={{ title: 'ارسال نوتیفیکیشن' }} {..._children(Notifee)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="ChangeAdmin" options={{ title: 'تعویض ادمین' }} {..._children(ChangeAdmin)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAdmin" options={{ title: 'حذف ادمین' }} {..._children(DeleteAdmin)} />
-            <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAllAddress" options={{ title: 'حذف آدرس ها'}} {..._children(DeleteAllAddress)} />
+            <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAllAddress" options={{ title: 'حذف آدرس ها' }} {..._children(DeleteAllAddress)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="Address" options={{ title: 'اضافه کردن ادمین' }} {..._children(Address)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="ListUnAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
             <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />

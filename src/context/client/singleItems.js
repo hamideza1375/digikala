@@ -4,14 +4,14 @@ import { useState } from "react"
 export function singleItems() {
 
   const [comment, setcomment] = useState([
-    { _id: '1', image: require('../../../other/assets/images/a1.jpg') },
-    { _id: '2', image: require('../../../other/assets/images/a2.jpg') },
-    { _id: '3', image: require('../../../other/assets/images/a3.jpg') },
-    { _id: '4', image: require('../../../other/assets/images/a7.jpg') },
-    { _id: '5', image: require('../../../other/assets/images/a1.jpg') },
-    { _id: '6', image: require('../../../other/assets/images/a2.jpg') },
-    { _id: '7', image: require('../../../other/assets/images/a3.jpg') },
-    { _id: '8', image: require('../../../other/assets/images/a7.jpg') },
+    { _id: '1', image: require('../../other/assets/images/a1.jpg') },
+    { _id: '2', image: require('../../other/assets/images/a2.jpg') },
+    { _id: '3', image: require('../../other/assets/images/a3.jpg') },
+    { _id: '4', image: require('../../other/assets/images/a7.jpg') },
+    { _id: '5', image: require('../../other/assets/images/a1.jpg') },
+    { _id: '6', image: require('../../other/assets/images/a2.jpg') },
+    { _id: '7', image: require('../../other/assets/images/a3.jpg') },
+    { _id: '8', image: require('../../other/assets/images/a7.jpg') },
   ])
 
   const [colorItem, setcolorItem] = useState([

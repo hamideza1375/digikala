@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { Span, Slider, Scroll, Div, Container, Container2, ContainerTab, P, Loading } from '../../other/Components/Html'
-import s from './style/client.module.scss'
+import { Span, Slider, Scroll, Div, ContainerTab, Loading } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import Group from './components/home/Group';
 const SliderOffers = lazy(() => import('./components/home/SliderOffers'));
@@ -14,7 +13,7 @@ function Home(p) {
     <ContainerTab >
       <Scroll>
         <Div>
-          <Slider data={p.slider} {...p} onClick={() => { alert(8) }} />
+          {/* <Slider data={p.slider} {...p} onClick={() => { alert(8) }} /> */}
         </Div>
 
         <Span>

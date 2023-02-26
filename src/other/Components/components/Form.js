@@ -29,18 +29,20 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
   imageUrl, setImageUrl, vIconLeft, vIconRight, videoUrl, setvideoUrl,
   info, setinfo
   , style, fullname, setfullname,
-  email, setemail, password, setPassword,
+  email, setemail, password, setpassword,
   confirmPassword, setconfirmPassword, onClick, message,
   setmessage, children, captcha, setcaptcha, host, checkText, setremember, remember,
   star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar,
   setallstar,
   sizeY = 1, top = 10,
-  setorientation, setwidth, setheight,
+  setwidth, setheight,
   fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
   tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
-  input, setinput, _input,flexDirection,
+  input, setinput, _input, flexDirection,
   plackTextTop = true,
-  pb=25, pt=10
+  pb = 25, pt = 10,
+  register,
+  autoComplete = true
 }) => {
 
 
@@ -78,10 +80,9 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
   }, [star1, star2, star3, star4, star5])
 
 
-  Dimensions.addEventListener('change', ({ window: { width, height } }) => {
-    if (width < height) { setorientation("PORTRAIT"); setwidth(width); setheight(height) }
-    else { setorientation("LANDSCAPE"); setwidth(width); setheight(height) }
-  })
+  // Dimensions.addEventListener('change', ({ window: { width, height } }) => {
+  //   setwidth(width); setheight(height)
+  // })
 
   const [secure, setSecure] = useState(true)
   const [secure2, setSecure2] = useState(true)
@@ -142,13 +143,14 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
     <ScrollView contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]} style={[{ backgroundColor: bgcolor, borderRadius: 3, marginTop: mt }, Platform.OS === 'web' ? webStyle : nativeStyle]} >
 
       <View style={[styles.viewContainer, { paddingTop: top }, style]} >
-        <View style={[{ transform: [{ scaleY: sizeY }], padding: 10, paddingBottom: pb , paddingTop:pt },flexDirection === 'row' && Platform.OS === 'web' ?{flexDirection: 'row', flexWrap: 'wrap'}:{}]}>
+        <View style={[{ transform: [{ scaleY: sizeY }], padding: 10, paddingBottom: pb, paddingTop: pt }, flexDirection === 'row' && Platform.OS === 'web' ? { flexDirection: 'row', flexWrap: 'wrap' } : {}]}>
 
           {f &&
             <Frm
-            plackTextTop={plackTextTop}
+              register={register}
+              plackTextTop={plackTextTop}
               textContentType="username"
-              autoComplete="username"
+              autoComplete={autoComplete?"username":'off'}
               icon='user'
               p='نام'
               newObj={newObj.fullname}
@@ -164,9 +166,10 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {e &&
             <Frm
-            plackTextTop={plackTextTop}
+              register={register}
+              plackTextTop={plackTextTop}
               textContentType="emailAddress"
-              autoComplete="email"
+              autoComplete={autoComplete?"autoComplete":'off'}
               keyboardType="email-address"
               icon="envelope"
               p='ایمیل'
@@ -184,9 +187,10 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {ph &&
             <Frm
-            plackTextTop={plackTextTop}
+              register={register}
+              plackTextTop={plackTextTop}
               textContentType="telephoneNumber"
-              autoComplete="tel"
+              autoComplete={autoComplete?"tel":'off'}
               keyboardType="phone-pad"
               icon="phone"
               p='شماره تلفن '
@@ -204,15 +208,16 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {p &&
             <Frm
-            plackTextTop={plackTextTop}
+              register={register}
+              plackTextTop={plackTextTop}
               textContentType="password"
-              autoComplete="password"
+              autoComplete={autoComplete?"password":'off'}
               icon={!secure ? "eye" : "eye-slash"}
               p="رمز عبور"
               iconLeft={pIconLeft}
               iconRight={pIconRight}
               state={password}
-              setState={setPassword}
+              setState={setpassword}
               getBlur={_password}
               setBlur={set_Password}
               newObj={newObj.password}
@@ -225,9 +230,10 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {cp &&
             <Frm
-            plackTextTop={plackTextTop}
+              register={register}
+              plackTextTop={plackTextTop}
               textContentType="password"
-              autoComplete="password"
+              autoComplete={autoComplete?"password":'off'}
               icon={!secure2 ? "eye" : "eye-slash"}
               p=" تکرار رمز عبور "
               iconLeft={cpIconLeft}
@@ -246,7 +252,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {t &&
             <Frm
-            plackTextTop={plackTextTop}
+              plackTextTop={plackTextTop}
               m_icon="title"
               p="عنوان "
               iconLeft={tIconLeft}
@@ -263,7 +269,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {pr &&
             <Frm
-            plackTextTop={plackTextTop}
+              plackTextTop={plackTextTop}
               icon="dollar-sign"
               p=" قیمت "
               iconLeft={prIconLeft}
@@ -281,8 +287,8 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {i &&
             <Frm
-            plackTextTop={plackTextTop}
-            multiline
+              plackTextTop={plackTextTop}
+              multiline
               icon="info"
               p=" توضیحات "
               iconLeft={iIconLeft}
@@ -299,7 +305,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {m &&
             <Frm
-            plackTextTop={plackTextTop}
+              plackTextTop={plackTextTop}
               p="پیام"
               iconLeft={false}
               iconRight={false}
@@ -316,7 +322,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
           }
 
           {_input &&
-            <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10,flexGrow:1  }]}>
+            <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow: 1 }]}>
               <View style={[styles.viewInput, { minHeight: 90 }]} >
                 <Swiper>
                   {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} ></Text>}
@@ -337,7 +343,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
           }
 
           {$code &&
-            <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow:1  }]}>
+            <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow: 1 }]}>
               <View style={[styles.viewInput, { minHeight: 90 }]} >
 
                 <Swiper>
@@ -390,7 +396,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
           />}
 
           {ch &&
-            <View behavior={"height"} style={{ height: 35, minHeight: 35, justifyContent: 'center', marginTop: 30, marginHorizontal:10 }}>
+            <View behavior={"height"} style={{ height: 35, minHeight: 35, justifyContent: 'center', marginTop: 30, marginHorizontal: 10 }}>
               <View style={{ marginVertical: 10 }} >
                 <View style={[styles.viewCheckbox, { flexGrow: .4, maxHeight: 20 }]}>
                   <CheckBox show={!checkText ? show : changeremember} setshow={!checkText ? setshow : setchangeremember} />
@@ -403,7 +409,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
 
           {c &&
             <>
-              <KeyboardAvoidingView behavior={"height"} style={{ height: 50, minHeight: 50, marginVertical: 8, marginHorizontal:10 }}>
+              <KeyboardAvoidingView behavior={"height"} style={{ height: 50, minHeight: 50, marginVertical: 8, marginHorizontal: 10 }}>
                 <View style={[styles.viewCaptcha, { height: 28, alignItems: 'center' }]}>
 
                   <Image source={{ uri: `${host}/captcha.png/${rand}` }} style={styles.imageCaptcha} />
@@ -515,33 +521,32 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
             </View>
           }
 
-       { btn &&
-         <KeyboardAvoidingView behavior={"height"} style={{ height: 70, minHeight: 70, marginBottom: 15, width:'100%' }}>
-            {btn && <Button
-              onPressIn={() => {
-                setremember && setremember(changeremember ? (60000 * 60 * 24 * 365) : ('24h'))
-                set_Fullname(true);
-                set_Email(true);
-                set_Password(true);
-                set_ConfirmPassword(true);
-                set_Message(true);
-                set_Checkbox(checkText ? false : true);
-                set_Captcha(true)
-                set_Title(true)
-                set_Price(true)
-                set_ImageUrl(true)
-                set_VideoUrl(true)
-                set_Info(true)
-                set_Allstar(true)
-                set_Phone(true)
-              }}
-              onPress={async () => {
-                if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && img && vdo && inf && pon && star1) {
+          {btn &&
+            <KeyboardAvoidingView behavior={"height"} style={{ height: 70, minHeight: 70, marginBottom: 15, width: '100%' }}>
+              {btn && <Button
+                onPressIn={() => {
+                  setremember && setremember(changeremember ? (60000 * 60 * 24 * 365) : ('24h'))
+                  set_Fullname(true);
+                  set_Email(true);
+                  set_Password(true);
+                  set_ConfirmPassword(true);
+                  set_Message(true);
+                  set_Checkbox(checkText ? false : true);
+                  set_Captcha(true)
+                  set_Title(true)
+                  set_Price(true)
+                  set_ImageUrl(true)
+                  set_VideoUrl(true)
+                  set_Info(true)
+                  set_Allstar(true)
+                  set_Phone(true)
+                }}
+                onPress={async () => {
+                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && img && vdo && inf && pon && star1) {
 
-                  if (!timer) {
-                    onClick()
-                  } else {
-                    if (true) {
+                    if (!timer) {
+                      onClick()
+                    } else {
                       loginInterval && clearInterval(loginInterval)
                       let d = new Date()
                       let locMinut = await AsyncStorage.getItem('getMinutes')
@@ -566,6 +571,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
                           AsyncStorage.setItem("several", JSON.stringify(JSON.parse(several) + 1)).then(() => { })
                         })
                         onClick()
+
                       }
                       else {
                         let loc = await AsyncStorage.getItem('getTime')
@@ -579,20 +585,20 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
                             alert(`تعداد دفعات وارد شده بیشتر از حد مجاز بود ${locMinut - d.getMinutes() > 0 ? locMinut - d.getMinutes() : 0} دقیقه دیگر دوباره امتحان کنید`)
                         })
                       }
+
                     }
+
+
                   }
-
-
-                }
-                else {
-                  setRand(parseInt(Math.random() * 9000 + 1000))
-                  setcaptcha('')
-                }
-              }}
-              style={[styles.btn]} >
-              click
-            </Button>}
-          </KeyboardAvoidingView>}
+                  else {
+                    setRand(parseInt(Math.random() * 9000 + 1000))
+                    setcaptcha('')
+                  }
+                }}
+                style={[styles.btn]} >
+                click
+              </Button>}
+            </KeyboardAvoidingView>}
         </View>
       </View>
     </ScrollView >

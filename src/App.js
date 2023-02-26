@@ -2,13 +2,13 @@ import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
 import { View, Platform } from "react-native";
-import { Dropdown, Init, Input, P, Row, Span } from "./other/Components/Html";
+import { Dropdown, Init, Span } from "./other/Components/Html";
 import _404 from "./other/Components/404/404";
-import { initialController } from "./controllers/initialController";
+import { _initController } from "./controllers/_initController";
 import { adminController } from "./controllers/adminController";
 import { clientController } from "./controllers/clientController";
 import { userController } from "./controllers/userController";
-import { propTypes, states, contextStates } from "./context/contexts";
+import { propTypes, states, contextStates } from "./context/_context";
 import ToastProvider, { Toast } from "./other/utils/toast";
 import { Layout, header } from "./other/Layout/Layout";
 import { rtl } from "./other/utils/rtl"
@@ -26,6 +26,7 @@ import CreateComment from "./views/client/CreateComment";
 import EditComment from "./views/client/EditComment";
 
 import Register from "./views/user/Register";
+import GetCode from "./views/user/GetCode";
 import Login from "./views/user/Login";
 import Profile from "./views/user/Profile";
 import ForgetPass from "./views/user/ForgetPass";
@@ -59,6 +60,7 @@ import PanelAdmin from "./views/admin/PanelAdmin";
 import Sellers from "./views/admin/Sellers";
 import AddSeller from "./views/admin/AddSeller";
 import AdminGetTicket from "./views/admin/AdminGetTicket";
+import SocketIo from "./socketIo/socketIo";
 
 rtl()
 LogBox.ignoreAllLogs();
@@ -72,7 +74,7 @@ const Mobile = () => {
   const allState = states()
   const toast = new Toast(allState)
   const p = { ...allState, toast }
-  initialController(p)
+  _initController(p)
   const _client = ({ navigation, route }) => new clientController({ ...p, navigation, route })
   const _user = ({ navigation, route }) => new userController({ ...p, navigation, route })
   const _admin = ({ navigation, route }) => new adminController({ ...p, navigation, route })
@@ -106,10 +108,12 @@ const Mobile = () => {
             <Tab.Screen name="Payment" options={{ title: 'پرداخت' }} {..._children(Payment, '100')} />
             <Tab.Screen name="CreateComment" options={{ title: 'پروفایل' }} {..._children(CreateComment)} />
             <Tab.Screen name="EditComment" options={{ title: 'پروفایل' }} {..._children(EditComment)} />
+            <Tab.Screen name="SocketIo" options={{ title: 'پروفایل' }} {..._children(SocketIo)} />
           </Tab.Group>
 
           <Tab.Group screenOptions={{ headerShown: false }} >
             <Tab.Screen name="Register" options={{ title: 'ثبت نام' }} {..._children(Register, '120')} />
+            <Tab.Screen name="GetCode" options={{ title: 'ثبت نام' }} {..._children(GetCode, '120')} />
             <Tab.Screen name="Login" options={{ title: 'ورود' }} {..._children(Login, '120')} />
             <Tab.Screen name="Profile" options={{ title: 'پروفایل' }} {..._children(Profile)} />
             <Tab.Screen name="ForgetPass" options={{ title: 'فراموشی رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ForgetPass)} />
@@ -155,14 +159,16 @@ const Mobile = () => {
 }
 
 
-propTypes(Home)
+// propTypes(Home)
 // propTypes(ChildItems)
 // propTypes(ChildOffers)
 // propTypes(ChildPopulars)
 // propTypes(SingleItems)
 // propTypes(BeforePayment)
+// propTypes(SocketIo)
 
 // propTypes(Register)
+// propTypes(GetCode)
 // propTypes(Login)
 // propTypes(ForgetPass)
 // propTypes(ResetPass)
@@ -212,8 +218,10 @@ const linking = {
       ChildPopulars: '/childpopulars',
       SingleItems: '/singleitems',
       BeforePayment: '/beforepayment',
+      SocketIo: '/socketio',
 
       Register: '/register',
+      GetCode: '/getCode',
       Login: '/login',
       ForgetPass: '/forgetpass',
       ResetPass: '/resetpass',

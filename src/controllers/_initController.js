@@ -1,18 +1,18 @@
 import { useNavigation } from '@react-navigation/native'
 import Axios from 'axios'
 
-export const initialController = (p) => {
+export const _initController = (p) => {
   const navigation = useNavigation()
   p.useEffect(() => {
-    var toastOK = () => { p.toast.success('موفق آمیز', '✅', 4000) }
+    var toastOK = (data) => { p.toast.success(typeof data === 'string' ? data : 'موفق آمیز', '✅', 4000) }
     var toast500 = () => { p.toast.error('خطا', 'مشکلی از سمت سرور پیش آمده'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
-    var toast400 = (error) => { p.toast.error('خطا', error); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
+    var toast400 = (error) => { p.toast.error('خطا', typeof error === 'string'?error:'خطایی غیر منتظره رخ داد'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
 
     Axios.interceptors.response.use(function (response) {
       if (response.config.method !== 'get' &&
-        navigation.getCurrentRoute()?.name !== 'Payment' && navigation.getCurrentRoute()?.name !== 'Home' && navigation.getCurrentRoute()?.name !== 'FinallFoodPayment' && navigation.getCurrentRoute()?.name !== 'ChildFood' && navigation.getCurrentRoute()?.name !== 'Location'  && (response.status === 200 || response.status === 201)) toastOK()
-        p.setshowActivity(false)
-        return response
+        navigation.getCurrentRoute()?.name !== 'Payment' && navigation.getCurrentRoute()?.name !== 'Home' && navigation.getCurrentRoute()?.name !== 'FinallFoodPayment' && navigation.getCurrentRoute()?.name !== 'ChildFood' && navigation.getCurrentRoute()?.name !== 'Location' && response.data !== '' && (response.status === 200 || response.status === 201)) toastOK(response.data)
+      p.setshowActivity(false)
+      return response
     }, function (error) {
       if (error?.response?.status) {
         if (error.response.status > 400 && error.response.status <= 500) { toast500() };
@@ -37,7 +37,7 @@ export const initialController = (p) => {
   })
 
 
-    // p.useMemo(() => {
+  // p.useMemo(() => {
   //   setTimeout(() => {
   //     p.setSplash(false)
   //   }, 1000)

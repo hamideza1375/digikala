@@ -169,8 +169,10 @@ export const Init = React.forwardRef((props, ref) => {
 
 
 export const Container = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb : s.Container} {...props} Component={View} />
+export const ContainerFix = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb : s.Container} {...props} Component={View} />
 
 export const Container2 = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb2 : s.Container} {...props} Component={View} />
+export const ContainerNavigation = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb2 : s.Container} {...props} Component={View} />
 
 export const ContainerTab = (props) => <Component initalClass={s.Container} {...props} Component={View} />
 

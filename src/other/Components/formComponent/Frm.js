@@ -4,8 +4,8 @@ import { Input } from "./FormComponent";
 import Swiper from '../components/Swiper'
 
 
-export default function ({plackTextTop, autoFocus=false,multiline=false,m_icon,iconPress,secureTextEntry,icon,textContentType, autoComplete,keyboardType='default',p, newObj,iconLeft, iconRight,  setBlur, getBlur, state, setState, styles, yub }) {
- 
+export default function ({ plackTextTop, autoFocus = false, multiline = false, m_icon, iconPress, secureTextEntry, icon, textContentType, autoComplete, keyboardType = 'default', p, newObj, iconLeft, iconRight, setBlur, getBlur, state, setState, styles, yub }) {
+
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -41,21 +41,21 @@ export default function ({plackTextTop, autoFocus=false,multiline=false,m_icon,i
 
 
 
- 
- 
+
+
   return (
-    <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal:10, flexGrow:1  },multiline && {height: 130,minHeight: 130}]}>
-      <Animated.View style={[styles.viewInput, { minHeight: 90 },multiline && {height: 120,minHeight: 120}, { marginBottom: 5 }]} >
+    <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow: 1 }, multiline && { height: 130, minHeight: 130 }]}>
+      <Animated.View style={[styles.viewInput, { minHeight: 90 }, multiline && { height: 120, minHeight: 120 }, { marginBottom: 5 }]} >
         <Swiper
           cansel={(iconLeft || iconRight) ? false : true}
-          style={[multiline && {height: 115,minHeight: 115}]}
+          style={[multiline && { height: 115, minHeight: 115 }]}
           styleRightIcon={{ top: 37 }}
           styleLeftIcon={{ top: 37 }}
           iconLeft={iconLeft}
           iconRight={iconRight}
         >
-          {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }, multiline && {marginVertical:5}]} >{p}</Text>}
-          <Animated.View style={[styles.animatedBorder, getBlur &&  !yub && { borderWidth: 1.2, borderColor: iterPlt, transform: [{ translateX: fadeAnim }] },multiline && {height: '101.8%',minHeight: '101.8%'}]} >
+          {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }, multiline && { marginVertical: 5 }]} >{p}</Text>}
+          <Animated.View style={[styles.animatedBorder, getBlur && !yub && { borderWidth: 1.2, borderColor: iterPlt, transform: [{ translateX: fadeAnim }] }, multiline && { height: '101.8%', minHeight: '101.8%' }]} >
             <Input
               textContentType={textContentType}
               autoComplete={autoComplete}
@@ -65,8 +65,8 @@ export default function ({plackTextTop, autoFocus=false,multiline=false,m_icon,i
               placeholder={p}
               value={state}
               onChangeText={(text) => setState(text)}
-              onBlur={() => { setBlur(true);  !yub && fadeOut() }}
-              style={[styles.input,multiline && {height: 115,minHeight: 115}]}
+              onBlur={() => { setBlur(true); !yub && fadeOut() }}
+              style={[styles.input, multiline && { height: 115, minHeight: 115 }]}
               iconPress={iconPress}
               secureTextEntry={secureTextEntry}
               autoFocus={autoFocus}

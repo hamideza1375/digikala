@@ -1,41 +1,21 @@
 import { createContext, useContext } from 'react';
 import PropTypes from 'prop-types';
 
-
-import { initial } from './initial';
-import { filterItems } from './client/filterItems';
-import { singleItems } from './client/singleItems';
-import { showHome } from './client/home';
-import { beforePayment } from './client/beforePayment';
-import { chart } from './admin/chart';
-import { sellerTable } from './admin/sellers';
-import { groupItemTable } from './admin/tableGroupItem';
-import { childItemTable } from './admin/tableChildItems';
-import { ticketBox } from './user/ticketBox';
+import { initial } from './_initialState';
+import { client } from './client';
+import { admin } from './admin';
+import { user } from './user';
 
 function State() {
-  const home = new showHome()
-  const filter = new filterItems()
-  const single = new singleItems()
   const init = new initial()
-  const _beforePayment = new beforePayment()
-  const _chart = new chart()
-  const _sellerTable = new sellerTable()
-  const _groupItemTable = new groupItemTable()
-  const _childItemTable = new childItemTable()
-  const _userTicketBox = new ticketBox()
+  const _client = new client()
+  const _user = new user()
+  const _admin = new admin()
   return {
-    ...filter.systemFilter,
-    ...single.showComment,
-    ...home.logo,
-    ...home.items,
     ...init.all,
-    ..._beforePayment.table,
-    ..._chart.chart,
-    ..._sellerTable.sellerTable,
-    ..._groupItemTable.groupItemTable,
-    ..._childItemTable.childItemTable,
-    ..._userTicketBox.userTicketBox
+    ..._admin.admin,
+    ..._client.client,
+    ..._user.user,
   }
 }
 export const states = () => State()

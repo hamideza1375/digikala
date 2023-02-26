@@ -52,7 +52,7 @@ export function initial() {
   const [fullname, setfullname] = useState('')
   const [email, setemail] = useState('')
   const [phone, setphone] = useState('')
-  const [password, setPassword] = useState('')
+  const [password, setpassword] = useState('')
   const [confirmPassword, setconfirmPassword] = useState('')
   const [remember, setremember] = useState(60000 * 60 * 24 * 365)
   const [checkbox, setcheckbox] = useState()
@@ -60,6 +60,7 @@ export function initial() {
   const [price, setprice] = useState('')
   const [imageUrl, setImageUrl] = useState('')
   const [videoUrl, setvideoUrl] = useState('')
+  const [meanStar, setmeanStar] = useState()
   const [info, setinfo] = useState('')
   const [code, setcode] = useState('')
   const [rand, setRand] = useState(parseInt(Math.random() * 9000 + 1000));
@@ -120,7 +121,7 @@ export function initial() {
     checkbox, setcheckbox,
     remember, setremember,
     confirmPassword, setconfirmPassword,
-    password, setPassword,
+    password, setpassword,
     phone, setphone,
     email, setemail,
     fullname, setfullname,
@@ -142,6 +143,7 @@ export function initial() {
     rand, setRand,
     code, setcode,
     info, setinfo,
+    meanStar, setmeanStar,
     imageUrl, setImageUrl,
     videoUrl, setvideoUrl,
     price, setprice,

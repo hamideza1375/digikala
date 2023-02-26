@@ -1,12 +1,14 @@
 import React from 'react'
 import { ContainerTab, Form, Span } from '../../other/Components/Html'
 
-const Register = () => {
+const Register = (p) => {
+  const getCodeForRegister = () => p._user.getCodeForRegister()
+
   return (
     <ContainerTab ai='center' jc='center' bgcolor='#fafafa'>
       <Span w='90%' f={.98} border={[1, 'silver']} p={8} sh={{ r: 7, o: .3, c: '#aaa' }}>
         <Span w='100%' f={1} border={[1, 'silver']} sh={{ r: 5, o: .2, c: '#aaa' }} >
-          <Form f ph e p bgcolor='#fff' ch />
+          <Form autoComplete={false} f ph p bgcolor='#fff' ch onClick={getCodeForRegister} {...p} />
         </Span>
       </Span>
     </ContainerTab>

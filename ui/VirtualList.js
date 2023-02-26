@@ -7,7 +7,7 @@
 // import { adminState } from "./state/adminState";
 // import { foodState, home } from "./state/foodState";
 // import { userState } from "./state/userState";
-// import { propTypes, states, contextStates } from "./utils/context/contexts";
+// import { propTypes, states, contextStates } from "./utils/context/_context";
 // import ToastProvider, { Toast } from "./utils/toast";
 // import { Layout, header } from "./other/Layout";
 // import { rtl } from "./other/rtl"

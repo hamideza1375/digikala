@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, TextInput, View } from 'react-native';
 import { Button, Div, Dropdown2, Icon, Img, Input, Modal, P, Press, Scroll, Span } from '../Html'
-import { context } from '../../../context/contexts'
+import { context } from '../../../context/_context'
 
 function SearchInput({ logoPress, row, array, setarray, Register, icon, src, iconPress, sort, setshowFilterModal, showFilterModal, bgcolor }) {
 

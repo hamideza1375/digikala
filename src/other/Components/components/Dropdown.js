@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Pressable } from "react-native";
-import { context } from "../../../context/contexts";
+import { context } from "../../../context/_context";
 
 const Dropdown = ({ top, value, root, children }) => {
   const ref = useRef()

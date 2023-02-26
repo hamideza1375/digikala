@@ -16,7 +16,7 @@ function ScrollSlider(p) {
   const open = () => {
     if (scroll2) {
       { ref.current && ref.current.scrollToIndex({ index: count.current.count }); }
-      count.current.count = count.current.count + 1
+      count.current.count = count.current.count + 2
     }
   };
 
@@ -67,7 +67,7 @@ function ScrollSlider(p) {
           {...p}
           renderItem={renderItem}
           contentContainerStyle={[{ flexGrow: 1, direction: 'rtl' }, ccStyle]}
-          onLayout={(e) => { let int = setInterval(sum, 4000); function sum() { if (scroll2) open() } interval.current.interval = int }}
+          onLayout={(e) => { let int = setInterval(sum, 4000); function sum() { if (scroll2 && !(count.current.count >= data.length)) {open() } else clearInterval(int)} interval.current.interval = int }}
           // scrollEventThrottle={0}
           // alwaysBounceHorizontal={false}
           // alwaysBounceVertical={false}

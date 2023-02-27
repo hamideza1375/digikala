@@ -12,7 +12,6 @@ let adminId
 const SocketIo = (p) => {
 
   const [allUsers, setallUsers] = useState([])
-  const [change, setchange] = useState(false)
   const [userId, setuserId] = useState('')
   const [pvMessage, setpvMessage] = useState('')
   const [pvChatMessage, setPvChatMessage] = useState([])
@@ -54,7 +53,8 @@ const SocketIo = (p) => {
     socket.current.on("mongoMsg", async (messages) => {
       if (!localstoragetrue) {
         setPvChatMessage(messages)
-        if (tokenValue.current.isAdmin === 1) {
+
+        if (tokenValue.current.isAdmin) {
           let titleMessage = []
           settitleMessage([])
           for (let i of messages) {
@@ -82,31 +82,33 @@ const SocketIo = (p) => {
 
     socket.current.on("pvChat", async (messages) => {
       setPvChatMessage(messages)
-      let titleMessage = []
-      for (let i of messages) {
-        let find = titleMessage.find((msg) => (msg.userId === i.userId))
-        if (!find) {
-          titleMessage.push(i)
 
-          AsyncStorage.getItem(i.userId).then((localStorage) => {
-            if (localStorage) {
-              let parse = JSON.parse(localStorage)
-              settitleMessage(titleMsg => {
-                let ms = [...titleMsg]
-                let filter = ms.filter((m) => (m.userId !== i.userId))
-                filter.push({ badgeActive: i.getTime > parse.getTime, ...i })
-                return filter
-              })
-            }
-            else {
-              settitleMessage(titleMsg => {
-                let filter = titleMsg.filter((m) => (m.userId !== i.userId))
-                filter.push({ badgeActive: true, ...i })
-                return filter
-              })
-            }
-            setlocalstoragetrue(true)
-          })
+      if (tokenValue.current.isAdmin) {
+        let titleMessage = []
+        for (let i of messages) {
+          let find = titleMessage.find((msg) => (msg.userId === i.userId))
+          if (!find) {
+            titleMessage.push(i)
+            AsyncStorage.getItem(i.userId).then((localStorage) => {
+              if (localStorage) {
+                let parse = JSON.parse(localStorage)
+                settitleMessage(titleMsg => {
+                  let ms = [...titleMsg]
+                  let filter = ms.filter((m) => (m.userId !== i.userId))
+                  filter.push({ badgeActive: i.getTime > parse.getTime, ...i })
+                  return filter
+                })
+              }
+              else {
+                settitleMessage(titleMsg => {
+                  let filter = titleMsg.filter((m) => (m.userId !== i.userId))
+                  filter.push({ badgeActive: true, ...i })
+                  return filter
+                })
+              }
+              setlocalstoragetrue(true)
+            })
+          }
         }
       }
     });
@@ -119,14 +121,12 @@ const SocketIo = (p) => {
       settitleMessage([])
       socket.current.emit("delRemove")
     }
-
   }, []));
 
 
 
 
   useFocusEffect(useCallback(() => {
-    // AsyncStorage.removeItem('socketTocken').then(() => { })
     var socketTocken
     (async () => {
       socketTocken = await AsyncStorage.getItem('socketTocken')
@@ -156,8 +156,8 @@ const SocketIo = (p) => {
 
   return (
     <Container2>
-      <View onLayout={() => { if (tokenValue.current.isAdmin !== 1) { setto('1') } }} style={{ flex: 1 }} >
-        {tokenValue.current.isAdmin !== 1
+      <View onLayout={() => { if (!tokenValue.current.isAdmin) { setto('1') } }} style={{ flex: 1 }} >
+        {!tokenValue.current.isAdmin
           ?
           <FlatList
             inverted
@@ -182,7 +182,15 @@ const SocketIo = (p) => {
                 renderItem={({ item, index }) => (
                   (item.userId !== tokenSocket.current) &&
                   <Span key={index} style={{ marginVertical: 10, marginHorizontal: 2, width: '70%', height: 40, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: 'white', borderWidth: 1 }} >
-                    <Text onClick={() => { if ((tokenValue.current.isAdmin === 1) && (item.to === '1')) { setto(item.userId); setuserId(item.userId); AsyncStorage.setItem(item.userId, JSON.stringify(item)).then(() => { }) /* navigation.navigate('Pv', { userId: item.userId, adminId, item }) */ } }} style={{ fontSize: 12, cursor: ((tokenValue.current.isAdmin === 1) && (item.to === '1')) ? 'pointer' : '' }}>{item.userId}</Text>
+                    <Text onClick={() => { if ((tokenValue.current.isAdmin) && (item.to === '1')) { setto(item.userId); setuserId(item.userId); 
+                    AsyncStorage.setItem(item.userId, JSON.stringify(item)).then(() => {
+                      settitleMessage(titleMsg => {
+                        let filter = titleMsg.filter((m) => (m.userId !== item.userId))
+                        filter.push({ ...item, badgeActive: false })
+                        return filter
+                      })
+                     }) 
+                      } }} style={{ fontSize: 12, cursor: ((tokenValue.current.isAdmin) && (item.to === '1')) ? 'pointer' : '' }}>{item.userId}</Text>
                     {item.badgeActive && <Badge color={'green'} />}
                   </Span>
                 )}
@@ -208,7 +216,7 @@ const SocketIo = (p) => {
             }
           </>
         }
-        {(tokenValue.current.isAdmin !== 1) && <Span mt='auto' >
+        {(!tokenValue.current.isAdmin) && <Span mt='auto' >
           <InputBottom handlePvChat={handlePvChat} setpvMessage={setpvMessage} pvMessage={pvMessage}></InputBottom>
         </Span>}
       </View>

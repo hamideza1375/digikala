@@ -65,13 +65,16 @@ export function userController(p) {
       p.navigation.navigate('GetCode', { login: true })
     }
     else {
+      await AsyncStorage.setItem('token', data.token)
       p.navigation.navigate('Profile')
     }
   }
 
 
   this.verifyCodeLoginForAdmin = async () => {
-    await verifyCodeLoginForAdmin({ code: p.code, phone: p.phone, password: p.password, remember: p.remember })
+    const { data } = await verifyCodeLoginForAdmin({ code: p.code, phone: p.phone, password: p.password, remember: p.remember })
+    await AsyncStorage.setItem('token', data.token)
+    p.navigation.navigate('Profile')
     p.navigation.navigate('Profile')
   }
 

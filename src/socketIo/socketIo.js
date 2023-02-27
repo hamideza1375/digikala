@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Text, View, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
-import { Badge, Button, Container2, Span } from '../other/Components/Html';
+import { Badge, Button, Container2, P, Row, Span } from '../other/Components/Html';
 import InputBottom from './components/InputBottom';
 import SocketIOClient from 'socket.io-client';
 import { localhost } from '../other/utils/axios/axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwt_decode from 'jwt-decode'
+import moment from 'moment-jalaali';
 let adminId
 
 const SocketIo = (p) => {
@@ -166,8 +167,13 @@ const SocketIo = (p) => {
             renderItem={({ item, index }) => (
               ((item.userId == tokenSocket.current) || (adminId === socket.current.id) || (item.to === tokenSocket.current)) &&
               <Span key={index} style={{ marginVertical: 10, marginHorizontal: 2, width: '70%', height: 40, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: item.to === to ? '#f8f8f8' : '#fff', borderWidth: 1, alignSelf: item.to !== to ? 'flex-end' : 'flex-start', borderRadius: 10, borderWidth: 'silver' }} >
-                {item.userId === tokenSocket.current && <Text style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >شما</Text>}
-                <Text>{item.message}</Text>
+                  <Row fd='row-reverse' jc='flex-end' pt={3}>
+                    <P mr={20} style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >{moment(item.date).format('jM/jD hh:mm')}</P>
+                    {item.userId === tokenSocket.current &&
+                      <P style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >شما</P>
+                    }
+                  </Row>
+                <P>{item.message}</P>
               </Span>
             )}
           />
@@ -181,18 +187,24 @@ const SocketIo = (p) => {
                 data={titleMessage}
                 renderItem={({ item, index }) => (
                   (item.userId !== tokenSocket.current) &&
-                  <Span key={index} style={{ marginVertical: 10, marginHorizontal: 2, width: '70%', height: 40, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: 'white', borderWidth: 1 }} >
-                    <Text onClick={() => { if ((tokenValue.current.isAdmin) && (item.to === '1')) { setto(item.userId); setuserId(item.userId); 
-                    AsyncStorage.setItem(item.userId, JSON.stringify(item)).then(() => {
-                      settitleMessage(titleMsg => {
-                        let filter = titleMsg.filter((m) => (m.userId !== item.userId))
-                        filter.push({ ...item, badgeActive: false })
-                        return filter
-                      })
-                     }) 
-                      } }} style={{ fontSize: 12, cursor: ((tokenValue.current.isAdmin) && (item.to === '1')) ? 'pointer' : '' }}>{item.userId}</Text>
-                    {item.badgeActive && <Badge color={'green'} />}
-                  </Span>
+                  <Row key={index}
+                    style={{ marginVertical: 10, marginRight: 'auto', marginLeft: 'auto', width: '70%', height: 40, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 8, backgroundColor: 'white', borderWidth: 1, borderColor: 'silver', borderRadius: 4 }} >
+                    <P>کاربر:  </P>
+                    <P mt={2} onClick={() => {
+                      if ((tokenValue.current.isAdmin) && (item.to === '1')) {
+                        setto(item.userId); setuserId(item.userId);
+                        AsyncStorage.setItem(item.userId, JSON.stringify(item)).then(() => {
+                          settitleMessage(titleMsg => {
+                            let filter = titleMsg.filter((m) => (m.userId !== item.userId))
+                            filter.push({ ...item, badgeActive: false })
+                            return filter
+                          })
+                        })
+                      }
+                    }}
+                      style={{ fontSize: 12, cursor: ((tokenValue.current.isAdmin) && (item.to === '1')) ? 'pointer' : '' }}>{item.userId}</P>
+                    {item.badgeActive && <Badge right={0} color={'green'} />}
+                  </Row>
                 )}
               />
               :
@@ -203,9 +215,14 @@ const SocketIo = (p) => {
                   data={pvChatMessage}
                   renderItem={({ item, index }) => (
                     ((item.userId === userId) || (item.to === to)) &&
-                    <Span key={index} style={{ marginVertical: 10, marginHorizontal: 2, width: '70%', height: 40, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: item.to === to ? '#f8f8f8' : '#fff', borderWidth: 1, alignSelf: item.to !== to ? 'flex-end' : 'flex-start', borderRadius: 10, borderWidth: 'silver' }} >
-                      {item.userId === tokenSocket.current && <Text style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >شما</Text>}
-                      <Text >{item.message}</Text>
+                    <Span key={index} style={{ marginVertical: 10, marginHorizontal: 2, width: '70%', height: 45, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: item.to === to ? '#f8f8f8' : '#fff', borderWidth: 1, alignSelf: item.to !== to ? 'flex-end' : 'flex-start', borderRadius: 10, borderWidth: 'silver' }} >
+                      <Row fd='row-reverse' jc='flex-end' pt={3}>
+                        <P mr={20} style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >{moment(item.date).format('jM/jD hh:mm')}</P>
+                        {item.userId === tokenSocket.current &&
+                          <P style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >شما</P>
+                        }
+                      </Row>
+                      <P pb={3}>{item.message}</P>
                     </Span>
                   )}
                 />

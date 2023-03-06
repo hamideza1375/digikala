@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList, Span } from '../../../../other/Components/Html'
+import spacePrice from '../../../../other/utils/spacePrice'
 import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistPopulars = (p) => {
@@ -11,7 +12,7 @@ const FlatlistPopulars = (p) => {
       data={p.populars}
       renderItem={({ item, index }) => (
         <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} col2={{ marginHorizontal: 3 }}>
-          <CardItem item={item} spacePrice={p.spacePrice} />
+          <CardItem item={item} spacePrice={spacePrice} />
         </Span>
       )}
     />

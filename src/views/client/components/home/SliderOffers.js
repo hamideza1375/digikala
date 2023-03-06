@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
 import { Platform } from 'react-native'
+import _useEffect from '../../../../controllers/_initial'
 import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
 import LinearGradient from '../../../../other/Components/other/LinearGradient'
 import seconder from '../../../../other/utils/seconder'
+import spacePrice from '../../../../other/utils/spacePrice'
 import s from '../../style/client.module.scss'
 import CardItem from '../_layoutComponents/CardItem'
 
@@ -10,7 +12,7 @@ import CardItem from '../_layoutComponents/CardItem'
 const SliderOffers = (p) => {
   const [dt, setdt] = useState()
 
-  p.useEffect(() => {
+  _useEffect(() => {
     setTimeout(() => {
       seconder("2023-03-13 22:3:0", ({ days, hours, minutes, seconds }) => (
         setdt(hours + ':' + minutes + ':' + seconds)
@@ -41,7 +43,7 @@ const SliderOffers = (p) => {
             data={p.offers}
             renderItem={({ item, index }) => (
               <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} col2={{ marginHorizontal: 3 }}>
-                <CardItem item={item} spacePrice={p.spacePrice} offers w={170} />
+                <CardItem item={item} spacePrice={spacePrice} offers w={170} />
               </Span>
             )}
           />

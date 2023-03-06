@@ -1,6 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native';
 import { Button } from '../../../../other/Components/Html';
+import spacePrice from '../../../../other/utils/spacePrice';
 
 const CardAddress = (p) => {
   const deleteAddress = (_id) => p._admin.deleteAddress(_id)
@@ -33,7 +34,7 @@ const CardAddress = (p) => {
       </View>}
 
       <View style={{ borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }} >
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }} ><Text style={{ fontWeight: 'bold' }} >قیمت: </Text>{p.spacePrice(item.price)} تومان</Text>
+        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }} ><Text style={{ fontWeight: 'bold' }} >قیمت: </Text>{spacePrice(item.price)} تومان</Text>
         <Text style={{ color: '#ababab', }}>{p.moment(item.createdAt).format('hh:mm')}</Text>
         {/* <Text style={{ color: '#ababab', }}>{item.createdAt.split("T")[1].split(".")[0]}</Text> */}
       </View>

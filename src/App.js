@@ -1,13 +1,10 @@
-import { NavigationContainer, useNavigation } from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
 import { View, Platform } from "react-native";
 import { Dropdown, Init, Span } from "./other/Components/Html";
 import _404 from "./other/Components/404/404";
-import { _initController } from "./controllers/_initController";
-import { adminController } from "./controllers/adminController";
-import { clientController } from "./controllers/clientController";
-import { userController } from "./controllers/userController";
+import { allController, _initController } from "./controllers/_initial";
 import { propTypes, states, contextStates } from "./context/_context";
 import ToastProvider, { Toast } from "./other/utils/toast";
 import { Layout, header } from "./other/Layout/Layout";
@@ -41,6 +38,7 @@ import ShowActiveOrder from "./views/user/ShowActiveOrder";
 import ShowLastOrder from "./views/user/ShowLastOrder";
 import SavedItems from "./views/user/SavedItems";
 import CommentsPosted from "./views/user/CommentsPosted";
+import Rules from "./views/user/Rules";
 
 import AddAdmin from "./views/admin/AddAdmin";
 import Notifee from "./views/admin/Notifee";
@@ -69,25 +67,12 @@ LogBox.ignoreAllLogs();
 
 const Tab = createNativeStackNavigator()
 const Mobile = () => {
-  const navigation = useNavigation()
   let icon = Platform.OS === 'ios' ? { headerLeft: header } : {}
   const allState = states()
   const toast = new Toast(allState)
   const p = { ...allState, toast }
   _initController(p)
-  const _client = ({ navigation, route }) => new clientController({ ...p, navigation, route })
-  const _user = ({ navigation, route }) => new userController({ ...p, navigation, route })
-  const _admin = ({ navigation, route }) => new adminController({ ...p, navigation, route })
-  const reducer = (props) => ({ _client: _client(props), _user: _user(props), _admin: _admin(props), })
-
-  const _children = (Component, key) => ({ children: (props) => <Layout _key={key} {...props} {...p}><Component {...props} {...p} {...reducer(props)} /></Layout> })
-
-
-
-  useEffect(() => {
-    p.$input.set('a', 'a');
-  }, [])
-
+  const {_children} = new allController(p)
 
   const height = Platform.OS === 'web' ? '100vh' : '100%'
   return (
@@ -108,7 +93,7 @@ const Mobile = () => {
             <Tab.Screen name="Payment" options={{ title: 'پرداخت' }} {..._children(Payment, '100')} />
             <Tab.Screen name="CreateComment" options={{ title: 'پروفایل' }} {..._children(CreateComment)} />
             <Tab.Screen name="EditComment" options={{ title: 'پروفایل' }} {..._children(EditComment)} />
-            <Tab.Screen name="SocketIo" options={{ title: 'پروفایل' }} {..._children(SocketIo)} />
+            <Tab.Screen name="SocketIo" options={{ title: 'پروفایل', headerShown:true }} {..._children(SocketIo)} />
           </Tab.Group>
 
           <Tab.Group screenOptions={{ headerShown: false }} >
@@ -128,6 +113,7 @@ const Mobile = () => {
             <Tab.Screen name="ShowLastOrder" options={{ title: 'ارسال تیکت' }} {..._children(ShowLastOrder)} />
             <Tab.Screen name="SavedItems" options={{ title: 'ارسال تیکت' }} {..._children(SavedItems)} />
             <Tab.Screen name="CommentsPosted" options={{ title: 'ارسال تیکت' }} {..._children(CommentsPosted)} />
+            <Tab.Screen name="Rules" options={{ title: 'ارسال تیکت' }} {..._children(Rules)} />
           </Tab.Group>
 
           <Tab.Group>
@@ -187,6 +173,7 @@ const Mobile = () => {
 // propTypes(ShowLastOrder)
 // propTypes(SavedItems)
 // propTypes(CommentsPosted)
+// propTypes(Rules)
 
 // propTypes(TableGroupItems)
 // propTypes(TableChildItems)
@@ -240,6 +227,7 @@ const linking = {
       ShowLastOrder: '/showLastOrder',
       SavedItems: '/savedItems',
       CommentsPosted: '/commentsPosted',
+      Rules: '/rules',
 
       AdminGetTicket: '/adminGetTicket',
       AddSeller: '/addSeller',

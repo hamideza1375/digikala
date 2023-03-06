@@ -32,16 +32,12 @@ export const Input = React.forwardRef((props, ref) => {
       }, props.style]}
       ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}>
       <View style={{ top: 19, right: 60, position: 'absolute' }} >
-
         {dropdown}
       </View>
-
       <TextInput
         onFocus={onFocus}
         ref={(e) => {
-
           $input?.set(textId, e);
-
         }
         }
         placeholderTextColor={pColor} onPress={props.onClick} autoCapitalize='none' autoCorrect={false} spellCheck={true} placeholder={props.p} {...props} style={[{ width: '84%', flexGrow: 1, textAlign: "right", fontSize: fs, padding: 8, paddingRight: 10, height: '100%', color: props.color ? props.color : '#222', }, props.className, props.textStyle]} />

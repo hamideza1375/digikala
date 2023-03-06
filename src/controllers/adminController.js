@@ -1,4 +1,5 @@
 import { changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin } from "../services/adminService"
+import _useEffect from "./_initial"
 
 export function adminController(p) {
 
@@ -33,7 +34,7 @@ export function adminController(p) {
 
 
   this.listUnAvailable = () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await listUnAvailable()
         console.log('listUnAvailable', data);
@@ -68,7 +69,7 @@ export function adminController(p) {
 
 
   this.getAllAdmin = async () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getAllAdmin()
         console.log('getAllAdmin', p.data);
@@ -83,7 +84,7 @@ export function adminController(p) {
 
 
   this.getProposal = async () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getProposal()
         console.log('getProposal', data);
@@ -98,7 +99,7 @@ export function adminController(p) {
 
 
   this.getAllAddress = async () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getAllAddress()
         console.log('getAllAddress', data);
@@ -128,7 +129,7 @@ export function adminController(p) {
 
 
   this.getPostPrice = async () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       getPostPrice().then(({ data }) => {
         console.log('getPostPrice', data);
       })

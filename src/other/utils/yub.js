@@ -63,6 +63,29 @@
 
 
 
+
+    if (propName === 'phoneOrEmail') {
+        if (!target[propName].length) {
+          return ('کادر نباید خالی باشد')
+        }
+        else if (target[propName].includes('@')) {
+          if (target[propName].length < 5 || !target[propName].includes('.') ) {
+            return ('ایمیل وارد شده صحیح نمیباشد')
+          }
+        }
+        else if (target[propName].length > 11 || target[propName].length < 11) {
+            return ('شماره ی وارد شده صحیح نمیباشد')
+        }
+        else {
+          return target[propName]
+        }
+      }
+
+
+
+
+
+
     if (propName === 'password') {
       if (typeof target[propName] === 'string') {
         if (target[propName].length < 4) {
@@ -112,7 +135,7 @@
     }
     if (propName === 'price') {
       if (Number(target[propName])) {
-        if (target[propName].length < 4 || target[propName] < 1000) {
+        if (target[propName].length < 3 || target[propName] < 100) {
           return ('قیمت وارد شده صحیح نمیباشد')
         }
         else {
@@ -125,6 +148,18 @@
     
       }
     }
+
+
+    if (propName === 'code') {
+        if (target[propName].length < 4 || target[propName].length > 5) {
+          return ('کد را صحیح وارد کنید')
+        }
+        else {
+          return target[propName]
+        }
+    }
+
+
     if (propName === 'imageUrl') {
       if (typeof target[propName] === 'object') {
         return target[propName]
@@ -183,6 +218,17 @@
         return "لطفا انتخاب ستاره هارا تکمیل کنید"
       }
     }
+
+
+
+    if (propName === 'input1') {
+      if (target[propName].length < 11 || target[propName].length > 11) {
+        return ('شماره تماس باید یازده رقم باشد')
+      }
+      else {
+        return target[propName]
+      }
+  }
 
 
   }

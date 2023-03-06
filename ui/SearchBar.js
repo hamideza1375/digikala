@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { P, SearchBar } from '../Components/Html'
+import _useEffect from '../src/controllers/_initController'
 
 function SearchInput(p) {
 
@@ -19,7 +20,7 @@ function SearchInput(p) {
  
 
 
-  p.useEffect(() => {
+  _useEffect(() => {
     p.navigation.setOptions({ header: () => 
     <SearchBar
      Register={p.width > 395 ? true : false}

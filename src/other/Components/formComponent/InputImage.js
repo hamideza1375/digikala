@@ -8,8 +8,12 @@ function InputImage({ plackTextTop,imIconLeft,imIconRight,imageUrl,setImageUrl,_
    
     const pickImage = () => {
       launchImageLibrary({ mediaType }, (res) => {
-        if (!res.didCancel) setImageUrl({ name: res.assets[0].fileName, type: res.assets[0].type, uri: res.assets[0].uri })
-        else console.log('err');
+        if (!res.didCancel) {
+          if(res.assets[0].type ==='image/jpeg' || res.assets[0].type === 'image/jpg' || res.assets[0].type === 'image/png' )
+          setImageUrl({ name: res.assets[0].fileName, type: res.assets[0].type, uri: res.assets[0].uri })
+          else alert('فرمت عکس باید jpeg یا png باشد')
+        }
+        else alert('مشکلی پیش آمد دوباره امتحان کنید');
       })
   }
 

@@ -1,9 +1,10 @@
 import { confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getSingleComment, getSingleItem, reverse } from "../services/clientService";
+import _useEffect from "./_initial";
 
 export function clientController(p) {
 
   this.getCategory = () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getCategory()
         console.log('getCategory', data);
@@ -13,7 +14,7 @@ export function clientController(p) {
 
 
   this.getChildItems = () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getChildItems(p.route.params.id)
         console.log('getChildItems', data);
@@ -23,7 +24,7 @@ export function clientController(p) {
 
 
   this.getSingleItem = () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
         console.log('getSingleItem', data);

@@ -1,6 +1,6 @@
 import React from 'react'
 import share from '../../../../other/utils/share'
-import { Icon, Img, P, Span } from '../../../../other/Components/Html'
+import { Icon, Img, P, Py, Span } from '../../../../other/Components/Html'
 
 const Footer = () => {
   return (
@@ -9,14 +9,14 @@ const Footer = () => {
       <Span fg={7} w='70%' minw={180} >
         <Span >
           <Span border={[0, 'white']} bbw={1} mr={9} pb={5} w={'50%'} as='flex-start' >
-            <P color='white' >مجوز های ما</P>
+            <Py color='#fb0' >مجوز های ما</Py>
           </Span>
           <Span w={70} h={70} mr={7} mt={12} border={[1, 'white']} >
             <Img f={1} src={require('../../../../other/assets/images/etemadElectronic.png')} />
           </Span>
         </Span>
         <Span border={[0, 'white']} mt={10} btw={1} w={'60%'} pb={4} pt={8} mr={9} >
-          <P color='#09f' >درباره ی ما</P>
+          <Py color='#fff' >درباره ی ما</Py>
         </Span>
       </Span>
 

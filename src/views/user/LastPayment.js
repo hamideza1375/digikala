@@ -36,7 +36,7 @@ const LastPayment = (p) => {
 
             
             <Span style={{ paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 5, }} >
-              <P  ><P style={{ fontWeight: 'bold' }} >قیمت: </P>{'p.spacePrice(p.lastPayment.price)'}ت</P>
+              <P  ><P style={{ fontWeight: 'bold' }} >قیمت: </P>{'spacePrice(p.lastPayment.price)'}ت</P>
               <P style={{ color: '#ababab', }}>{"p.moment(p.lastPayment.createdAt).format('jYYYY/jM/jD hh:mm')"}</P>
             </Span>
           </Span>

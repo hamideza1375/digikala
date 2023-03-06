@@ -1,5 +1,6 @@
 import moment from 'moment-jalaali'
 import React, { useRef } from 'react'
+import _useEffect from '../../../controllers/_initController'
 import { Dropdown, P, Span, } from '../Html'
 
 var
@@ -25,7 +26,7 @@ const ProgressChart = (p) => {
   let pushArray7 = pushArrayRef7.current
 
 
-  p.useEffect(() => {
+  _useEffect(() => {
     pushArray = []
     pushArray7 = []
     pushMond = []

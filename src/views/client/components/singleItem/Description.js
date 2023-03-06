@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Badge, Button, Card2, Div, P, Press, Span } from '../../../../other/Components/Html'
+import spacePrice from '../../../../other/utils/spacePrice'
 
 const Description = (p) => {
-  const [color, setcolor] = p.useState()
+  const [color, setcolor] = useState()
   return (
 
     <Span minw={290} w={'100%'} ai='center' jc='center'>
@@ -19,7 +20,7 @@ const Description = (p) => {
 
             <Span f={2} ph={12} jc='space-between' fd='row' ai='center'>
               <P >تحویل حد اکثر یکساعت بعد از خرید</P>
-              <P color='#0ad' fs={14}>{p.spacePrice(p.singlePrice)} تومان </P>
+              <P color='#0ad' fs={14}>{spacePrice(p.singlePrice)} تومان </P>
             </Span >
 
           </Span>

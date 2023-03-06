@@ -23,26 +23,33 @@ let loginInterval = null
 /> */}
 
 let interval
-const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, setRand, btn = true, contentContainerStyle, overflow, mAutoFocus, mt, bgcolor = '#f0f0f0',
-  f, e, p, cp, m, ch, c, t, pr, im, i, edit, s, ph, $code, code, setcode, v,
-  title, settitle, price, setprice, phone, setphone,
-  imageUrl, setImageUrl, vIconLeft, vIconRight, videoUrl, setvideoUrl,
-  info, setinfo
-  , style, fullname, setfullname,
-  email, setemail, password, setpassword,
-  confirmPassword, setconfirmPassword, onClick, message,
-  setmessage, children, captcha, setcaptcha, host, checkText, setremember, remember,
-  star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar,
-  setallstar,
-  sizeY = 1, top = 10,
-  setwidth, setheight,
-  fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
-  tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
-  input, setinput, _input, flexDirection,
+const Form = ({
+  webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, setRand, btn = true,
+  contentContainerStyle, mAutoFocus, mt, bgcolor = '#f0f0f0',
+  f, e, p, cp, m, ch, c, t, pr, im, i, edit, s, ph, $code, v, style,
   plackTextTop = true,
   pb = 25, pt = 10,
   register,
-  autoComplete = true
+  autoComplete = true,
+  onClick,
+  navigation,
+  phore, 
+  in1, 
+  checkText,
+  children,
+  host,
+  sizeY = 1,
+  top = 10,
+  flexDirection,
+
+  fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
+  tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
+  phoreIconLeft, phoreIconRight, codeIconLeft, codeIconRight, vIconLeft, vIconRight,
+
+  title, settitle, price, setprice, phone, setphone,phoneOrEmail, setphoneOrEmail,
+  imageUrl, setImageUrl, videoUrl, setvideoUrl, info, setinfo,fullname, setfullname, email, setemail, password, setpassword,
+  confirmPassword, setconfirmPassword, message, setmessage, code, setcode, input1, setinput1,captcha, setcaptcha, setremember,
+  star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar, setallstar,
 }) => {
 
 
@@ -102,6 +109,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
   const [_confirmPassword, set_ConfirmPassword] = useState()
   const [_title, set_Title] = useState()
   const [_price, set_Price] = useState()
+  const [_code, set_Code] = useState()
   const [_imageUrl, set_ImageUrl] = useState()
   const [_videoUrl, set_VideoUrl] = useState()
 
@@ -111,21 +119,28 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
   const [_captcha, set_Captcha] = useState()
   const [_allstar, set_Allstar] = useState()
   const [_phone, set_Phone] = useState()
+  const [_phore, set_Phore] = useState()
+  const [_input1, set_Input1] = useState()
+
 
   newObj.phone = phone;
+  newObj.phoneOrEmail = phoneOrEmail;
   newObj.fullname = fullname
   newObj.email = email;
   newObj.password = password;
   newObj.confirmPassword = confirmPassword;
   newObj.title = title
   newObj.price = price;
+  newObj.code = code
   newObj.imageUrl = imageUrl;
   newObj.videoUrl = videoUrl;
   newObj.info = info;
   newObj.message = message;
   newObj.allstar = allstar;
+  newObj.input1 = input1;
 
   var pon = ph ? newObj.phone === phone : true
+  var poe = phore ? newObj.phoneOrEmail === phoneOrEmail : true
   var flm = f ? newObj.fullname === fullname : true
   var eml = e ? newObj.email === email : true
   var psd = p ? newObj.password === password : true
@@ -134,9 +149,11 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
   var cap = c ? (rand == captcha) ? true : false : true
   var titl = t ? newObj.title === title : true
   var prc = pr ? newObj.price === price : true
+  var cod = $code ? newObj.code === code : true
   var img = im ? (!edit ? newObj.imageUrl === imageUrl : true) : true
   var vdo = v ? (!edit ? newObj.videoUrl === videoUrl : true) : true
   var inf = i ? newObj.info === info : true
+  var inpt1 = in1 ? newObj.input1 === input1 : true
 
 
   return (
@@ -150,7 +167,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
               register={register}
               plackTextTop={plackTextTop}
               textContentType="username"
-              autoComplete={autoComplete?"username":'off'}
+              autoComplete={autoComplete ? "username" : 'off'}
               icon='user'
               p='نام'
               newObj={newObj.fullname}
@@ -169,7 +186,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
               register={register}
               plackTextTop={plackTextTop}
               textContentType="emailAddress"
-              autoComplete={autoComplete?"autoComplete":'off'}
+              autoComplete={autoComplete ? "autoComplete" : 'off'}
               keyboardType="email-address"
               icon="envelope"
               p='ایمیل'
@@ -190,7 +207,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
               register={register}
               plackTextTop={plackTextTop}
               textContentType="telephoneNumber"
-              autoComplete={autoComplete?"tel":'off'}
+              autoComplete={autoComplete ? "tel" : 'off'}
               keyboardType="phone-pad"
               icon="phone"
               p='شماره تلفن '
@@ -206,12 +223,34 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
             />
           }
 
+
+          {phore &&
+            <Frm
+              register={register}
+              plackTextTop={plackTextTop}
+              textContentType="emailAddress"
+              autoComplete={autoComplete ? "autoComplete" : 'off'}
+              keyboardType="email-address"
+              icon="phone"
+              p='ایمیل یا شماره تلفن'
+              newObj={newObj.phoneOrEmail}
+              iconLeft={phoreIconLeft}
+              iconRight={phoreIconRight}
+              state={phoneOrEmail}
+              setState={setphoneOrEmail}
+              getBlur={_phore}
+              setBlur={set_Phore}
+              yub={poe}
+              styles={styles}
+            />
+          }
+
           {p &&
             <Frm
               register={register}
               plackTextTop={plackTextTop}
               textContentType="password"
-              autoComplete={autoComplete?"password":'off'}
+              autoComplete={autoComplete ? "password" : 'off'}
               icon={!secure ? "eye" : "eye-slash"}
               p="رمز عبور"
               iconLeft={pIconLeft}
@@ -233,7 +272,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
               register={register}
               plackTextTop={plackTextTop}
               textContentType="password"
-              autoComplete={autoComplete?"password":'off'}
+              autoComplete={autoComplete ? "password" : 'off'}
               icon={!secure2 ? "eye" : "eye-slash"}
               p=" تکرار رمز عبور "
               iconLeft={cpIconLeft}
@@ -285,6 +324,25 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
             />
           }
 
+          {$code &&
+            <Frm
+              plackTextTop={plackTextTop}
+              m_icon="textsms"
+              p="کد ورود"
+              iconLeft={codeIconLeft}
+              iconRight={codeIconRight}
+              state={code}
+              setState={setcode}
+              getBlur={_code}
+              setBlur={set_Code}
+              newObj={newObj.code}
+              yub={cod}
+              styles={styles}
+              keyboardType="numeric"
+            />
+          }
+
+
           {i &&
             <Frm
               plackTextTop={plackTextTop}
@@ -321,47 +379,25 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
             />
           }
 
-          {_input &&
-            <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow: 1 }]}>
-              <View style={[styles.viewInput, { minHeight: 90 }]} >
-                <Swiper>
-                  {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} ></Text>}
-                  <Input
-                    textContentType="telephoneNumber"
-                    autoComplete="tel"
-                    icon="phone"
-                    keyboardType="phone-pad"
-                    value={input}
-                    placeholder={'ادمین جدید'}
-                    onChangeText={(text) => setinput(text)}
-                    style={[styles.input, { paddingRight: 3 }]}
-                  />
-                </Swiper>
-              </View>
-            </KeyboardAvoidingView>
 
+          {in1 &&
+            <Frm
+              textContentType="telephoneNumber"
+              autoComplete="off"
+              icon="phone"
+              plackTextTop={plackTextTop}
+              p='ادمین جدید'
+              state={input1}
+              setState={setinput1}
+              getBlur={_input1}
+              setBlur={set_Input1}
+              newObj={newObj.input1}
+              yub={inpt1}
+              styles={styles}
+              keyboardType="phone-pad"
+            />
           }
 
-          {$code &&
-            <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow: 1 }]}>
-              <View style={[styles.viewInput, { minHeight: 90 }]} >
-
-                <Swiper>
-                  {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} ></Text>}
-
-                  <Input
-                    m_icon="textsms"
-                    iconSize={30}
-                    keyboardType="phone-pad"
-                    value={code}
-                    placeholder={'کد ورود'}
-                    onChangeText={(text) => setcode(text)}
-                    style={[styles.input, { paddingRight: 3 }]}
-                  />
-                </Swiper>
-              </View>
-            </KeyboardAvoidingView>
-          }
 
           {im && <InputImage
             plackTextTop={plackTextTop}
@@ -400,7 +436,7 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
               <View style={{ marginVertical: 10 }} >
                 <View style={[styles.viewCheckbox, { flexGrow: .4, maxHeight: 20 }]}>
                   <CheckBox show={!checkText ? show : changeremember} setshow={!checkText ? setshow : setchangeremember} />
-                  <Text style={{ marginLeft: 11 }} >{checkText ? " " + checkText : " موافقت با قوانین "}</Text>
+                  <Text onPress={!checkText ? () => { navigation.navigate('Rules') } : () => { setchangeremember(!changeremember) }} style={{ marginLeft: 11 }} >{checkText ? " " + checkText : " موافقت با قوانین "}</Text>
                 </View>
                 {_checkbox && show == false && <Text style={{ color: 'red', alignSelf: 'flex-start' }} >پرکردن فیلد الزامی هست</Text>}
               </View>
@@ -540,9 +576,12 @@ const Form = ({ webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, 
                   set_Info(true)
                   set_Allstar(true)
                   set_Phone(true)
+                  set_Phore(true)
+                  set_Code(true)
+                  set_Input1(true)
                 }}
                 onPress={async () => {
-                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && img && vdo && inf && pon && star1) {
+                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && cod && img && vdo && inf && pon && poe && inpt1 && star1) {
 
                     if (!timer) {
                       onClick()

@@ -45,7 +45,7 @@ function Home(p) {
         </Span>
 
       </Scroll>
-      <Chat />
+      <Chat {...p}/>
     </ContainerTab>
   )
 }

@@ -24,21 +24,13 @@ export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon
   return (
     <>
       <Pressable
-        onPressIn={() => { sethidden(!hidden); setTimeout(() => { sethidden(!hidden) }, 1) }}
+        onPressIn={() => { sethidden(!hidden);  }}
         onPress={() => {
-          setTimeout(() => {
-            if (!iconPress && m_icon === 'arrow-left') show?setmIcon('arrow-left'):setmIcon('arrow-drop-down');
-          }, 210);
-          () => {
-            sethidden(!hidden); setTimeout(() => { sethidden(!hidden) }, 2)
-          };
-          setTimeout(() => {
-            ref.current && ref.current.setNativeProps({ style: { height: !show ? null : 0 } })
-            setshow(!show)
-          }, 100);
-
+          setTimeout(() => {ref.current && ref.current.setNativeProps({ style: { height: !show ? null : 0 } })}, 100);
+          setTimeout(() => {if (!iconPress && m_icon === 'arrow-left') show?setmIcon('arrow-left'):setmIcon('arrow-drop-down');}, 210);
+          setTimeout(() => {if (!iconPress && m_icon === 'arrow-left'){ref.current && ref.current.setNativeProps({ style: { height: null } }); setmIcon('arrow-drop-down')}}, 220);
+          setTimeout(() => {if (!iconPress &&  m_icon !== 'arrow-left'){ref.current && ref.current.setNativeProps({ style: { height: null } }); setmIcon('arrow-drop-down')}}, 220);
         }}
-        // onPressIn={onPress}
         activeOpacity={1}
         style={[styles.headView,
         {

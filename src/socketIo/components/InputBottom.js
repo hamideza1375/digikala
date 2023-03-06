@@ -1,5 +1,4 @@
 import { View } from "react-native";
-import Icon from "react-native-vector-icons/dist/FontAwesome";
 import { Input } from "../../other/Components/Html";
 
 export default function InputBottom(props) {
@@ -30,10 +29,10 @@ export default function InputBottom(props) {
             alignSelf: 'flex-end',
             marginLeft: '16%'
           }}>
-            <Icon name='paperclip' size={27} color='#7777' /* onPress={props._imagePicker} */ />
+            {/* <Icon name='paperclip' size={27} color='#7777' onPress={props._imagePicker} /> */}
           </View>
-          <Input maxLength={1000} style={{
-            minHeight: 50,
+          <Input fg={0} multiline maxLength={1000} style={{
+            height: 55,
             position: 'absolute',
             width: '100%'
           }} iconSize={24} styleIcon={{
@@ -41,8 +40,8 @@ export default function InputBottom(props) {
               rotate: '-125deg'
             }]
           }}
-            onSubmitEditing={() => { props.handlePvChat(); props.setpvMessage('') }} value={props.pvMessage} onChange={(e) => props.setpvMessage(e.nativeEvent.text)}
-            iconPress={() => { props.handlePvChat(); props.p.setpvMessage('') }} icon="paper-plane" iconColor="#38a" color="#25a" p="ارسال پیام" />
+            /* onSubmitEditing={() => { props.handlePvChat(); props.setpvMessage('') }} */ value={props.pvMessage} onChange={(e) => props.setpvMessage(e.nativeEvent.text)}
+            iconPress={() => { props.handlePvChat(); props.setpvMessage('') }} icon="paper-plane" iconColor="#38a" color="#25a" p="ارسال پیام" />
         </View>
       </View>
     </View>);

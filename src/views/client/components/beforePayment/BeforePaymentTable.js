@@ -1,5 +1,6 @@
 import React from 'react'
 import { P, Span, Table } from '../../../../other/Components/Html'
+import spacePrice from '../../../../other/utils/spacePrice'
 
 const BeforePaymentTable = (p) => {
   return (
@@ -12,7 +13,7 @@ const BeforePaymentTable = (p) => {
         object={p.currentTable}
         setobject={p.set$food}
       >
-        <Span h={35} ai='center' jc='center' ><P ta='center' color='#0ae' >هزینه ی پیک {p.spacePrice(p.sendPrice)} تومان</P></Span>
+        <Span h={35} ai='center' jc='center' ><P ta='center' color='#0ae' >هزینه ی پیک {spacePrice(p.sendPrice)} تومان</P></Span>
       </Table>
     </Span>)
 }

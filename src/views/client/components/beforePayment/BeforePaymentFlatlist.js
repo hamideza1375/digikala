@@ -1,5 +1,6 @@
 import React from 'react'
 import { FlatList, Span } from '../../../../other/Components/Html'
+import spacePrice from '../../../../other/utils/spacePrice'
 import BeforePaymentCatd from '../beforePayment/BeforePaymentCatd'
 
 const BeforePaymentFlatlist = (p) => {
@@ -11,7 +12,7 @@ const BeforePaymentFlatlist = (p) => {
         data={p.childItem}
         renderItem={({ item, index }) => (
           <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} ai='center' col2={{ marginHorizontal: 3 }} col1={{ marginHorizontal: 3 }}>
-            <BeforePaymentCatd item={item} spacePrice={p.spacePrice} />
+            <BeforePaymentCatd item={item} spacePrice={spacePrice} />
           </Span>)}
       />
     </Span>)

@@ -1,17 +1,8 @@
 import { useRef, useState } from 'react';
 import { localhost } from '../other/utils/axios/axios'
-import jwt_decode from "jwt-decode";
-import localStorage from '@react-native-async-storage/async-storage'
-import Alert from "../other/utils/alert"
-import { useCallback, useMemo } from "react";
-import { useFocusEffect } from '@react-navigation/native';
-import { Keyboard, BackHandler, ToastAndroid, Dimensions } from "react-native";
-import spacePrice from '../other/utils/spacePrice';
-import { courseIdValidator } from '../other/utils/IdValidator';
-import { truncate } from '../other/utils/helpers';
+import { Dimensions } from "react-native";
 
 export function initial() {
-
 
   const _width = Dimensions.get('window').width;
   const _height = Dimensions.get('window').height;
@@ -33,7 +24,7 @@ export function initial() {
   const [pageLimit] = useState(16)
   const [current, setcurrent] = useState([])
   const [currentPage, setcurrentPage] = useState(1)
-  const [input, setinput] = useState('')
+  const [input1, setinput1] = useState('')
   const [height, setheight] = useState(_height)
   const [width, setwidth] = useState(_width)
   const [star1, setstar1] = useState(true)
@@ -73,7 +64,6 @@ export function initial() {
 
   const [$input] = useState(new Map())
 
-  const useEffect = (call, state) => { useFocusEffect(useCallback(() => call(), state)) }
   const refInput = useRef()
 
   const [dropdownBottom, setdropdownBottom] = useState()
@@ -111,7 +101,7 @@ export function initial() {
     star1, setstar1,
     width, setwidth,
     height, setheight,
-    input, setinput,
+    input1, setinput1,
     currentPage, setcurrentPage,
     current, setcurrent,
     pageLimit,
@@ -134,7 +124,6 @@ export function initial() {
     message, setmessage,
     allstar, setallstar,
     refInput,
-    useEffect,
     host,
     $input,
     $, set$,
@@ -148,10 +137,63 @@ export function initial() {
     videoUrl, setvideoUrl,
     price, setprice,
     title, settitle,
-    useState,
-    spacePrice, courseIdValidator, truncate, jwt_decode, localStorage, Alert, useEffect, useMemo, Keyboard, BackHandler, ToastAndroid, Dimensions,
    }
 
 }
 
 
+
+export const initialPropType = (component) => {
+  component.propTypes = {
+    // , phone: PropTypes.number
+    // , star: PropTypes
+    // , captcha: PropTypes.bool
+    // , myCode: PropTypes.number
+    // , token: PropTypes
+    // , price: PropTypes.number
+    // , code: PropTypes.number
+    // , imageUrl: PropTypes.string
+    showActivityHome: PropTypes.bool
+    , showActivity: PropTypes.bool
+    , severalTime: PropTypes.number
+    , severalShow: PropTypes.bool
+    , rand: PropTypes.number
+    , useEffect: PropTypes.func
+    , several: PropTypes.number
+    , sendMessage: PropTypes.bool
+    , showModalAvailabe: PropTypes.bool
+    , splash: PropTypes.bool
+    , list: PropTypes.array
+    , timeChange: PropTypes.number
+    , showModal: PropTypes.bool
+    , replaceInput: PropTypes.bool
+    , totalTitle: PropTypes.array
+    , star5: PropTypes.bool
+    , star4: PropTypes.bool
+    , star3: PropTypes.bool
+    , star2: PropTypes.bool
+    , star1: PropTypes.bool
+    , width: PropTypes.number
+    , height: PropTypes.number
+    , input: PropTypes.string
+    , currentPage: PropTypes.number
+    , current: PropTypes.array
+    , pageLimit: PropTypes.number
+    , page: PropTypes.number
+    , ass: PropTypes.bool
+    , checkbox: PropTypes.bool
+    , remember: PropTypes.number
+    , confirmPassword: PropTypes.string
+    , password: PropTypes.string
+    , email: PropTypes.string
+    , fullname: PropTypes.string
+    , myPhone: PropTypes.string
+    , tokenValue: PropTypes.object
+    , showForm: PropTypes.bool
+    , message: PropTypes.string
+    , allstar: PropTypes.number
+    , host: PropTypes.string
+    , info: PropTypes.string
+    , title: PropTypes.string
+  }
+}

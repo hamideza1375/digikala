@@ -1,5 +1,6 @@
 import React, { lazy, Suspense } from 'react'
 import { Platform } from 'react-native'
+import _useEffect from '../../controllers/_initial';
 import { Br, Container2, Div, Loading, P, Scroll, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 
@@ -14,7 +15,7 @@ const Footer = lazy(() => import('./components/home/Footer'));
 
 
 const SingleItems = (p) => {
-  p.useEffect(() => {
+  _useEffect(() => {
     // p.navigation.setOptions({
     //   header: () =>
     //     <SearchBar Register={p.width > 395 ? true : false} icon={'filter'} iconPress={() => { p.setshowFilterModal(true) }} array={p.array} setarray={p.setarray} {...p} bgcolor={'#e7ed'} logoPress={() => p.navigation.navigate('Home')} row={

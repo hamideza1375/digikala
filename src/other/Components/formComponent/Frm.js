@@ -4,7 +4,7 @@ import { Input } from "./FormComponent";
 import Swiper from '../components/Swiper'
 
 
-export default function ({ plackTextTop, autoFocus = false, multiline = false, m_icon, iconPress, secureTextEntry, icon, textContentType, autoComplete, keyboardType = 'default', p, newObj, iconLeft, iconRight, setBlur, getBlur, state, setState, styles, yub }) {
+export default function ({ plackTextTop, autoFocus = false, multiline = false, m_icon, iconPress, secureTextEntry, icon, textContentType, autoComplete='off', keyboardType = 'default', p, newObj, iconLeft, iconRight, setBlur, getBlur, state, setState, styles, yub }) {
 
 
   const fadeAnim = useRef(new Animated.Value(0)).current;

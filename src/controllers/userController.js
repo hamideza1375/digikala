@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment } from '../services/userService'
+import _useEffect from './_initial';
 
 
 var interval
@@ -35,7 +36,7 @@ export function userController(p) {
 
 
   this.loadPageTimer = () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       if (!p.timerToMinutTrueFalse)
       this.timerTwoMinut()
     }, [])
@@ -43,7 +44,7 @@ export function userController(p) {
   }
 
   this.getCodeForRegister = async () => {
-    await getCodeForRegister({ fullname: p.fullname, phone: p.phone, password: p.password })
+    await getCodeForRegister({ phoneOrEmail: p.phoneOrEmail, password: p.password })
     this.timerTwoMinut()
     p.navigation.navigate('GetCode', { register: true })
   }
@@ -57,7 +58,7 @@ export function userController(p) {
 
 
   this.login = async () => {
-    const { data } = await login({ phone: p.phone, password: p.password, remember: p.remember, captcha: p.captcha })
+    const { data } = await login({ phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember, captcha: p.captcha })
     await AsyncStorage.removeItem("several")
     await AsyncStorage.removeItem('getMinutes')
     if (!data?.token) {
@@ -72,7 +73,7 @@ export function userController(p) {
 
 
   this.verifyCodeLoginForAdmin = async () => {
-    const { data } = await verifyCodeLoginForAdmin({ code: p.code, phone: p.phone, password: p.password, remember: p.remember })
+    const { data } = await verifyCodeLoginForAdmin({ code: p.code, phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember })
     await AsyncStorage.setItem('token', data.token)
     p.navigation.navigate('Profile')
     p.navigation.navigate('Profile')
@@ -80,7 +81,7 @@ export function userController(p) {
 
 
   this.getCodeForgetPass = async () => {
-    await getCodeForgetPass({ phone: p.phone })
+    await getCodeForgetPass({ phoneOrEmail: p.phoneOrEmail })
     this.timerTwoMinut()
     p.navigation.navigate('GetCode', { forgetPass: true })
   }
@@ -118,7 +119,7 @@ export function userController(p) {
 
 
   this.getImageProfile = async () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getImageProfile()
         console.log('getLastPayment', data);
@@ -133,7 +134,7 @@ export function userController(p) {
 
 
   this.getLastPayment = () => {
-    p.useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getLastPayment()
         console.log('getLastPayment', data);

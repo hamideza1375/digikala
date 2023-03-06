@@ -20,6 +20,7 @@ export function user() {
   const [message, setmessage] = useState('')
   const [password, setpassword] = useState('')
   const [remember, setremember] = useState('')
+  const [phoneOrEmail, setphoneOrEmail] = useState('')
 
   const [twoMinut, settwoMinut] = useState()
   const [timerToMinutTrueFalse, settimerToMinutTrueFalse] = useState(false)
@@ -39,7 +40,8 @@ export function user() {
     imageUrl, setimageUrl,
     message, setmessage,
     password, setpassword,
-
+    phoneOrEmail, setphoneOrEmail,
+    
     twoMinut, settwoMinut,
     timerToMinutTrueFalse, settimerToMinutTrueFalse,
     // changeRegisterToCode, setchangeRegisterToCode,

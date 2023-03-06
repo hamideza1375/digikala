@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native';
+import spacePrice from '../../../../other/utils/spacePrice';
 // import { Button } from '../../../../other/Components/Html';
 
 const CardDeleteAllAddress = (p) => {
@@ -27,7 +28,7 @@ const CardDeleteAllAddress = (p) => {
       </View>
 
       <View style={{ paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }} >
-        <Text  ><Text style={{ fontWeight: 'bold' }} >قیمت: </Text>{p.spacePrice(item.price)} تومان</Text>
+        <Text  ><Text style={{ fontWeight: 'bold' }} >قیمت: </Text>{spacePrice(item.price)} تومان</Text>
         <Text style={{ color: '#ababab', }}>{p.moment(item.createdAt).format('jYYYY/jM/jD hh:mm:ss')}</Text>
       </View>
     </>

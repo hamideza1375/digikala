@@ -141,7 +141,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                       <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-                        <P onClick={() => { p.setpriceFilter(16000000); p.setpriceFilterTo(9999999999); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >از 16 ملیون به بالا</P >
+                        <P onClick={() => { p.setpriceFilter(16000000); p.setpriceFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >از 16 ملیون به بالا</P >
                       </Span>
 
                       <Span style={{ padding: 5 }} >
@@ -155,7 +155,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                 {/* //! اگه غیر از عدد چیز دیگه ای وارد کرد به صورت قرمز بنویس فقط عدد وارد کنید */}
 
                 <Input border={[2]} $input={p.$input} textId='input1FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.priceFilter.toString()} onChangeText={(text) => { p.setpriceFilter(text) }} />
-                <Input keyboardType='numeric' fs={p.priceFilterTo == 9999999999 ? 18 : 11} w={100} placeholder='تا' value={p.priceFilterTo == 9999999999 ? '♾' : p.priceFilterTo.toString()} onChangeText={(text) => { p.setpriceFilterTo(text) }} />
+                <Input keyboardType='numeric' fs={p.priceFilterTo == Infinity ? 18 : 11} w={100} placeholder='تا' value={p.priceFilterTo == Infinity ? '♾' : p.priceFilterTo.toString()} onChangeText={(text) => { p.setpriceFilterTo(text) }} />
                 <Span mr={5} ai='center' jc='center' >تومان</Span>
               </Span>
             </Span>
@@ -197,7 +197,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
 
 
                       <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-                        <P onClick={() => { p.setsdCardFilter(128); p.setsdCardFilterTo(9999999999); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >128 به بالا</P >
+                        <P onClick={() => { p.setsdCardFilter(128); p.setsdCardFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >128 به بالا</P >
                       </Span>
 
                       <Span style={{ padding: 5 }} >
@@ -208,7 +208,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                   </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input2FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.sdCardFilter.toString()} onChangeText={(text) => { p.setsdCardFilter(text) }} />
-                <Input keyboardType='numeric' fs={p.sdCardFilterTo == 9999999999 ? 18 : 11} value={p.sdCardFilterTo == 9999999999 ? '♾' : p.sdCardFilterTo.toString()} w={100} placeholder='تا' onChangeText={(text) => { p.setsdCardFilterTo(text) }} />
+                <Input keyboardType='numeric' fs={p.sdCardFilterTo == Infinity ? 18 : 11} value={p.sdCardFilterTo == Infinity ? '♾' : p.sdCardFilterTo.toString()} w={100} placeholder='تا' onChangeText={(text) => { p.setsdCardFilterTo(text) }} />
                 <Span mr={5} ai='center' jc='center' >گیگابایت</Span>
               </Span>
             </Span>
@@ -245,7 +245,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                       <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-                        <P onClick={() => { p.setramFilter(16); p.setramFilterTo(9999999999); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 به بالا</P >
+                        <P onClick={() => { p.setramFilter(16); p.setramFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 به بالا</P >
                       </Span>
 
                       <Span style={{ padding: 5 }} >
@@ -256,7 +256,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                   </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input3FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.ramFilter.toString()} onChangeText={(text) => { p.setramFilter(text) }} />
-                <Input keyboardType='numeric' fs={p.ramFilterTo === 9999999999 ? 18 : 11} w={100} placeholder='تا' value={p.ramFilterTo == 9999999999 ? '♾' : p.ramFilterTo.toString()} onChangeText={(text) => { p.setramFilterTo(text) }} />
+                <Input keyboardType='numeric' fs={p.ramFilterTo === Infinity ? 18 : 11} w={100} placeholder='تا' value={p.ramFilterTo == Infinity ? '♾' : p.ramFilterTo.toString()} onChangeText={(text) => { p.setramFilterTo(text) }} />
                 <Span mr={5} ai='center' jc='center' >گیگابایت</Span>
               </Span>
             </Span>
@@ -295,7 +295,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                       <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-                        <P onClick={() => { p.setcpuCoreFilter(16); p.setcpuCoreFilterTo(9999999999); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 به بالا</P >
+                        <P onClick={() => { p.setcpuCoreFilter(16); p.setcpuCoreFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 به بالا</P >
                       </Span>
 
                       <Span style={{ padding: 5 }} >
@@ -306,7 +306,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                   </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input4FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.cpuCoreFilter.toString()} onChangeText={(text) => { p.setcpuCoreFilter(text) }} />
-                <Input keyboardType='numeric' fs={p.cpuCoreFilterTo == 9999999999 ? 18 : 11} w={100} placeholder='تا' value={p.cpuCoreFilterTo == 9999999999 ? '♾' : p.cpuCoreFilterTo.toString()} onChangeText={(text) => { p.setcpuCoreFilterTo(text) }} />
+                <Input keyboardType='numeric' fs={p.cpuCoreFilterTo == Infinity ? 18 : 11} w={100} placeholder='تا' value={p.cpuCoreFilterTo == Infinity ? '♾' : p.cpuCoreFilterTo.toString()} onChangeText={(text) => { p.setcpuCoreFilterTo(text) }} />
                 <Span mr={5} ai='center' jc='center' >هسته</Span>
               </Span>
             </Span>
@@ -349,7 +349,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                       </Span>
 
                       <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-                        <P onClick={() => { p.setcameraFilter(108); p.setcameraFilterTo(9999999999); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >108 به بالا</P >
+                        <P onClick={() => { p.setcameraFilter(108); p.setcameraFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >108 به بالا</P >
                       </Span>
 
                       <Span style={{ padding: 5 }} >
@@ -360,7 +360,7 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
                   </Dropdown2>
                 </Span>
                 <Input $input={p.$input} textId='input5FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.cameraFilter.toString()} onChangeText={(text) => { p.setcameraFilter(text) }} />
-                <Input keyboardType='numeric' fs={p.cameraFilterTo == 9999999999 ? 18 : 11} w={100} placeholder='تا' value={p.cameraFilterTo == 9999999999 ? '♾' : p.cameraFilterTo.toString()} onChangeText={(text) => { p.setcameraFilterTo(text) }} />
+                <Input keyboardType='numeric' fs={p.cameraFilterTo == Infinity ? 18 : 11} w={100} placeholder='تا' value={p.cameraFilterTo == Infinity ? '♾' : p.cameraFilterTo.toString()} onChangeText={(text) => { p.setcameraFilterTo(text) }} />
                 <Span mr={5} ai='center' jc='center' >مگاپیکسل</Span>
               </Span>
             </Span>
@@ -382,11 +382,11 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
               <Button mt={10} w={100}
                 onClick={() => {
                   const filterArray = array.filter((f) =>
-                    ((f.price >= p.priceFilter) && (p.priceFilterTo ? (f.price <= p.priceFilterTo) : f.price <= 9999999999999999)) &&
-                    ((f.sdCard >= p.sdCardFilter) && (p.sdCardFilterTo ? f.sdCard <= p.sdCardFilterTo : f.sdCard <= 9999999999999999)) &&
-                    ((f.ram >= p.ramFilter) && (p.ramFilterTo ? f.ram <= p.ramFilterTo : f.ram <= 9999999999999999)) &&
-                    ((f.cpuCore >= p.cpuCoreFilter) && (p.cpuCoreFilterTo ? f.cpuCore <= p.cpuCoreFilterTo : f.cpuCore <= 9999999999999999)) &&
-                    ((f.camera >= p.cameraFilter) && (p.cameraFilterTo ? f.camera <= p.cameraFilterTo : f.camera <= 9999999999999999)) &&
+                    ((f.price >= p.priceFilter) && (p.priceFilterTo ? (f.price <= p.priceFilterTo) : f.price <= Infinity)) &&
+                    ((f.sdCard >= p.sdCardFilter) && (p.sdCardFilterTo ? f.sdCard <= p.sdCardFilterTo : f.sdCard <= Infinity)) &&
+                    ((f.ram >= p.ramFilter) && (p.ramFilterTo ? f.ram <= p.ramFilterTo : f.ram <= Infinity)) &&
+                    ((f.cpuCore >= p.cpuCoreFilter) && (p.cpuCoreFilterTo ? f.cpuCore <= p.cpuCoreFilterTo : f.cpuCore <= Infinity)) &&
+                    ((f.camera >= p.cameraFilter) && (p.cameraFilterTo ? f.camera <= p.cameraFilterTo : f.camera <= Infinity)) &&
                     ((!p.fourG && !p.fiveG) ? f.network : (p.fourG && f.network === '4G') || (p.fiveG && f.network === '5G'))
                   )
                   console.log(filterArray);

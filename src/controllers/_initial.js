@@ -1,0 +1,48 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { useFocusEffect } from '@react-navigation/native'
+import Axios from 'axios'
+import jwt_decode from "jwt-decode";
+import { useCallback, useEffect as _useEffect } from 'react'
+import { Dimensions } from 'react-native'
+
+import { adminController } from "./adminController";
+import { clientController } from "./clientController";
+import { userController } from "./userController";
+import { Layout } from "../other/Layout/Layout";
+
+export const _initController = (p) => {
+
+  _useEffect(() => {
+    var toastOK = (data) => { p.toast.success(typeof data === 'string' ? data : 'موفق آمیز', '✅', 4000) }
+    var toast500 = () => { p.toast.error('خطا', 'مشکلی از سمت سرور پیش آمده'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
+    var toast400 = (error) => { p.toast.error('خطا', typeof error === 'string' ? error : 'خطایی غیر منتظره رخ داد'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
+    Axios.interceptors.response.use(function (response) {
+      if (response.config.method !== 'get' && response.data !== '' && (response.status === 200 || response.status === 201)) toastOK(response.data)
+      p.setshowActivity(false)
+      return response
+    }, function (error) {
+      if (error?.response?.status) {
+        if (error.response.status > 400 && error.response.status <= 500) { toast500() };
+        if (error.response.status === 400) { toast400(error.response.data) };
+        p.setshowActivity(false)
+      } return Promise.reject(error);
+    });
+    AsyncStorage.getItem("token").then((token) => { if (token) { const user = jwt_decode(token); p.settokenValue(user) } })
+  }, [])
+
+  _useEffect(() => { setTimeout(() => { p.setSplash(false) }, 1000) }, [])
+
+  _useEffect(() => { p.$input.set('a', 'a') }, [])
+
+  Dimensions.addEventListener('change', ({ window: { width, height } }) => { p.setwidth(width); p.setheight(height) })
+}
+
+export function allController(p) {
+  const _client = ({ navigation, route }) => new clientController({ ...p, navigation, route })
+  const _user = ({ navigation, route }) => new userController({ ...p, navigation, route })
+  const _admin = ({ navigation, route }) => new adminController({ ...p, navigation, route })
+  const reducer = (props) => ({ _client: _client(props), _user: _user(props), _admin: _admin(props), })
+  this._children = (Component, key) => ({ children: (props) => <Layout _key={key} {...props} {...p}><Component {...props} {...p} {...reducer(props)} /></Layout> })
+}
+
+export default function useEffect(call, state) { useFocusEffect(useCallback(() => call(), state)) }

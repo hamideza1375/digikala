@@ -27,6 +27,8 @@ export { default as DaysChartMean } from './chart/DaysChartMean'
 export { default as DaysChartTotal } from './chart/DaysChartTotal'
 export { default as YearsChartMean } from './chart/YearsChartMean'
 export { default as YearsChartTotal } from './chart/YearsChartTotal'
+export { default as UserLengthChart } from './chart/UserLengthChart'
+export { default as ProgressChart } from './chart/ProgressChart'
 export { Textarea,Input, CheckBox, CheckBoxRadius } from './formComponent/FormComponent'
 // import { Input as _Input } from './formComponent/FormComponent'
 
@@ -213,7 +215,7 @@ export const PressScrollView = (props) =>
 
 export const ImgBackground = (props) => <Component source={props.src} {...props} Component={ImageBackground} />
 
-export const Img = (props) => <Component style={[{backgroundColor:'silver',resizeMode: 'stretch'}, props.style]} source={props.src} {...props} Component={Image} />
+export const Img = (props) => <Component  style={[{resizeMode: 'stretch'}, props.style]} source={props.src} {...props} Component={Image} />
 
 export const Scroll = (props) => <Component {...props} Component={ScrollView} />
 

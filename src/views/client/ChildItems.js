@@ -1,22 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Platform } from 'react-native'
-import { Container, Container2, Icon, M_icon, Scroll, Span } from '../../other/Components/Html'
+import { Container, Container2, Icon, M_icon, P, Scroll, SearchBar, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import FilterList from './components/childItem/FilterList'
 import FlatlistChild from './components/childItem/FlatlistChildItem'
 
 const ChildItems = (p) => {
-  // p.useEffect(() => {
-  //   p.navigation.setOptions({
-  //     header: () =>
-  //       <SearchBar Register={p.width > 395 ? true : false} icon={'filter'} iconPress={() => { p.setshowFilterModal(true) }} array={p.array} setarray={p.setarray} {...p} bgcolor={'#e7ed'} logoPress={() => p.navigation.navigate('Home')} row={
-  //         <Span fd='row' mt={19} >
-  //           <P fs={10} mh={7} >موبایل تبلت</P>
-  //           <P fs={10} mh={7} >هدفون هنزفیری</P>
-  //           <P fs={10} mh={7} >لوازم جانبی</P>
-  //         </Span>} src={require('../../other/assets/images/logo.png')} />
-  //   });
-  // }, [])
+
+  
   return (
     <Container2>
       <Span fd='row-reverse' w='100%' f={1} mt={8} >
@@ -24,7 +15,7 @@ const ChildItems = (p) => {
           <FlatlistChild {...p} />
         </Span>
 
-        <FilterList {...p} />
+        {/* <FilterList {...p} /> */}
 
         <Chat {...p} />
       </Span>

@@ -1,7 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react'
 import { ScrollView } from 'react-native';
-import { Img, ScrollHorizontal, Span, M_icon, Press, Badge, Row } from '../Html'
+import { Img, Span, M_icon, Press, Badge, Row } from '../Html'
 
 var count = 0,
   _width,

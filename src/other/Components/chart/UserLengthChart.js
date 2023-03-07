@@ -72,14 +72,6 @@ const DaysChartTotal = ({ color = '#a50b', borderColor = '#a507', rodColor = '#d
 
     if (data?.length)
       for (let i of data) {
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushMond2[pushMond2.length - 1]?.array.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushMond2[pushMond2.length - 2]?.array.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushMond2[pushMond2.length - 3]?.array.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushMond2[pushMond2.length - 4]?.array.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushMond2[pushMond2.length - 5]?.array.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushMond2[pushMond2.length - 6]?.array.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushMond2[pushMond2.length - 7]?.array.push(i.price)
-
         if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray.push(i.price)
         if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray2.push(i.price)
         if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray3.push(i.price)

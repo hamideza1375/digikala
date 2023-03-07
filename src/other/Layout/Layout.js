@@ -7,6 +7,7 @@ import Drawer from '../Components/tabNavigation/Drawer';
 import { Icon, SearchBar, Span } from '../Components/Html';
 
 import HomePage from './page/HomePage';
+import ChildItemPage from './page/ChildItemPage';
 
 
 export const Layout = (p) => {
@@ -54,6 +55,9 @@ export const Layout = (p) => {
           ||
           p.route.name === 'Home' &&
           <HomePage {...p} bottom={bottom} />
+          ||
+          p.route.name === 'ChildItems' &&
+          <ChildItemPage {...p} bottom={bottom} />
           ||
           <View flex={1} >{p.children}</View>
         }

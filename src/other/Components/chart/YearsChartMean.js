@@ -6,9 +6,7 @@ var
   pushMond = [],
   pushMond2 = []
 
-const YearsChartMean = (p) => {
-
-  const { color = '#a5fb', borderColor = '#a5f5', rodColor = '#d8f5', rodWidth = 'auto', bgcolor = '#d8f5', br = 4, w = '100%', h = '100%', data } = p
+const YearsChartMean = ({ color = '#a5fd', borderColor = '#a5f7', rodColor = '#d5fd', rodWidth = 'auto', bgcolor = '#d5fa', br = 4, w = '100%', h = '100%', data }) => {
 
 
   const pushArrayRef = useRef([])
@@ -63,6 +61,8 @@ const YearsChartMean = (p) => {
 
   const [sorteX, setsorteX] = useState([1])
 
+  const [change, setchange] = useState(false)
+
 
   useEffect(() => {
     pushArray = []
@@ -82,7 +82,7 @@ const YearsChartMean = (p) => {
 
     if (data?.length)
       for (let i of data) {
-        pushMond.push({ date: i.date, years: moment(i.date).format('jYYYY'), mond: moment(i.date).format('jM'), array: [] })
+        pushMond.push({ date: new Date(i.date), years: moment(new Date(i.date)).format('jYYYY'), mond: moment(new Date(i.date)).format('jM'), array: [] })
       }
 
 
@@ -98,31 +98,31 @@ const YearsChartMean = (p) => {
 
     if (data?.length)
       for (let i of data) {
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 1]?.mond && pushMond2[pushMond2.length - 1]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 1]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 2]?.mond && pushMond2[pushMond2.length - 2]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 2]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 3]?.mond && pushMond2[pushMond2.length - 3]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 3]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 4]?.mond && pushMond2[pushMond2.length - 4]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 4]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 5]?.mond && pushMond2[pushMond2.length - 5]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 5]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 6]?.mond && pushMond2[pushMond2.length - 6]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 6]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 7]?.mond && pushMond2[pushMond2.length - 7]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 7]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 8]?.mond && pushMond2[pushMond2.length - 8]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 8]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 9]?.mond && pushMond2[pushMond2.length - 9]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 9]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 10]?.mond && pushMond2[pushMond2.length - 10]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 10]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 11]?.mond && pushMond2[pushMond2.length - 11]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 11]?.array.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 12]?.mond && pushMond2[pushMond2.length - 12]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushMond2[pushMond2.length - 12]?.array.push(i.pricePayment)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 1]?.mond && pushMond2[pushMond2.length - 1]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 1]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 2]?.mond && pushMond2[pushMond2.length - 2]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 2]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 3]?.mond && pushMond2[pushMond2.length - 3]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 3]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 4]?.mond && pushMond2[pushMond2.length - 4]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 4]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 5]?.mond && pushMond2[pushMond2.length - 5]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 5]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 6]?.mond && pushMond2[pushMond2.length - 6]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 6]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 7]?.mond && pushMond2[pushMond2.length - 7]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 7]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 8]?.mond && pushMond2[pushMond2.length - 8]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 8]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 9]?.mond && pushMond2[pushMond2.length - 9]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 9]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 10]?.mond && pushMond2[pushMond2.length - 10]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 10]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 11]?.mond && pushMond2[pushMond2.length - 11]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 11]?.array.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 12]?.mond && pushMond2[pushMond2.length - 12]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushMond2[pushMond2.length - 12]?.array.push(i.price)
 
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 1]?.mond && pushMond2[pushMond2.length - 1]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 2]?.mond && pushMond2[pushMond2.length - 2]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray2.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 3]?.mond && pushMond2[pushMond2.length - 3]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray3.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 4]?.mond && pushMond2[pushMond2.length - 4]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray4.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 5]?.mond && pushMond2[pushMond2.length - 5]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray5.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 6]?.mond && pushMond2[pushMond2.length - 6]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray6.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 7]?.mond && pushMond2[pushMond2.length - 7]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray7.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 8]?.mond && pushMond2[pushMond2.length - 8]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray8.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 9]?.mond && pushMond2[pushMond2.length - 9]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray9.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 10]?.mond && pushMond2[pushMond2.length - 10]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray10.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 11]?.mond && pushMond2[pushMond2.length - 11]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray11.push(i.pricePayment)
-        if (moment(i.date).format('jM') == pushMond2[pushMond2.length - 12]?.mond && pushMond2[pushMond2.length - 12]?.date.getFullYear().toString() == i?.date.getFullYear().toString()) pushArray12.push(i.pricePayment)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 1]?.mond && pushMond2[pushMond2.length - 1]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 2]?.mond && pushMond2[pushMond2.length - 2]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray2.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 3]?.mond && pushMond2[pushMond2.length - 3]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray3.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 4]?.mond && pushMond2[pushMond2.length - 4]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray4.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 5]?.mond && pushMond2[pushMond2.length - 5]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray5.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 6]?.mond && pushMond2[pushMond2.length - 6]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray6.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 7]?.mond && pushMond2[pushMond2.length - 7]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray7.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 8]?.mond && pushMond2[pushMond2.length - 8]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray8.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 9]?.mond && pushMond2[pushMond2.length - 9]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray9.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 10]?.mond && pushMond2[pushMond2.length - 10]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray10.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 11]?.mond && pushMond2[pushMond2.length - 11]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray11.push(i.price)
+        if (moment(new Date(i.date)).format('jM') == pushMond2[pushMond2.length - 12]?.mond && pushMond2[pushMond2.length - 12]?.date.getFullYear().toString() == new Date(i.date).getFullYear().toString()) pushArray12.push(i.price)
       }
 
 
@@ -144,7 +144,14 @@ const YearsChartMean = (p) => {
     setsorteX(sortpushArray)
 
 
-  }, [totalNumbers])
+  }, [data, change])
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setchange(true)
+    }, 500);
+  }, [])
 
 
   return (

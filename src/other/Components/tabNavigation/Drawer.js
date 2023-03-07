@@ -2,17 +2,19 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useRef, useState } from 'react'
 import { Dimensions, View, Text, StyleSheet, Animated, Pressable, Platform, ScrollView } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
+import { Column, ContainerTab, Drawer2, Py, Row } from '../Html';
 const width = Dimensions.get('window').width;
 
-const Drawer = ({ color='#222',group, children, name, title, bgcolor = '#fff', style, icon ,iconRight, header}) => {
+const Drawer = ({ color = '#222', group, children, name, title, bgcolor = '#fff', style, icon, iconRight, Header, drawer2 }) => {
   const fadeAnim = useRef(new Animated.Value(-width * 2)).current;
-  const shadowRef=useRef()
+  const shadowRef = useRef()
   const navigation = useNavigation()
   const [show, setshow] = useState(false)
+  const [showDrawer2, setshowDrawer2] = useState(true)
 
   const open = () => {
     setTimeout(() => {
-      shadowRef.current && shadowRef.current.setNativeProps({style:{opacity: .3}})
+      shadowRef.current && shadowRef.current.setNativeProps({ style: { opacity: .3 } })
     }, 320);
     Animated.timing(fadeAnim, {
       toValue: 0,
@@ -23,7 +25,7 @@ const Drawer = ({ color='#222',group, children, name, title, bgcolor = '#fff', s
   };
 
   const close = () => {
-    shadowRef.current && shadowRef.current.setNativeProps({style:{opacity: 0}})
+    shadowRef.current && shadowRef.current.setNativeProps({ style: { opacity: 0 } })
     Animated.timing(fadeAnim, {
       toValue: -width * 2,
       duration: 500,
@@ -40,34 +42,40 @@ const Drawer = ({ color='#222',group, children, name, title, bgcolor = '#fff', s
 
 
   return (
-    <View style={[styles.container,{height:Platform.OS !== 'web'?'99.7%':'99.7vh',overflow:'hidden' }]} >
-      <View style={[styles.sidebar, {zIndex:show?-1: 15 , backgroundColor: bgcolor },header ?{paddingRight:0}:{}, style]} >
-        {!header?
-        <><View style={styles.TextHeader}>{iconRight && <Icon name={iconRight.name} onPress={iconRight.onClick} size={25} color={color} /> }</View>
-        <Text style={[styles.TextHeader,{color}]}>{title}</Text>
-        </>
-        :
-        <View style={{flexGrow:1,marginLeft:6, transform:[{scaleY:.8}]}} >{header}</View>
+    <View style={[styles.container, { height: Platform.OS !== 'web' ? '99.7%' : '99.7vh', overflow: 'hidden' }]} >
+      <View style={[styles.sidebar, { zIndex: show ? -1 : 15, backgroundColor: bgcolor }, Header ? { paddingRight: 0 } : {}, style]} >
+        {!Header ?
+          <><View style={styles.TextHeader}>{iconRight && <Icon name={iconRight.name} onPress={iconRight.onClick} size={25} color={color} />}</View>
+            <Text style={[styles.TextHeader, { color }]}>{title}</Text>
+          </>
+          :
+          <View style={{ flexGrow: 1, marginLeft: 6, transform: [{ scaleY: .8 }] }} ><Header show={showDrawer2} setshow={setshowDrawer2} /></View>
         }
-        <Icon onPress={open} name={'bars'} color={color} size={25} style={{padding:2}} />
+        <Icon onPress={open} name={'bars'} color={color} size={25} style={{ padding: 2 }} />
       </View>
 
-      <View style={{flexGrow:1, maxHeight:'92%'}} >
-        {children}
-      </View>
+      <Column fd={drawer2 ? 'row' : 'column'} style={{ flexGrow: 1, maxHeight: '92%' }} >
+        {drawer2 &&
+          <Drawer2 show={showDrawer2} setshow={setshowDrawer2}>
+            {drawer2}
+          </Drawer2>}
+        <ContainerTab>
+          {children}
+        </ContainerTab>
+      </Column>
 
       <Animated.View style={[styles.container2,
       { transform: [{ translateX: fadeAnim }], opacity: hidden }]} >
-        <Animated.View ref={shadowRef} onStartShouldSetResponder={close} style={[styles.pressable,{backgroundColor: 'black'}]} />
-        <ScrollView style={styles.viewDriver} contentContainerStyle={{paddingBottom:130}} >
+        <Animated.View ref={shadowRef} onStartShouldSetResponder={close} style={[styles.pressable, { backgroundColor: 'black' }]} />
+        <ScrollView style={styles.viewDriver} contentContainerStyle={{ paddingBottom: 130 }} >
           {group.map((item, key) => (
             <View key={key} style={styles.routeView} >
               <Pressable
                 onPress={() => { navigation.navigate(item.name); close() }}
-                style={[styles.viewActive, { backgroundColor: name === item.name? "#ccf9" : "#f5f5f5" }]} >
-                <Text style={[styles.textActive, { color: name === item.name? "#49f" : "#444" }]}
-                >{item.title}</Text>
-                { icon && <Icon size={25} name="user" color={color} style={{ color: name === item.name? "#47e" : "#777" }} /> }
+                style={[styles.viewActive, { backgroundColor: name === item.name ? "#ccf9" : "#f5f5f5" }]} >
+                <Py style={[styles.textActive, { color: name === item.name ? "#49f" : "#444" }]}
+                >{item.title}</Py>
+                {icon && <Icon size={25} name="user" color={color} style={{ color: name === item.name ? "#47e" : "#777" }} />}
               </Pressable>
             </View>
           ))}
@@ -83,11 +91,11 @@ const styles = StyleSheet.create({
     color: '#555',
     paddingBottom: 4,
     minWidth: 30,
-    fontFamily:'IRANSansWeb',
+    fontFamily: 'IRANSansWeb',
   },
   sidebar: {
-    height:'8%',
-    minHeight:38,
+    height: '8%',
+    minHeight: 38,
     marginBottom: 4,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -105,12 +113,12 @@ const styles = StyleSheet.create({
   textActive: {
     color: '#777',
     marginLeft: 'auto',
-    marginRight:4,
-    fontWeight:'100',
-    fontFamily:'IRANSansWeb-light'
+    marginRight: 4,
+    fontWeight: '100',
+    fontFamily: 'IRANSansWeb-light'
   },
   pressable: {
-    opacity:0,
+    opacity: 0,
     backgroundColor: '#aaa5',
     zIndex: 50,
     width: '100%',
@@ -131,7 +139,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#f5f5f5',
     width: "95%",
-    minHeight:50,
+    minHeight: 50,
     height: '90%',
     maxHeight: 50,
     justifyContent: 'flex-end',
@@ -149,8 +157,8 @@ const styles = StyleSheet.create({
     // justifyContent: 'flex-start',
     // alignItems: 'flex-start',
     width: "70%",
-    minWidth:260,
-    maxWidth:290,
+    minWidth: 260,
+    maxWidth: 290,
     height: '100%',
     backgroundColor: '#fff',
     borderWidth: .2,

@@ -40,7 +40,7 @@ export const Input = React.forwardRef((props, ref) => {
           $input?.set(textId, e);
         }
         }
-        placeholderTextColor={pColor} onPress={props.onClick} autoCapitalize='none' autoCorrect={false} spellCheck={true} placeholder={props.p} {...props} style={[{ width: '84%', flexGrow: 1, textAlign: "right", fontSize: fs, padding: 8, paddingRight: 10, height: '100%', color: props.color ? props.color : '#222', }, props.className, props.textStyle]} />
+        placeholderTextColor={pColor} onPress={props.onClick} autoCapitalize='none' autoCorrect={false} spellCheck={true} placeholder={props.p} {...props} style={[{ width: '84%', flexGrow: 1, textAlign: "right", fontSize: fs, fontFamily:'Yekan Bakh Regular', padding: 8, paddingTop:10, paddingRight: 10, height: '100%', color: props.color ? props.color : '#222', }, props.className, props.textStyle]} />
       {props.icon && <View onStartShouldSetResponder={props.iconPress} style={[{ width: '15%', maxWidth: 70, textAlign: 'center', borderColor: border[1], height: '100%', justifyContent: 'center', alignItems: 'center' }, props.textStyle, dr === 'rtl' ? { borderRightWidth: border[0] } : { borderLeftWidth: border[0] }]}><_icon style={props.iconPress && Platform.OS === 'web' && { cursor: 'pointer' }} name={props.icon} size={props.iconSize ? props.iconSize : 22} color={props.iconColor ? props.iconColor : "#333"} /></View>}
       {props.m_icon && <View onStartShouldSetResponder={props.iconPress} style={[{ width: '15%', maxWidth: 70, textAlign: 'center', borderColor: border[1], height: '100%', justifyContent: 'center', alignItems: 'center' }, props.textStyle, dr === 'rtl' ? { borderRightWidth: border[0] } : { borderLeftWidth: border[0] }]}><Micon style={props.iconPress && Platform.OS === 'web' && { cursor: 'pointer' }} name={props.m_icon} size={props.iconSize ? props.iconSize : 22} color={props.iconColor ? props.iconColor : "#333"} /></View>}
     </View>);
@@ -54,38 +54,37 @@ export const CheckBox = (props) => {
 };
 
 export const CheckBoxRadius = (p) => {
-  const { itemName, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onClick } = p;
+  const { item, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onClick, style, refObject } = p;
 
   const ref = useRef();
   //! const show = useRef({show:false});
   //!or
-  const _show = useRef({ name: itemName });
-  const refshow = _show.current
+  const showValue = useRef({...item});
 
   useEffect(() => {
     ref.current.setNativeProps({ style: { backgroundColor: "#fff" } })
-    refshow.show = false
-    p.refObject(refshow)
+    showValue.current.show = false
+    refObject(showValue.current)
   }, [show])
 
   useEffect(() => {
-    if (itemName == 'همه') {
+    if (item?.filterValue === '') {
       ref.current.setNativeProps({ style: { backgroundColor: "#2c1" } })
-      refshow.show = true
+      showValue.current.show = true
     }
   }, [])
 
 
   return (
     <View
-      ref={ref} style={[{ backgroundColor: 'white', width: 20, height: 20, borderRadius: 50, borderWidth: border[0], borderColor: border[1], margin: m, alignSelf, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginHorizontal: mh, marginVertical: mv }, p.style]}>
+      ref={ref} style={[{ backgroundColor: 'white', width: 20, height: 20, borderRadius: 50, borderWidth: border[0], borderColor: border[1], margin: m, alignSelf, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginHorizontal: mh, marginVertical: mv }, style]}>
       <_icon onPress={() => {
         onClick && onClick()
         setshow(!show)
         setTimeout(() => {
           ref.current.setNativeProps({ style: { backgroundColor: '#2c1' } })
-          refshow.show = true
-          p.refObject(refshow)
+          showValue.current.show = true
+          refObject(showValue.current)
         }, 200);
       }}
         name={"check"} size={18} color="#fff" {...p}

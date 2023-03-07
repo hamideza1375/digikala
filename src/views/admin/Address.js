@@ -4,7 +4,7 @@ import { Input } from '../../other/Components/Html';
 import CardAddress from './components/Address/CardAddress';
 
 const Address = (p) => {
-  // p._admin.getAllAddress()
+  p._admin.getAllAddress()
 
   return (
     <View style={{ flexGrow: 1, width: '100%', backgroundColor: '#eee' }} >

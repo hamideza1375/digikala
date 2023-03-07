@@ -13,7 +13,7 @@ function Home(p) {
     <ContainerTab >
       <Scroll>
         <Div>
-          {/* <Slider data={p.slider} {...p} onClick={() => { alert(8) }} /> */}
+          <Slider data={p.slider} {...p} onClick={() => { alert(8) }} />
         </Div>
 
         <Span>

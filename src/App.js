@@ -84,7 +84,7 @@ const Mobile = () => {
         <Tab.Navigator screenOptions={() => { return { headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center', ...icon } }} >
           <Tab.Group>
             <Tab.Screen name="Home" options={{ title: 'home', headerShown: false }} {..._children(Home)} />
-            <Tab.Screen name="ChildItems" options={{ title: 'home' }} {..._children(ChildItems)} />
+            <Tab.Screen name="ChildItems" options={{ title: 'home', headerShown: false  }} {..._children(ChildItems)} />
             <Tab.Screen name="ChildOffers" options={{ title: 'home' }} {..._children(ChildOffers)} />
             <Tab.Screen name="ChildPopulars" options={{ title: 'home' }} {..._children(ChildPopulars)} />
             <Tab.Screen name="SingleItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleItems)} />
@@ -113,7 +113,7 @@ const Mobile = () => {
             <Tab.Screen name="ShowLastOrder" options={{ title: 'ارسال تیکت' }} {..._children(ShowLastOrder)} />
             <Tab.Screen name="SavedItems" options={{ title: 'ارسال تیکت' }} {..._children(SavedItems)} />
             <Tab.Screen name="CommentsPosted" options={{ title: 'ارسال تیکت' }} {..._children(CommentsPosted)} />
-            <Tab.Screen name="Rules" options={{ title: 'ارسال تیکت' }} {..._children(Rules)} />
+            <Tab.Screen name="Rules" options={{ title: 'ارسال تیکت', headerShown:true }} {..._children(Rules)} />
           </Tab.Group>
 
           <Tab.Group>

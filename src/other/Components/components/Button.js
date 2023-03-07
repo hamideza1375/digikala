@@ -23,7 +23,7 @@ const _Button = React.forwardRef((props, ref) => {
 
 })
 
-const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outline, fs = 15, p=5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
+const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outline, fs = 13, p=5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
 
   return (
     !outline ?

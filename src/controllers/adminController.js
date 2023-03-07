@@ -72,7 +72,7 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getAllAdmin()
-        console.log('getAllAdmin', p.data);
+        // console.log('getAllAdmin', data);
       })()
     }, [])
   }
@@ -102,7 +102,8 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getAllAddress()
-        console.log('getAllAddress', data);
+        p.setchartData(data.payments)
+        // console.log(data.payments  );
       })()
     }, [])
   }
@@ -134,7 +135,7 @@ export function adminController(p) {
         console.log('getPostPrice', data);
       })
     }, [])
-
   }
+
 
 }

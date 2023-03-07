@@ -228,9 +228,7 @@ const Form = ({
             <Frm
               register={register}
               plackTextTop={plackTextTop}
-              textContentType="emailAddress"
               autoComplete={autoComplete ? "autoComplete" : 'off'}
-              keyboardType="email-address"
               icon="phone"
               p='ایمیل یا شماره تلفن'
               newObj={newObj.phoneOrEmail}
@@ -627,7 +625,6 @@ const Form = ({
 
                     }
 
-
                   }
                   else {
                     setRand(parseInt(Math.random() * 9000 + 1000))
@@ -635,7 +632,7 @@ const Form = ({
                   }
                 }}
                 style={[styles.btn]} >
-                click
+                ارسال
               </Button>}
             </KeyboardAvoidingView>}
         </View>

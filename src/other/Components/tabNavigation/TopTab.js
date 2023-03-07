@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-import { Div } from '../Html';
+import { Div, Py } from '../Html';
 
 const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#ddd", activeColor = "#aad" }) => {
   const navigation = useNavigation()
@@ -14,8 +14,8 @@ const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#ddd"
             <Pressable
               onPress={() => navigation.navigate(item.name)}
               style={[styles.pressableActive,]} >
-              <Text style={[styles.textActive,
-              { color: name === item.name ? activeColor : color }]}>{item.title}</Text>
+              <Py style={[styles.textActive,
+              { color: name === item.name ? activeColor : color }]}>{item.title}</Py>
               <View 
               style={[styles.borderActive, { borderBottomColor: name === item.name ? "#9af" : "#f5f5f5", borderBottomWidth: name === item.name ? 3 : 0 }]} ></View>
             </Pressable>
@@ -72,11 +72,13 @@ const styles = StyleSheet.create({
   },
   textActive: {
     fontSize: 17,
+    paddingTop:2,
+    fontWeight:'100',
     color: '#777',
     textAlign: 'center',
   },
   borderActive: {
-    minHeight: '50%',
+    minHeight: '30%',
     width:'95%',
     marginHorizontal:'auto',
   }

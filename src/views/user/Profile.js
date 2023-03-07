@@ -5,24 +5,26 @@ const Profile = (p) => {
     <Container fd='row'>
 
       <Drawer2 f={1} h={'100%'} minw={170} pt={30}>
-        <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
-          <Press onClick={()=>p.navigation.navigate('PanelAdmin')} ><P>پنل ادمین</P></Press>
-        </Span>
-        <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
-          <Press onClick={()=>p.navigation.navigate('SendTicket')} ><P>ارسال تیکت</P></Press>
-          {/* <Press mt={10} onClick={()=>p.navigation.navigate('GetTicket')} ><P>تیکت های دریافتی جدید</P></Press> */}
-          <Press mt={10} onClick={()=>p.navigation.navigate('TicketBox')} ><P>صندوق تیکت های دریافتی</P></Press>
-          <Press mt={10} onClick={()=>p.navigation.navigate('SendProposal')} ><P>ارسال انتقادات و پیشنهادات</P></Press>
-        </Span>
-        <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
-          <Press onClick={()=>p.navigation.navigate('ShowActiveOrder')} ><P>نمایش سفارشات فعال</P></Press>
-          <Press mt={10} onClick={()=>p.navigation.navigate('ShowLastOrder')} ><P>نمایش خرید های قبل</P></Press>
-          <Press mt={10} onClick={()=>p.navigation.navigate('SavedItems')} ><P>ذخیره ها</P></Press>
-        </Span>
-        <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
-          <Press onClick={()=>p.navigation.navigate('ForgetPass')} ><P>تغییر رمز عبور و مشخصات</P></Press>
-          <Press mt={10} onClick={()=>p.navigation.navigate('Logout')} ><P>خروج از حساب کاربری</P></Press>
-        </Span>
+        <Scroll ccStyle={{ flexGrow: 1 }} >
+          <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
+            <Press onClick={() => p.navigation.navigate('PanelAdmin')} ><P>پنل ادمین</P></Press>
+          </Span>
+          <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
+            <Press onClick={() => p.navigation.navigate('SendTicket')} ><P>ارسال تیکت</P></Press>
+            {/* <Press mt={10} onClick={()=>p.navigation.navigate('GetTicket')} ><P>تیکت های دریافتی جدید</P></Press> */}
+            <Press mt={10} onClick={() => p.navigation.navigate('TicketBox')} ><P>صندوق تیکت های دریافتی</P></Press>
+            <Press mt={10} onClick={() => p.navigation.navigate('SendProposal')} ><P>ارسال انتقادات و پیشنهادات</P></Press>
+          </Span>
+          <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
+            <Press onClick={() => p.navigation.navigate('ShowActiveOrder')} ><P>نمایش سفارشات فعال</P></Press>
+            <Press mt={10} onClick={() => p.navigation.navigate('ShowLastOrder')} ><P>نمایش خرید های قبل</P></Press>
+            <Press mt={10} onClick={() => p.navigation.navigate('SavedItems')} ><P>ذخیره ها</P></Press>
+          </Span>
+          <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
+            <Press onClick={() => p.navigation.navigate('ForgetPass')} ><P>تغییر رمز عبور و مشخصات</P></Press>
+            <Press mt={10} onClick={() => p.navigation.navigate('Logout')} ><P>خروج از حساب کاربری</P></Press>
+          </Span>
+        </Scroll>
       </Drawer2>
 
       <Span minw={220} f={3} h='100%' border={[1]} pt={30}>

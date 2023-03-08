@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment } from '../services/userService'
+import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket } from '../services/userService'
 import _useEffect from './_initial';
 
 
@@ -13,7 +13,7 @@ export function userController(p) {
     var hour = minute * 60;
     var day = hour * 24;
     let countDown = new Date(new Date().getTime() + (1000 * 60 * 2))
-    if(interval) clearInterval(interval)
+    if (interval) clearInterval(interval)
     interval = setInterval(() => {
       let nowDate = new Date().getTime(),
         distance = countDown - nowDate;
@@ -38,7 +38,7 @@ export function userController(p) {
   this.loadPageTimer = () => {
     _useEffect(() => {
       if (!p.timerToMinutTrueFalse)
-      this.timerTwoMinut()
+        this.timerTwoMinut()
     }, [])
 
   }
@@ -137,9 +137,32 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getLastPayment()
-        console.log('getLastPayment', data);
+        // console.log('getLastPayment', data);
       })()
     }, [])
+  }
+
+
+  this.singleTicket = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await singleTicket(p.route.params.id)
+        p.setsingleTicket(data.singleTicket)
+        // console.log('aaaa',data.singleTicket.answer)
+      })()
+    }, [])
+  }
+
+
+  this.ticketAnswer = async () => {
+    const { data } = await ticketAnswer({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id)
+    // console.log('tanswer', data);
+  }
+
+
+  this.sendNewTicket = async () => {
+    const { data } = await sendNewTicket({ title: p.title ,message: p.message, imageUrl: p.imageUrl  })
+    console.log('sendNewTicket', data);
   }
 
 }

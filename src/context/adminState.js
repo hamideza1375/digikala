@@ -124,6 +124,12 @@ export function admin() {
     // { _id: '83', date: new Date('2023-12-21 22:3:0'), name: 'farhad', price: 100 },
   ])
 
+
+  const [chartUserLength, setchartUserLength] = useState([])
+
+  const [adminTicketBox, setadminTicketBox] = useState([])
+
+
   const [showProgressChartDropdown, setshowProgressChartDropdown] = useState()
   //!
 
@@ -168,6 +174,8 @@ export function admin() {
   
 
   this.admin = {
+    chartUserLength, setchartUserLength,
+    adminTicketBox, setadminTicketBox,
     chartData, setchartData,
     showProgressChartDropdown, setshowProgressChartDropdown,
     currentSellerTable, setcurrentSellerTable,

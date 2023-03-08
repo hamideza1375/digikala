@@ -6,7 +6,7 @@ var
   pushMond = [],
   pushMond2 = []
 
-const YearsChartTotal = ({ color = '#a5fd', borderColor = '#a5f7', rodColor = '#d5fd', rodWidth = 'auto', bgcolor = '#d5fa', br = 4, w = '100%', h = '100%', data }) => {
+const YearsChartTotal = ({ color = '#a5fd', borderColor = '#a5f9', rodColor = '#d5fd', rodWidth = 'auto', bgcolor = '#d5fa', br = 4, w = '100%', h = '100%', data }) => {
 
 
   const pushArrayRef = useRef([])
@@ -177,7 +177,7 @@ const YearsChartTotal = ({ color = '#a5fd', borderColor = '#a5f7', rodColor = '#
 
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
-          <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
+          <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row' jc='center' ai='flex-end'>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers12 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
               <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers12).toFixed())}</P>} />
             </Span>
@@ -228,7 +228,7 @@ const YearsChartTotal = ({ color = '#a5fd', borderColor = '#a5f7', rodColor = '#
             </Span>
           </Span>
           {/* //! */}
-          <Span w='100%' h={10} fd='row-reverse' jc='center' >
+          <Span w='100%' h={10} fd='row' jc='center' >
             <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 12]?.years.split('0')[1]}/{pushMond2[pushMond2.length - 12]?.mond}</P>
             </Span>

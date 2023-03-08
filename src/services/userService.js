@@ -12,3 +12,6 @@ export const sendImageProfile = (data) => axios.postData(`${localhost}/sendImage
 export const getImageProfile = (data) => axios.post(`${localhost}/getImageProfile`, data)
 export const sendProposal = () => axios.get(`${localhost}/sendProposal` )
 export const getLastPayment = () => axios.get(`${localhost}/getLastPayment` )
+export const singleTicket = (id) => axios.get(`${localhost}/singleTicket/${id}` )
+export const ticketAnswer = (data,id) => axios.post(`${localhost}/ticketAnswer/${id}`, data)
+export const sendNewTicket = (data) => axios.post(`${localhost}/sendNewTicket`, data)

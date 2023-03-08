@@ -1,4 +1,4 @@
-import { changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin } from "../services/adminService"
+import { changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox } from "../services/adminService"
 import _useEffect from "./_initial"
 
 export function adminController(p) {
@@ -137,5 +137,23 @@ export function adminController(p) {
     }, [])
   }
 
+
+  this.getAllUser = async () => {
+    _useEffect(() => {
+      getAllUser().then(({ data }) => {
+        p.setchartUserLength(data.allUsers)
+      })
+    }, [])
+  }
+
+
+  this.adminTicketBox = async () => {
+    _useEffect(() => {
+      adminTicketBox().then(({ data }) => {
+        p.setadminTicketBox(data.tickets)
+        console.log(23,data.tickets);
+      })
+    }, [])
+  }
 
 }

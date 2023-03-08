@@ -140,7 +140,7 @@ const DaysChartMean = ({ color = '#a50b', borderColor = '#a507', rodColor = '#d8
 
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
-          <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
+          <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row' jc='center' ai='flex-end'>
             <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers7 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
               <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers7).toFixed())}</P>} />
             </Span>
@@ -171,7 +171,7 @@ const DaysChartMean = ({ color = '#a50b', borderColor = '#a507', rodColor = '#d8
             </Span>
           </Span>
           {/* //! */}
-          <Span w='100%' h={10} fd='row-reverse' jc='center' >
+          <Span w='100%' h={10} fd='row' jc='center' >
             <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.monds}/{pushMond2[pushMond2.length - 7]?.days}</P>
             </Span>

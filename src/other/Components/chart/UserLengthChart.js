@@ -6,7 +6,7 @@ var
   pushMond = [],
   pushMond2 = []
 
-const DaysChartTotal = ({ color = '#a50b', borderColor = '#a507', rodColor = '#d809', rodWidth = 'auto', bgcolor = '#d809', br = 4, w = '100%', h = '100%', data }) => {
+const DaysChartTotal = ({ color = '#0a7a', borderColor = '#0a7a', rodColor = '#0c8e', rodWidth = 'auto', bgcolor = '#0e9a', br = 4, w = '100%', h = '100%', data }) => {
 
 
   const pushArrayRef = useRef([])
@@ -72,27 +72,26 @@ const DaysChartTotal = ({ color = '#a50b', borderColor = '#a507', rodColor = '#d
 
     if (data?.length)
       for (let i of data) {
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray2.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray3.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray4.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray5.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray6.push(i.price)
-        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray7.push(i.price)
+        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 1]?.days && pushMond2[pushMond2.length - 1]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray.push(i._id)
+        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 2]?.days && pushMond2[pushMond2.length - 2]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray2.push(i._id)
+        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 3]?.days && pushMond2[pushMond2.length - 3]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray3.push(i._id)
+        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 4]?.days && pushMond2[pushMond2.length - 4]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray4.push(i._id)
+        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 5]?.days && pushMond2[pushMond2.length - 5]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray5.push(i._id)
+        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 6]?.days && pushMond2[pushMond2.length - 6]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray6.push(i._id)
+        if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 7]?.days && pushMond2[pushMond2.length - 7]?.date.getMonth().toString() == new Date(i.date).getMonth().toString()) pushArray7.push(i._id)
       }
 
 
-    pushArray.length && settotalNumbers(pushArray.reduce((total, number) => total + number))
-    pushArray2.length && settotalNumbers2(pushArray2.reduce((total, number) => total + number))
-    pushArray3.length && settotalNumbers3(pushArray3.reduce((total, number) => total + number))
-    pushArray4.length && settotalNumbers4(pushArray4.reduce((total, number) => total + number))
-    pushArray5.length && settotalNumbers5(pushArray5.reduce((total, number) => total + number))
-    pushArray6.length && settotalNumbers6(pushArray6.reduce((total, number) => total + number))
-    pushArray7.length && settotalNumbers7(pushArray7.reduce((total, number) => total + number))
+    pushArray.length && settotalNumbers(pushArray.length)
+    pushArray2.length && settotalNumbers2(pushArray2.length)
+    pushArray3.length && settotalNumbers3(pushArray3.length)
+    pushArray4.length && settotalNumbers4(pushArray4.length)
+    pushArray5.length && settotalNumbers5(pushArray5.length)
+    pushArray6.length && settotalNumbers6(pushArray6.length)
+    pushArray7.length && settotalNumbers7(pushArray7.length)
 
     let sortpushArray = [totalNumbers, totalNumbers2, totalNumbers3, totalNumbers4, totalNumbers5, totalNumbers6, totalNumbers7].sort((a, b) => a - b)
     setsorteX(sortpushArray)
-
 
   }, [data, change])
 
@@ -130,41 +129,41 @@ const DaysChartTotal = ({ color = '#a50b', borderColor = '#a507', rodColor = '#d
 
         <Span w={'90%'} h={'90%'} as='center' jc='center' ai='center' >
           {/* //! */}
-          <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row-reverse' jc='center' ai='flex-end'>
+          <Span w='100%' h='100%' border={[0, borderColor]} bbw={1} blw={1} fd='row' jc='center' ai='flex-end'>
             {change &&
               <>
-                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers7 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
+                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={parseInt(totalNumbers7) ? (totalNumbers7 / sorteX[sorteX.length - 1]) : 0} maxh='100%' bgcolor={rodColor} >
                   <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers7).toFixed())}</P>} />
                 </Span>
                 </Span>
-                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers6 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
+                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={parseInt(totalNumbers6) ? (totalNumbers6 / sorteX[sorteX.length - 1]) : 0} maxh='100%' bgcolor={rodColor} >
                   <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers6).toFixed())}</P>} />
                 </Span>
                 </Span>
-                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers5 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
+                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={parseInt(totalNumbers5) ? (totalNumbers5 / sorteX[sorteX.length - 1]) : 0} maxh='100%' bgcolor={rodColor} >
                   <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers5).toFixed())}</P>} />
                 </Span>
                 </Span>
-                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers4 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
+                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={parseInt(totalNumbers4) ? (totalNumbers4 / sorteX[sorteX.length - 1]) : 0} maxh='100%' bgcolor={rodColor} >
                   <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers4).toFixed())}</P>} />
                 </Span>
                 </Span>
-                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers3 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
+                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={parseInt(totalNumbers3) ? (totalNumbers3 / sorteX[sorteX.length - 1]) : 0} maxh='100%' bgcolor={rodColor} >
                   <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers3).toFixed())}</P>} />
                 </Span>
                 </Span>
-                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers2 / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
+                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={parseInt(totalNumbers2) ? (totalNumbers2 / sorteX[sorteX.length - 1]) : 0} maxh='100%' bgcolor={rodColor} >
                   <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers2).toFixed())}</P>} />
                 </Span>
                 </Span>
-                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={(totalNumbers / sorteX[sorteX.length - 1])} maxh='100%' bgcolor={rodColor} >
+                <Span h='100%' f={1} maxw={rodWidth} ai='center' jc='flex-end'><Span w={'80%'} f={ parseInt(totalNumbers) ? (totalNumbers / sorteX[sorteX.length - 1]) : 0} maxh='100%' bgcolor={rodColor} >
                   <Dropdown value={<P fs={9} ta='center' >{spacePrice((totalNumbers).toFixed())}</P>} />
                 </Span>
                 </Span>
               </>}
           </Span>
           {/* //! */}
-          <Span w='100%' h={10} fd='row-reverse' jc='center' >
+          <Span w='100%' h={10} fd='row' jc='center' >
             <Span f={1} h={10} ai='center' >
               <P fs={7.5} color={color} >{pushMond2[pushMond2.length - 7]?.monds}/{pushMond2[pushMond2.length - 7]?.days}</P>
             </Span>

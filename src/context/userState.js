@@ -3,11 +3,11 @@ import { useState } from "react"
 
 export function user() {
 
-  const [userTicketBox,setuserTicketBox] = useState([
-    { _id: '1', title: 'اولین عنوان', message: "اولین پیام  ارسالی ارسال شده ی کاربر", newMessage:false },
-    { _id: '2', title: 'دومین عنوان', message: "دومین پیام  ارسالی ارسال شده ی کاربر", newMessage:true },
-    { _id: '3', title: 'سومین عنوان', message: "سومین پیام  ارسالی ارسال شده ی کاربر", newMessage:false },
-    { _id: '4', title: 'چهارمین عنوان', message: "چهارمین پیام  ارسالی ارسال شده ی کاربر", newMessage:false }
+  const [userTicketBox, setuserTicketBox] = useState([
+    { _id: '1', title: 'اولین عنوان', message: "اولین پیام  ارسالی ارسال شده ی کاربر", newMessage: false },
+    { _id: '2', title: 'دومین عنوان', message: "دومین پیام  ارسالی ارسال شده ی کاربر", newMessage: true },
+    { _id: '3', title: 'سومین عنوان', message: "سومین پیام  ارسالی ارسال شده ی کاربر", newMessage: false },
+    { _id: '4', title: 'چهارمین عنوان', message: "چهارمین پیام  ارسالی ارسال شده ی کاربر", newMessage: false }
   ])
 
 
@@ -27,9 +27,9 @@ export function user() {
 
   // const [changeRegisterToCode, setchangeRegisterToCode] = useState(false)
 
+  const [singleTicket, setsingleTicket] = useState({})
 
-
-  this.user = { 
+  this.user = {
     userTicketBox, setuserTicketBox,
     phone, setphone,
     code, setcode,
@@ -41,9 +41,10 @@ export function user() {
     message, setmessage,
     password, setpassword,
     phoneOrEmail, setphoneOrEmail,
-    
+
     twoMinut, settwoMinut,
     timerToMinutTrueFalse, settimerToMinutTrueFalse,
     // changeRegisterToCode, setchangeRegisterToCode,
-   }
+    singleTicket, setsingleTicket,
+  }
 }

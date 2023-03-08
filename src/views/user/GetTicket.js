@@ -1,55 +1,58 @@
 import React from 'react';
+import { TextInput } from 'react-native';
 import { Icon, Input, Container, P, FlatList, Press, Img, Column, Row, M_icon } from '../../other/Components/Html';
+import { localhost } from '../../other/utils/axios/axios';
+import { imagePicker } from '../../other/utils/imagePicer';
 
 
 const PvTicket = (p) => {
+  p._user.singleTicket()
 
-
-
-
+  const sendTicketAnswer = () => p._user.ticketAnswer()
 
   const _imagePicker = () => {
-    //   imagePicker().then(async(res) => {
-    //     let uriParts = res.name.split('.');
-    //     let fileType = uriParts[uriParts.length - 1];
-    //     const imageName =  `${(new Date().getTime() + Math.random() * 10000).toString()}.${fileType}`;
-    //     await p.imagechat({uri:res,imageName })
-    //     sendMessage('image', imageName);
-    //     handleFalse()
-    // })
+    imagePicker().then(async (res) => {
+      p.setimageUrl(res)
+      sendTicketAnswer()
+    })
   }
-  
 
+  let a = p.singleTicket.answer
   return (
     <Container style={{}} >
-
-      <FlatList
-        data={p.userTicketBox}
-        renderItem={({ item, index }) => (
-          <Column mv={8} mh={5} w={'80%'} maxw={600} bgcolor='#fff' border={[1, '#f5f5f5']} br={8} p={8} >
-
-            <Row w='100%' jc='space-between' >
-              <P fs={9} color='#999' >شما</P>
-
-              <Row >
-                <M_icon name='delete' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
-                <M_icon name='edit' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+      {p.singleTicket.answer &&
+        <FlatList
+          data={[{ _id: '1', ...p.singleTicket }, ...p.singleTicket.answer]}
+          renderItem={({ item, index }) => (
+            item.userId === p.tokenValue.userId ? <Column mv={8} mh={5} w={'80%'} maxw={600} bgcolor='#fff' border={[1, '#f5f5f5']} br={8} p={8} as='flex-start'>
+              <Row w='100%' jc='space-between' >
+                <P ta='right' fs={9} color='#999' >شما</P>
+                <Row >
+                  <M_icon name='delete' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+                  <M_icon name='edit' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+                </Row>
               </Row>
-
-            </Row>
-
-            <Column>
-              {!item.image ?
-                <P fs={12} >{item.title}</P> :
-                <Img br={5} w={'100%'} h={280} src={require('../../other/assets/images/a1.jpg')} />
-              }
+              <Column>
+                <P ta='right' fs={12} >{item.message}</P>
+                {item.imageUrl ? <Img br={5} w={'100%'} h={280} src={require(`${localhost}/upload/image/${item.imageUrl}`)} /> : <></>}
+              </Column>
             </Column>
-
-          </Column>
-        )}
-      />
-
-
+              :
+              <Column mv={8} mh={5} w={'80%'} maxw={600} bgcolor='#fff' border={[1, '#f5f5f5']} br={8} p={8} as='flex-end'>
+                <Row w='100%' jc='space-between' >
+                  <P ta='right' fs={9} color='#999' ></P>
+                  <Row >
+                    <M_icon name='delete' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+                    <M_icon name='edit' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+                  </Row>
+                </Row>
+                <Column>
+                  <P ta='right' fs={12} >{item.message}</P>
+                  {item.imageUrl ? <Img br={5} w={'100%'} h={280} src={require(`${localhost}/upload/image/${item.imageUrl}`)} /> : <></>}
+                </Column>
+              </Column>
+          )}
+        />}
 
       <Column style={{ marginTop: 'auto', paddingTop: 10, borderRadius: 5, minWidth: '100%', height: '20%', minHeight: 80, maxHeight: 80, alignSelf: 'center', backgroundColor: '#aac', }}>
         <Column style={{ borderRadius: 5, width: '91%', alignSelf: 'center' }}>
@@ -58,14 +61,15 @@ const PvTicket = (p) => {
               <Icon name={'paperclip'} size={20} color={'#aaa'} onClick={_imagePicker} />
             </Column>
             <Input maxLength={1000} style={{ minHeight: 50 }} iconSize={24}
-              onSubmitEditing={() => { }}
-              iconPress={{}}
+              onSubmitEditing={sendTicketAnswer}
+              iconPress={sendTicketAnswer}
               icon="paper-plane"
               iconColor="#38a"
               color="#25a"
-              value={p.newMessage} p="ارسال پیام"
+              value={p.message} p="ارسال پیام"
+              onChangeText={(text) => p.setmessage(text)}
             />
-
+            {/* <TextInput onChangeText={} /> */}
           </Column>
         </Column>
       </Column>

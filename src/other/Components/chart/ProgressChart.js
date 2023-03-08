@@ -53,8 +53,6 @@ const ProgressChart = ({ color = '#222', rodWidth = 30, bgcolor = '#fff', br = 2
     if (data?.length)
       for (let i of data) {
 
-        console.log('1',i);
-
         if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 1]?.days) pushArray.push(i.price)
         if (moment(new Date(i.date)).format('jD') == pushMond2[pushMond2.length - 7]?.days) pushArray7.push(i.price)
 

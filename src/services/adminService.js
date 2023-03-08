@@ -23,3 +23,5 @@ export const deleteAllAddress = () => axios.delete(`${localhost}/deleteAllAddres
 export const sendDisablePost = (data) => axios.post(`${localhost}/sendDisablePost`, data)
 export const sendPostPrice = (data) => axios.post(`${localhost}/sendPostPrice`, data)
 export const getPostPrice = () => axios.get(`${localhost}/getPostPrice`)
+export const getAllUser = () => axios.get(`${localhost}/getAllUser`)
+export const adminTicketBox = () => axios.get(`${localhost}/adminTicketBox`)

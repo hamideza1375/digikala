@@ -1,9 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket } from '../services/userService'
+import Alert from '../other/utils/alert';
+import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox } from '../services/userService'
 import _useEffect from './_initial';
+import jwt_decode from 'jwt-decode';
 
 
-var interval
 export function userController(p) {
 
 
@@ -11,19 +12,18 @@ export function userController(p) {
     var second = 1000;
     var minute = second * 60;
     var hour = minute * 60;
-    var day = hour * 24;
-    let countDown = new Date(new Date().getTime() + (1000 * 60 * 2))
-    if (interval) clearInterval(interval)
-    interval = setInterval(() => {
+    let countDown = new Date(new Date().getTime() + (1000 * 60 * 3))
+    const interval = setInterval(minutsInterval, 1000);
+
+    function minutsInterval() {
       let nowDate = new Date().getTime(),
         distance = countDown - nowDate;
-      p.settwoMinut((twoMinut) => {
-        let second2 = Math.floor((distance % (minute)) / second);
-        let mins = Math.floor((distance % (hour)) / (minute));
-        if (twoMinut?.split(':')[0] == 0 && twoMinut?.split(':')[1] == 1) clearInterval(interval)
-        return mins + ':' + second2
-      })
-    }, 1000);
+      let second2 = Math.floor((distance % (minute)) / second);
+      let mins = Math.floor((distance % (hour)) / (minute));
+      p.settwoMinut(mins + ':' + second2)
+      if (mins == 0 && second2 <= 1 ) clearInterval(interval)
+      if (mins == 0 && second2 <= 1 ) p.settwoMinut(0)
+    }
     p.settimerToMinutTrueFalse(true)
   }
 
@@ -40,11 +40,10 @@ export function userController(p) {
       if (!p.timerToMinutTrueFalse)
         this.timerTwoMinut()
     }, [])
-
   }
 
   this.getCodeForRegister = async () => {
-    await getCodeForRegister({ phoneOrEmail: p.phoneOrEmail, password: p.password })
+    await getCodeForRegister({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, password: p.password })
     this.timerTwoMinut()
     p.navigation.navigate('GetCode', { register: true })
   }
@@ -67,6 +66,8 @@ export function userController(p) {
     }
     else {
       await AsyncStorage.setItem('token', data.token)
+      const user = jwt_decode(data.token)
+      p.settokenValue(user)
       p.navigation.navigate('Profile')
     }
   }
@@ -75,7 +76,8 @@ export function userController(p) {
   this.verifyCodeLoginForAdmin = async () => {
     const { data } = await verifyCodeLoginForAdmin({ code: p.code, phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember })
     await AsyncStorage.setItem('token', data.token)
-    p.navigation.navigate('Profile')
+    const user = jwt_decode(data.token)
+    p.settokenValue(user)
     p.navigation.navigate('Profile')
   }
 
@@ -114,7 +116,6 @@ export function userController(p) {
 
   this.sendImageProfile = async () => {
     const { data } = await sendImageProfile({ imageUrl: p.imageUrl })
-    console.log('sendImageProfile', data);
   }
 
 
@@ -122,7 +123,6 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getImageProfile()
-        console.log('getLastPayment', data);
       })()
     }, [])
   }
@@ -137,7 +137,6 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getLastPayment()
-        // console.log('getLastPayment', data);
       })()
     }, [])
   }
@@ -148,7 +147,6 @@ export function userController(p) {
       (async () => {
         const { data } = await singleTicket(p.route.params.id)
         p.setsingleTicket(data.singleTicket)
-        // console.log('aaaa',data.singleTicket.answer)
       })()
     }, [])
   }
@@ -156,14 +154,42 @@ export function userController(p) {
 
   this.ticketAnswer = async () => {
     const { data } = await ticketAnswer({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id)
-    // console.log('tanswer', data);
   }
 
 
   this.sendNewTicket = async () => {
-    const { data } = await sendNewTicket({ title: p.title ,message: p.message, imageUrl: p.imageUrl  })
-    console.log('sendNewTicket', data);
+    const { data } = await sendNewTicket({ title: p.title, message: p.message, imageUrl: p.imageUrl })
+    p.navigation.navigate('Profile')
   }
+
+  this.ticketBox = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await ticketBox()
+        p.setuserTicketBox(data.tickets)
+      })()
+    }, [])
+  }
+
+
+  this.logout = async () => {
+    _useEffect(() => {
+      Alert.alert(
+        "خارج میشوید؟",
+        "",
+        [{ text: 'no', onPress: () => { p.navigation.goBack() } },
+        {
+          text: 'yes', onPress: async () => {
+            p.settokenValue({})
+            p.settoken(false)
+            await AsyncStorage.removeItem("token");
+            await AsyncStorage.removeItem("exp");
+            p.navigation.replace("Home")
+          }
+        }])
+    }, []);
+  }
+
 
 }
 

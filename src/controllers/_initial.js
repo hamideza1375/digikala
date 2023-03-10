@@ -10,6 +10,11 @@ import { clientController } from "./clientController";
 import { userController } from "./userController";
 import { Layout } from "../other/Layout/Layout";
 
+import backgroundTimer from '../other/utils/backgroundTimer';
+import {create} from '../other/utils/notification';
+import { getNotification } from '../services/clientService';
+
+
 export const _initController = (p) => {
 
   _useEffect(() => {
@@ -27,7 +32,7 @@ export const _initController = (p) => {
         p.setshowActivity(false)
       } return Promise.reject(error);
     });
-    AsyncStorage.getItem("token").then((token) => { if (token) { const user = jwt_decode(token); p.settokenValue(user) } })
+    AsyncStorage.getItem("token").then((token) => { if (token) { const user = jwt_decode(token); p.settokenValue(user); } })
   }, [])
 
   _useEffect(() => { setTimeout(() => { p.setSplash(false) }, 1000) }, [])
@@ -35,6 +40,32 @@ export const _initController = (p) => {
   _useEffect(() => { p.$input.set('a', 'a') }, [])
 
   Dimensions.addEventListener('change', ({ window: { width, height } }) => { p.setwidth(width); p.setheight(height) })
+
+
+//! notifee
+  // useEffect(() => {
+  //   (async () => {
+  //     let newNotification = await AsyncStorage.getItem('notification')
+  //     const { data } = await getNotification()
+  //     if (data)
+  //       if (data.message && newNotification !== data.message) {
+  //         create(data.title, data.message, require('../other/assets/images/logo.png'))
+  //         await AsyncStorage.setItem('notification', data.message)
+  //       }
+  //   })();
+  //     backgroundTimer(async () => {
+  //       (async () => {
+  //         let newNotification = await AsyncStorage.getItem('notification')
+  //         const { data } = await getNotification()
+  //         if (data)
+  //           if (data.message && newNotification !== data.message) {
+  //             create(data.title, data.message, require('../other/assets/images/logo.png'))
+  //             await AsyncStorage.setItem('notification', data.message)
+  //           }
+  //       })();
+  //     }, 30000)
+  // }, [])
+
 }
 
 export function allController(p) {

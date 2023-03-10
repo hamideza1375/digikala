@@ -28,6 +28,7 @@ export function user() {
   // const [changeRegisterToCode, setchangeRegisterToCode] = useState(false)
 
   const [singleTicket, setsingleTicket] = useState({})
+  // const [userTicketBox, setuserTicketBox] = useState([])
 
   this.user = {
     userTicketBox, setuserTicketBox,

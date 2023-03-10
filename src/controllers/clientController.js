@@ -7,7 +7,8 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getCategory()
-        console.log('getCategory', data);
+        p.setcategory(data.category)
+        // console.log('getCategory', data);
       })()
     }, [])
   }
@@ -17,7 +18,8 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getChildItems(p.route.params.id)
-        console.log('getChildItems', data);
+        p.setchildItem(data.childItems)
+        // console.log('getChildItems', data.childItems);
       })()
     }, [])
   }
@@ -27,7 +29,8 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
-        console.log('getSingleItem', data);
+        p.setsingleItem(data.singleItem)
+        console.log('getSingleItem', data.singleItem);
       })()
     }, [])
   }

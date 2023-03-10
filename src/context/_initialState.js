@@ -47,6 +47,7 @@ export function initial() {
   const [confirmPassword, setconfirmPassword] = useState('')
   const [remember, setremember] = useState(60000 * 60 * 24 * 365)
   const [checkbox, setcheckbox] = useState()
+  const [stateCity, setstateCity] = useState([])
   const [title, settitle] = useState('')
   const [price, setprice] = useState('')
   const [imageUrl, setImageUrl] = useState('')
@@ -75,6 +76,7 @@ export function initial() {
 
 
   this.all = { 
+    stateCity, setstateCity,
     dropdownBottom, setdropdownBottom,
     dropdownRight,setdropdownRight,
     clientX, setclientX,

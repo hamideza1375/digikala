@@ -2,11 +2,12 @@ import { useFocusEffect } from '@react-navigation/native'
 import React, { useCallback, useState } from 'react'
 import { Text } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5'
-import { A_icon, Card2,  M_icon, P, Row, Span } from '../../../../other/Components/Html'
+import { A_icon, Card2, M_icon, P, Row, Span } from '../../../../other/Components/Html'
+import { localhost } from '../../../../other/utils/axios/axios'
 import seconder from '../../../../other/utils/seconder'
 
 
-const CardItem = ({ item, spacePrice, offers, h = 240, w = 200, style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {
+const CardItem = ({ onClick, item, spacePrice, offers, h = 240, w = 200, style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {
 
   const [dt, setdt] = useState()
 
@@ -20,9 +21,10 @@ const CardItem = ({ item, spacePrice, offers, h = 240, w = 200, style, sh = { r:
 
   return (
     <Card2
+      onClick={onClick}
       bgcolor={'#fff'} sh={sh}
       style={[{ minWidth: 161, maxWidth: 300, borderColor: 'silver', width: w, flexGrow: 1, marginVertical: 15, height: h }, style]}
-      src={item.image}
+      img src={item.imageUrl && `${localhost}/upload/childItem/${item.imageUrl}`}
       coulumn1={<Span mt={8} w={'100%'}><P fs={11} ta='center' as='center' >{item.title}</P></Span>}
       coulumn2={<Span bgcolor='#eee' fd='row' h={35} jc='center' w={'100%'}>
         <Span ai='center' w={'25%'} h={35} border={[0, 'silver']} pt={1} >
@@ -45,12 +47,12 @@ const CardItem = ({ item, spacePrice, offers, h = 240, w = 200, style, sh = { r:
       }
       // textDecorationLine:'underline line-through'
       coulumn3={<Span mt={8} fd='row' jc='space-evenly' w={'100%'}>
-        {offers ? 
-        <Row>
-          <P fs={11.5} >{spacePrice(item.price)} تومان</P>
-          <P style={{ textDecorationLine: 'line-through', color: 'red', fontSize: 9.5 }} >{spacePrice(item.price)} ت </P>
+        {offers ?
+          <Row>
+            <P fs={11.5} >{spacePrice(item.price)} تومان</P>
+            <P style={{ textDecorationLine: 'line-through', color: 'red', fontSize: 9.5 }} >{spacePrice(item.price)} ت </P>
 
-        </Row>
+          </Row>
           :
           <Span>
             <P fs={11.5}>{spacePrice(item.price)} تومان</P>

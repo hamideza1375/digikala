@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { StyleSheet } from 'react-native';
-import { Dropdown2, Icon, Img, Input, P, Press, Py, Span } from '../Html'
+import { A_icon, Dropdown2, Icon, Img, Input, M_icon, P, Press, Py, Span } from '../Html'
 import { context } from '../../../context/_context'
+import { useNavigation } from '@react-navigation/native';
 
-function SearchInput({ logoPress, row, array, setarray, Register, icon, src, iconPress, sort, bgcolor }) {
+function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_icon, src, iconPress, sort, bgcolor, profile }) {
 
+  const navigation = useNavigation()
 
   const p = context()
   const [getValueSearch, setgetValueSearch] = useState([])
@@ -60,6 +62,8 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
       <Span bgcolor={bgcolor} style={[styles.containHead]}>
         {src && <Press onClick={logoPress} /* mr={10} ml={5} */ ><Img bgcolor='transport' w={55} h={55} br={4} src={src} /></Press>}
         {icon && <Icon size={24} style={[styles.iconHome,{marginTop:3}]} name={icon} onPress={() => { iconPress() }} />}
+        {m_icon && <M_icon size={24} style={[styles.iconHome,{marginTop:3}]} name={m_icon} onPress={() => { iconPress() }} />}
+        {a_icon && <A_icon size={24} style={[styles.iconHome,{marginTop:4}]} name={a_icon} onPress={() => { iconPress() }} />}
         {row && <Span mr={10} ml={5} >{row}</Span>}
 
 
@@ -89,8 +93,12 @@ function SearchInput({ logoPress, row, array, setarray, Register, icon, src, ico
           <Icon onPress={foodDesc} size={21} style={{ padding: 4 }} name="arrow-up" color='#555' />
         </Span>}
 
-        {Register && <Span style={[styles.containAscDesc]}>
-          <Span w={'100%'} h={39} br={5} mt={5} bgcolor="#fff" border={[1, 'silver']} jc='center' ai='center' ><Py fw='100' >ورود</Py></Span>
+        {login && <Span style={[styles.containAscDesc]}>
+          <Press onClick={()=>{navigation.navigate('Login')}} w={'100%'} h={39} br={5} mt={5} bgcolor="#fff" border={[1, 'silver']} jc='center' ai='center' ><Py fw='100' >ورود</Py></Press>
+        </Span>}
+
+        {profile && <Span style={[styles.containAscDesc]}>
+          <Press onClick={()=>{navigation.navigate('Profile')}}  w={'100%'} h={39} br={5} mt={7} jc='center' ai='center' ><Icon name='user-alt' color='#222' size={20} /></Press>
         </Span>}
 
       </Span>

@@ -9,9 +9,9 @@ const ForgetPass = (p) => {
       <Span br={4} border={[1,'silver']} p={12} f={1}>
         <Span jc='space-between' h={210} pv={15}>
             <Span mh='37%' w='85%' jc='center' as='center' ai='center'>
-              <P as='center' mb={5} >شماره تلفن خودرا وارد کنید</P>
-              <Input keyboardType="numeric" value={p.phone} onChangeText={(text) => p.setphone(text)} w='100%' p="شماره تلفن" />
-              <Button outline w={165} mt={20} onClick={getCodeForgetPass} >ارسال</Button>
+              <P as='center' mb={5} >شماره یا ایمیل خودرا وارد کنید</P>
+              <Input value={p.phoneOrEmail} onChangeText={(text) => p.setphoneOrEmail(text)} w='100%' p="شماره تلفن" />
+              <Button outline w={165} mt={20} onClick={!p.showActivity ? getCodeForgetPass : () => { }} >ارسال</Button>
             </Span>
         </Span>
       </Span>

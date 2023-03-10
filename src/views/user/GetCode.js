@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo } from 'react'
+import React, { memo } from 'react'
 import { Column, Form, P, Press } from '../../other/Components/Html'
 
 const GetCode = memo((p) => {
@@ -15,8 +15,8 @@ const GetCode = memo((p) => {
   return (
     <Column >
       <Form $code onClick={verifycode} {...p} >
-        <Press onClick={() => { if (p.twoMinut?.split(':')[0] == 0 && p.twoMinut?.split(':')[1] <= 1) { p.settwoMinut(''); getNewCode() } }} style={{ cursor: (p.twoMinut?.split(':')[0] == 0 && p.twoMinut?.split(':')[1] <= 1) ? 'pointer' : '' }} >
-          <P color={p.twoMinut?.split(':')[0] == 0 && p.twoMinut?.split(':')[1] <= 1 ? '#08f' : '#c1c1c1'}>ارسال دوباره کد {(p.twoMinut?.split(':')[0] == 0 && p.twoMinut?.split(':')[1] <= 1) ? 'فعال' : p.twoMinut}</P>
+        <Press onClick={() => { if (p.twoMinut === 0 ) { p.settwoMinut(0); getNewCode() } }} style={{ cursor: (p.twoMinut === 0 ) ? 'pointer' : '' }} >
+          <P color={p.twoMinut === 0  ? '#08f' : '#c1c1c1'}>ارسال دوباره کد {(p.twoMinut === 0 ) ? 'فعال' : p.twoMinut}</P>
         </Press>
       </Form>
     </Column>

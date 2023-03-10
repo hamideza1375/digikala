@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList, M_icon, P, Press, Span } from '../../other/Components/Html'
-import { truncate } from '../../other/utils/helpers'
+import { truncate } from '../../other/utils/truncate'
 
 
 const SavedItems = (p) => {

@@ -20,15 +20,6 @@ export function client() {
 
 
 
-  const [group, setgroup] = useState([
-    { _id: '1', title: 'موبایل', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', available: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
-    { _id: '2', title: 'تبلت', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', available: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
-    { _id: '3', title: 'هدفون و هنزفیری', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', available: 40, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../other/assets/images/a3.jpg') },
-    { _id: '4', title: 'لوازم جانبی', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', available: 150, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../other/assets/images/a7.jpg') },
-    { _id: '5', title: 'سیمکارت', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', available: 10, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
-  ])
-
-
   const [category, setcategory] = useState([
     { _id: '1', title: 'موبایل', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', available: 50, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
     { _id: '2', title: 'تبلت', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', available: 30, color: ['red', 'blue'], guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
@@ -40,17 +31,19 @@ export function client() {
      
 
   const [childItem, setchildItem] = useState([
-    { _id: '1', title: 'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', memory:16, display:7, battery:300, available: 50, color: ['red', 'blue'],operatingSystem:'ios', brand:'iphone', guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
-    { _id: '2', title: 'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', memory:8, display:9, battery:200, available: 30, color: ['red', 'blue'],operatingSystem:'android', brand:'iphone', guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
-    { _id: '3', title: 'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', memory:32, display:3, battery:500, available: 40, color: ['red', 'blue'],operatingSystem:'android', brand:'nokia', guarantee: 'guarantee ', image: require('../other/assets/images/a3.jpg') },
-    { _id: '4', title: 'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', memory:32, display:5, battery:300, available: 150, color: ['red', 'blue'],operatingSystem:'ios', brand:'nokia', guarantee: 'guarantee ', image: require('../other/assets/images/a7.jpg') },
-    { _id: '5', title: 'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', memory:128, display:7, battery:200, available: 10, color: ['red', 'blue'],operatingSystem:'ios', brand:'shiyaomi', guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
-    { _id: '6', title: 'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', memory:256, display:4, battery:400, available: 50, color: ['red', 'blue'],operatingSystem:'android', brand:'shiyaomi', guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
-    { _id: '7', title: 'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', memory:64, display:10, battery:200, available: 0, color: ['red', 'blue'],operatingSystem:'android', brand:'huawi', guarantee: 'guarantee ', image: require('../other/assets/images/a3.jpg') },
-    { _id: '8', title: 'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', memory:32, display:6, battery:600, available: 8, color: ['red', 'blue'],operatingSystem:'android', brand:'huawi', guarantee: 'guarantee ', image: require('../other/assets/images/a7.jpg') },
-    { _id: '9', title: 'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', memory:64, display:5, battery:500, available: 1, color: ['red', 'blue'],operatingSystem:'ios', brand:'samsung', guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
-    { _id: '10', title: 'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', memory:128, display:5, battery:800, available: 0, color: ['red', 'blue'],operatingSystem:'android', brand:'samsung', guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
+    // { _id: '1', title: 'phone1', price: 2000000, sdCard: 16, ram: 3, cpuCore: 4, camera: 13, network: '4G', memory:16, display:7, battery:300, available: 50, color: ['red', 'blue'],operatingSystem:'ios', brand:'iphone', guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
+    // { _id: '2', title: 'phone2', price: 4500000, sdCard: 64, ram: 6, cpuCore: 8, camera: 64, network: '5G', memory:8, display:9, battery:200, available: 30, color: ['red', 'blue'],operatingSystem:'android', brand:'iphone', guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
+    // { _id: '3', title: 'phone3', price: 4800000, sdCard: 128, ram: 4, cpuCore: 6, camera: 32, network: '5G', memory:32, display:3, battery:500, available: 40, color: ['red', 'blue'],operatingSystem:'android', brand:'nokia', guarantee: 'guarantee ', image: require('../other/assets/images/a3.jpg') },
+    // { _id: '4', title: 'phone4', price: 3500000, sdCard: 64, ram: 3, cpuCore: 4, camera: 32, network: '4G', memory:32, display:5, battery:300, available: 150, color: ['red', 'blue'],operatingSystem:'ios', brand:'nokia', guarantee: 'guarantee ', image: require('../other/assets/images/a7.jpg') },
+    // { _id: '5', title: 'phone5', price: 2800000, sdCard: 32, ram: 3, cpuCore: 4, camera: 16, network: '4G', memory:128, display:7, battery:200, available: 10, color: ['red', 'blue'],operatingSystem:'ios', brand:'shiyaomi', guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
+    // { _id: '6', title: 'phone6', price: 4000000, sdCard: 128, ram: 4, cpuCore: 8, camera: 64, network: '5G', memory:256, display:4, battery:400, available: 50, color: ['red', 'blue'],operatingSystem:'android', brand:'shiyaomi', guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
+    // { _id: '7', title: 'phone7', price: 900000, sdCard: 4, ram: 1, cpuCore: 2, camera: 5, network: '3G', memory:64, display:10, battery:200, available: 0, color: ['red', 'blue'],operatingSystem:'android', brand:'huawi', guarantee: 'guarantee ', image: require('../other/assets/images/a3.jpg') },
+    // { _id: '8', title: 'phone8', price: 8500000, sdCard: 128, ram: 8, cpuCore: 8, camera: 108, network: '5G', memory:32, display:6, battery:600, available: 8, color: ['red', 'blue'],operatingSystem:'android', brand:'huawi', guarantee: 'guarantee ', image: require('../other/assets/images/a7.jpg') },
+    // { _id: '9', title: 'phone9', price: 2000000, sdCard: 32, ram: 3, cpuCore: 4, camera: 32, network: '4G', memory:64, display:5, battery:500, available: 1, color: ['red', 'blue'],operatingSystem:'ios', brand:'samsung', guarantee: 'guarantee ', image: require('../other/assets/images/a1.jpg') },
+    // { _id: '10', title: 'phone10', price: 1000000, sdCard: 8, ram: 2, cpuCore: 2, camera: 8, network: '3G', memory:128, display:5, battery:800, available: 0, color: ['red', 'blue'],operatingSystem:'android', brand:'samsung', guarantee: 'guarantee ', image: require('../other/assets/images/a2.jpg') },
   ])
+
+  const [singleItem, setsingleItem] = useState({})
 
 
   const [populars, setpopulars] = useState([
@@ -305,9 +298,9 @@ export function client() {
     logoUrl, setlogoUrl,
 
     slider, setslider,
-    group, setgroup,
     category, setcategory,
     childItem, setchildItem,
+    singleItem, setsingleItem,
     populars, setpopulars,
     similar, setsimilar,
     offers, setoffers,

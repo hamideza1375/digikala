@@ -1,6 +1,9 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react'
 import { FlatList, Platform, View } from 'react-native'
+import s from './style.module.scss';
+import { Span } from '../Html';
+
 
 var das = []
 
@@ -26,11 +29,11 @@ function ScrollSlider(p) {
 
   useFocusEffect(useCallback(() => {
 
-    if(Platform.OS === 'web' )
-    window.addEventListener('resize', (event) => {
-      setscroll2(false);
-      clearInterval(interval.current.interval)
-    });
+    if (Platform.OS === 'web')
+      window.addEventListener('resize', (event) => {
+        setscroll2(false);
+        clearInterval(interval.current.interval)
+      });
 
     return () => (
       clearInterval(interval.current.interval)
@@ -40,11 +43,12 @@ function ScrollSlider(p) {
 
 
   return (
-    <View
-      // <View onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
-      onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10) }}
-      onMoveShouldSetResponder={() => { setscroll2(false); }}
-      onTouchMove={() => { setscroll2(false); }} >
+    <Span
+      class={s.selectNone}
+      // <Span onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
+      onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10);}}
+      onMoveShouldSetResponder={() => { setscroll2(false);}}
+      onTouchMove={() => { setscroll2(false);}} >
       <View
         onMoveShouldSetResponder={(e) => {
           setscroll2(!scroll2)
@@ -52,7 +56,7 @@ function ScrollSlider(p) {
             if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') {
               ref.current.setNativeProps({ style: { overflowX: 'auto' } });
               das.push(e.nativeEvent.pageX)
-              ref.current.scrollToOffset({ animated: true, offset: scroll + das[0] - das[das.length - 1] })
+              ref.current.scrollToOffset({ animated: true, offset: (scroll) + ((das[0] - das[das.length - 1]) * 2) })
             }
           }
           setscroll2(false)
@@ -67,7 +71,7 @@ function ScrollSlider(p) {
           {...p}
           renderItem={renderItem}
           contentContainerStyle={[{ flexGrow: 1, direction: 'rtl' }, ccStyle]}
-          onLayout={(e) => { let int = setInterval(sum, 4000); function sum() { if (scroll2 && !(count.current.count >= data.length)) {open() } else clearInterval(int)} interval.current.interval = int }}
+          onLayout={(e) => { let int = setInterval(sum, 4000); function sum() { if (scroll2 && !(count.current.count >= data.length)) { open() } else clearInterval(int) } interval.current.interval = int }}
           // scrollEventThrottle={0}
           // alwaysBounceHorizontal={false}
           // alwaysBounceVertical={false}
@@ -76,7 +80,7 @@ function ScrollSlider(p) {
           style={[{ height: h ? h : 150, width: '99%', borderRadius: 5, flexWrap: 'wrap' }, style]}
         />
       </View>
-    </View>
+    </Span>
   )
 }
 

@@ -1,10 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Animated, StyleSheet, View, Text, TouchableOpacity, Pressable } from "react-native";
+import { Animated, StyleSheet, View, TouchableOpacity, Pressable } from "react-native";
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
+import { Py } from "../Html";
 
-export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon, sethidden, hidden, onPress, style, header, body, bodyRow, color, bgcolor, icon, icon2, iconSize, fontSize, iconPress, icon2Press }) {
+export default function App({ border = [], br = 3, w, h, sh = {}, m_icon2, a_icon2, m_icon = 'arrow-left', a_icon, sethidden, hidden, style, header, header2, body, bodyRow, color, bgcolor, icon, icon2, iconSize, fontSize = 15, iconPress, icon2Press, onClick }) {
 
   const [show, setshow] = useState(true)
   const [mIcon, setmIcon] = useState(m_icon)
@@ -14,8 +15,8 @@ export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon
     ref?.current && ref.current.setNativeProps({ style: { height: 0 } })
 
     setTimeout(() => {
-    setshow(!show)
-    if (!iconPress && m_icon === 'arrow-left') setmIcon('arrow-left')
+      setshow(!show)
+      if (!iconPress && m_icon === 'arrow-left') setmIcon('arrow-left')
     }, 200);
 
   }, [hidden])
@@ -24,12 +25,11 @@ export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon
   return (
     <>
       <Pressable
-        onPressIn={() => { sethidden(!hidden);  }}
+        onPressIn={() => { sethidden(!hidden); }}
         onPress={() => {
-          setTimeout(() => {ref.current && ref.current.setNativeProps({ style: { height: !show ? null : 0 } })}, 100);
-          setTimeout(() => {if (!iconPress && m_icon === 'arrow-left') show?setmIcon('arrow-left'):setmIcon('arrow-drop-down');}, 210);
-          setTimeout(() => {if (!iconPress && m_icon === 'arrow-left'){ref.current && ref.current.setNativeProps({ style: { height: null } }); setmIcon('arrow-drop-down')}}, 220);
-          setTimeout(() => {if (!iconPress &&  m_icon !== 'arrow-left'){ref.current && ref.current.setNativeProps({ style: { height: null } }); setmIcon('arrow-drop-down')}}, 220);
+          onClick && onClick()
+          setTimeout(() => { ref.current && ref.current.setNativeProps({ style: { height: mIcon !== 'arrow-drop-down' ? null : 0 } }) }, 100);
+          setTimeout(() => { if (!iconPress && m_icon === 'arrow-left') mIcon === 'arrow-drop-down' ? setmIcon('arrow-left') : setmIcon('arrow-drop-down'); }, 210);
         }}
         activeOpacity={1}
         style={[styles.headView,
@@ -44,9 +44,9 @@ export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon
             bgcolor == "yellow" && "orange" ||
             bgcolor && bgcolor
         }
-          , { borderRadius: br,height:h,width:w, shadowRadius: sh.r, shadowOpacity: sh.o, shadowColor: sh.c, shadowOffset: sh.of, }, style]}>
-        <Text
-          style={[styles.headText, { color: color && color || 'white' }, { fontSize: fontSize ? fontSize : 17 }]}>{header}</Text>
+          , { borderWidth: border[0], borderColor: border[1], borderRadius: br, height: h, width: w, shadowRadius: sh.r, shadowOpacity: sh.o, shadowColor: sh.c, shadowOffset: sh.of, }, style]}>
+        <Py style={[styles.headText, { color: color && color || 'white' }, { fontSize }]}>{header}</Py>
+        {header2 ? <Py style={[styles.headText, { color: color && color || 'white' }, { fontSize, fontWeight: '100' }]}>{header2}</Py>:<></>}
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           {a_icon2 && <A_icon onPress={icon2Press} name={a_icon2} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
           {m_icon2 && <M_icon onPress={icon2Press} name={m_icon2} color={color && color || 'white'} size={iconSize ? iconSize : 24} style={styles.headText} />}
@@ -57,18 +57,18 @@ export default function App({ br=3,w,h,sh = {}, m_icon2, a_icon2, m_icon, a_icon
         </View>
       </Pressable>
       <Animated.View ref={ref} style={{ overflow: "hidden" }}>
-        <TouchableOpacity
-          activeOpacity={0.8}
+        <View
+          // activeOpacity={0.8}
           style={styles.subView}>
           {
             !bodyRow ?
-              <Text style={styles.subText}>
+              <Py style={styles.subText}>
                 {body}
-              </Text>
+              </Py>
               :
               bodyRow
           }
-        </TouchableOpacity>
+        </View>
       </Animated.View>
     </>
   );
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: .4,
   },
   subText: {
-    fontSize: 17,
+    fontSize: 14,
     fontWeight: '100',
     paddingHorizontal: 10,
     alignItems: 'center'

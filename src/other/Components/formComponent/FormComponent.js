@@ -54,7 +54,7 @@ export const CheckBox = (props) => {
 };
 
 export const CheckBoxRadius = (p) => {
-  const { item, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onClick, style, refObject } = p;
+  const { item, index, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onClick, style, refObject } = p;
 
   const ref = useRef();
   //! const show = useRef({show:false});
@@ -68,7 +68,7 @@ export const CheckBoxRadius = (p) => {
   }, [show])
 
   useEffect(() => {
-    if (item?.filterValue === '') {
+    if (item?.filterValue === '' /* || index === 0 */ ) {
       ref.current.setNativeProps({ style: { backgroundColor: "#2c1" } })
       showValue.current.show = true
     }

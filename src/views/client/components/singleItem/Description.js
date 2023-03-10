@@ -7,7 +7,7 @@ const Description = (p) => {
   return (
 
     <Span minw={290} w={'100%'} ai='center' jc='center'>
-      <Card2 h={400} w={'100%'} style={{ borderColor: 'silver', backgroundColor: 'white' }}
+      {p.singleItem && <Card2 h={400} w={'100%'} style={{ borderColor: 'silver', backgroundColor: 'white' }}
         coulumn1={
           <Span w={'100%'} f={1} >
 
@@ -20,7 +20,7 @@ const Description = (p) => {
 
             <Span f={2} ph={12} jc='space-between' fd='row' ai='center'>
               <P >تحویل حد اکثر یکساعت بعد از خرید</P>
-              <P color='#0ad' fs={14}>{spacePrice(p.singlePrice)} تومان </P>
+              <P color='#0ad' fs={14}>{spacePrice(p.singleItem.price)} تومان </P>
             </Span >
 
           </Span>
@@ -30,12 +30,12 @@ const Description = (p) => {
 
             <Span fg={1} fd='row' pr={12} ai='center'>
               <P mb={-6}>گارانتی: </P>
-              <P fs={11} mb={-6}>{p.guarantee}</P>
+              <P fs={11} mb={-6}>{p.singleItem.warranty}</P>
             </Span >
 
             <Span fg={1} fd='row' pr={12} ai='center' >
               <P mb={-6}>موجود در انبار: </P>
-              <P fs={11} color={p.evailableNumber > 10 ? '#0ce' : '#f22'} mb={-6}>{p.evailableNumber < 10 ? `تنها ${p.evailableNumber} در انبار موجود هست` : 'موجود هست'}</P>
+              <P fs={11} color={p.singleItem.evailableNumber > 10 ? '#0ce' : '#f22'} mb={-6}>{p.singleItem.evailableNumber < 10 ? `تنها ${p.singleItem.evailableNumber} در انبار موجود هست` : 'موجود هست'}</P>
             </Span >
 
             <Span fg={1} pr={12}>
@@ -44,9 +44,9 @@ const Description = (p) => {
               </Span>
               <Div fg={1} fd='row' pr={12} pb={0} ai='center'>
 
-                {p.colorItem.map((item,index) => (
+                {p.singleItem.color.map((item,index) => (
                   <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
-                    <Press onLayout={()=>setcolor(p.colorItem[0].color)} onClick={() => { setcolor(item.color) }} ai='center' h={30} mt={6}>
+                    <Press onLayout={()=>setcolor(p.singleItem.color[0].color)} onClick={() => { setcolor(item.color) }} ai='center' h={30} mt={6}>
                       <Badge bgcolor={color !== item.color ? '#fff' : item.color} border={[2, item.color]} w={30} h={30} /></Press>
                     <Span><P fs={10} >{item.colorFa}</P></Span>
                   </Span>
@@ -61,7 +61,7 @@ const Description = (p) => {
             </Span >
 
           </Span>}
-      />
+      />}
     </Span>
   )
 }

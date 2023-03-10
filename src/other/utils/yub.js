@@ -65,13 +65,14 @@
 
 
     if (propName === 'phoneOrEmail') {
-        if (!target[propName].length) {
+        if (!target[propName]) {
           return ('کادر نباید خالی باشد')
         }
-        else if (target[propName].includes('@')) {
+        else if (target[propName].includes('@') || isNaN(target[propName]) ) {
           if (target[propName].length < 5 || !target[propName].includes('.') ) {
             return ('ایمیل وارد شده صحیح نمیباشد')
           }
+          else return target[propName]
         }
         else if (target[propName].length > 11 || target[propName].length < 11) {
             return ('شماره ی وارد شده صحیح نمیباشد')

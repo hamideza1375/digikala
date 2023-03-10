@@ -30,7 +30,7 @@ const SliderPopulars = (p) => {
           data={p.populars}
           renderItem={({ item, index }) => (
             <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} col2={{ marginHorizontal: 3 }}>
-              <CardItem item={item} spacePrice={spacePrice} w={170}/>
+              <CardItem item={item} spacePrice={spacePrice} w={170} onClick={()=>{p.navigation.navigate('SingleItem',{id:item._id})}}/>
             </Span>
           )}
         />

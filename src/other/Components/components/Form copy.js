@@ -52,7 +52,7 @@ const Form = ({
 
 
   const { stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail,
-    imageUrl, setimageUrl, videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword,
+    imageUrl, setImageUrl, videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword,
     confirmPassword, setconfirmPassword, message, setmessage, code, setcode, input1, setinput1, captcha, setcaptcha, setremember,
     star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar, setallstar } = context()
 
@@ -335,7 +335,7 @@ const Form = ({
               textContentType="username"
               autoComplete={autoComplete ? "username" : 'off'}
               icon='user'
-              p='نام و نام خوانوادگی'
+              p='نام'
               newObj={newObj.fullname}
               iconLeft={fIconLeft}
               iconRight={fIconRight}
@@ -394,6 +394,7 @@ const Form = ({
             <Frm
               register={register}
               plackTextTop={plackTextTop}
+              autoComplete={autoComplete ? "autoComplete" : 'off'}
               icon="phone"
               p='ایمیل یا شماره تلفن'
               newObj={newObj.phoneOrEmail}
@@ -490,8 +491,6 @@ const Form = ({
           {$code &&
             <Frm
               plackTextTop={plackTextTop}
-              textContentType="oneTimeCode"
-              autoComplete={'off'}
               m_icon="textsms"
               p="کد ورود"
               iconLeft={codeIconLeft}
@@ -573,7 +572,7 @@ const Form = ({
             imIconLeft={imIconLeft}
             imIconRight={imIconRight}
             imageUrl={imageUrl}
-            setImageUrl={setimageUrl}
+            setImageUrl={setImageUrl}
             _imageUrl={_imageUrl}
             newObj={newObj.imageUrl}
             img={img}

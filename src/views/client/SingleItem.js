@@ -14,7 +14,8 @@ const Footer = lazy(() => import('./components/home/Footer'));
 
 
 
-const SingleItems = (p) => {
+const SingleItem = (p) => {
+  p._client.getSingleItem()
   _useEffect(() => {
     // p.navigation.setOptions({
     //   header: () =>
@@ -88,7 +89,7 @@ const SingleItems = (p) => {
   )
 }
 
-export default SingleItems
+export default SingleItem
 
 
 // هرکس که نظر میده بتونه لایک کنه و اگه لایک کرده بود بزن این کاربر این کالارا پیشنهاد میکند و ستاره رو فقط افرادی که دانلود کردن بتونن بدن

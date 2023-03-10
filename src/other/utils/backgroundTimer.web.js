@@ -1,4 +1,4 @@
 
+const backgroundTimer = (timerValue) => setInterval(timerValue)
 
-
-export default setInterval
+export default backgroundTimer

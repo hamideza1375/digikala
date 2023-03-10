@@ -187,7 +187,7 @@ export const Column = (props) => <Component {...props} Component={View} />
 
 export const Span = (props) => <Component {...props} Component={View} />
 
-export const Press = (props) => <Component onPress={props.onClick} {...props} style={[props.onClick && Platform.OS === 'web' && { cursor: 'pointer' }, props.style]} Component={Pressable} />
+export const Press = (props) => <Component onPress={props.onClick} {...props} style={[props.onClick ? { cursor: 'pointer' }:{cursor: '' }, props.style]} Component={Pressable} />
 
 export const PressView = (props) => 
 Platform.OS === 'web'?

@@ -6,6 +6,7 @@ import spacePrice from '../../../../other/utils/spacePrice'
 import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistOffers = (p) => {
+  p._client.getChildItems()
 
   const [dt, setdt] = useState()
 
@@ -24,7 +25,7 @@ const FlatlistOffers = (p) => {
       data={p.childItem}
       renderItem={({ item, index }) => (
         <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} col2={{ marginHorizontal: 3 }}>
-          <CardItem item={item} spacePrice={spacePrice} offers/>
+          <CardItem item={item} spacePrice={spacePrice} offers onClick={() => { p.navigation.navigate('SingleItem', { id: item._id }) }} />
         </Span>
       )}
     />

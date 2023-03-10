@@ -14,9 +14,6 @@ const ChildItems = (p) => {
         <Span f={5} >
           <FlatlistChild {...p} />
         </Span>
-
-        {/* <FilterList {...p} /> */}
-
         <Chat {...p} />
       </Span>
     </Container2>

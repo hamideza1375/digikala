@@ -2,3 +2,7 @@
     overflow: hidden;
 }
 
+.selectNone {
+    -webkit-user-select: none;
+    user-select: none;
+}

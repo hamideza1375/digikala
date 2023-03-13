@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { Column, ContainerTab, Drawer2, Py, Row } from '../Html';
 const width = Dimensions.get('window').width;
 
-const Drawer = ({ color = '#222', group, children, name, title, bgcolor = '#fff', style, icon, iconRight, Header, drawer2 }) => {
+const Drawer = ({ color = '#222', group, children, name, title, bgcolor = '#fff', style, icon, iconRight, Header, drawer=true, drawer2 }) => {
   const fadeAnim = useRef(new Animated.Value(-width * 2)).current;
   const shadowRef = useRef()
   const navigation = useNavigation()
@@ -49,9 +49,9 @@ const Drawer = ({ color = '#222', group, children, name, title, bgcolor = '#fff'
             <Text style={[styles.TextHeader, { color }]}>{title}</Text>
           </>
           :
-          <View style={{ flexGrow: 1, marginLeft: 6, transform: [{ scaleY: .8 }] }} ><Header show={showDrawer2} setshow={setshowDrawer2} /></View>
+          <View style={{ flexGrow: 1, marginRight:6, marginLeft:-2, transform: [{ scaleY: .8 }] }} ><Header show={showDrawer2} setshow={setshowDrawer2} /></View>
         }
-        <Icon onPress={open} name={'bars'} color={color} size={25} style={{ padding: 2 }} />
+        {drawer && <Icon onPress={open} name={'bars'} color={color} size={25} style={{ padding: 2, marginRight:5 }} />}
       </View>
 
       <Column fd={drawer2 ? 'row' : 'column'} style={{ flexGrow: 1, maxHeight: '92%' }} >

@@ -1,4 +1,4 @@
-import {axios, localhost} from '../other/utils/axios/axios'
+import { axios, localhost } from '../other/utils/axios/axios'
 
 export const getCodeForRegister = (data) => axios.post(`${localhost}/getCodeForRegister`, data)
 export const getNewCode = () => axios.post(`${localhost}/getNewCode`)
@@ -10,9 +10,15 @@ export const verifycodeForgetPass = (data) => axios.post(`${localhost}/verifycod
 export const resetPassword = (data) => axios.post(`${localhost}/resetPassword`, data)
 export const sendImageProfile = (data) => axios.postData(`${localhost}/sendImageProfile`, data)
 export const getImageProfile = (data) => axios.post(`${localhost}/getImageProfile`, data)
-export const sendProposal = () => axios.get(`${localhost}/sendProposal` )
-export const getLastPayment = () => axios.get(`${localhost}/getLastPayment` )
-export const singleTicket = (id) => axios.get(`${localhost}/singleTicket/${id}` )
-export const ticketAnswer = (data,id) => axios.postData(`${localhost}/ticketAnswer/${id}`, data)
+export const sendProposal = () => axios.get(`${localhost}/sendProposal`)
+export const getLastPayment = () => axios.get(`${localhost}/getLastPayment`)
+export const getAnswersTicket = (id) => axios.get(`${localhost}/getAnswersTicket/${id}`)
+export const sendTicketAnswer = (data, id) => axios.postData(`${localhost}/sendTicketAnswer/${id}`, data)
 export const sendNewTicket = (data) => axios.postData(`${localhost}/sendNewTicket`, data)
 export const ticketBox = () => axios.get(`${localhost}/ticketBox`)
+export const deleteAnswerTicket = (id, ticketid) => axios.delete(`${localhost}/deleteAnswerTicket/${id}?ticketid=${ticketid}`)
+export const deleteTicket = (id) => axios.delete(`${localhost}/deleteTicket/${id}`)
+export const editAnswerTicket = (data, id, ticketid) => axios.putData(`${localhost}/editAnswerTicket/${id}?ticketid=${ticketid}`, data)
+export const getSingleAnswerTicket = (id, ticketid) => axios.get(`${localhost}/getSingleAnswerTicket/${id}?ticketid=${ticketid}`)
+export const ticketSeen = (id) => axios.post(`${localhost}/ticketSeen/${id}`)
+

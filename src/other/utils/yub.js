@@ -123,8 +123,8 @@
         if (target[propName].length < 3) {
           return ('عنوان نباید کوچک تر از ۳ کلمه باشد')
         }
-        if (target[propName].length > 30) {
-          return ('عنوان نباید بزرگ تر از ۱۵ کلمه باشد')
+        if (target[propName].length > 40) {
+          return ('عنوان نباید بزرگ تر از ۴۰ کلمه باشد')
         }
         else {
           return target[propName]

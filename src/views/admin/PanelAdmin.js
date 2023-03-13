@@ -7,32 +7,7 @@ const PanelAdmin = (p) => {
     <Container2 fd='row'>
       {/* //! یک هم درست کن برای نمایش محصولات که بتونه وارد صفحه ی تکی محصول بشه از توی لیست و کامنتشو ویرایش کنه */}
       {/* //! بعد هشت روز پول رو به حساب فروشندگان واریز کن*/}
-      <Drawer2 f={1} h={'100%'} minw={170} pt={30}>
-        <Scroll ccStyle={{ flexGrow: 1 }} >
-          <Span mr={2} w={'95%'} border={[1, '#0479']}>
-            <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
-              <Press mt={10} onClick={() => p.navigation.navigate('Address')} ><Py>فیش سفارشات</Py></Press>
-            </Span>
-            <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
-              <Press onClick={() => p.navigation.navigate('AdminGetTicket')} ><Py>صندوق تیکت ها</Py></Press>
-              <Press mt={10} onClick={() => p.navigation.navigate('RealTimeChat')} ><Py>صندوق پرسش و پاسخ همزمان</Py></Press>
-              <Press mt={10} onClick={() => p.navigation.navigate('GetProposal')} ><Py>صندوق انتقادات و پیشنهادات</Py></Press>
-            </Span>
-            <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
-              <Press onClick={() => { p.navigation.navigate('Sellers') }} ><Py>فروشندگان</Py></Press>
-              <Press onClick={() => p.navigation.navigate('ListUnAvailable')} mt={10} ><Py>محصولات ناموجود</Py></Press>
-            </Span>
-            <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
-              <Press onClick={() => p.navigation.navigate('AddAdmin')} ><Py>اضافه کردن ادمین</Py></Press>
-              <Press mt={10} onClick={() => p.navigation.navigate('DeleteAdmin')} ><Py>حذف ادمین</Py></Press>
-              <Press mt={10} onClick={() => p.navigation.navigate('ChangeAdmin')} ><Py>تغییر ادمین اصلی</Py></Press>
-            </Span>
-            <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
-              <Press onClick={() => p.navigation.navigate('Notifee')} ><Py>ارسال نوتیفیکیشن</Py></Press>
-            </Span>
-          </Span>
-        </Scroll>
-      </Drawer2>
+
       <Span minw={220} f={3} h='100%' pt={10}>
         <Scroll ccStyle={{ flexGrow: 1 }} >
           <Span fd='row' h='100%' style={{ flexWrap: 'wrap' }} >

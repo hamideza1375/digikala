@@ -18,7 +18,7 @@ import { getNotification } from '../services/clientService';
 export const _initController = (p) => {
 
   _useEffect(() => {
-    var toastOK = (data) => { p.toast.success(typeof data === 'string' ? data : 'موفق آمیز', '✅', 4000) }
+    var toastOK = (data) => { p.toast.success(typeof data === 'string' ? data : 'موفق آمیز', '✅', 2500) }
     var toast500 = () => { p.toast.error('خطا', 'مشکلی از سمت سرور پیش آمده'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     var toast400 = (error) => { p.toast.error('خطا', typeof error === 'string' ? error : 'خطایی غیر منتظره رخ داد'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     Axios.interceptors.response.use(function (response) {

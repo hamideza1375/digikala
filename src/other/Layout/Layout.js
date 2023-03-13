@@ -8,6 +8,8 @@ import { Icon, SearchBar, Span } from '../Components/Html';
 
 import HomePage from './page/HomePage';
 import ChildItemPage from './page/ChildItemPage';
+import ProfilePage from './page/ProfilePage';
+import PanelAdminPage from './page/PanelAdminPage';
 
 
 export const Layout = (p) => {
@@ -58,6 +60,12 @@ export const Layout = (p) => {
           ||
           p.route.name === 'ChildItems' &&
           <ChildItemPage {...p} bottom={bottom} />
+          ||
+          p.route.name === 'Profile' &&
+          <ProfilePage {...p} bottom={bottom} />
+          ||
+          p.route.name === 'PanelAdmin' &&
+          <PanelAdminPage {...p} bottom={bottom} />
           ||
           <View flex={1} >{p.children}</View>
         }

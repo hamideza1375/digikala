@@ -60,7 +60,7 @@ const Loading = ({ style, text, h, setshowActivity, time = 7100, scale, androidS
 
           :
           <View style={{ alignItems: 'center', width: '100%' }}>
-            <Icon name="frown-o" size={55} style={[{ marginBottom: 10 }]} />
+            <Icon name="frown-open" size={55} style={[{ marginBottom: 10 }]} />
             <Text children={text ? text : 'متأستفانه چیزی پیدا نشد'} />
           </View>
         }

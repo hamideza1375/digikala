@@ -50,7 +50,7 @@ export function initial() {
   const [stateCity, setstateCity] = useState([])
   const [title, settitle] = useState('')
   const [price, setprice] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
+  const [imageUrl, setImageUrl] = useState({})
   const [videoUrl, setvideoUrl] = useState('')
   const [meanStar, setmeanStar] = useState()
   const [info, setinfo] = useState('')

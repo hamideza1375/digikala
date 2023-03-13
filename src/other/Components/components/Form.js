@@ -25,7 +25,7 @@ let loginInterval = null
 
 let interval
 const Form = ({
-  webStyle = {}, nativeStyle = {}, timer = false, refInput, rand, setRand, btn = true,
+  webStyle = {}, nativeStyle = {}, timer = false, btn = true,
   contentContainerStyle, mAutoFocus, mt, bgcolor = '#f0f0f0',
   city, f, e, p, cp, m, ch, c, t, pr, im, i, edit, s, ph, $code, v, style,
   plackTextTop = true,
@@ -54,7 +54,7 @@ const Form = ({
   const { stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail,
     imageUrl, setimageUrl, videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword,
     confirmPassword, setconfirmPassword, message, setmessage, code, setcode, input1, setinput1, captcha, setcaptcha, setremember,
-    star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar, setallstar } = context()
+    star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar, setallstar, refInput, rand, setRand, } = context()
 
 
 
@@ -636,10 +636,7 @@ const Form = ({
 
           {children &&
             <View behavior={"height"} style={{ height: 70, minHeight: 70, marginVertical: 5 }}>
-
-              <View style={[styles.viewChildren, { flexGrow: .4 }]}>
-                <Text style={{ color: '#0cf' }} >{children}</Text>
-              </View>
+              {children}
             </View>
           }
 

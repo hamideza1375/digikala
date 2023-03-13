@@ -57,7 +57,7 @@ import CreateChildItem from "./views/admin/CreateChildItem";
 import PanelAdmin from "./views/admin/PanelAdmin";
 import Sellers from "./views/admin/Sellers";
 import AddSeller from "./views/admin/AddSeller";
-import AdminGetTicket from "./views/admin/AdminGetTicket";
+import AdminTicketBox from "./views/admin/AdminTicketBox";
 import SocketIo from "./socketIo/socketIo";
 
 rtl()
@@ -134,10 +134,10 @@ const Mobile = () => {
               <Tab.Screen initialParams={{ key: 'admin' }} name="Address" options={{ title: 'اضافه کردن ادمین' }} {..._children(Address)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="ListUnAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
-              <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin' }} {..._children(PanelAdmin)} />
+              <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin', headerShown:false }} {..._children(PanelAdmin)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="Sellers" options={{ title: 'Sellers' }} {..._children(Sellers)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="AddSeller" options={{ title: 'AddSeller' }} {..._children(AddSeller)} />
-              <Tab.Screen name="AdminGetTicket" options={{ title: 'ارسال تیکت' }} {..._children(AdminGetTicket)} />
+              <Tab.Screen name="AdminTicketBox" options={{ title: 'ارسال تیکت' }} {..._children(AdminTicketBox)} />
             </Tab.Group>
 
             <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
@@ -195,7 +195,7 @@ const Mobile = () => {
 // propTypes(PanelAdmin)
 // propTypes(Sellers)
 // propTypes(AddSeller)
-// propTypes(AdminGetTicket)
+// propTypes(AdminTicketBox)
 
 
 const linking = {
@@ -232,7 +232,7 @@ const linking = {
       CommentsPosted: '/commentsPosted',
       Rules: '/rules',
 
-      AdminGetTicket: '/adminGetTicket',
+      AdminTicketBox: '/adminTicketBox',
       AddSeller: '/addSeller',
       Sellers: '/sellers',
       PanelAdmin: '/paneladmin',

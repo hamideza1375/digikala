@@ -87,7 +87,7 @@ const ProgressChart = ({ color = '#222', rodWidth = 30, bgcolor = '#fff', br = 2
   useEffect(() => {
     setTimeout(() => {
       setchange(true)
-    }, 500);
+    }, 1000);
   }, [])
 
 

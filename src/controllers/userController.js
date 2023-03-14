@@ -3,7 +3,6 @@ import Alert from '../other/utils/alert';
 import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen } from '../services/userService'
 import _useEffect from './_initial';
 import jwt_decode from 'jwt-decode';
-import { useEffect } from 'react';
 import _Alert from '../other/utils/alert';
 
 
@@ -69,7 +68,7 @@ export function userController(p) {
     else {
       await AsyncStorage.setItem('token', data.token)
       const user = jwt_decode(data.token)
-      console.log('user',user);
+      console.log('user', user);
       p.settokenValue(user)
       p.navigation.navigate('Profile')
     }
@@ -210,12 +209,14 @@ export function userController(p) {
     p.setmessage(data.message)
   }
 
+
   this.ticketSeen = async () => {
     _useEffect(() => {
       ticketSeen(p.route.params.id).then(() => { })
+      return () => ticketSeen(p.route.params.id).then(() => { })
     }, [])
-
   }
+
 
   this.deleteTicket = async (ticketId) => {
     _Alert.alert(

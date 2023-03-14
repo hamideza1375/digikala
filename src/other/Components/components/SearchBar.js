@@ -103,7 +103,7 @@ function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_i
         </Span>}
 
         {profile && <Span style={[styles.containAscDesc]}>
-          <Press onClick={() => { navigation.navigate('Profile') }} w={'100%'} h={39} br={5} mt={7} jc='center' ai='center' ><Icon name='user-alt' color='#222' size={20} /></Press>
+          <Press onClick={() => { if(!p.tokenValue.isAdmin) navigation.navigate('Profile'); else navigation.navigate('PanelAdmin') }} w={'100%'} h={39} br={5} mt={7} jc='center' ai='center' ><Icon name='user-alt' color='#222' size={20} /></Press>
         </Span>}
 
       </Span>

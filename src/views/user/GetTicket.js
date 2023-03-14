@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { TextInput } from 'react-native';
-import { Icon, Input, Container, P, FlatList, Press, Img, Column, Row, M_icon, Dropdown, A_icon, Modal, Card2, Button, Form } from '../../other/Components/Html';
+import moment from 'moment-jalaali';
+import React, { useRef, useState } from 'react';
+import { FlatList } from 'react-native';
+import { Icon, Input, Container, P, Img, Column, Row, M_icon, Dropdown, A_icon, Modal, Card2, Button, Form } from '../../other/Components/Html';
 import _Alert from '../../other/utils/alert';
 import { localhost } from '../../other/utils/axios/axios';
 import { imagePicker } from '../../other/utils/imagePicer';
@@ -11,22 +12,23 @@ const PvTicket = (p) => {
   const [showModalEditTicket, setshowModalEditTicket] = useState(false)
   const [itemId, setitemId] = useState('')
   p._user.ticketSeen()
-
   p._user.getAnswersTicket()
   const getSingleAnswerTicket = (itemId) => p._user.getSingleAnswerTicket(itemId)
   const sendAnswer = () => {
-    if (p.imageUrl.name || p.message) p._user.sendTicketAnswer(() => { setTimeout(() => { p.$.id('ticketFlatlist').scrollToEnd() }, 1000); });
+    if (p.imageUrl.name || p.message) p._user.sendTicketAnswer(() => { setTimeout(() => { ref.current?.scrollToEnd() }, 1000); });
     else p.toast.error('خطا', 'هنوز چیزی تایپ نکردین')
   }
   const deleteAnswer = (ticketId) => _Alert.alert("مطمئنید حذف شود؟", "", [{ text: "Cancel", onPress: () => { } }, { text: "OK", onPress: () => { p._user.deleteAnswerTicket(ticketId) } },])
   const editAnswer = (ticketId) => { p._user.editAnswerTicket(ticketId, () => setshowModalEditTicket(false)) }
   const _imagePicker = () => imagePicker().then(async (res) => { p.setimageUrl(res) })
+  const ref = useRef()
 
   return (
     <Container style={{}} >
       {p.answersTicket.length &&
         <FlatList
-          id='ticketFlatlist'
+          inverted
+          ref={ref}
           keyExtractor={(data) => data._id}
           data={p.answersTicket}
           renderItem={({ item, index }) => (
@@ -34,7 +36,8 @@ const PvTicket = (p) => {
               <Row onLayout={() => { console.log(); }} w='100%' jc='space-between' >
                 <P ta='right' fs={9} color='#999' >شما</P>
                 <Row >
-                  {index !== 0 &&
+                  <Column w={50} ai='flex-start' ><P fs={12} color='#ccce' >{moment(item.date).format('jM/jD')}</P></Column>
+                  {index !== p.answersTicket.length - 1 &&
                     <>
                       <M_icon name='delete' size={18} onClick={() => { deleteAnswer(item._id) }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
                       <M_icon name='edit' size={18} onClick={() => { setshowModalEditTicket(true); getSingleAnswerTicket(item._id); setitemId(item._id) }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
@@ -52,8 +55,13 @@ const PvTicket = (p) => {
                 <Row w='100%' jc='space-between' >
                   <P ta='right' fs={9} color='#999' ></P>
                   <Row >
-                    <M_icon name='delete' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
-                    <M_icon name='edit' size={18} onClick={() => { }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+                    <Column w={50} ai='flex-start' ><P fs={12} color='#ccce' >{moment(item.date).format('jM/jD')}</P></Column>
+                    {index !== p.answersTicket.length - 1 &&
+                      <>
+                        <M_icon name='delete' size={18} onClick={() => { deleteAnswer(item._id) }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+                        <M_icon name='edit' size={18} onClick={() => { setshowModalEditTicket(true); getSingleAnswerTicket(item._id); setitemId(item._id) }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
+                      </>
+                    }
                   </Row>
                 </Row>
                 <Column>
@@ -64,7 +72,7 @@ const PvTicket = (p) => {
           )}
         />}
 
-      <Column style={{ marginTop: 'auto', paddingTop: 10, borderRadius: 5, minWidth: '100%', height: '20%', minHeight: 80, maxHeight: 80, alignSelf: 'center', backgroundColor: '#aac', }}>
+      <Column style={{ marginTop: 'auto', paddingTop: 15, borderRadius: 5, minWidth: '100%', height: '20%', minHeight: 80, maxHeight: 80, alignSelf: 'center', backgroundColor: '#aac', }}>
         <Column style={{ borderRadius: 5, width: '91%', alignSelf: 'center' }}>
           <Column style={{ minWidth: '100%' }} >
             <Column col1={{ left: 75 }} style={{ position: 'absolute', top: 14, left: 90, zIndex: 111, }}>
@@ -78,7 +86,7 @@ const PvTicket = (p) => {
 
               <Icon name={'paperclip'} size={20} color={'#aaa'} onClick={_imagePicker} />
             </Column>
-            <Input maxLength={1000} min={99} style={{ minHeight: 50 }} iconSize={24}
+            <Input multiline maxLength={1000} min={99} style={{ minHeight: 50 }} iconSize={24}
               onSubmitEditing={sendAnswer}
               iconPress={sendAnswer}
               icon="paper-plane"

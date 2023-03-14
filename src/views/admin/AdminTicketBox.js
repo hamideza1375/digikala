@@ -4,13 +4,13 @@ import { truncate } from '../../other/utils/truncate'
 
 
 const AdminTicketBox = (p) => {
-  p._admin.adminTicketBox()
+  p._user.ticketBox()
   const deleteTicket = (ticketId) => p._user.deleteTicket(ticketId)
 
   return (
     <Span>
       <FlatList
-        data={p.adminTicketBox}
+        data={p.userTicketBox}
         renderItem={({ item, index }) => (
           <Column mv={8} mh={6} maxw={500} bgcolor='#ddd' border={[1, '#ddd']} br={4} p={8} >
             <P  onClick={() => { p.navigation.navigate('GetTicket', { id: item._id }) }} ta='right' fs={12} >{item.title}</P>

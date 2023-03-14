@@ -150,7 +150,7 @@ const YearsChartMean = ({ color = '#a5fd', borderColor = '#a5f7', rodColor = '#d
   useEffect(() => {
     setTimeout(() => {
       setchange(true)
-    }, 500);
+    }, 1000);
   }, [])
 
 

@@ -147,7 +147,7 @@ const YearsChartTotal = ({ color = '#a5fd', borderColor = '#a5f9', rodColor = '#
   useEffect(() => {
     setTimeout(() => {
       setchange(true)
-    }, 500);
+    }, 1000);
   }, [])
 
 

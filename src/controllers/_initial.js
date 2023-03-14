@@ -11,14 +11,14 @@ import { userController } from "./userController";
 import { Layout } from "../other/Layout/Layout";
 
 import backgroundTimer from '../other/utils/backgroundTimer';
-import {create} from '../other/utils/notification';
+import { create } from '../other/utils/notification';
 import { getNotification } from '../services/clientService';
 
 
 export const _initController = (p) => {
 
   _useEffect(() => {
-    var toastOK = (data) => { p.toast.success(typeof data === 'string' ? data : 'موفق آمیز', '✅', 2500) }
+    var toastOK = (data) => { p.toast.success(typeof data === 'string' ? data : 'موفق آمیز', '✅', 3000) }
     var toast500 = () => { p.toast.error('خطا', 'مشکلی از سمت سرور پیش آمده'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     var toast400 = (error) => { p.toast.error('خطا', typeof error === 'string' ? error : 'خطایی غیر منتظره رخ داد'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     Axios.interceptors.response.use(function (response) {
@@ -42,29 +42,29 @@ export const _initController = (p) => {
   Dimensions.addEventListener('change', ({ window: { width, height } }) => { p.setwidth(width); p.setheight(height) })
 
 
-//! notifee
-  // useEffect(() => {
-  //   (async () => {
-  //     let newNotification = await AsyncStorage.getItem('notification')
-  //     const { data } = await getNotification()
-  //     if (data)
-  //       if (data.message && newNotification !== data.message) {
-  //         create(data.title, data.message, require('../other/assets/images/logo.png'))
-  //         await AsyncStorage.setItem('notification', data.message)
-  //       }
-  //   })();
-  //     backgroundTimer(async () => {
-  //       (async () => {
-  //         let newNotification = await AsyncStorage.getItem('notification')
-  //         const { data } = await getNotification()
-  //         if (data)
-  //           if (data.message && newNotification !== data.message) {
-  //             create(data.title, data.message, require('../other/assets/images/logo.png'))
-  //             await AsyncStorage.setItem('notification', data.message)
-  //           }
-  //       })();
-  //     }, 30000)
-  // }, [])
+  //! notifee
+  useEffect(() => {
+    (async () => {
+      let newNotification = await AsyncStorage.getItem('notification')
+      const { data } = await getNotification()
+      if (data)
+        if (data.message && newNotification !== data.message) {
+          create(data.title, data.message, require('../other/assets/images/logo.png'))
+          await AsyncStorage.setItem('notification', data.message)
+        }
+    })();
+    backgroundTimer(async () => {
+      (async () => {
+        let newNotification = await AsyncStorage.getItem('notification')
+        const { data } = await getNotification()
+        if (data)
+          if (data.message && newNotification !== data.message) {
+            create(data.title, data.message, require('../other/assets/images/logo.png'))
+            await AsyncStorage.setItem('notification', data.message)
+          }
+      })();
+    }, 20000)
+  }, [])
 
 }
 

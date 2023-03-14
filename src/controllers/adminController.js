@@ -1,4 +1,4 @@
-import { changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox } from "../services/adminService"
+import { changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen } from "../services/adminService"
 import _useEffect from "./_initial"
 
 export function adminController(p) {
@@ -53,18 +53,22 @@ export function adminController(p) {
   }
 
 
+
   this.deleteNotification = async () => {
     await deleteNotification()
   }
 
 
   this.setAdmin = async () => {
-    await setAdmin({ phone: p.phone })
+    await setAdmin({ phoneOrEmail: p.phoneOrEmail })
   }
 
 
   this.deleteAdmin = async () => {
-    await deleteAdmin({ phone: p.phone })
+    await deleteAdmin(p.phoneOrEmail)
+    p.setallAdmin(admin =>
+      admin.filter(a => a.phoneOrEmail !== p.phoneOrEmail)
+    )
   }
 
 
@@ -72,7 +76,7 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getAllAdmin()
-        // console.log('getAllAdmin', data);
+        p.setallAdmin(data)
       })()
     }, [])
   }
@@ -125,7 +129,7 @@ export function adminController(p) {
 
 
   this.sendPostPrice = () => {
-    sendPostPrice({ phone: p.phone }).then(() => { })
+    sendPostPrice({ phoneOrEmail: p.phoneOrEmail }).then(() => { })
   }
 
 
@@ -151,9 +155,20 @@ export function adminController(p) {
     _useEffect(() => {
       adminTicketBox().then(({ data }) => {
         p.setadminTicketBox(data.tickets)
-        console.log(23,data.tickets);
+        console.log(23, data.tickets);
       })
     }, [])
   }
+
+
+  this.getSocketIoSeen = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getSocketIoSeen()
+        p.setsocketIoSeen(data)
+      })()
+    }, [])
+  }
+
 
 }

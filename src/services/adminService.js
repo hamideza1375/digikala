@@ -12,7 +12,7 @@ export const changeAvailable = (data) => axios.post(`${localhost}/changeAvailabl
 export const createNotification = (data) => axios.post(`${localhost}/createNotification`, data)
 export const deleteNotification = () => axios.delete(`${localhost}/deleteNotification`)
 export const setAdmin = (data) => axios.post(`${localhost}/setAdmin`, data)
-export const deleteAdmin = (data, phone) => axios.delete(`${localhost}/deleteAdmin?phone=${phone}`, data)
+export const deleteAdmin = (phoneOrEmail) => axios.delete(`${localhost}/deleteAdmin?phoneOrEmail=${phoneOrEmail}`)
 export const getAllAdmin = () => axios.get(`${localhost}/getAllAdmin`)
 export const changeMainAdmin = (data) => axios.put(`${localhost}/changeMainAdmin`, data)
 export const getProposal = () => axios.get(`${localhost}/getProposal`)
@@ -25,3 +25,4 @@ export const sendPostPrice = (data) => axios.post(`${localhost}/sendPostPrice`, 
 export const getPostPrice = () => axios.get(`${localhost}/getPostPrice`)
 export const getAllUser = () => axios.get(`${localhost}/getAllUser`)
 export const adminTicketBox = () => axios.get(`${localhost}/adminTicketBox`)
+export const getSocketIoSeen = () => axios.get(`${localhost}/getSocketIoSeen`)

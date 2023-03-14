@@ -4,6 +4,7 @@ import { useState } from "react"
 export function user() {
 
   const [userTicketBox, setuserTicketBox] = useState([])
+  const [ticketSeen, setticketSeen] = useState()
 
 
   const [phone, setphone] = useState('')
@@ -28,6 +29,7 @@ export function user() {
   // const [userTicketBox, setuserTicketBox] = useState([])
 
   this.user = {
+    ticketSeen, setticketSeen,
     userTicketBox, setuserTicketBox,
     phone, setphone,
     code, setcode,

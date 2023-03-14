@@ -163,6 +163,7 @@ const SocketIo = (p) => {
       pvMessage: pvMessage,
       userId: tokenSocket.current,
       to: to,
+      isAdmin: tokenValue.current.isAdmin,
     });
   };
 

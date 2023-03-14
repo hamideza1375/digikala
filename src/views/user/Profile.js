@@ -1,6 +1,8 @@
 import React from 'react'
 import { Container, Scroll, Span, P, Row, Card2, Column } from '../../other/Components/Html'
 const Profile = (p) => {
+  p._user.getTicketSeen()
+
   return (
     <Container>
       <Column ai='center' >

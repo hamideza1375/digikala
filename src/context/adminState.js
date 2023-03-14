@@ -170,10 +170,14 @@ export function admin() {
   ])
 
   const [groupItemTable, setGroupItemTable] = useState([])
+  const [allAdmin, setallAdmin] = useState([])
+  const [socketIoSeen, setsocketIoSeen] = useState()
   //!
   
 
   this.admin = {
+    socketIoSeen, setsocketIoSeen,
+    allAdmin, setallAdmin,
     chartUserLength, setchartUserLength,
     adminTicketBox, setadminTicketBox,
     chartData, setchartData,

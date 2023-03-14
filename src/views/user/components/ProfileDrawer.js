@@ -1,5 +1,5 @@
 import React from 'react'
-import { Scroll, Span, Drawer2, P, Press, Py } from '../../../other/Components/Html'
+import { Scroll, Span, Drawer2, P, Press, Py, Badge } from '../../../other/Components/Html'
 
 const ProfileDrawer = (p) => {
   return (
@@ -10,7 +10,7 @@ const ProfileDrawer = (p) => {
         <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>
           <Press onClick={() => p.navigation.navigate('SendTicket')} ><Py>ارسال تیکت</Py></Press>
           {/* <Press mt={10} onClick={()=>p.navigation.navigate('GetTicket')} ><Py>تیکت های دریافتی جدید</Py></Press> */}
-          <Press mt={10} onClick={() => p.navigation.navigate('TicketBox')} ><Py>صندوق تیکت های دریافتی</Py></Press>
+          <Press mt={10} fd='row' onClick={() => p.navigation.navigate('TicketBox')} ><Py>صندوق تیکت های دریافتی</Py>{p.ticketSeen?<Badge left={10} />:<></>}</Press>
           <Press mt={10} onClick={() => p.navigation.navigate('SendProposal')} ><Py>ارسال انتقادات و پیشنهادات</Py></Press>
         </Span>
         <Span as='center' pv={15} ph={10} w='95%' border={[1, 'red']}>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Scroll, Span, P, Press, Py } from '../../../other/Components/Html'
+import { Scroll, Span, P, Press, Py, Badge } from '../../../other/Components/Html'
 
 const PanelAdminDrawer = (p) => {
   return (
@@ -10,8 +10,8 @@ const PanelAdminDrawer = (p) => {
             <Press mt={10} onClick={() => p.navigation.navigate('Address')} ><Py>فیش سفارشات</Py></Press>
           </Span>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
-            <Press onClick={() => p.navigation.navigate('AdminTicketBox')} ><Py>صندوق تیکت ها</Py></Press>
-            <Press mt={10} onClick={() => p.navigation.navigate('SocketIo')} ><Py>صندوق پرسش و پاسخ همزمان</Py></Press>
+            <Press fd='row' onClick={() => p.navigation.navigate('AdminTicketBox')} ><Py>صندوق تیکت ها</Py>{p.ticketSeen?<Badge left={5} top={.5} />:<></>}</Press>
+            <Press mt={10} fd='row' onClick={() => p.navigation.navigate('SocketIo')} ><Py>صندوق پرسش و پاسخ همزمان</Py>{p.socketIoSeen?<Badge left={5} top={.5} />:<></>}</Press>
             <Press mt={10} onClick={() => p.navigation.navigate('GetProposal')} ><Py>صندوق انتقادات و پیشنهادات</Py></Press>
           </Span>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>

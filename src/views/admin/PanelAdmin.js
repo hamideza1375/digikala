@@ -1,6 +1,8 @@
 import React from 'react'
 import { ProgressChart, Scroll, Span, Drawer2, Container2, Press, DaysChartTotal, YearsChartTotal, Py, UserLengthChart, Row } from '../../other/Components/Html'
 const PanelAdmin = (p) => {
+  p._user.getTicketSeen()
+  p._admin.getSocketIoSeen()
   p._admin.getAllAddress()
   p._admin.getAllUser()
   return (

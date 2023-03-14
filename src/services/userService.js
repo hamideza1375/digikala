@@ -21,4 +21,5 @@ export const deleteTicket = (id) => axios.delete(`${localhost}/deleteTicket/${id
 export const editAnswerTicket = (data, id, ticketid) => axios.putData(`${localhost}/editAnswerTicket/${id}?ticketid=${ticketid}`, data)
 export const getSingleAnswerTicket = (id, ticketid) => axios.get(`${localhost}/getSingleAnswerTicket/${id}?ticketid=${ticketid}`)
 export const ticketSeen = (id) => axios.post(`${localhost}/ticketSeen/${id}`)
+export const getTicketSeen = () => axios.get(`${localhost}/getTicketSeen`)
 

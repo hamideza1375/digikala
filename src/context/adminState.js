@@ -169,13 +169,56 @@ export function admin() {
     { _id: '15', title: 'سیمکارت' }
   ])
 
+  const [listUnAvailabe, setlistUnAvailabe] = useState([])
+  const [allPaymentSuccessFalseAndTrue, setallPaymentSuccessFalseAndTrue] = useState([])
+  const [allAddress, setallAddress] = useState([])
+  const [proposalId, setproposalId] = useState([])
+  const [proposal, setproposal] = useState([])
+
   const [groupItemTable, setGroupItemTable] = useState([])
   const [allAdmin, setallAdmin] = useState([])
   const [socketIoSeen, setsocketIoSeen] = useState()
   //!
   
+  const [input2, setinput2] = useState('') // brand
+  const [input3, setinput3] = useState('') // ram
+  const [input4, setinput4] = useState('') // cpuCore
+  const [input5, setinput5] = useState('') // camera
+  const [input6, setinput6] = useState('') // storage
+  const [input7, setinput7] = useState('') // waranty
+  const [input8, setinput8] = useState('') // color
+  const [input9, setinput9] = useState('') // display
+  const [input10, setinput10] = useState('') // display
+
+  const [sliderImage1, setsliderImage1] = useState({})
+  const [sliderImage2, setsliderImage2] = useState({})
+  const [sliderImage3, setsliderImage3] = useState({})
+  const [sliderImage4, setsliderImage4] = useState({})
+  const [sliderImage5, setsliderImage5] = useState({})
+  const [sliderImage6, setsliderImage6] = useState({})
 
   this.admin = {
+    sliderImage1, setsliderImage1,
+    sliderImage2, setsliderImage2,
+    sliderImage3, setsliderImage3,
+    sliderImage4, setsliderImage4,
+    sliderImage5, setsliderImage5,
+    sliderImage6, setsliderImage6,
+
+    input2, setinput2,
+    input3, setinput3,
+    input4, setinput4,
+    input5, setinput5,
+    input6, setinput6,
+    input7, setinput7,
+    input8, setinput8,
+    input9, setinput9,
+    input10, setinput10,
+    listUnAvailabe, setlistUnAvailabe,
+    allPaymentSuccessFalseAndTrue, setallPaymentSuccessFalseAndTrue,
+    allAddress, setallAddress,
+    proposalId, setproposalId,
+    proposal, setproposal,
     socketIoSeen, setsocketIoSeen,
     allAdmin, setallAdmin,
     chartUserLength, setchartUserLength,

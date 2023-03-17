@@ -242,13 +242,15 @@ export const FlatList = (props) => {
       ?
       <Component
         {...props}
-        renderItem={({ item, index }) => <> <View style={{position:'absolute',height:0,width:0}} ref={()=>setindex(index)} ></View> <>{props.renderItem({ item, index })}</> </>}
+        renderItem={({ item, index }) => <>
+          <View style={{ position: 'absolute', height: 0, width: 0 }} ref={() => setindex(index)} ></View>
+          <>{props.renderItem({ item, index })}</> </>}
         flatlist={true}
         keyExtractor={(item, index) => item._id}
         numColumns={props.numColumns ? props.numColumns : column}
         key={props.numColumns ? props.numColumns : column}
         Component={_FlatList}
-        ListFooterComponent={() => props.data[props.data.length - 1]?._id !== props.data[index]?._id ?<_Loading scale={1.5} time={99999} /> : <></>}
+        ListFooterComponent={() => props.data[props.data.length - 1]?._id !== props.data[index]?._id ? <_Loading scale={1.5} time={99999} /> : <></>}
       />
       :
       <_Loading />

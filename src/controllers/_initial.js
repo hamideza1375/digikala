@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useFocusEffect } from '@react-navigation/native'
 import Axios from 'axios'
 import jwt_decode from "jwt-decode";
-import { useCallback, useEffect as _useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { Dimensions } from 'react-native'
 
 import { adminController } from "./adminController";
@@ -12,13 +12,13 @@ import { Layout } from "../other/Layout/Layout";
 
 import backgroundTimer from '../other/utils/backgroundTimer';
 import { create } from '../other/utils/notification';
-import { getNotification } from '../services/clientService';
+import { getNotification, getSlider } from '../services/clientService';
 
 
 export const _initController = (p) => {
 
-  _useEffect(() => {
-    var toastOK = (data) => { p.toast.success(typeof data === 'string' ? data : 'موفق آمیز', '✅', 3000) }
+  useEffect(() => {
+    var toastOK = (data) => { typeof data !== 'string' ? p.toast.success('موفق آمیز', '✅', 2500) : p.toast.success('موفق آمیز', data, 3500) }
     var toast500 = () => { p.toast.error('خطا', 'مشکلی از سمت سرور پیش آمده'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     var toast400 = (error) => { p.toast.error('خطا', typeof error === 'string' ? error : 'خطایی غیر منتظره رخ داد'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     Axios.interceptors.response.use(function (response) {
@@ -35,9 +35,9 @@ export const _initController = (p) => {
     AsyncStorage.getItem("token").then((token) => { if (token) { const user = jwt_decode(token); p.settokenValue(user); } })
   }, [])
 
-  _useEffect(() => { setTimeout(() => { p.setSplash(false) }, 1000) }, [])
+  useEffect(() => { setTimeout(() => { p.setSplash(false) }, 1000) }, [])
 
-  _useEffect(() => { p.$input.set('a', 'a') }, [])
+  useEffect(() => { p.$input.set('a', 'a') }, [])
 
   Dimensions.addEventListener('change', ({ window: { width, height } }) => { p.setwidth(width); p.setheight(height) })
 
@@ -66,6 +66,17 @@ export const _initController = (p) => {
     }, 20000)
   }, [])
 
+
+
+  //! getSlider
+  useEffect(() => {
+    getSlider().then(({ data }) => {
+      p.setslider(Object.values(data))
+    })
+  }, [])
+
+
+
 }
 
 export function allController(p) {
@@ -76,4 +87,4 @@ export function allController(p) {
   this._children = (Component, key) => ({ children: (props) => <Layout _key={key} {...props} {...p}><Component {...props} {...p} {...reducer(props)} /></Layout> })
 }
 
-export default function useEffect(call, state) { useFocusEffect(useCallback(() => call(), state)) }
+export default function _useEffect(call, state) { useFocusEffect(useCallback(() => call(), state)) }

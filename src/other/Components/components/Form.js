@@ -35,7 +35,6 @@ const Form = ({
   onClick,
   navigation,
   phore,
-  in1,
   checkText,
   children,
   host,
@@ -46,15 +45,23 @@ const Form = ({
   fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
   tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
   phoreIconLeft, phoreIconRight, codeIconLeft, codeIconRight, vIconLeft, vIconRight,
-
+  slider,
+  in1, in2, in3, in4, in5, in6, in7, in8, in9, in10,
   ...props
 }) => {
 
 
   const { stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail,
     imageUrl, setimageUrl, videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword,
-    confirmPassword, setconfirmPassword, message, setmessage, code, setcode, input1, setinput1, captcha, setcaptcha, setremember,
-    star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar, setallstar, refInput, rand, setRand, } = context()
+    confirmPassword, setconfirmPassword, message, setmessage, code, setcode, captcha, setcaptcha, setremember,
+    star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar, setallstar, refInput, rand, setRand,
+
+    input1, setinput1, input2, setinput2, input3, setinput3, input4, setinput4, input5, setinput5, input6, setinput6, input7, setinput7, input8, setinput8, input9, setinput9, input10, setinput10
+    ,sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3 ,sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6
+  } = context()
+
+
+
 
 
 
@@ -242,7 +249,17 @@ const Form = ({
   const [_allstar, set_Allstar] = useState()
   const [_phone, set_Phone] = useState()
   const [_phore, set_Phore] = useState()
+
   const [_input1, set_Input1] = useState()
+  const [_input2, set_Input2] = useState()
+  const [_input3, set_Input3] = useState()
+  const [_input4, set_Input4] = useState()
+  const [_input5, set_Input5] = useState()
+  const [_input6, set_Input6] = useState()
+  const [_input7, set_Input7] = useState()
+  const [_input8, set_Input8] = useState()
+  const [_input9, set_Input9] = useState()
+  const [_input10, set_Input10] = useState()
 
 
   newObj.phone = phone;
@@ -259,7 +276,17 @@ const Form = ({
   newObj.info = info;
   newObj.message = message;
   newObj.allstar = allstar;
+
   newObj.input1 = input1;
+  newObj.input2 = input2;
+  newObj.input3 = input3;
+  newObj.input4 = input4;
+  newObj.input5 = input5;
+  newObj.input6 = input6;
+  newObj.input7 = input7;
+  newObj.input8 = input8;
+  newObj.input9 = input9;
+  newObj.input10 = input10;
 
   var pon = ph ? newObj.phone === phone : true
   var poe = phore ? newObj.phoneOrEmail === phoneOrEmail : true
@@ -275,7 +302,17 @@ const Form = ({
   var img = im ? (!edit ? newObj.imageUrl === imageUrl : true) : true
   var vdo = v ? (!edit ? newObj.videoUrl === videoUrl : true) : true
   var inf = i ? newObj.info === info : true
+
   var inpt1 = in1 ? newObj.input1 === input1 : true
+  var inpt2 = in2 ? newObj.input2 === input2 : true
+  var inpt3 = in3 ? newObj.input3 === input3 : true
+  var inpt4 = in4 ? newObj.input4 === input4 : true
+  var inpt5 = in5 ? newObj.input5 === input5 : true
+  var inpt6 = in6 ? newObj.input6 === input6 : true
+  var inpt7 = in7 ? newObj.input7 === input7 : true
+  var inpt8 = in8 ? newObj.input8 === input8 : true
+  var inpt9 = in9 ? newObj.input9 === input9 : true
+  var inpt10 = in10 ? newObj.input10 === input10 : true
 
 
   return (
@@ -564,6 +601,159 @@ const Form = ({
           }
 
 
+          {in2 &&
+            <Frm
+              autoComplete="off"
+              m_icon="business-center"
+              plackTextTop={plackTextTop}
+              p='نام تجاری'
+              state={input2}
+              setState={setinput2}
+              getBlur={_input2}
+              setBlur={set_Input2}
+              newObj={newObj.input2}
+              yub={inpt2}
+              styles={styles}
+            />
+          }
+
+
+          {in3 &&
+            <Frm
+              autoComplete="off"
+              icon="memory"
+              plackTextTop={plackTextTop}
+              p='رم'
+              state={input3}
+              setState={setinput3}
+              getBlur={_input3}
+              setBlur={set_Input3}
+              newObj={newObj.input3}
+              yub={inpt3}
+              styles={styles}
+            />
+          }
+
+
+          {in4 &&
+            <Frm
+              autoComplete="off"
+              m_icon="memory"
+              plackTextTop={plackTextTop}
+              p='مقدار هسته پردازشگر'
+              state={input4}
+              setState={setinput4}
+              getBlur={_input4}
+              setBlur={set_Input4}
+              newObj={newObj.input4}
+              yub={inpt4}
+              styles={styles}
+            />
+          }
+
+
+          {in5 &&
+            <Frm
+              autoComplete="off"
+              icon="camera"
+              plackTextTop={plackTextTop}
+              p='دوربین به مگاپیکسل'
+              state={input5}
+              setState={setinput5}
+              getBlur={_input5}
+              setBlur={set_Input5}
+              newObj={newObj.input5}
+              yub={inpt5}
+              styles={styles}
+            />
+          }
+
+
+          {in6 &&
+            <Frm
+              autoComplete="off"
+              icon="hdd"
+              plackTextTop={plackTextTop}
+              p='حافظه داخلی به گیگابایت'
+              state={input6}
+              setState={setinput6}
+              getBlur={_input6}
+              setBlur={set_Input6}
+              newObj={newObj.input6}
+              yub={inpt6}
+              styles={styles}
+            />
+          }
+
+
+          {in7 &&
+            <Frm
+              autoComplete="off"
+              icon="ribbon"
+              plackTextTop={plackTextTop}
+              p='گارانتی به ماه'
+              state={input7}
+              setState={setinput7}
+              getBlur={_input7}
+              setBlur={set_Input7}
+              newObj={newObj.input7}
+              yub={inpt7}
+              styles={styles}
+            />
+          }
+
+
+          {in8 &&
+            <Frm
+              autoComplete="off"
+              m_icon="color-lens"
+              plackTextTop={plackTextTop}
+              p='red-blue-green-black  : اگر چند رنگ هست به این صورت نوشته شود'
+              p2='رنگ ها'
+              state={input8}
+              setState={setinput8}
+              getBlur={_input8}
+              setBlur={set_Input8}
+              newObj={newObj.input8}
+              yub={inpt8}
+              styles={styles}
+            />
+          }
+
+
+          {in9 &&
+            <Frm
+              autoComplete="off"
+              m_icon="fit-screen"
+              plackTextTop={plackTextTop}
+              p='اندازه ی صفحه نمایش به اینچ'
+              state={input9}
+              setState={setinput9}
+              getBlur={_input9}
+              setBlur={set_Input9}
+              newObj={newObj.input9}
+              yub={inpt9}
+              styles={styles}
+            />
+          }
+
+
+          {in10 &&
+            <Frm
+              autoComplete="off"
+              icon="sort-numeric-up-alt"
+              plackTextTop={plackTextTop}
+              p='تعداد محصول'
+              state={input10}
+              setState={setinput10}
+              getBlur={_input10}
+              setBlur={set_Input10}
+              newObj={newObj.input10}
+              yub={inpt10}
+              styles={styles}
+            />
+          }
+
           {im && <InputImage
             plackTextTop={plackTextTop}
             icon='image'
@@ -595,6 +785,26 @@ const Form = ({
             img={vdo}
             styles={styles}
           />}
+
+
+
+
+          {slider &&
+            <InputImage
+              plackTextTop={plackTextTop}
+              icon='image'
+              p=' عکس اول '
+              accept='image'
+              mediaType='photo'
+              imageUrl={sliderImage1}
+              setImageUrl={setsliderImage1}
+              styles={styles}
+            />
+          }
+
+
+
+
 
           {ch &&
             <View behavior={"height"} style={{ height: 35, minHeight: 35, justifyContent: 'center', marginTop: 30, marginHorizontal: 10 }}>
@@ -740,13 +950,24 @@ const Form = ({
                   set_Phone(true)
                   set_Phore(true)
                   set_Code(true)
+
                   set_Input1(true)
+                  set_Input2(true)
+                  set_Input3(true)
+                  set_Input4(true)
+                  set_Input5(true)
+                  set_Input6(true)
+                  set_Input7(true)
+                  set_Input8(true)
+                  set_Input9(true)
+                  set_Input10(true)
                 }}
                 onPress={async () => {
-                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && cod && img && vdo && inf && pon && poe && inpt1 && star1) {
+                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && cod && img && vdo && inf && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
 
                     if (!timer) {
                       onClick()
+                      // setRand(parseInt(Math.random() * 9000 + 1000))
                     } else {
                       loginInterval && clearInterval(loginInterval)
                       let d = new Date()
@@ -772,7 +993,7 @@ const Form = ({
                           AsyncStorage.setItem("several", JSON.stringify(JSON.parse(several) + 1)).then(() => { })
                         })
                         onClick()
-
+                        // setRand(parseInt(Math.random() * 9000 + 1000))
                       }
                       else {
                         let loc = await AsyncStorage.getItem('getTime')

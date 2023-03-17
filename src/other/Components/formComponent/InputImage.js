@@ -4,6 +4,7 @@ import { launchImageLibrary } from "react-native-image-picker";
 import { Input } from "./FormComponent";
 import Swiper from '../components/Swiper'
 import { truncate } from "../../utils/truncate";
+import { Py } from "../Html";
 
 function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageUrl, _imageUrl, newObj, img, styles, icon, p, mediaType = 'photo' }) {
 
@@ -54,9 +55,9 @@ function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageU
                 style={styles.input}
               />
             </Pressable>
-            {_imageUrl && !img && <Text style={[styles.textinput, { color: 'red' }]} >
+            {_imageUrl && !img && <Py style={[styles.textinput, { color: 'red', fontSize:13, fontWeight:'100' }]} >
               {newObj}
-            </Text>}
+            </Py>}
           </Swiper>
         </Animated.View>
       </View>

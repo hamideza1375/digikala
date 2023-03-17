@@ -3,7 +3,7 @@ import { ProgressChart, Scroll, Span, Drawer2, Container2, Press, DaysChartTotal
 const PanelAdmin = (p) => {
   p._user.getTicketSeen()
   p._admin.getSocketIoSeen()
-  p._admin.getAllAddress()
+  p._admin.getAllAddressForChart()
   p._admin.getAllUser()
   return (
     <Container2 fd='row'>

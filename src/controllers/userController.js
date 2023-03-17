@@ -169,7 +169,7 @@ export function userController(p) {
     const { data } = await sendTicketAnswer({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id)
     p.setanswersTicket(singleTicket => {
       const answer = [...singleTicket]
-      answer.push(data)
+      answer.unshift(data)
       return answer
     })
     call()
@@ -256,8 +256,6 @@ export function userController(p) {
     }, [])
   }
 
-  
-
 
 
   this.logout = async () => {
@@ -277,7 +275,6 @@ export function userController(p) {
         }])
     }, []);
   }
-
 
 }
 

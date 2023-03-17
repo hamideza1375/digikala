@@ -1,4 +1,4 @@
-import { confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getSingleComment, getSingleItem, reverse } from "../services/clientService";
+import { confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getSingleComment, getSingleItem, getSlider, reverse } from "../services/clientService";
 import _useEffect from "./_initial";
 
 export function clientController(p) {
@@ -30,7 +30,6 @@ export function clientController(p) {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
         p.setsingleItem(data.singleItem)
-        console.log('getSingleItem', data.singleItem);
       })()
     }, [])
   }
@@ -74,6 +73,7 @@ export function clientController(p) {
   this.confirmPayment = async () => {
     await confirmPayment({ floor: p.floor, plaque: p.plaque, address: p.address, origin: {}, latlng: p.latlng, price: p.price, description: p.description, childItemsTitle: p.childItemsTitle, childItemsId: p.childItemsId })
   }
+
 
 }
 

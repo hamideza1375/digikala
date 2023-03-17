@@ -3,7 +3,7 @@ import { Animated, KeyboardAvoidingView, Text, View } from "react-native";
 import Icon from "react-native-vector-icons/dist/FontAwesome5";
 import { truncate } from "../../utils/truncate";
 import Swiper from '../components/Swiper'
-import { M_icon } from "../Html";
+import { M_icon, Py } from "../Html";
 
 
 function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageUrl, _imageUrl, newObj, img, styles, icon, p, accept }) {
@@ -40,7 +40,7 @@ function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageU
                   }
 
                 </View>
-                <Text style={{ width: '85%', position: 'absolute', Top: 5, paddingRight: 10, paddingLeft:10, color: '#666' }} >{imageUrl.name ? truncate(imageUrl.name, 15, false) : p}</Text>
+                <Py style={{ width: '85%', position: 'absolute', Top: 5, paddingRight: 10, paddingLeft:10, color: '#666', fontSize:13, fontWeight:'100' }} >{imageUrl.name ? truncate(imageUrl.name, 15, false) : p}</Py>
                 <input
                   type={'file'}
                   accept={`${accept}/*`}
@@ -50,9 +50,9 @@ function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageU
                 />
               </View>
             </Animated.View>
-            {_imageUrl && !img && <Text style={[styles.textinput, { color: 'red' }]} >
+            {_imageUrl && !img && <Py style={[styles.textinput, { color: 'red', fontSize:13, fontWeight:'100' }]} >
               {newObj}
-            </Text>}
+            </Py>}
           </Swiper>
         </Animated.View>
       </View>

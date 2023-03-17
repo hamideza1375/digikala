@@ -45,18 +45,19 @@ import Notifee from "./views/admin/Notifee";
 import ChangeAdmin from "./views/admin/ChangeAdmin";
 import DeleteAdmin from "./views/admin/DeleteAdmin";
 import Address from "./views/admin/Address";
-import DeleteAllAddress from "./views/admin/DeleteAllAddress";
+import AllPayment from "./views/admin/AllPayment";
 import ListUnAvailable from "./views/admin/ListUnAvailable";
 import GetProposal from "./views/admin/GetProposal";
-import TableGroupItems from "./views/admin/TableGroupItems";
+import TableCategory from "./views/admin/TableCategory";
 import TableChildItems from "./views/admin/TableChildItems";
-import EditGroupItem from "./views/admin/EditGroupItem";
+import EditCategory from "./views/admin/EditCategory";
 import EditChildItem from "./views/admin/EditChildItem";
-import CreateGroupItem from "./views/admin/CreateGroupItem";
+import CreateCategory from "./views/admin/CreateCategory";
 import CreateChildItem from "./views/admin/CreateChildItem";
 import PanelAdmin from "./views/admin/PanelAdmin";
 import Sellers from "./views/admin/Sellers";
 import AddSeller from "./views/admin/AddSeller";
+import CreateSlider from "./views/admin/CreateSlider";
 import AdminTicketBox from "./views/admin/AdminTicketBox";
 import SocketIo from "./socketIo/socketIo";
 
@@ -75,6 +76,12 @@ const Mobile = () => {
   const { _children } = new allController(p)
 
   const height = Platform.OS === 'web' ? '100vh' : '100%'
+
+
+  try {
+    
+
+
   return (
     p.splash ?
       <></>
@@ -120,23 +127,24 @@ const Mobile = () => {
             </Tab.Group>
 
             <Tab.Group>
-              <Tab.Screen initialParams={{ key: 'admin' }} name="TableGroupItems" options={{ title: 'پنل ادمین', headerShown: false }} {..._children(TableGroupItems)} />
+              <Tab.Screen initialParams={{ key: 'admin' }} name="TableCategory" options={{ title: 'پنل ادمین', headerShown: false }} {..._children(TableCategory)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="TableChildItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(TableChildItems)} />
-              <Tab.Screen initialParams={{ key: 'admin' }} name="EditGroupItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditGroupItem)} />
+              <Tab.Screen initialParams={{ key: 'admin' }} name="EditCategory" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditCategory)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="EditChildItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditChildItem)} />
-              <Tab.Screen initialParams={{ key: 'admin' }} name="CreateGroupItem" options={({ route }) => ({ title: 'ساخت دسته ی اغذیه' })} {..._children(CreateGroupItem)} />
+              <Tab.Screen initialParams={{ key: 'admin' }} name="CreateCategory" options={({ route }) => ({ title: 'ساخت دسته ی اغذیه' })} {..._children(CreateCategory)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="CreateChildItem" options={({ route }) => ({ title: `ساخت دسته برای ${'route.params.title'}` })} {..._children(CreateChildItem)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="AddAdmin" options={{ title: 'اضافه کردن ادمین' }} {..._children(AddAdmin)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="Notifee" options={{ title: 'ارسال نوتیفیکیشن' }} {..._children(Notifee)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="ChangeAdmin" options={{ title: 'تعویض ادمین' }} {..._children(ChangeAdmin)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAdmin" options={{ title: 'حذف ادمین' }} {..._children(DeleteAdmin)} />
-              <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAllAddress" options={{ title: 'حذف آدرس ها' }} {..._children(DeleteAllAddress)} />
+              <Tab.Screen initialParams={{ key: 'admin' }} name="AllPayment" options={{ title: 'حذف آدرس ها' }} {..._children(AllPayment)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="Address" options={{ title: 'اضافه کردن ادمین' }} {..._children(Address)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="ListUnAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin', headerShown:false }} {..._children(PanelAdmin)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="Sellers" options={{ title: 'Sellers' }} {..._children(Sellers)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="AddSeller" options={{ title: 'AddSeller' }} {..._children(AddSeller)} />
+              <Tab.Screen initialParams={{ key: 'admin' }} name="CreateSlider" options={{ title: 'CreateSlider' }} {..._children(CreateSlider)} />
               <Tab.Screen name="AdminTicketBox" options={{ title: 'ارسال تیکت' }} {..._children(AdminTicketBox)} />
             </Tab.Group>
 
@@ -145,6 +153,10 @@ const Mobile = () => {
         </contextStates.Provider>
       </Span>
   )
+
+} catch (error) {
+    console.log(error);
+}
 }
 
 
@@ -178,23 +190,24 @@ const Mobile = () => {
 // propTypes(CommentsPosted)
 // propTypes(Rules)
 
-// propTypes(TableGroupItems)
+// propTypes(TableCategory)
 // propTypes(TableChildItems)
-// propTypes(EditGroupItem)
+// propTypes(EditCategory)
 // propTypes(EditChildItem)
-// propTypes(CreateGroupItem)
+// propTypes(CreateCategory)
 // propTypes(CreateChildItem)
 // propTypes(AddAdmin)
 // propTypes(Notifee)
 // propTypes(ChangeAdmin)
 // propTypes(DeleteAdmin)
-// propTypes(DeleteAllAddress)
+// propTypes(AllPayment)
 // propTypes(Address)
 // propTypes(ListUnAvailable)
 // propTypes(GetProposal)
 // propTypes(PanelAdmin)
 // propTypes(Sellers)
 // propTypes(AddSeller)
+// propTypes(CreateSlider)
 // propTypes(AdminTicketBox)
 
 
@@ -234,22 +247,23 @@ const linking = {
 
       AdminTicketBox: '/adminTicketBox',
       AddSeller: '/addSeller',
+      CreateSlider: '/createSlider',
       Sellers: '/sellers',
       PanelAdmin: '/paneladmin',
       AddAdmin: '/addadmin',
       Notifee: '/notifee',
       ChangeAdmin: '/changeadmin',
       DeleteAdmin: '/deleteadmin',
-      DeleteAllAddress: '/deletealladdress',
+      AllPayment: '/allPayment',
       ListUnAvailable: '/listunAvailable',
       GetProposal: '/getproposal',
       Address: '/address',
-      TableGroupItems: '/tablegroupitems',
-      CreateGroupItem: '/creategroupItem',
+      TableCategory: '/tableCategory',
+      CreateCategory: '/createCategory',
       TableChildItems: '/tableChildItems',
-      EditGroupItem: '/editgroupitem:id',
-      EditChildItem: '/editchilditem:id',
-      CreateChildItem: '/createchilditem:id',
+      EditCategory: '/editCategory',
+      EditChildItem: '/editchilditem',
+      CreateChildItem: '/createchilditem/:id',
       NotFound: '*'
     },
   },

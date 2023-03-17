@@ -1,6 +1,7 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react'
 import { ScrollView } from 'react-native';
+import { localhost } from '../../utils/axios/axios';
 import { Img, Span, M_icon, Press, Badge, Row } from '../Html'
 
 var count = 0,
@@ -63,8 +64,8 @@ function Slider({width, style, onClick, data}) {
         setinterval(int)
       }} 
       style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
-        {data.map(({ image }, index) => (
-          <Press key={index} onClick={onClick} w={width} ><Img w='100%' h={300} src={image} /></Press>
+        {data.map((image , index) => (
+          image && <Press key={index} onClick={onClick} w={width} ><Img w='100%' h={300} src={`${localhost}/upload/slider/${image}`} /></Press>
         ))
         }
       </ScrollView>

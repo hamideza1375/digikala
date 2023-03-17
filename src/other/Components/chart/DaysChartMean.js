@@ -5,7 +5,7 @@ import { Dropdown, P, Span, } from '../Html'
 var pushMond = [],
   pushMond2 = []
 
-const DaysChartMean = ({ color = '#a50b', borderColor = '#a507', rodColor = '#d809', rodWidth = 'auto', bgcolor = '#d809', br = 4, w = '100%', h = '100%', data }) => {
+const DaysChartMean = ({ color = '#a5fd', borderColor = '#a5f9', rodColor = '#d5fd', rodWidth = 'auto', bgcolor = '#d5fa', br = 4, w = '100%', h = '100%', data }) => {
 
   const pushArrayRef = useRef([])
   const pushArrayRef2 = useRef([])

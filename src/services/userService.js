@@ -10,7 +10,7 @@ export const verifycodeForgetPass = (data) => axios.post(`${localhost}/verifycod
 export const resetPassword = (data) => axios.post(`${localhost}/resetPassword`, data)
 export const sendImageProfile = (data) => axios.postData(`${localhost}/sendImageProfile`, data)
 export const getImageProfile = (data) => axios.post(`${localhost}/getImageProfile`, data)
-export const sendProposal = () => axios.get(`${localhost}/sendProposal`)
+export const sendProposal = (data) => axios.post(`${localhost}/sendProposal`,data)
 export const getLastPayment = () => axios.get(`${localhost}/getLastPayment`)
 export const getAnswersTicket = (id) => axios.get(`${localhost}/getAnswersTicket/${id}`)
 export const sendTicketAnswer = (data, id) => axios.postData(`${localhost}/sendTicketAnswer/${id}`, data)
@@ -22,4 +22,3 @@ export const editAnswerTicket = (data, id, ticketid) => axios.putData(`${localho
 export const getSingleAnswerTicket = (id, ticketid) => axios.get(`${localhost}/getSingleAnswerTicket/${id}?ticketid=${ticketid}`)
 export const ticketSeen = (id) => axios.post(`${localhost}/ticketSeen/${id}`)
 export const getTicketSeen = () => axios.get(`${localhost}/getTicketSeen`)
-

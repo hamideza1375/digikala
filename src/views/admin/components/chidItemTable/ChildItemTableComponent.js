@@ -1,24 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Table } from '../../../../other/Components/Html';
 
 const ChildItemTableComponent = (p) => {
+  const [childItemsTable, setchildItemsTable] = useState([])
   
+  const deleteChildItem =(id)=> p._admin.deleteChildItem(id)
+  const changeAvailable =(id)=> p._admin.changeAvailable(id)
+
   return (
     <Table
       color={['#fff', '#eee', 'black']}
       border={[1, '#ccc']}
-      header={['حذف','موجودیت', 'ویرایش', 'عنوان']}
-      body={['حذف','title', 'ویرایش', 'title']}
+      header={['حذف','موجودیت', 'ویرایش', 'قیمت', 'عنوان']}
+      body={['حذف','title', 'ویرایش', 'price', 'title']}
       btn1={'#e33'}
-      btn1onClick={() => { alert('p.currentGroupItemTable[p.sellerTable[1]].title') }}
-      btn2={'#9f9f9f'}
-      btn2onClick={() => { alert('p.currentGroupItemTable[p.sellerTable[1]].title') }}
-      btn3={'#0c4'}
-      btn3onClick={() => { alert('p.currentGroupItemTable[p.sellerTable[1]].title') }}
+      btn1onClick={() => { deleteChildItem(childItemsTable[0]._id) }}
+      btn2={'#0c4'}
+      btn2onClick={() => { changeAvailable(childItemsTable[0]._id) }}
+      btn3={'orange'}
+      btn3onClick={() => { p.navigation.navigate('EditChildItem',{id:childItemsTable[0]._id}) }}
       btn2Opacity
       titleClick={() => { p.navigation.navigate('SingleItems') }}
-      object={p.currentChildItemsTable}
-      setobject={p.setChildItemsTable}
+      object={p.childItem}
+      setobject={setchildItemsTable}
     />)
 }
 

@@ -6,7 +6,7 @@ var
   pushMond = [],
   pushMond2 = []
 
-const YearsChartTotal = ({ color = '#a5fd', borderColor = '#a5f9', rodColor = '#d5fd', rodWidth = 'auto', bgcolor = '#d5fa', br = 4, w = '100%', h = '100%', data }) => {
+const YearsChartTotal = ({ color = '#da6500', borderColor = '#da6500', rodColor = '#fb750cbb', rodWidth = 'auto', bgcolor = '#f90c', br = 4, w = '100%', h = '100%', data }) => {
 
 
   const pushArrayRef = useRef([])

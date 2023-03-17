@@ -74,8 +74,22 @@ export function initial() {
   const [dropdownValue, setdropdownValue] = useState('')
   const [shownDropdown, setshownDropdown] = useState(false)
 
+  const [sliderImage1, setsliderImage1] = useState({})
+  const [sliderImage2, setsliderImage2] = useState({})
+  const [sliderImage3, setsliderImage3] = useState({})
+  const [sliderImage4, setsliderImage4] = useState({})
+  const [sliderImage5, setsliderImage5] = useState({})
+  const [sliderImage6, setsliderImage6] = useState({})
+
 
   this.all = { 
+    sliderImage1, setsliderImage1,
+    sliderImage2, setsliderImage2,
+    sliderImage3, setsliderImage3,
+    sliderImage4, setsliderImage4,
+    sliderImage5, setsliderImage5,
+    sliderImage6, setsliderImage6,
+    
     stateCity, setstateCity,
     dropdownBottom, setdropdownBottom,
     dropdownRight,setdropdownRight,

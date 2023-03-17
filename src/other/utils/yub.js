@@ -1,4 +1,4 @@
- const yub = {
+const yub = {
   get: (target, propName) => {
     if (propName === 'fullname') {
       if (typeof target[propName] === 'string') {
@@ -45,7 +45,7 @@
         if (!target[propName].length) {
           return ('شماره تلفن نباید خالی باشد')
         }
-       else if (target[propName].length < 11) {
+        else if (target[propName].length < 11) {
           return ('شماره ی وارد شده صحیح نمیباشد')
         }
         else if (target[propName].length > 11) {
@@ -56,7 +56,7 @@
         }
       }
       else {
-        if(!target[propName]) return "شماره تلفن نباید خالی باشد"
+        if (!target[propName]) return "شماره تلفن نباید خالی باشد"
         else return "شماره تلفن صحیح نیست"
       }
     }
@@ -65,22 +65,22 @@
 
 
     if (propName === 'phoneOrEmail') {
-        if (!target[propName]) {
-          return ('کادر نباید خالی باشد')
-        }
-        else if (target[propName].includes('@') || isNaN(target[propName]) ) {
-          if (target[propName].length < 5 || !target[propName].includes('.') ) {
-            return ('ایمیل وارد شده صحیح نمیباشد')
-          }
-          else return target[propName]
-        }
-        else if (target[propName].length > 11 || target[propName].length < 11) {
-            return ('شماره ی وارد شده صحیح نمیباشد')
-        }
-        else {
-          return target[propName]
-        }
+      if (!target[propName]) {
+        return ('کادر نباید خالی باشد')
       }
+      else if (target[propName].includes('@') || isNaN(target[propName])) {
+        if (target[propName].length < 5 || !target[propName].includes('.')) {
+          return ('ایمیل وارد شده صحیح نمیباشد')
+        }
+        else return target[propName]
+      }
+      else if (target[propName].length > 11 || target[propName].length < 11) {
+        return ('شماره ی وارد شده صحیح نمیباشد')
+      }
+      else {
+        return target[propName]
+      }
+    }
 
 
 
@@ -144,20 +144,20 @@
         }
       }
       else {
-        if(!target[propName]) return "قیمت نباید خالی باشد"
+        if (!target[propName]) return "قیمت نباید خالی باشد"
         else return "قیمت را صحیح وارد کنید"
-    
+
       }
     }
 
 
     if (propName === 'code') {
-        if (target[propName].length < 4 || target[propName].length > 5) {
-          return ('کد را صحیح وارد کنید')
-        }
-        else {
-          return target[propName]
-        }
+      if (target[propName].length < 4 || target[propName].length > 5) {
+        return ('کد را صحیح وارد کنید')
+      }
+      else {
+        return target[propName]
+      }
     }
 
 
@@ -229,8 +229,127 @@
       else {
         return target[propName]
       }
-  }
+    }
 
+
+    if (propName === 'input2') {
+      if (Number(target[propName])) {
+        return ('برند نباید عدد باشد')
+      }
+      else if (target[propName].length < 3) {
+        return ('برند نباید کوچک تر از ۳ کلمه باشد')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input3') { // ram
+      if (isNaN(target[propName])) {
+        return ('این کادر باید به عدد نوشته شود')
+      }
+      else if (target[propName] < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input4') { // cpuCore
+      if (isNaN(target[propName])) {
+        return ('این کادر باید به عدد نوشته شود')
+      }
+      else if (target[propName] < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input5') { // camera
+      if (isNaN(target[propName])) {
+        return ('این کادر باید به عدد نوشته شود')
+      }
+      else if (target[propName] < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input6') { // storage
+      if (isNaN(target[propName])) {
+        return ('این کادر باید به عدد نوشته شود')
+      }
+      else if (target[propName] < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input7') { // waranty
+      if (isNaN(target[propName])) {
+        return ('این کادر باید به عدد نوشته شود')
+      }
+      else if (target[propName] < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input8') { // color
+      if (parseInt(target[propName])) {
+        return ('نباید در این کادر از اعداد استفاده کرد')
+      }
+      else if (target[propName].length < 2) {
+        return ('رنگ نباید کوچک تر از ۲ کلمه باشد')
+      }
+      else if (target[propName].includes('_')) {
+        return ("برای جدا کردن رنگ ها به جای کارکتر ( _ ) از این کارکتر ( - ) استفاده کنید")
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input9') { // display
+      if (isNaN(target[propName])) {
+        return ('این کادر باید به عدد نوشته شود')
+      }
+      else if (target[propName] < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input10') { // availableCount
+      if (isNaN(target[propName])) {
+        return ('این کادر باید به عدد نوشته شود')
+      }
+      else if (target[propName] < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
 
   }
 }

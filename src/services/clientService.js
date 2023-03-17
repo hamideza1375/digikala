@@ -1,6 +1,7 @@
 import { axios, localhost } from '../other/utils/axios/axios'
 
 
+export const getSlider = async () => axios.get(`${localhost}/getSlider`)
 export const getCategory = async () => axios.get(`${localhost}/getCategory`)
 export const getChildItems = async (id) => axios.get(`${localhost}/getChildItems/${id}`)
 export const getSingleItem = async (id) => axios.get(`${localhost}/getSingleItem/${id}`)

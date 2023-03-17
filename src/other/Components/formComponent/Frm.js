@@ -2,9 +2,10 @@ import React, { useRef } from "react";
 import { Animated, KeyboardAvoidingView, Text } from "react-native";
 import { Input } from "./FormComponent";
 import Swiper from '../components/Swiper'
+import { Py } from "../Html";
 
 
-export default function ({ plackTextTop, autoFocus = false, multiline = false, m_icon, iconPress, secureTextEntry, icon, textContentType, autoComplete='off', keyboardType = 'default', p, newObj, iconLeft, iconRight, setBlur, getBlur, state, setState, styles, yub }) {
+export default function ({ plackTextTop, autoFocus = false, multiline = false, m_icon, iconPress, secureTextEntry, icon, textContentType, autoComplete='off', keyboardType = 'default', p, p2, newObj, iconLeft, iconRight, setBlur, getBlur, state, setState, styles, yub }) {
 
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -62,7 +63,7 @@ export default function ({ plackTextTop, autoFocus = false, multiline = false, m
               keyboardType={keyboardType}
               icon={icon}
               m_icon={m_icon}
-              placeholder={p}
+              placeholder={p2?p2:p}
               value={state}
               onChangeText={(text) => setState(text)}
               onBlur={() => { setBlur(true); !yub && fadeOut() }}
@@ -73,9 +74,9 @@ export default function ({ plackTextTop, autoFocus = false, multiline = false, m
               multiline={multiline}
             />
           </Animated.View>
-          {getBlur && !yub && <Text style={[styles.textinput, { color: 'red' }]} >
+          {getBlur && !yub && <Py style={[styles.textinput, { color: 'red', fontSize:10 , fontWeight:'100'}]} >
             {newObj}
-          </Text>
+          </Py>
           }
         </Swiper>
       </Animated.View>

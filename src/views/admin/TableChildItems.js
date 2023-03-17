@@ -4,21 +4,18 @@ import s from "./style/Admin.module.scss"
 import ChildItemTableComponent from './components/chidItemTable/ChildItemTableComponent';
 
 const TableChildItems = (p) => {
-  // p._food.getChildFood()
+  p._client.getChildItems()
 
   return (
     <Span class={s.container}>
 
       <Span class={s.containChildTable} >
-        <Button h={40} w='98%' alignSelf='center' mv={5} onPress={() => p.navigation.navigate("CreateChildFood", { id: p.route.params.id, title: p.route.params.title })}>ساخت </Button>
+        <Button h={40} w='98%' alignSelf='center' mv={5} onPress={() => p.navigation.navigate("CreateChildItem", { id: p.route.params.id })}>ساخت </Button>
         <Span webStyle={{ height: 'calc(100vh - 178px)' }} class={s.containerChildTable}>
-          {!p.current ?
-            <Loading />
-            :
+
             <Span webStyle={{ maxHeight: "100%" }} >
               <ChildItemTableComponent {...p} />
             </Span>
-          }
         </Span>
       </Span>
 

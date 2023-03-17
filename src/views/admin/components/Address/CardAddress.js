@@ -1,48 +1,49 @@
-import React from 'react'
+import moment from 'moment-jalaali';
+import React, { useRef, useState } from 'react'
 import { Text, View } from 'react-native';
 import { Button } from '../../../../other/Components/Html';
 import spacePrice from '../../../../other/utils/spacePrice';
 
 const CardAddress = (p) => {
-  const deleteAddress = (_id) => p._admin.deleteAddress(_id)
+  const postedOrder = (_id) => p._admin.postedOrder(_id)
+  const postQueue = (_id) => p._admin.postQueue(_id)
+
+  const lineStyle = { textDecorationLine: p.item.queueSend ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.item.queueSend ? '#aaa' : 'black' }
+  const lineStyle2 = { textDecorationLine: p.item.queueSend ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.item.queueSend ? '#aaa' : 'black', fontWeight: 'bold', textAlign: 'left' }
+  const containerColumn = {borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }
 
   return (
     <>
-      <View style={{ borderBottomWidth: .2, borderColor: '#888', paddingBottom: 20, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15 }} >
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }}><Text style={[{
-          fontWeight: 'bold',
-          textAlign: 'left',
-        }]} >نام: </Text>{item.fullname}</Text>
+      <View style={[containerColumn,{paddingVertical: 0,paddingBottom: 20}]} >
+        <Text style={lineStyle}><Text style={[{fontWeight: 'bold',textAlign: 'left'}]} >نام: </Text>{p.item.fullname}</Text>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black', fontWeight: 'bold', textAlign: 'left' }} >شماره تلفن: </Text><Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }} >{item.phone}</Text></View>
+          <Text style={lineStyle2} >شماره تلفن: </Text><Text style={lineStyle} >{p.item.phone}</Text></View>
       </View>
       <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }}  ><Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black', fontWeight: 'bold', textAlign: 'left' }} >آدرس: </Text >{item.formattedAddress}</Text>
+        <Text style={lineStyle}  ><Text style={lineStyle2} >آدرس: </Text >{p.item.formattedAddress}</Text>
       </View>
-      <View style={{ borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }} >
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }} ><Text style={{ fontWeight: 'bold' }} >پلاک: </Text>{item.floor}</Text>
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }} ><Text style={{ fontWeight: 'bold' }} >طبقه: </Text>{item.plaque}</Text>
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }} ><Text style={{ fontWeight: 'bold' }} >شماره: </Text>{item.id}</Text>
+      <View style={containerColumn} >
+        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >پلاک: </Text>{p.item.floor}</Text>
+        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >طبقه: </Text>{p.item.plaque}</Text>
+        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >شماره: </Text>{p.item.id}</Text>
       </View>
 
       <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }}  ><Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black', fontWeight: 'bold', textAlign: 'left' }} >اسامی سفارش: </Text >{item.foodTitle}</Text>
+        <Text style={lineStyle}  ><Text style={lineStyle2} >اسامی سفارش: </Text >{p.item.foodTitle}</Text>
       </View>
 
-      {item.description && <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }}  ><Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black', fontWeight: 'bold', textAlign: 'left' }} >توضیحات سفارش: </Text >{item.description}</Text>
+      {p.item.description && <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
+        <Text style={lineStyle}  ><Text style={lineStyle2} >توضیحات سفارش: </Text >{p.item.description}</Text>
       </View>}
 
-      <View style={{ borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }} >
-        <Text style={{ textDecorationLine: p.addressMap.get(item._id) ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.addressMap.get(item._id) ? '#aaa' : 'black' }} ><Text style={{ fontWeight: 'bold' }} >قیمت: </Text>{spacePrice(item.price)} تومان</Text>
-        <Text style={{ color: '#ababab', }}>{p.moment(item.createdAt).format('hh:mm')}</Text>
-        {/* <Text style={{ color: '#ababab', }}>{item.createdAt.split("T")[1].split(".")[0]}</Text> */}
+      <View style={containerColumn} >
+        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >قیمت: </Text>{spacePrice(p.item.price)} تومان</Text>
+        <Text style={{ color: '#ababab', }}>{moment(p.item.date).format('jM/jD hh:mm')}</Text>
+        {/* <Text style={{ color: '#ababab', }}>{p.item.createdAt.split(" ")[4]}</Text> */}
       </View>
       <View style={{ paddingTop: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-around', }} >
-        <Button outline bgcolor='blue' style={{ backgroundColor: '#f7f7f7', height: 30 }}
-          onPress={() => p.navigation.navigate('Location', { origin: item.origin })} >نمایش</Button>
-        <Button outline bgcolor={!p.addressMap.get(item._id) ? 'green' : 'orange'} style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { !p.addressMap.get(item._id) ? p.addressMap.set(item._id, item._id) : p.addressMap.delete(item._id); p.setchange(!p.change); }} > {!p.addressMap.get(item._id) ? 'خانده شده ' : 'خانده نشده'}</Button>
-        <Button outline bgcolor='red' style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { deleteAddress(item._id); p.setchange(!p.change) }} >حذف</Button>
+        <Button outline bgcolor={!p.item.queueSend ? 'blue' : 'orange'} style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { postQueue(p.item._id); }} > {!p.item.queueSend ? 'در صف ارسال ' : 'خروج از صف'}</Button>
+        <Button outline bgcolor='green' style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { postedOrder(p.item._id) }} >ارسال شد</Button>
       </View>
     </>
   )

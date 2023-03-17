@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Icon, M_icon, Span } from '../../../../other/Components/Html'
 
 const GetProposalNavbar = (p) => {
-  const [mapId] = useState(new Map())
   const [show, setshow] = useState(true)
   const _delete = () => p._admin.deleteMultiProposal()
 
@@ -13,7 +12,7 @@ const GetProposalNavbar = (p) => {
         onClick={() => {
           for (let item of p.proposal) {
             setshow(!show)
-            mapId.set(item._id, show)
+            p.mapId.set(item._id, show)
             p.$.id(item._id).$({ backgroundColor: show ? '#1d6' : '#ddd' })
             if (show) p.setproposalId(proposalId => proposalId.concat(item._id))
             else p.setproposalId(proposalId => proposalId.filter((ps) => ps !== item._id))

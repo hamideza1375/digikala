@@ -1,20 +1,14 @@
 import React from 'react'
-import { View } from 'react-native';
-import {Form} from '../../other/Components/Html';
-import Title from '../../other/utils/setTitle';
+import {Container2, Form} from '../../other/Components/Html';
 
 const EditChildItem = (p) => {
-  Title()
-  p._admin.getEdit()
-  p._admin.unmountEditFood()
-  const editeChildFood = () => p._admin.editeFoodAction()
+  p._admin.getSingleItem()
+  const editChildItem = () => p._admin.editChildItem()
 
   return (
-    <View>
-      <Form t pr i im edit
-        {...p}
-        onClick={() => editeChildFood()} />
-    </View>
+    <Container2>
+      <Form t pr i im in3 in4 in5 in6 in7 in8 in9 in10 onClick={editChildItem} />
+    </Container2>
   )
 }
 export default EditChildItem

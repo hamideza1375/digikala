@@ -1,4 +1,4 @@
-import React, { lazy, Suspense,  useState } from 'react'
+import React, { lazy, Suspense } from 'react'
 import { Span, Slider, Scroll, Div, ContainerTab, Loading } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import Category from './components/home/Category';
@@ -12,9 +12,9 @@ function Home(p) {
 
   return (
     <ContainerTab >
-      
+
       <Scroll>
-         <Div>
+        <Div>
           <Slider data={p.slider} {...p} onClick={() => { alert(8) }} />
         </Div>
 
@@ -47,7 +47,7 @@ function Home(p) {
         </Span>
 
       </Scroll>
-      <Chat {...p}/>
+      <Chat {...p} />
     </ContainerTab>
   )
 }

@@ -197,7 +197,21 @@ export function admin() {
   const [sliderImage5, setsliderImage5] = useState({})
   const [sliderImage6, setsliderImage6] = useState({})
 
+
+  const [image1, setimage1] = useState({})
+  const [image2, setimage2] = useState({})
+  const [image3, setimage3] = useState({})
+  const [image4, setimage4] = useState({})
+
   this.admin = {
+    image1, setimage1,
+    image2, setimage2,
+    image3, setimage3,
+    image4, setimage4,
+    sliderImage5, setsliderImage5,
+    sliderImage6, setsliderImage6,
+
+
     sliderImage1, setsliderImage1,
     sliderImage2, setsliderImage2,
     sliderImage3, setsliderImage3,

@@ -110,13 +110,13 @@ const ProgressChart = ({ color = '#222', rodWidth = 30, bgcolor = '#fff', br = 2
         </Span>
         <Span w={'90%'} h={rodWidth} as={'center'} mt={10} fd='row' border={[1, 'silver']}>
           <Span h={'100%'} f={send.current.length + 1} bgcolor='#0b3'>
-            <Dropdown value={<P fs={9} ta='center' >نفر {spacePrice((send.current.length).toFixed())}</P>} />
+            <Dropdown value={<P fs={9} ta='center' >{spacePrice((send.current.length).toFixed())} نفر</P>} />
           </Span>
           <Span h={'100%'} f={queueSend.current.length + 1} bgcolor='#ee0'>
-            <Dropdown value={<P fs={9} ta='center' >نفر {spacePrice((queueSend.current.length).toFixed())}</P>} />
+            <Dropdown value={<P fs={9} ta='center' >{spacePrice((queueSend.current.length).toFixed())} نفر</P>} />
           </Span>
           <Span h={'100%'} f={checkSend.current.length + 1} bgcolor='#f33'>
-            <Dropdown value={<P fs={9} ta='center' >نفر {spacePrice((checkSend.current.length).toFixed())}</P>} />
+            <Dropdown value={<P fs={9} ta='center' >{spacePrice((checkSend.current.length).toFixed())} نفر</P>} />
           </Span>
         </Span>
         <Span h={20} w='90%' fd='row' jc='space-between'>

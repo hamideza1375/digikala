@@ -32,7 +32,7 @@ export function initial() {
   const [star3, setstar3] = useState(true)
   const [star4, setstar4] = useState(true)
   const [star5, setstar5] = useState(true)
-  const [allstar, setallstar] = useState()
+  const [fiveStar, setfiveStar] = useState()
   const [message, setmessage] = useState('')
   const [showForm, setshowForm] = useState(false)
   const [token, settoken] = useState('')
@@ -81,6 +81,10 @@ export function initial() {
   const [sliderImage5, setsliderImage5] = useState({})
   const [sliderImage6, setsliderImage6] = useState({})
 
+  const [offerTime, setofferTime] = useState('')
+  const [offerValue, setofferValue] = useState('')
+
+
 
   this.all = { 
     sliderImage1, setsliderImage1,
@@ -90,6 +94,8 @@ export function initial() {
     sliderImage5, setsliderImage5,
     sliderImage6, setsliderImage6,
     
+    offerTime, setofferTime,
+    offerValue, setofferValue,
     stateCity, setstateCity,
     dropdownBottom, setdropdownBottom,
     dropdownRight,setdropdownRight,
@@ -115,6 +121,7 @@ export function initial() {
     star3, setstar3,
     star2, setstar2,
     star1, setstar1,
+    fiveStar, setfiveStar,
     width, setwidth,
     height, setheight,
     input1, setinput1,
@@ -138,7 +145,6 @@ export function initial() {
     token, settoken,
     showForm, setshowForm,
     message, setmessage,
-    allstar, setallstar,
     refInput,
     host,
     $input,

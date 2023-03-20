@@ -71,7 +71,7 @@ export const _initController = (p) => {
   //! getSlider
   useEffect(() => {
     getSlider().then(({ data }) => {
-      p.setslider(Object.values(data))
+     data && p.setslider(Object.values(data))
     })
   }, [])
 

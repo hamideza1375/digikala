@@ -56,7 +56,7 @@ function ScrollSlider(p) {
             if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') {
               ref.current.setNativeProps({ style: { overflowX: 'auto' } });
               das.push(e.nativeEvent.pageX)
-              ref.current.scrollToOffset({ animated: true, offset: (scroll) + ((das[0] - das[das.length - 1]) * 2) })
+              ref.current.scrollToOffset({ animated: true, offset: (scroll) + ((das[0] - das[das.length - 1]) * 1) })
             }
           }
           setscroll2(false)

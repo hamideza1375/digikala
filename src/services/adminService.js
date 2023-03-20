@@ -35,4 +35,4 @@ export const createSeller = (data) => axios.post(`${localhost}/createSeller`,dat
 export const getAllSellers = () => axios.get(`${localhost}/getAllSellers`)
 export const setSellerAvailable = (id) => axios.put(`${localhost}/setSellerAvailable/${id}`)
 export const deleteSeller = (id) => axios.delete(`${localhost}/deleteSeller/${id}`)
-export const createSlider = (data) => axios.post(`${localhost}/createSlider`,data)
+export const createSlider = (data) => axios.postData(`${localhost}/createSlider`,data)

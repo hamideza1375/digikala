@@ -1,11 +1,10 @@
 import React from 'react'
 import { Platform } from 'react-native'
-import { Img, P, Press, ScrollSlider, Span } from '../../../../other/Components/Html'
+import { Column, Img, P, Press, ScrollSlider, Span } from '../../../../other/Components/Html'
 import LinearGradient from '../../../../other/Components/other/LinearGradient'
 import { localhost } from '../../../../other/utils/axios/axios'
 
 const Category = (p) => {
-  // p._client.getCategory()
 
   return (
     <Span >
@@ -19,16 +18,16 @@ const Category = (p) => {
         style={Platform.OS !== 'web' ? { paddingRight: 290 } : { paddingRight: 10, }}
         data={p.category}
         renderItem={({ item, index }) => (
-          <Press w={105} h={115} as='center' onClick={()=>{p.navigation.navigate('ChildItems',{id: item._id})}} >
+          <Column w={105} h={115} as='center' >
             <Span w={90} h={95} as='center'>
               <LinearGradient nativeStart={{ x: 1.5, y: 1.5 }} webStart={{ x: 7 }} colors={['#f5f', '#505', '#f5f']} style={{ borderRadius: 100, width: 90, height: 90, maxHeight: 90, justifyContent: 'center', alignItems: 'center' }} >
                 <Span w={84} h={84} style={{ borderRadius: 100, backgroundColor: 'white', position: 'absolute' }} >
-                  {item.imageUrl && <Img f={1} br={100} src={`${localhost}/upload/category/${item.imageUrl}`} />}
+                  {item.imageUrl && <Press f={1} onClick={()=>{p.navigation.navigate('ChildItems',{id: item._id})}}><Img f={1} br={100} src={`${localhost}/upload/category/${item.imageUrl}`} /></Press>}
                 </Span>
               </LinearGradient>
             </Span>
             <P as='center' mt='auto' fs={14} fw='600' color='#229b' >{item.title}</P>
-          </Press>
+          </Column>
         )}
       />}
     </Span>)

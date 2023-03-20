@@ -9,7 +9,7 @@ const Footer = () => {
       <Span fg={7} w='70%' minw={180} >
         <Span >
           <Span border={[0, 'white']} bbw={1} mr={9} pb={5} w={'50%'} as='flex-start' >
-            <Py color='#fb0' >مجوز های ما</Py>
+            <Py color='#fb0' >مجوز ها</Py>
           </Span>
           <Span w={70} h={70} mr={7} mt={12} border={[1, 'white']} >
             <Img f={1} src={require('../../../../other/assets/images/etemadElectronic.png')} />

@@ -1,6 +1,5 @@
 import React from 'react'
-import { Card2, P, Press, Row, Span } from '../../../../other/Components/Html'
-import Modal from '../../../Modal'
+import { Card2, Column, Modal, P, Press, Row, Scroll, Span } from '../../../../other/Components/Html'
 
 const Specifications = (p) => {
   return (
@@ -9,8 +8,8 @@ const Specifications = (p) => {
         coulumn1={
           <Span mt={5} fg={1} jc='center'>
             <Span mr={12} fd='row' ai='center'>
-              <P>نوع پردازنده cpu: </P>
-              <P fs={10.5} color='#333'>{p.specifications.cpu}</P>
+              <P>تعداد هسته ی پردازشگر(cpu): </P>
+              <P fs={10.5} color='#333'>{p.singleItem.cpuCore} هسته</P>
             </Span>
           </Span>
         }
@@ -18,7 +17,7 @@ const Specifications = (p) => {
           <Span fg={1} jc='center'>
             <Span mr={12} fd='row' ai='center'>
               <P>رم: </P>
-              <P fs={10.5} color='#333'>{p.specifications.ram}</P>
+              <P fs={10.5} color='#333'>{p.singleItem.ram} گیگابایت</P>
             </Span>
           </Span>
         }
@@ -26,7 +25,7 @@ const Specifications = (p) => {
           <Span fg={1} jc='center'>
             <Span mr={12} fd='row' ai='center'>
               <P>حافظه ی داخلی: </P>
-              <P fs={10.5} color='#333'>{p.specifications.memory}</P>
+              <P fs={10.5} color='#333'>{p.singleItem.memory} گیگابایت</P>
             </Span>
           </Span>
         }
@@ -34,7 +33,7 @@ const Specifications = (p) => {
           <Span fg={1} jc='center'>
             <Span mr={12} fd='row' ai='center'>
               <P>دوربین: </P>
-              <P fs={10.5} color='#333' >{p.specifications.camera}</P>
+              <P fs={10.5} color='#333' >{p.singleItem.camera} گیگابایت</P>
             </Span>
           </Span>
         }
@@ -42,7 +41,7 @@ const Specifications = (p) => {
           <Span fg={1} jc='center'>
             <Span mr={12} fd='row' ai='center'>
               <P>صفحه نمایش: </P>
-              <P fs={10.5} color='#333' >{p.specifications.display}</P>
+              <P fs={10.5} color='#333' >{p.singleItem.display}</P>
             </Span>
           </Span>
         }
@@ -57,22 +56,22 @@ const Specifications = (p) => {
       >
       </Card2>
 
-      <Modal {...p} style={{ width: '100%', height: '100%', paddingTop: 33 }} >
-
-        <Span w='100%'>
-          {p.allSpecifications.map((item,index) => (
-            <Row key={index} ai='center' mv={5} >
-              <P>{item.key}: </P>
-              <P fs={10.5} color='#333' >{item.value}</P>
-            </Row>
-          ))
-          }
-        </Span>
-
-      </Modal>
+        <Modal show={p.showModal} setshow={p.setshowModal} style={{ width: '90%', height: 400, paddingTop: 33 }} >
+          <P fs={11} style={{ lineHeight: 30 }} color='#333' >{p.singleItem.info}</P>
+        </Modal>
     </Span>
   )
 }
+
+{/* <Span w='100%'>
+          {p.allsingleItem.map((item,index) => (
+            <Row key={index} ai='center' mv={5} >
+            <P>{item.key}: </P>
+            <P fs={10.5} color='#333' >{item.value}</P>
+            </Row>
+            ))
+          }
+        </Span> */}
 
 export default Specifications
 

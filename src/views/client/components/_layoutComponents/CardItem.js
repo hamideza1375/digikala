@@ -1,23 +1,29 @@
 import { useFocusEffect } from '@react-navigation/native'
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Text } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5'
 import { A_icon, Card2, M_icon, P, Row, Span } from '../../../../other/Components/Html'
 import { localhost } from '../../../../other/utils/axios/axios'
 import seconder from '../../../../other/utils/seconder'
 
-
-const CardItem = ({ onClick, item, spacePrice, offers, h = 240, w = 200, style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {
+let interval
+const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {
 
   const [dt, setdt] = useState()
 
-  useFocusEffect(useCallback(() => {
-    setTimeout(() => {
-      seconder("2023-03-13 22:3:0", ({ days, hours, minutes, seconds }) => (
+  useEffect(() => {
+    if (item.offerTime.exp > new Date().getTime()) {
+      seconder(item.offerTime.exp, ({ days, hours, minutes, seconds }) => (
         setdt(hours + ':' + minutes + ':' + seconds)
       ))
-    }, 1000);
-  }, []))
+      interval = setTimeout(() => {
+        seconder(item.offerTime.exp, ({ days, hours, minutes, seconds }) => (
+          setdt(hours + ':' + minutes + ':' + seconds)
+        ))
+      }, 1000);
+    }
+    // return () => clearInterval(interval)
+  }, [])
 
   return (
     <Card2
@@ -47,9 +53,9 @@ const CardItem = ({ onClick, item, spacePrice, offers, h = 240, w = 200, style, 
       }
       // textDecorationLine:'underline line-through'
       coulumn3={<Span mt={8} fd='row' jc='space-evenly' w={'100%'}>
-        {offers ?
+        {item.offerTime.exp > new Date().getTime() ?
           <Row>
-            <P fs={11.5} >{spacePrice(item.price)} تومان</P>
+            <P fs={11.5} >{spacePrice(parseInt(item.price - ((item.price / 100) * item.offerValue)))} تومان</P>
             <P style={{ textDecorationLine: 'line-through', color: 'red', fontSize: 9.5 }} >{spacePrice(item.price)} ت </P>
 
           </Row>
@@ -59,7 +65,7 @@ const CardItem = ({ onClick, item, spacePrice, offers, h = 240, w = 200, style, 
           </Span>}
 
       </Span>}
-      coulumn4={offers && <Span fd='row' jc='space-between' w={'100%'} bgcolor='red' h='100%' p={7}><P color='white' >{dt}</P><P color='white' >12%</P></Span>}
+      c4={item.offerTime.exp > new Date().getTime() ? 1 : .1} coulumn4={item.offerTime.exp > new Date().getTime() ? <Span fd='row' jc='space-between' w={'100%'} bgcolor='red' h='100%' p={7}><P color='white' >{dt}</P><P color='white' >{item.offerValue}%</P></Span> : <></>}
     />
   )
 }

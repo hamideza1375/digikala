@@ -1,4 +1,4 @@
-import { confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getSingleComment, getSingleItem, getSlider, reverse } from "../services/clientService";
+import { commentDisLike, commentLike, confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSingleComment, getSingleItem, getSlider, offers, reverse } from "../services/clientService";
 import _useEffect from "./_initial";
 
 export function clientController(p) {
@@ -8,7 +8,6 @@ export function clientController(p) {
       (async () => {
         const { data } = await getCategory()
         p.setcategory(data.category)
-        // console.log('getCategory', data);
       })()
     }, [])
   }
@@ -18,8 +17,7 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getChildItems(p.route.params.id)
-        p.setchildItem(data.childItems)
-        // console.log('getChildItems', data.childItems);
+        p.setchildItem(data.childItems.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
       })()
     }, [])
   }
@@ -34,30 +32,94 @@ export function clientController(p) {
     }, [])
   }
 
+
+  this.getOffers = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getOffers()
+        p.setoffers(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+      })()
+    }, [])
+  }
+
+
+  this.getPopulars = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getPopulars()
+        p.setpopulars(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+      })()
+    }, [])
+  }
+
+
   this.createComment = async () => {
-    await createComment(p.route.params.id, { fullname: p.fullname, message: p.message, allStar: p.allStar })
+    const { data } = await createComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
+    p.setchildItemComment(comment => {
+      comment.push(data.comment)
+      return comment
+    })
   }
 
   this.getChildItemComments = async () => {
-    const { data } = await getChildItemComments(p.route.params.id)
-    console.log('getChildItemComments', data);
+    _useEffect(() => {
+      getChildItemComments(p.route.params.id).then(({ data }) => {
+        p.setchildItemComment(data.comment)
+      })
+    }, [])
   }
 
 
   this.getSingleComment = async () => {
-    const { data } = await getSingleComment(p.route.params.id, p.route.params.commentid)
-    console.log('getSingleComment', data);
+    _useEffect(() => {
+      getSingleComment(p.route.params.commentid).then(({ data }) => {
+        p.setmessage(data.comment.message);
+        p.setfiveStar(data.comment.fiveStar);
+      })
+    }, [])
   }
 
 
   this.editComment = async () => {
-    await editComment(p.route.params.id, p.route.params.commentid, { fullname: p.fullname, message: p.message, allStar: p.allStar })
+    await editComment(p.route.params.id, p.route.params.commentid, { message: p.message, fiveStar: p.fiveStar })
+    p.childItemComment.length && p.setchildItemComment(comment => {
+      const findIndex = comment.findIndex(c => c._id === p.route.params.commentid)
+      if (findIndex) {
+        comment[findIndex].message = p.message
+        comment[findIndex].fiveStar = p.fiveStar
+      }
+      return comment
+    })
   }
 
 
-  this.deleteComment = async () => {
-    await deleteComment(p.route.params.id, p.route.params.commentid)
+  this.deleteComment = async (commentid) => {
+    await deleteComment(commentid)
+    p.setchildItemComment(comment => comment.filter(c => c._id !== commentid))
   }
+
+
+
+  this.like = async (commentid) => {
+    const {data} = await commentLike(commentid)
+    p.setchildItemComment(comment => {
+      let findIndex = comment.findIndex(c => c._id === commentid)
+      comment[findIndex].likeCount = data
+      return comment
+    })
+  }
+
+
+
+  this.disLike = async (commentid) => {
+    const {data} = await commentDisLike(commentid)
+    p.setchildItemComment(comment => {
+      let findIndex = comment.findIndex(c => c._id === commentid)
+      comment[findIndex].disLikeCount = data
+      return comment
+    })
+  }
+
 
 
   this.reverse = async () => {

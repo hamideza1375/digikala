@@ -1,9 +1,14 @@
 import React from 'react'
-import { Span } from '../../other/Components/Html'
+import { Container2, Form } from '../../other/Components/Html'
 
-const EditComment = () => {
+const EditComment = (p) => {
+
+  p._client.getSingleComment()
+
   return (
-    <Span>EditComment</Span>
+    <Container2>
+      <Form s m onClick={() => { p._client.editComment() }} />
+    </Container2>
   )
 }
 

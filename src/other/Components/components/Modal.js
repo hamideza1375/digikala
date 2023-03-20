@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Modal as _Modal, Platform, Pressable, ScrollView, StyleSheet, View } from "react-native";
 import Icon from 'react-native-vector-icons/dist/MaterialIcons';
+import { Scroll } from "../Html";
 
 
 export default function Modal({ style, children, setshow, show, onClick, onHidden }) {
@@ -16,8 +17,10 @@ export default function Modal({ style, children, setshow, show, onClick, onHidde
         animationType="fade" transparent={true} visible={show}>
         <ScrollView onTouchMove={Platform.OS !== 'web' ? onClick : () => { }} contentContainerStyle={[styles.centeredView, { backgroundColor: '#6669' }]}>
           <View style={[styles.modalView, style]}>
-            <Icon onPress={() => setshow(false)} name={"highlight-remove"} size={22} color="#f55" style={{ position: 'absolute', left: 9, top: 9, zIndex: 111 }} />
-            {children}
+              <Icon onPress={() => setshow(false)} name={"highlight-remove"} size={22} color="#f55" style={{ position: 'absolute', left: 9, top: 9, zIndex: 111 }} />
+            <Scroll w='100%' fg={1}>
+              {children}
+            </Scroll>
           </View>
         </ScrollView>
       </_Modal>

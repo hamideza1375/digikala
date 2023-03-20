@@ -7,7 +7,7 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
 
   return !img ? ((
     !alert ?
-      <Pressable
+      <View
         {...prop}
         style={[{
           borderRadius: 5,
@@ -120,10 +120,10 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
             <View style={[{ paddingBottom: 5, color, width: '100%' }]}>{footerRow}</View>
           }
         </View>
-      </Pressable>
+      </View>
       :
       (
-        <Pressable
+        <View
           {...prop}
           style={[{
             borderRadius: 5,
@@ -215,7 +215,7 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
               <View style={[{ paddingBottom: 5, color, width: '100%' }]}>{footerRow}</View>
             }
           </View>
-        </Pressable>
+        </View>
       )
   )
 
@@ -227,7 +227,7 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
 
       (
         !alert ?
-          <Pressable
+          <View
             onLayout={(e) => setheightLayout(e.nativeEvent.layout.height)}
 
             {...prop}
@@ -389,7 +389,7 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
                 </View>
               }
             </View>
-          </Pressable>
+          </View>
 
 
 
@@ -400,7 +400,7 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
           :
 
           (
-            <Pressable
+            <View
               onLayout={(e) => setheightLayout(e.nativeEvent.layout.height)}
               {...prop}
               style={[{
@@ -527,7 +527,7 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
                 }
 
               </View>
-            </Pressable>
+            </View>
           )
       )
     )

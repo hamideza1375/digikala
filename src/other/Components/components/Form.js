@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { KeyboardAvoidingView, Pressable, View, Text, TextInput, Image, StyleSheet, ScrollView, Dimensions, Animated, Platform, FlatList } from 'react-native'
-import { Input, Button, CheckBox, Swiper, CheckBoxRadius, List, Column, Row, Py } from '../Html'
+import { Input, Button, CheckBox, Swiper, CheckBoxRadius, List, Column, Row, Py, Br } from '../Html'
 import yub from '../../utils/yub'
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
@@ -45,19 +45,20 @@ const Form = ({
   fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
   tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
   phoreIconLeft, phoreIconRight, codeIconLeft, codeIconRight, vIconLeft, vIconRight,
-  slider,
+  slider, fourImage, offer,
   in1, in2, in3, in4, in5, in6, in7, in8, in9, in10,
   ...props
 }) => {
 
 
-  const { stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail,
+  const { toast, stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail,
     imageUrl, setimageUrl, videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword,
     confirmPassword, setconfirmPassword, message, setmessage, code, setcode, captcha, setcaptcha, setremember,
-    star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, allstar, setallstar, refInput, rand, setRand,
+    star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, fiveStar, setfiveStar, refInput, rand, setRand,
 
     input1, setinput1, input2, setinput2, input3, setinput3, input4, setinput4, input5, setinput5, input6, setinput6, input7, setinput7, input8, setinput8, input9, setinput9, input10, setinput10
-    ,sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3 ,sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6
+    , sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3, sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6,
+    image1, setimage1, image2, setimage2, image3, setimage3, image4, setimage4, offerTime, setofferTime, offerValue, setofferValue
   } = context()
 
 
@@ -181,15 +182,21 @@ const Form = ({
 
 
 
-
+  useFocusEffect(useCallback(() => {
+    if (fiveStar == 1) {setstar1(true); setstar2(false); setstar3(false) ; setstar4(false); setstar5(false) }
+    if (fiveStar == 2) {setstar1(true); setstar2(true); setstar3(false) ; setstar4(false); setstar5(false) }
+    if (fiveStar == 3) {setstar1(true); setstar2(true); setstar3(true) ; setstar4(false); setstar5(false) }
+    if (fiveStar == 4) {setstar1(true); setstar2(true); setstar3(true) ; setstar4(true); setstar5(false) }
+    if (fiveStar == 5) {setstar1(true); setstar2(true); setstar3(true) ; setstar4(true); setstar5(true) }
+  }, [fiveStar]))
 
   useFocusEffect(useCallback(() => {
     return () => (interval) && clearInterval(interval)
   }, []))
 
   useEffect(() => {
-    setallstar && setallstar(() => {
-      let a = ''
+    setfiveStar && setfiveStar(() => {
+      let a
       switch (true) {
         case star5:
           a = 5
@@ -242,11 +249,13 @@ const Form = ({
   const [_imageUrl, set_ImageUrl] = useState()
   const [_videoUrl, set_VideoUrl] = useState()
 
-  const [_info, set_Info] = useState()
   const [_message, set_Message] = useState()
+  const [_info, set_Info] = useState()
+  const [_offerTime, set_OfferTime] = useState()
+  const [_offerValue, set_OfferValue] = useState()
   const [_checkbox, set_Checkbox] = useState()
   const [_captcha, set_Captcha] = useState()
-  const [_allstar, set_Allstar] = useState()
+  const [_fiveStar, set_FiveStar] = useState()
   const [_phone, set_Phone] = useState()
   const [_phore, set_Phore] = useState()
 
@@ -274,8 +283,10 @@ const Form = ({
   newObj.imageUrl = imageUrl;
   newObj.videoUrl = videoUrl;
   newObj.info = info;
+  newObj.offerTime = offerTime;
+  newObj.offerValue = offerValue;
   newObj.message = message;
-  newObj.allstar = allstar;
+  newObj.fiveStar = fiveStar;
 
   newObj.input1 = input1;
   newObj.input2 = input2;
@@ -302,6 +313,8 @@ const Form = ({
   var img = im ? (!edit ? newObj.imageUrl === imageUrl : true) : true
   var vdo = v ? (!edit ? newObj.videoUrl === videoUrl : true) : true
   var inf = i ? newObj.info === info : true
+  var offTime = offer ? newObj.offerTime === offerTime : true
+  var offValue = offer ? newObj.offerValue === offerValue : true
 
   var inpt1 = in1 ? newObj.input1 === input1 : true
   var inpt2 = in2 ? newObj.input2 === input2 : true
@@ -545,42 +558,6 @@ const Form = ({
           }
 
 
-          {i &&
-            <Frm
-              plackTextTop={plackTextTop}
-              multiline
-              icon="info"
-              p=" توضیحات "
-              iconLeft={iIconLeft}
-              iconRight={iIconRight}
-              state={info}
-              setState={setinfo}
-              getBlur={_info}
-              setBlur={set_Info}
-              newObj={newObj.info}
-              yub={inf}
-              styles={styles}
-            />
-          }
-
-          {m &&
-            <Frm
-              plackTextTop={plackTextTop}
-              p="پیام"
-              iconLeft={false}
-              iconRight={false}
-              state={message}
-              setState={setmessage}
-              getBlur={_message}
-              setBlur={set_Message}
-              newObj={newObj.message}
-              yub={msg}
-              styles={styles}
-              multiline
-              autoFocus={mAutoFocus}
-            />
-          }
-
 
           {in1 &&
             <Frm
@@ -622,6 +599,7 @@ const Form = ({
             <Frm
               autoComplete="off"
               icon="memory"
+              iconSize={17}
               plackTextTop={plackTextTop}
               p='رم'
               state={input3}
@@ -656,6 +634,7 @@ const Form = ({
             <Frm
               autoComplete="off"
               icon="camera"
+              iconSize={17}
               plackTextTop={plackTextTop}
               p='دوربین به مگاپیکسل'
               state={input5}
@@ -673,6 +652,7 @@ const Form = ({
             <Frm
               autoComplete="off"
               icon="hdd"
+              iconSize={17}
               plackTextTop={plackTextTop}
               p='حافظه داخلی به گیگابایت'
               state={input6}
@@ -708,8 +688,8 @@ const Form = ({
               autoComplete="off"
               m_icon="color-lens"
               plackTextTop={plackTextTop}
-              p='red-blue-green-black  : اگر چند رنگ هست به این صورت نوشته شود'
-              p2='رنگ ها'
+              p2='red-blue-green-black'
+              p='رنگ ها'
               state={input8}
               setState={setinput8}
               getBlur={_input8}
@@ -788,21 +768,205 @@ const Form = ({
 
 
 
+          <Br style={{ height: 0, padding: 0, margin: 0 }} />
 
-          {slider &&
-            <InputImage
+          {fourImage &&
+            <>
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس اول ( اصلی ) '
+                accept='image'
+                mediaType='photo'
+                imageUrl={image1}
+                setImageUrl={setimage1}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس دوم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={image2}
+                setImageUrl={setimage2}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس سوم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={image3}
+                setImageUrl={setimage3}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس چهارم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={image4}
+                setImageUrl={setimage4}
+                styles={styles}
+              />
+
+            </>
+          }
+
+
+
+
+          {i &&
+            <Frm
+              w='100%'
               plackTextTop={plackTextTop}
-              icon='image'
-              p=' عکس اول '
-              accept='image'
-              mediaType='photo'
-              imageUrl={sliderImage1}
-              setImageUrl={setsliderImage1}
+              multiline
+              icon="info"
+              p=" توضیحات "
+              iconLeft={iIconLeft}
+              iconRight={iIconRight}
+              state={info}
+              setState={setinfo}
+              getBlur={_info}
+              setBlur={set_Info}
+              newObj={newObj.info}
+              yub={inf}
               styles={styles}
             />
           }
 
+          {m &&
+            <Frm
+              w='100%'
+              plackTextTop={plackTextTop}
+              p="پیام"
+              iconLeft={false}
+              iconRight={false}
+              state={message}
+              setState={setmessage}
+              getBlur={_message}
+              setBlur={set_Message}
+              newObj={newObj.message}
+              yub={msg}
+              styles={styles}
+              multiline
+              autoFocus={mAutoFocus}
+            />
+          }
 
+
+
+          <Br style={{ height: 0, padding: 0, margin: 0 }} />
+          {slider &&
+            <>
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس اول '
+                accept='image'
+                mediaType='photo'
+                imageUrl={sliderImage1}
+                setImageUrl={setsliderImage1}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس دوم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={sliderImage2}
+                setImageUrl={setsliderImage2}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس سوم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={sliderImage3}
+                setImageUrl={setsliderImage3}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس چهارم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={sliderImage4}
+                setImageUrl={setsliderImage4}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس پنجم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={sliderImage5}
+                setImageUrl={setsliderImage5}
+                styles={styles}
+              />
+
+              <InputImage
+                plackTextTop={plackTextTop}
+                icon='image'
+                p=' عکس ششم '
+                accept='image'
+                mediaType='photo'
+                imageUrl={sliderImage6}
+                setImageUrl={setsliderImage6}
+                styles={styles}
+              />
+
+            </>
+          }
+
+          <Br style={{ height: 0, padding: 0, margin: 0 }} />
+
+          {offer &&
+            <>
+              <Frm
+                plackTextTop={plackTextTop}
+                m_icon="timer"
+                p="مدت زمان تخفیف به ساعت"
+                state={offerTime}
+                setState={setofferTime}
+                getBlur={_offerTime}
+                setBlur={set_OfferTime}
+                newObj={newObj.offerTime}
+                yub={offTime}
+                styles={styles}
+                keyboardType={'numeric'}
+              />
+
+              <Frm
+                plackTextTop={plackTextTop}
+                m_icon="money-off"
+                p="درصد تخفیف به عدد"
+                state={offerValue}
+                setState={setofferValue}
+                getBlur={_offerValue}
+                setBlur={set_OfferValue}
+                newObj={newObj.offerValue}
+                yub={offValue}
+                styles={styles}
+                keyboardType={'numeric'}
+              />
+            </>
+          }
 
 
 
@@ -917,10 +1081,10 @@ const Form = ({
 
                 </View>
 
-                {_allstar && newObj.allstar != allstar &&
+                {_fiveStar && newObj.fiveStar != fiveStar &&
                   <View style={{ width: '100%', alignItems: 'center', height: 'auto', marginTop: 5 }} >
                     <Text style={[{ color: 'red' }]} >
-                      {newObj.allstar}
+                      {newObj.fiveStar}
                     </Text>
                   </View>
                 }
@@ -946,7 +1110,9 @@ const Form = ({
                   set_ImageUrl(true)
                   set_VideoUrl(true)
                   set_Info(true)
-                  set_Allstar(true)
+                  set_OfferTime(true)
+                  set_OfferValue(true)
+                  set_FiveStar(true)
                   set_Phone(true)
                   set_Phore(true)
                   set_Code(true)
@@ -963,7 +1129,7 @@ const Form = ({
                   set_Input10(true)
                 }}
                 onPress={async () => {
-                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && cod && img && vdo && inf && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
+                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
 
                     if (!timer) {
                       onClick()
@@ -1014,6 +1180,7 @@ const Form = ({
                   else {
                     setRand(parseInt(Math.random() * 9000 + 1000))
                     setcaptcha('')
+                    toast.error("خطا", "کادر های قرمز را تصحیح کنید")
                   }
                 }}
                 style={[styles.btn]} >

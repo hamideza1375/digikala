@@ -7,6 +7,6 @@ const EditCategory = (p) => {
   p._admin.getSinleCategory()
   const editCategory = (id) => p._admin.editCategory(id)
 
-  return <Form t im edit {...p} onClick={() => { editCategory(); }}/>
+  return <Form t im edit onClick={() => { editCategory(); }}/>
 }
 export default EditCategory

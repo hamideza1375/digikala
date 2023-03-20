@@ -69,7 +69,13 @@ export function adminController(p) {
 
   this.createChildItem = async () => {
     await createChildItem(p.route.params.id, {
-      title: p.title, price: p.price, imageUrl: p.imageUrl, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: p.input8.split("-"), display: p.input9, availableCount: p.input10
+      image1: p.image1,
+      image2: p.image2,
+      image3: p.image3,
+      image4: p.image4,
+      offerTime: p.offerTime?p.offerTime:0,
+      offerValue: p.offerValue?p.offerValue:0,
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8.split("-")), display: p.input9, availableCount: p.input10
     })
   }
 
@@ -80,8 +86,13 @@ export function adminController(p) {
         const { data } = await getSingleItem(p.route.params.id)
         p.settitle(data.singleItem.title)
         p.setprice(data.singleItem.price)
-        p.setimageUrl({ name: data.singleItem.imageUrl })
+        p.setimage1({ name: data.singleItem.imageUrl1 })
+        p.setimage2({ name: data.singleItem.imageUrl2 })
+        p.setimage3({ name: data.singleItem.imageUrl3 })
+        p.setimage4({ name: data.singleItem.imageUrl4 })
         p.setinfo(data.singleItem.info)
+        p.setofferTime(data.singleItem.offerTime.value)
+        p.setofferValue(data.singleItem.offerValue)
         p.setinput3(data.singleItem.ram)
         p.setinput4(data.singleItem.cpuCore)
         p.setinput5(data.singleItem.camera)
@@ -96,7 +107,15 @@ export function adminController(p) {
 
 
   this.editChildItem = async () => {
-    await editChildItem(p.route.params.id, { title: p.title, price: p.price, imageUrl: p.imageUrl, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: p.input8.split("-"), display: p.input9, availableCount: p.input10 })
+    await editChildItem(p.route.params.id, {
+      image1: p.image1,
+      image2: p.image2,
+      image3: p.image3,
+      image4: p.image4,
+      offerTime: p.offerTime ? p.offerTime : 0,
+      offerValue: p.offerValue ? p.offerValue : 0,
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8.split("-")), display: p.input9, availableCount: p.input10
+    })
   }
 
 

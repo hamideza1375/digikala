@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react'
 import { Platform } from 'react-native'
 import _useEffect from '../../controllers/_initial';
-import { Br, Container2, Div, Loading, P, Scroll, Span } from '../../other/Components/Html'
+import { Br, Button, Container2, Div, Loading, P, Scroll, Span } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 
 const Obligations = lazy(() => import('./components/singleItem/Obligations'));
@@ -16,22 +16,13 @@ const Footer = lazy(() => import('./components/home/Footer'));
 
 const SingleItem = (p) => {
   p._client.getSingleItem()
-  _useEffect(() => {
-    // p.navigation.setOptions({
-    //   header: () =>
-    //     <SearchBar Register={p.width > 395 ? true : false} icon={'filter'} iconPress={() => { p.setshowFilterModal(true) }} array={p.array} setarray={p.setarray} {...p} bgcolor={'#e7ed'} logoPress={() => p.navigation.navigate('Home')} row={
-    //       <Span fd='row' mt={19} >
-    //         <P fs={10} mh={7} >موبایل تبلت</P>
-    //         <P fs={10} mh={7} >هدفون هنزفیری</P>
-    //         <P fs={10} mh={7} >لوازم جانبی</P>
-    //       </Span>} src={require('../../other/assets/images/logo.png')} />
-    // });
-  }, [])
+  p._client.getChildItemComments()
+
   return (
     <Container2>
       <Scroll >
         <Span bgcolor='#fff' w='100%' h={50} >
-          <P pr={10} mt={14} fw='bold'>گوشی موبایل شیایومی مدل 12</P>
+          <P pr={10} mt={14} fw='bold'>{p.singleItem.title}</P>
         </Span>
         <Br />
         <Span>
@@ -74,6 +65,8 @@ const SingleItem = (p) => {
           </Suspense>
         </Span>
         <Div>
+
+
           <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
             <ShowComment {...p} />
           </Suspense>

@@ -121,19 +121,19 @@ const DaysChartMean = ({ color = '#a5fd', borderColor = '#a5f9', rodColor = '#d5
 
         <Span h='90%' w={5} jc='center' fd='column-reverse' z={100}>
           <Span ml={-5} f={1} h={5} ai='flex-end' jc='center'>
-            <P w={70} fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
+            <P ta='left' w={70} fs={7.5} color={color} >{(sorteX[sorteX.length - 7] / 1).toFixed()}</P>
           </Span>
           <Span ml={-5} f={1} h={5} ai='flex-end'>
-            <P w={70} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
+            <P ta='left' w={70} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 7])) / 2).toFixed()}</P>
           </Span>
           <Span ml={-5} f={1} h={5} ai='flex-end'>
-            <P w={70} fs={7.5} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2).toFixed()}</P>
+            <P ta='left' w={70} fs={7.5} color={color} >{((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2).toFixed()}</P>
           </Span>
           <Span ml={-5} f={1} h={5} ai='flex-end'>
-            <P w={70} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
+            <P ta='left' w={70} fs={7.5} color={color} >{((((sorteX[sorteX.length - 1] + sorteX[sorteX.length - 7]) / 2) + (sorteX[sorteX.length - 1])) / 2).toFixed()}</P>
           </Span>
           <Span ml={-5} f={1} h={5} ai='flex-end'>
-            <P w={70} fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
+            <P ta='left' w={70} fs={7.5} color={color} >{(sorteX[sorteX.length - 1] / 1).toFixed()}</P>
           </Span>
         </Span>
 

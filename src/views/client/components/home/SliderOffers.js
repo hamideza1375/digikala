@@ -10,16 +10,6 @@ import CardItem from '../_layoutComponents/CardItem'
 
 
 const SliderOffers = (p) => {
-  const [dt, setdt] = useState()
-
-  _useEffect(() => {
-    setTimeout(() => {
-      seconder("2023-03-13 22:3:0", ({ days, hours, minutes, seconds }) => (
-        setdt(hours + ':' + minutes + ':' + seconds)
-      ))
-    }, 1000);
-  }, [])
-
 
   return (
     <>

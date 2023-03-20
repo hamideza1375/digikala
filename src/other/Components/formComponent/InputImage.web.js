@@ -8,11 +8,8 @@ import { M_icon, Py } from "../Html";
 
 function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageUrl, _imageUrl, newObj, img, styles, icon, p, accept }) {
 
-
-
   return (
     <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginTop: 7, marginHorizontal: 10, flexGrow: 1 }]}>
-
 
       <View style={{ height: 70, minHeight: 70, marginVertical: 10 }}>
         <Animated.View style={[styles.viewInput, { minHeight: 90 }, { marginBottom: 5 }]} >
@@ -22,7 +19,7 @@ function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageU
             iconLeft={imIconLeft}
             iconRight={imIconRight}
           >
-            {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} > {p}</Text>}
+            {plackTextTop && <Py fw='100' style={[styles.textinput, { marginTop: 5 }]} > {p}</Py>}
             <Animated.View style={[styles.animatedBorder,
             _imageUrl && !img &&
             { borderWidth: 1.2, borderColor: _imageUrl && !img ? 'red' : '#222' }]} >
@@ -40,17 +37,19 @@ function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageU
                   }
 
                 </View>
-                <Py style={{ width: '85%', position: 'absolute', Top: 5, paddingRight: 10, paddingLeft:10, color: '#666', fontSize:13, fontWeight:'100' }} >{imageUrl.name ? truncate(imageUrl.name, 15, false) : p}</Py>
-                <input
-                  type={'file'}
-                  accept={`${accept}/*`}
-                  placeholder={p}
-                  onChange={(event) => { setImageUrl(event.target.files[0]) }}
-                  style={{ opacity: 0, width: '100%', minHeight: '100%', boxSizing: 'border-box' }}
-                />
+                <Py style={{ width: '85%', position: 'absolute', Top: 5, paddingRight: 10, paddingLeft: 10, color: '#666', fontSize: 13, fontWeight: '100' }} >{imageUrl.name ? truncate(imageUrl.name, 15, false) : p}</Py>
+                <form style={{ width: '100%', minWidth: '100%', flexGrow: 1 }} >
+                  <input
+                    type={'file'}
+                    accept={`${accept}/*`}
+                    placeholder={p}
+                    onChange={(event) => { setImageUrl(event.target.files[0]) }}
+                    style={{ opacity: 0, minWidth: '100%', width: 185, minHeight: '100%', boxSizing: 'border-box', flexGrow: 1 }}
+                  />
+                </form>
               </View>
             </Animated.View>
-            {_imageUrl && !img && <Py style={[styles.textinput, { color: 'red', fontSize:13, fontWeight:'100' }]} >
+            {_imageUrl && !img && <Py style={[styles.textinput, { color: 'red', fontSize: 13, fontWeight: '100' }]} >
               {newObj}
             </Py>}
           </Swiper>

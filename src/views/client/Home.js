@@ -10,6 +10,11 @@ const Footer = lazy(() => import('./components/home/Footer'));
 
 function Home(p) {
 
+    p._client.getCategory()
+    p._client.getOffers()
+    p._client.getPopulars()
+
+
   return (
     <ContainerTab >
 

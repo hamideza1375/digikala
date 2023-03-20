@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Animated as _Animated, StyleSheet as _StyleSheet, View, Text, Image, ScrollView, TouchableOpacity, Platform, FlatList as _FlatList, VirtualizedList, Pressable, ImageBackground, Dimensions } from 'react-native';
 import _icon from 'react-native-vector-icons/dist/FontAwesome5';
 import Aicon from 'react-native-vector-icons/dist/AntDesign';
@@ -223,13 +223,13 @@ export const Scroll = (props) => <Component {...props} Component={ScrollView} />
 
 export const ScrollHorizontal = (props) => <Component {...props} horizontal={true} Component={ScrollView} />
 
-export const FlatList = (props) => {
-  const { colomn1, colomn2, colomn3, colomn4, colomn5, colomn6 } = props
+export const FlatList = ({ colomn1, colomn2, colomn3, colomn4, colomn5, colomn6, colomn, renderItem, numColumns, data, ...props }) => {
+
   const width = Dimensions.get('window').width
   const [index, setindex] = useState(0)
 
   let column
-  if (width < 320) column = props.colomn ? props.colomn : 1
+  if (width < 320) column = colomn ? colomn : 1
   else if (width >= 320 && width <= 480) column = colomn1
   else if (width > 480 && width <= 600) column = colomn2
   else if (width > 600 && width <= 768) column = colomn3
@@ -238,19 +238,20 @@ export const FlatList = (props) => {
   else if (width > 1100) column = colomn6
 
   return (
-    props.data.length
+    data.length
       ?
       <Component
         {...props}
+        data={data}
         renderItem={({ item, index }) => <>
           <View style={{ position: 'absolute', height: 0, width: 0 }} ref={() => setindex(index)} ></View>
-          <>{props.renderItem({ item, index })}</> </>}
+          <>{renderItem({ item, index })}</> </>}
         flatlist={true}
         keyExtractor={(item, index) => item._id}
-        numColumns={props.numColumns ? props.numColumns : column}
-        key={props.numColumns ? props.numColumns : column}
+        numColumns={numColumns ? numColumns : column}
+        key={numColumns ? numColumns : column}
         Component={_FlatList}
-        ListFooterComponent={() => props.data[props.data.length - 1]?._id !== props.data[index]?._id ? <_Loading scale={1.5} time={99999} /> : <></>}
+        ListFooterComponent={() => data[data.length - 1]?._id !== data[index]?._id ? <_Loading scale={1.5} time={99999} /> : <></>}
       />
       :
       <_Loading />
@@ -273,15 +274,17 @@ export const H5 = (props) => <_text {...props} initalClass={s.h5} />
 
 export const H6 = (props) => <_text {...props} initalClass={s.h6} />
 
-export const P = (props) => <_text {...props} initalClass={s.p} />
+export const P = (props) => <_text ta='right' {...props} initalClass={s.p} />
 
-export const Pl = (props) => <_text {...props} initalClass={s.p} ff='IRANSansWeb-Light' />
+export const Ps = (props) => <_text ta='right' {...props} initalClass={s.p} />
 
-export const Pfa = (props) => <_text fs={16} fw='bold' {...props} ff='B Baran Regular' />
+export const Pl = (props) => <_text ta='right' {...props} initalClass={s.p} ff='IRANSansWeb-Light' />
 
-export const Py = (props) => <_text fw='bold' {...props} ff='Yekan Bakh Regular' />
+export const Pfa = (props) => <_text ta='right' fs={16} fw='bold' {...props} ff='B Baran Regular' />
 
-export const I = (props) => <_text {...props} initalClass={s.i} />
+export const Py = (props) => <_text ta='right' fw='bold' {...props} ff='Yekan Bakh Regular' />
+
+export const I = (props) => <_text ta='right' {...props} initalClass={s.i} />
 
 export const Br = (props) => <_text {...props} initalClass={s.br} />
 

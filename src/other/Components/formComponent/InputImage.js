@@ -43,7 +43,7 @@ function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageU
             iconLeft={imIconLeft}
             iconRight={imIconRight}
           >
-            {plackTextTop && <Text style={[styles.textinput, { marginTop: 5 }]} >{p}</Text>}
+            {plackTextTop && <Py fw='100' style={[styles.textinput, { marginTop: 5 }]} >{p}</Py>}
             <Pressable onPress={pickImage} style={[styles.animatedBorder,
             _imageUrl && !img &&
             { borderWidth: 1.2, borderColor: 'red' }]} >

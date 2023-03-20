@@ -15,24 +15,16 @@ function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_i
 
   const foodAsc = () => {
     setarray(array => (array.sort((a, b) => a.price - b.price)))
-    console.log(array);
   }
 
 
   const foodDesc = () => {
     setarray(array => array.sort((a, b) => b['price'] - a['price']))
-    console.log(array);
   }
 
 
 
-  useEffect(() => {
-    console.log(getValueSearch);
-  }, [getValueSearch])
-
-
   const searcher = (textSearch) => {
-    console.log(textSearch);
     const f = []
     let fd1 = array.filter((f) => f.title.toLowerCase().includes(textSearch))
     f.push(...fd1)

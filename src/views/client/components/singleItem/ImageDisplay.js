@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card2, Img, Press, Span } from '../../../../other/Components/Html'
+import { localhost } from '../../../../other/utils/axios/axios'
 
 const ImageDisplay = (p) => {
   return (
@@ -9,23 +10,23 @@ const ImageDisplay = (p) => {
       c1={4} coulumn1={
         <Span f={1} >
           <Span f={1} >
-            <Img id='img' f={1} style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }} src={require('../../../../other/assets/images/a1.jpg')} />
+            <Img id='img' f={1} style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl1}`} />
           </Span>
         </Span>
       }
       c2={1} coulumn2={
         <Span f={1} fd='row' jc='center' >
-          <Press onClick={() => { p.$.id('img').$({ src: require('../../../../other/assets/images/a1.jpg') }) }} f={1}  >
-            <Img f={1} m={4} br={4} src={require('../../../../other/assets/images/a1.jpg')} />
+          <Press onClick={() => { p.$.id('img').$({ src: `${localhost}/upload/childItem/${p.singleItem.imageUrl1}` }) }} f={1}  >
+            <Img f={1} m={4} br={4} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl1}`} />
           </Press>
-          <Press onClick={() => { p.$.id('img').$({ src: require('../../../../other/assets/images/a2.jpg') }) }} f={1}  >
-            <Img f={1} m={4} br={4} src={require('../../../../other/assets/images/a2.jpg')} />
+          <Press onClick={() => { p.$.id('img').$({ src: `${localhost}/upload/childItem/${p.singleItem.imageUrl2}` }) }} f={1}  >
+            <Img f={1} m={4} br={4} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl2}`} />
           </Press>
-          <Press onClick={() => { p.$.id('img').$({ src: require('../../../../other/assets/images/a3.jpg') }) }} f={1}  >
-            <Img f={1} m={4} br={4} src={require('../../../../other/assets/images/a3.jpg')} />
+          <Press onClick={() => { p.$.id('img').$({ src: `${localhost}/upload/childItem/${p.singleItem.imageUrl3}` }) }} f={1}  >
+            <Img f={1} m={4} br={4} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl3}`} />
           </Press>
-          <Press onClick={() => { p.$.id('img').$({ src: require('../../../../other/assets/images/a7.jpg') }) }} f={1}  >
-            <Img f={1} m={4} br={4} src={require('../../../../other/assets/images/a7.jpg')} />
+          <Press onClick={() => { p.$.id('img').$({ src: `${localhost}/upload/childItem/${p.singleItem.imageUrl4}` }) }} f={1}  >
+            <Img f={1} m={4} br={4} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl4}`} />
           </Press>
 
         </Span>

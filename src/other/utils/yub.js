@@ -211,7 +211,43 @@ const yub = {
     }
 
 
-    if (propName === 'allstar') {
+    var offer = Boolean(Number(target.offerTime)) === Boolean(Number(target.offerValue))
+
+    if (propName === 'offerTime') {
+      if (target[propName] && isNaN(target[propName])) {
+        return "مدت زمان ساعت تخفیف را به عدد وارد کنید"
+      }
+      else if (!offer) {
+        return ('نمیتوان فقط یک کدام از مقادیر تخفبف را تایین کرد')
+      }
+      else if (target[propName] < 0) {
+        return ('مقدار کادر نباید منفی باشد')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+
+    if (propName === 'offerValue') {
+      if (target[propName] && isNaN(target[propName])) {
+        return "مقدار درصد تخفیف را به عدد وارد کنید"
+      }
+      else if (!offer) {
+        return ('نمیتوان فقط یک کدام از مقادیر تخفبف را تایین کرد')
+      }
+      else if (target[propName] < 0) {
+        return ('مقدار کادر نباید منفی باشد')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+
+    if (propName === 'fiveStar') {
       if (target[propName] != 0) {
         return target[propName]
       }
@@ -219,6 +255,7 @@ const yub = {
         return "لطفا انتخاب ستاره هارا تکمیل کنید"
       }
     }
+
 
 
 

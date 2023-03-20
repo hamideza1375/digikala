@@ -30,7 +30,7 @@ const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outl
       <_Button
         ref={ref}
         {...props}
-        style={[{maxWidth:maxw,minWidth:minw,maxHeight:maxh,minHeight:minh},
+        style={[
           {
             backgroundColor: (bgcolor == 'red') && '#f33' ||
               (!bgcolor) && '#0099ff' ||
@@ -46,6 +46,7 @@ const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outl
               borderColor: !border[1] && ((!bgcolor) ? '#0091EA' :
                 bgcolor == 'yellow' ? '#ca0' : bgcolor) || border[1]
             }, {
+            maxWidth:maxw,minWidth:minw,maxHeight:maxh,minHeight:minh,
             borderWidth: border[0] ? border[0] : 1,
             height: h, width: w, margin: m, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginVertical: mv, marginHorizontal: mh,
             alignSelf: as, flexGrow: fg, flex: f
@@ -71,8 +72,11 @@ const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outl
           bgcolor == 'white' ? {} :
             { borderColor: !border[1] && (bgcolor == 'yellow' && '#fc3' || bgcolor || '#3399ff') || border[1] },
           {
+            maxWidth:maxw,minWidth:minw,maxHeight:maxh,minHeight:minh,
             borderWidth: border[0] ? border[0] : 1,
             height: h, width: w, margin: m, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginVertical: mv, marginHorizontal: mh,
+            alignSelf: as, flexGrow: fg, flex: f
+          
           },
           style
         ]}

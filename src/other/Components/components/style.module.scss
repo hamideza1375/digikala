@@ -1,5 +1,11 @@
 .hover {
     overflow: hidden;
+    opacity: .3;
+}
+
+.hover:hover {
+    overflow: scroll;
+    transform: scale(.3);
 }
 
 .selectNone {

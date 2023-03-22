@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 
 
 export function client() {
@@ -213,8 +213,13 @@ export function client() {
 
   //!
   const [singleItemChange, setsingleItemChange] = useState(false)
+  const countMap = useRef(new Map())
+  const [addNumber, setaddNumber] = useState({})
+
 
   this.client = {
+    addNumber, setaddNumber,
+    countMap,
     singleItemChange, setsingleItemChange,
     logoUrl, setlogoUrl,
 

@@ -15,7 +15,7 @@ const ImageDisplay = (p) => {
         c1={4} coulumn1={
           <Span f={1} >
             <Span f={1} >
-              <Img id='img' f={1} style={{ borderTopLeftRadius: 8, borderTopRightRadius: 8 }} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl1}`} />
+              <Img id='img' f={1} style={{ resizeMode: 'stretch', borderTopLeftRadius: 8, borderTopRightRadius: 8 }} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl1}`} />
             </Span>
           </Span>
         }
@@ -32,7 +32,7 @@ const ImageDisplay = (p) => {
                 p.$.id('img').$({ src: `${localhost}/upload/childItem/${item}` })
 
               }} f={1}  >
-                <Img f={1} m={4} br={4} src={`${localhost}/upload/childItem/${item}`} />
+                <Img f={1} m={4} br={4} style={{ resizeMode: 'stretch',}} src={`${localhost}/upload/childItem/${item}`} />
               </Press>
             ))}
 

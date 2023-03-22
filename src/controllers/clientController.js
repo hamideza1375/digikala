@@ -1,7 +1,8 @@
-import { commentDisLike, commentLike, confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleItem, getSlider, offers, reverse } from "../services/clientService";
+import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleItem, getSlider, offers, reverse } from "../services/clientService";
 import _useEffect from "./_initial";
 
 export function clientController(p) {
+
 
   this.getCategory = () => {
     _useEffect(() => {
@@ -147,6 +148,25 @@ export function clientController(p) {
   }
 
 
+  this.addBuyBasket = async (productBasket) => {
+    // let num = 0
+    // Object.entries(productBasket).forEach((item, index) => {
+    //   num += (item[1].productBasket * item[1].price)
+    // })
+    // console.log(num);
+      addBuyBasket(p.route.params.id, { productBasket }).then(({ data }) => { })
+  }
+
+
+
+
+  // countMap.forEach((item, index) => ())
+  // countMap.keys()
+  // countMap.values()
+  // countMap.entries()
+  // console.log(Object.keys(number));
+  // console.log(Object.values(number));
+  // console.log(Object.entries(number)); //! object change to array
 
 }
 

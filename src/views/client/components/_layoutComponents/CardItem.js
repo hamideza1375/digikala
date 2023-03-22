@@ -32,8 +32,8 @@ const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r
           <P fs={8} mt={1} ta='center' >{item.cpuCore} هسته</P>
         </Span>
         <Span ai='center' w={'25%'} h={35} brw={1} border={[0, 'silver']} pt={1}>
-          <Icon name='hdd' size={16} />
-          <P fs={8} mt={1} ta='center' >{item.sdCard} گیگ </P>
+          <Icon name='hdd' size={16} color='#000' />
+          <P fs={8} mt={1} ta='center' >{item.storage} گیگ </P>
         </Span>
         <Span ai='center' w={'25%'} h={35} brw={1} border={[0, 'silver']} pt={1} >
           <Icon name='memory' size={16} />

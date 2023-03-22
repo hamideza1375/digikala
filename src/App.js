@@ -87,7 +87,7 @@ const Mobile = () => {
     p.splash ?
       <Img src={p.logoUrl}  f={1} style={{resizeMode: 'stretch'}} />
       :
-      <Span h={height} w='100%' minw={280} onClick={() => { p.setshownDropdown(false); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}>
+      <Span h={height} w='100%' minw={280} onClick={() => { p.shownDropdown && p.setshownDropdown(false); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}>
         <contextStates.Provider value={p}>
           <Dropdown root {...p}><Span>{p.dropdownValue}</Span></Dropdown>
           <Init ref={(e) => allState.set$(e)} id={'s'} />

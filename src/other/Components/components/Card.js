@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Image, Pressable, Platform } from 'react-native';
 import { P } from '../Html';
 
-function Card({ style, header, body, footer, bgcolor, color, alert, border = [1], img, dr = 'rtl', imageStyle, headerRow, footerRow, bodyRow, ...prop }) {
+function Card({ style, header, body, footer, bgcolor='white', color, alert, border = [1], img, dr = 'ltr', imageStyle, headerRow, footerRow, bodyRow, ...prop }) {
 
   const [heightLayout, setheightLayout] = useState(0)
 
@@ -419,12 +419,15 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
 
               <View
                 style={[{
-                  top: 12,
+                  top: 0,
                   position: 'absolute',
                   height: 100,
                   justifyContent: 'center',
-                }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+                  maxWidth:'20%',
+                }, dr === 'ltr' ? { left: 5, paddingLeft:10 } : { right: 5, paddingRight:10 }]} >
                 <Image source={img} style={[{
+                  top: 15,
+                  position: 'absolute',
                   width: 70,
                   height: 70,
                   borderRadius: 50,
@@ -433,7 +436,10 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
                 }, imageStyle]}
                 />
                 {footer &&
-                  <View style={[{ paddingVertical: 5, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
+                  <View style={[{ 
+                    top: 58,
+                    paddingRight:2,
+                    paddingVertical: 5, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
                     textAlign: 'center',
                     color:
                       !color ?
@@ -581,12 +587,15 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
 
 
                 <View style={[{
-                  top: 12,
+                  top: 0,
                   position: 'absolute',
                   height: 90,
                   justifyContent: 'center',
-                }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+                  maxWidth:'20%',
+                }, dr === 'ltr' ? { left: 5, paddingLeft:10 } : { right: 5, paddingRight:10 }]} >
                   <Image source={img} style={[{
+                    top: 15,
+                    position: 'absolute',
                     width: 70,
                     height: 70,
                     borderRadius: 50,
@@ -595,7 +604,8 @@ function Card({ style, header, body, footer, bgcolor, color, alert, border = [1]
                   }, imageStyle]}
                   />
                   {footer &&
-                    <View style={[{ paddingVertical: 5, color, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
+                    
+                    <View style={[{top: 63, paddingRight:2, paddingVertical: 5, color, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
                       textAlign: 'center',
                       color:
                         !color ?

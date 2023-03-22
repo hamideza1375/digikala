@@ -1,10 +1,14 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
-import { Badge, Button, Card2, Div, P, Pfa, Press, Py, Row, Span } from '../../../../other/Components/Html'
+import { Badge, Button, Card2, Column, Div, Icon, P, Pfa, Press, Py, Row, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 
 const Description = (p) => {
   const [color, setcolor] = useState()
+
+  const addBuyBasket = (number) => p._client.addBuyBasket(number)
+
+
   return (
 
     <Span minw={290} w={'100%'} ai='center' jc='center'>
@@ -26,7 +30,7 @@ const Description = (p) => {
               {p.singleItem.offerTime.exp > new Date().getTime() ?
                 <Row >
                   <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue)))} تومان </Pfa>
-                  <Pfa color='#e33'  fs={12} mt={-1} style={{textDecorationLine: 'line-through'}} >{spacePrice(p.singleItem.price)} ت </Pfa>
+                  <Pfa color='#e33' fs={12} mt={-1} style={{ textDecorationLine: 'line-through' }} >{spacePrice(p.singleItem.price)} ت </Pfa>
                 </Row>
                 :
                 <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(p.singleItem.price)} تومان </Pfa>}
@@ -65,9 +69,64 @@ const Description = (p) => {
 
             </Span >
 
-            <Span fg={1} mb={10} >
-              <Button w='70%' bgcolor='#909' style={{ alignSelf: 'center', position: 'absolute', bottom: 5 }} >افزودن به سبد خرید</Button>
-            </Span >
+            <Row fg={1} mb={10} jc='space-around' ai='center'>
+
+              <Column w='70%' h={'100%'} jc='center' >
+                <Button disable={p.addNumber[p.route.params.id]?.number} onClick={() =>
+
+
+                  p.setaddNumber(addNumber => {
+                    const obj = { ...addNumber }
+                    obj[p.route.params.id] = { number: 1, price: p.singleItem.price }
+                    addBuyBasket(obj)
+                    return obj
+                  })
+
+
+                } w='100%' bgcolor='#909' style={{ alignSelf: 'center' }} >افزودن به سبد خرید</Button>
+              </Column>
+
+              {p.addNumber[p.route.params.id]?.number ? <Column h={'100%'} jc='center' >
+                <Column style={{ height: 20, width: 20 }} >
+                  <Icon name='plus' color='#0ad' size={20} onClick={() =>
+
+
+                    p.setaddNumber(addNumber => {
+                      const obj = { ...addNumber }
+                      obj[p.route.params.id].number = obj[p.route.params.id].number + 1 
+                      addBuyBasket(obj)
+                      return obj
+                    })
+
+
+                  } />
+                </Column>
+
+                <Column style={{ height: 17, width: 20 }} >
+                  <P mt={3} ta='center' >{p.addNumber[p.route.params.id]?.number}</P>
+                </Column>
+
+                <Column style={{ height: 20, width: 20 }} >
+                  <Icon name='minus' color='#e11' size={20} onClick={() =>
+
+
+                    p.addNumber[p.route.params.id]?.number &&
+                    p.setaddNumber(addNumber => {
+                      const obj = { ...addNumber }
+                      obj[p.route.params.id].number = obj[p.route.params.id].number - 1
+                      addBuyBasket(obj)
+                      return obj
+                    })
+
+
+                  } />
+                </Column>
+              </Column>
+                :
+                <></>
+              }
+
+            </Row >
 
           </Span>}
       />

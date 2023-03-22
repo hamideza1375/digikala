@@ -21,12 +21,16 @@ export const _initController = (p) => {
     var toastOK = (data) => { typeof data !== 'string' ? p.toast.success('موفق آمیز', '✅', 2500) : p.toast.success('موفق آمیز', data, 3500) }
     var toast500 = () => { p.toast.error('خطا', 'مشکلی از سمت سرور پیش آمده'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     var toast400 = (error) => { p.toast.error('خطا', typeof error === 'string' ? error : 'خطایی غیر منتظره رخ داد'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
+    var toastErrorNetwork = (error) => { p.toast.error('خطا', 'اتصال اینترنتتان را برسی کنید') }
     Axios.interceptors.response.use(function (response) {
       if (response.config.method !== 'get' && response.data !== '' && (response.status === 200 || response.status === 201)) toastOK(response.data)
       p.setshowActivity(false)
       return response
     }, function (error) {
-      if (error?.response?.status) {
+
+      if (error['request'].statusText === '' && error['request'].status === 0 && error['request'].response === '' && error['isAxiosError'] === true) return toastErrorNetwork()
+
+      else if (error?.response?.status) {
         if (error.response.status > 400 && error.response.status <= 500) { toast500() };
         if (error.response.status === 400) { toast400(error.response.data) };
         p.setshowActivity(false)
@@ -35,7 +39,7 @@ export const _initController = (p) => {
     AsyncStorage.getItem("token").then((token) => { if (token) { const user = jwt_decode(token); p.settokenValue(user); } })
   }, [])
 
-  
+
   useEffect(() => { p.$input.set('a', 'a') }, [])
 
   useEffect(() => { setTimeout(() => { p.setSplash(false) }, 500) }, [])
@@ -71,7 +75,7 @@ export const _initController = (p) => {
   //! getSlider
   useEffect(() => {
     getSlider().then(({ data }) => {
-     data && p.setslider(Object.values(data))
+      data && p.setslider(Object.values(data))
     })
   }, [])
 

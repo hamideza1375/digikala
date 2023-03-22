@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Text, TouchableOpacity } from 'react-native';
+import { Platform, Text, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
 import { P } from '../Html';
 
 const _Button = React.forwardRef((props, ref) => {
@@ -14,16 +14,27 @@ const _Button = React.forwardRef((props, ref) => {
 
 
   return (
-    <TouchableOpacity
-      ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
-      activeOpacity={0.8} onPress={props.onClick} {...props} style={[{
-        paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
-        alignSelf: props.as,
-      }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableOpacity>);
+    !props.disable
+      ?
+      <TouchableOpacity
+        ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
+        activeOpacity={0.8} onPress={props.onClick} {...props} style={[{
+          paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
+          alignSelf: props.as,
+        }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableOpacity>
+      :
+      <TouchableNativeFeedback
+        ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
+         onPress={() => { }} {...props} style={[{
+          paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
+          alignSelf: props.as, opacity:.8,
+        }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableNativeFeedback>
 
+  );
+  q
 })
 
-const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outline, fs = 13, p=5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
+const Button = React.forwardRef(({ textStyle, maxw, minw, maxh, minh, as, style, outline, fs = 13, p = 5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
 
   return (
     !outline ?
@@ -46,7 +57,7 @@ const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outl
               borderColor: !border[1] && ((!bgcolor) ? '#0091EA' :
                 bgcolor == 'yellow' ? '#ca0' : bgcolor) || border[1]
             }, {
-            maxWidth:maxw,minWidth:minw,maxHeight:maxh,minHeight:minh,
+            maxWidth: maxw, minWidth: minw, maxHeight: maxh, minHeight: minh,
             borderWidth: border[0] ? border[0] : 1,
             height: h, width: w, margin: m, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginVertical: mv, marginHorizontal: mh,
             alignSelf: as, flexGrow: fg, flex: f
@@ -72,11 +83,11 @@ const Button = React.forwardRef(({textStyle, maxw,minw,maxh,minh,as, style, outl
           bgcolor == 'white' ? {} :
             { borderColor: !border[1] && (bgcolor == 'yellow' && '#fc3' || bgcolor || '#3399ff') || border[1] },
           {
-            maxWidth:maxw,minWidth:minw,maxHeight:maxh,minHeight:minh,
+            maxWidth: maxw, minWidth: minw, maxHeight: maxh, minHeight: minh,
             borderWidth: border[0] ? border[0] : 1,
             height: h, width: w, margin: m, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginVertical: mv, marginHorizontal: mh,
             alignSelf: as, flexGrow: fg, flex: f
-          
+
           },
           style
         ]}

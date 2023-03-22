@@ -34,12 +34,12 @@ const FilterList = (p) => {
   return (
     <>
 
-      <Span z={10000000000} minw={150} maxw={200} mt={10} h={p.height - 70} bgcolor='#fffe' f={1}
+      <Span z={10000000000} minw={150} maxw={200} w={200} mt={10} maxh={p.height - 70} minh={'80%'} bgcolor='#fffe' f={1}
         col={p.show ? { right: -200, position: 'absolute' } : { position: 'absolute', right: 0 }}
         col1={p.show ? { right: -200, position: 'absolute' } : { position: 'absolute', right: 0 }}
         style={p.show ? { right: -200, position: 'absolute' } : { position: 'absolute', right: 0 }}
       >
-        <Scroll  >
+        <Scroll minw='105%' >
 
           <Span fd={!isEnabled ? 'row' : 'row-reverse'} jc={'center'} mb={5} ph={7} >
             {!isEnabled ?

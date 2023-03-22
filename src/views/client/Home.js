@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import { Span, Slider, Scroll, Div, ContainerTab, Loading } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import Category from './components/home/Category';
+import { states } from '../../context/_context';
 const SliderOffers = lazy(() => import('./components/home/SliderOffers'));
 const SliderPopulars = lazy(() => import('./components/home/SliderPopulars'));
 const Banner = lazy(() => import('./components/home/Banner'));
@@ -9,6 +10,9 @@ const Footer = lazy(() => import('./components/home/Footer'));
 
 
 function Home(p) {
+
+  // const pr = states()
+
 
     p._client.getCategory()
     p._client.getOffers()
@@ -20,7 +24,7 @@ function Home(p) {
 
       <Scroll>
         <Div>
-          <Slider data={p.slider} {...p} onClick={() => { alert(8) }} />
+          <Slider data={p.slider} {...p} onClick={() => { p.navigation.navigate('ChildOffers') }} />
         </Div>
 
         <Span>

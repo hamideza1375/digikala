@@ -7,7 +7,7 @@ const EditChildItem = (p) => {
 
   return (
     <Container2>
-      <Form flexDirection={'row'} fourImage offer t pr i in3 in4 in5 in6 in7 in8 in9 in10 onClick={editChildItem} />
+      <Form flexDirection={'row'} fourImage t pr i in3 in4 in5 in6 in7 in8 in9 in10 onClick={editChildItem} />
     </Container2>
   )
 }

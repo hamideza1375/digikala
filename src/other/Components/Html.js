@@ -217,7 +217,7 @@ export const PressScrollView = (props) =>
 
 export const ImgBackground = (props) => <Component source={props.src} {...props} Component={ImageBackground} />
 
-export const Img = (props) => <Component style={[{ resizeMode: 'stretch' }, props.style]} source={props.src} {...props} Component={Image} />
+export const Img = (props) => <Component style={[props.style]} source={props.src} {...props} Component={Image} />
 
 export const Scroll = (props) => <Component {...props} Component={ScrollView} />
 

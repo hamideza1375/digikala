@@ -35,9 +35,10 @@ function ScrollSlider(p) {
         clearInterval(interval.current.interval)
       });
 
-    return () => (
+    return () => {
+      setscroll2(false);
       clearInterval(interval.current.interval)
-    )
+    }
   }, []))
 
 

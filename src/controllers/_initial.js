@@ -35,10 +35,10 @@ export const _initController = (p) => {
     AsyncStorage.getItem("token").then((token) => { if (token) { const user = jwt_decode(token); p.settokenValue(user); } })
   }, [])
 
-  useEffect(() => { setTimeout(() => { p.setSplash(false) }, 1000) }, [])
-
+  
   useEffect(() => { p.$input.set('a', 'a') }, [])
 
+  useEffect(() => { setTimeout(() => { p.setSplash(false) }, 500) }, [])
   Dimensions.addEventListener('change', ({ window: { width, height } }) => { p.setwidth(width); p.setheight(height) })
 
 

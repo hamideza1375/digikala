@@ -6,6 +6,8 @@ export function user() {
   const [userTicketBox, setuserTicketBox] = useState([])
   const [ticketSeen, setticketSeen] = useState()
 
+  const [savedItems, setsavedItems] = useState([])
+
 
   const [phone, setphone] = useState('')
   const [code, setcode] = useState('')
@@ -29,6 +31,7 @@ export function user() {
   // const [userTicketBox, setuserTicketBox] = useState([])
 
   this.user = {
+    savedItems, setsavedItems,
     ticketSeen, setticketSeen,
     userTicketBox, setuserTicketBox,
     phone, setphone,

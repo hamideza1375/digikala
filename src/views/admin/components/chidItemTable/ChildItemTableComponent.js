@@ -11,16 +11,18 @@ const ChildItemTableComponent = (p) => {
     <Table
       color={['#fff', '#eee', 'black']}
       border={[1, '#ccc']}
-      header={['حذف','موجودیت', 'ویرایش', 'قیمت', 'عنوان']}
-      body={['حذف','title', 'ویرایش', 'price', 'title']}
-      btn1={'#e33'}
-      btn1onClick={() => { deleteChildItem(childItemsTable[0]._id) }}
-      btn2={'#0c4'}
-      btn2onClick={() => { changeAvailable(childItemsTable[0]._id) }}
-      btn3={'orange'}
-      btn3onClick={() => { p.navigation.navigate('EditChildItem',{id:childItemsTable[0]._id}) }}
-      btn2Opacity
-      titleClick={() => { p.navigation.navigate('SingleItems') }}
+      header={['تخفیف' ,'حذف','موجودیت', 'ویرایش', 'قیمت', 'عنوان']}
+      body={['off' ,'حذف','title', 'ویرایش', 'price', 'title']}
+      btn1={'#e63'}
+      btn1onClick={() => { p.navigation.navigate('SetOffer',{id:childItemsTable[0]._id})  }}
+      btn2={'#e33'}
+      btn2onClick={() => { deleteChildItem(childItemsTable[0]._id) }}
+      btn3={'#0c4'}
+      btn3onClick={() => { changeAvailable(childItemsTable[0]._id) }}
+      btn4={'#09d'}
+      btn4onClick={() => { p.navigation.navigate('EditChildItem',{id:childItemsTable[0]._id}) }}
+      btn3Opacity
+      titleClick={() => { p.navigation.navigate('SingleItem', {id:childItemsTable[0]._id}) }}
       object={p.childItem}
       setobject={setchildItemsTable}
     />)

@@ -1,5 +1,6 @@
 import { Animated, Easing } from "react-native";
 //! YourAnimatedValue.setValue(number)
+//   fadeAnim.setValue(0)
 let hidden;
 const open = () => Animated.timing(p.anim, { toValue: 80, duration: 150, easing: Easing.bounce, useNativeDriver: false }).start();
 const close = () => Animated.timing(p.anim, { toValue: 0, duration: 150, useNativeDriver: false }).start();

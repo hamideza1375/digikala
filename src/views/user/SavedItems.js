@@ -1,20 +1,29 @@
 import React from 'react'
-import { FlatList, M_icon, P, Press, Span } from '../../other/Components/Html'
-import { truncate } from '../../other/utils/truncate'
+import { Card, Column, FlatList, M_icon, Span } from '../../other/Components/Html'
+import { localhost } from '../../other/utils/axios/axios'
+import spacePrice from '../../other/utils/spacePrice'
 
 
 const SavedItems = (p) => {
 
+  p._user.getSavedItem()
+  const removeSavedItem = (itemId) => p._user.removeSavedItem(itemId)
+
   return (
     <Span>
       <FlatList
-        data={p.userTicketBox}
+        data={p.savedItems}
         renderItem={({ item, index }) => (
-          <Press mv={8} mh={6} maxw={500} bgcolor='#ddd' border={[1, '#ddd']} br={4} p={8} onClick={() => { p.navigation.navigate('GetTicket') }} >
-            <P fs={12} >{item.title}</P>
-            <P fs={10} color={'#777'} >{truncate(item.message, 30, false)}</P>
-            <M_icon name='delete' size={30} color='#e52222' style={{position:'absolute', left:1, top:15}} />
-          </Press>
+          <Column m={5} >
+          <Card
+            bgcolor={'white'}
+            dr='ltr'
+            header={item.title}
+            bodyRow={<M_icon color='#d00' name='delete' size={22} onClick={() => { removeSavedItem(item.itemId) }} />}
+            img={`${localhost}/upload/childItem/${item.imageUrl}`}
+            footer={spacePrice(String(item.price).padEnd(4)) + 'ت'}
+            />
+            </Column>
         )}
       />
     </Span>

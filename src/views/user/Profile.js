@@ -8,7 +8,7 @@ const Profile = (p) => {
         <Column w='100%' maxw={700}>
         <Span p={11} mt={10} ><P>مشخصات حساب کاربری شما</P></Span>
           <Card2
-          imageWidth={285}
+          // imageWidth={285}
           w='90%'
           h={340}
             src={require('../../other/assets/images/logo.png')}

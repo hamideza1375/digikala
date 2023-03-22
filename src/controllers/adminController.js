@@ -1,6 +1,8 @@
-import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart } from "../services/adminService"
+import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer } from "../services/adminService"
 import { getSingleItem } from "../services/clientService"
 import _useEffect from "./_initial"
+import seconder from '../other/utils/seconder'
+
 
 export function adminController(p) {
 
@@ -73,8 +75,8 @@ export function adminController(p) {
       image2: p.image2,
       image3: p.image3,
       image4: p.image4,
-      offerTime: p.offerTime?p.offerTime:0,
-      offerValue: p.offerValue?p.offerValue:0,
+      offerTime: p.offerTime ? p.offerTime : 0,
+      offerValue: p.offerValue ? p.offerValue : 0,
       title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8.split("-")), display: p.input9, availableCount: p.input10
     })
   }
@@ -91,8 +93,6 @@ export function adminController(p) {
         p.setimage3({ name: data.singleItem.imageUrl3 })
         p.setimage4({ name: data.singleItem.imageUrl4 })
         p.setinfo(data.singleItem.info)
-        p.setofferTime(data.singleItem.offerTime.value)
-        p.setofferValue(data.singleItem.offerValue)
         p.setinput3(data.singleItem.ram)
         p.setinput4(data.singleItem.cpuCore)
         p.setinput5(data.singleItem.camera)
@@ -106,6 +106,9 @@ export function adminController(p) {
   }
 
 
+  
+
+
   this.editChildItem = async () => {
     await editChildItem(p.route.params.id, {
       image1: p.image1,
@@ -117,6 +120,12 @@ export function adminController(p) {
       title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8.split("-")), display: p.input9, availableCount: p.input10
     })
   }
+
+
+  this.setOffer = async () => {
+    await setOffer(p.route.params.id, { offerTime: p.offerTime ? p.offerTime : 0, offerValue: p.offerValue ? p.offerValue : 0 })
+  }
+
 
 
   this.deleteChildItem = async (id) => {

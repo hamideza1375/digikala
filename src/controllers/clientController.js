@@ -1,4 +1,4 @@
-import { commentDisLike, commentLike, confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSingleComment, getSingleItem, getSlider, offers, reverse } from "../services/clientService";
+import { commentDisLike, commentLike, confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleItem, getSlider, offers, reverse } from "../services/clientService";
 import _useEffect from "./_initial";
 
 export function clientController(p) {
@@ -29,7 +29,7 @@ export function clientController(p) {
         const { data } = await getSingleItem(p.route.params.id)
         p.setsingleItem(data.singleItem)
       })()
-    }, [])
+    }, [p.singleItemChange])
   }
 
 
@@ -38,6 +38,16 @@ export function clientController(p) {
       (async () => {
         const { data } = await getOffers()
         p.setoffers(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+      })()
+    }, [])
+  }
+
+
+  this.getSimilars = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getSimilars(p.route.params.id)
+        p.setsimilar(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
       })()
     }, [])
   }
@@ -101,7 +111,7 @@ export function clientController(p) {
 
 
   this.like = async (commentid) => {
-    const {data} = await commentLike(commentid)
+    const { data } = await commentLike(commentid)
     p.setchildItemComment(comment => {
       let findIndex = comment.findIndex(c => c._id === commentid)
       comment[findIndex].likeCount = data
@@ -112,7 +122,7 @@ export function clientController(p) {
 
 
   this.disLike = async (commentid) => {
-    const {data} = await commentDisLike(commentid)
+    const { data } = await commentDisLike(commentid)
     p.setchildItemComment(comment => {
       let findIndex = comment.findIndex(c => c._id === commentid)
       comment[findIndex].disLikeCount = data
@@ -135,6 +145,7 @@ export function clientController(p) {
   this.confirmPayment = async () => {
     await confirmPayment({ floor: p.floor, plaque: p.plaque, address: p.address, origin: {}, latlng: p.latlng, price: p.price, description: p.description, childItemsTitle: p.childItemsTitle, childItemsId: p.childItemsId })
   }
+
 
 
 }

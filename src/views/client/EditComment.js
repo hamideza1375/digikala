@@ -7,7 +7,7 @@ const EditComment = (p) => {
 
   return (
     <Container2>
-      <Form s m onClick={() => { p._client.editComment() }} />
+      <Form mAutoFocus s m onClick={() => { p._client.editComment() }} />
     </Container2>
   )
 }

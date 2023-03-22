@@ -7,7 +7,7 @@ const card2 = ({ cStyle, imgStyle, imageWidth = '100%', onClick, img, src, br = 
     <Column style={style} h={h} w={w} as={'center'} br={br} border={border.length ? border : [1]} {...p} >
 
       {((img) || (src)) && <Span h={'45%'} ai='center' >
-        {src && <Press onClick={onClick} h='100%' w='100%' ><Img w={imageWidth} h='100%' style={[{ borderTopRightRadius: br, borderTopLeftRadius: br, borderRadius: brImg }, imgStyle]} src={src} /></Press>}
+        {src && <Press onClick={onClick} h='100%' w='100%' ai='center' ><Img w={imageWidth} h='100%' style={[{ resizeMode: 'stretch', borderTopRightRadius: br, borderTopLeftRadius: br, borderRadius: brImg }, imgStyle]} src={src} /></Press>}
       </Span>}
 
       <Span h={((img) || (src)) ? '55%' : '100%'} bgcolor={bgcolor} br={br}>

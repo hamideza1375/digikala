@@ -100,9 +100,14 @@ const DaysChartTotal = ({ color = '#0a7a', borderColor = '#0a7a', rodColor = '#0
   useEffect(() => {
     setTimeout(() => {
       setchange(true)
-    }, 1000);
+    }, 700);
   }, [])
 
+  useEffect(() => {
+    setTimeout(() => {
+      setchange(false)
+    }, 1500);
+  }, [])
 
   return (
     <>

@@ -28,7 +28,7 @@ const Footer = () => {
           <Icon name='telegram' color='#55a' size={30} />
         </Span>
         <Span p={10} ai='center'>
-        <Icon color='#bbb' name='share-alt' size={30} onClick={async () => { share('http://localhost:3000', 'فسفود کاکتوس') }} />
+        <Icon color='#bbb' name='share-alt' size={30} onClick={async () => { share('http://localhost:3000', 'دیجیکالا') }} />
         </Span>
       </Span>
 

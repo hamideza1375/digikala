@@ -12,17 +12,11 @@ const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r
   const [dt, setdt] = useState()
 
   useEffect(() => {
-    if (item.offerTime.exp > new Date().getTime()) {
-      seconder(item.offerTime.exp, ({ days, hours, minutes, seconds }) => (
+    if (item.offerTime?.exp > new Date().getTime()) {
+      seconder(item.offerTime?.exp, ({ days, hours, minutes, seconds }) => (
         setdt(hours + ':' + minutes + ':' + seconds)
       ))
-      interval = setTimeout(() => {
-        seconder(item.offerTime.exp, ({ days, hours, minutes, seconds }) => (
-          setdt(hours + ':' + minutes + ':' + seconds)
-        ))
-      }, 1000);
     }
-    // return () => clearInterval(interval)
   }, [])
 
   return (
@@ -30,7 +24,7 @@ const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r
       onClick={onClick}
       bgcolor={'#fff'} sh={sh}
       style={[{ minWidth: 161, maxWidth: 300, borderColor: 'silver', width: w, flexGrow: 1, marginVertical: 15, height: h }, style]}
-      img src={item.imageUrl && `${localhost}/upload/childItem/${item.imageUrl}`}
+       src={item.imageUrl && `${localhost}/upload/childItem/${item.imageUrl}`}
       coulumn1={<Span mt={8} w={'100%'}><P fs={11} ta='center' as='center' >{item.title}</P></Span>}
       coulumn2={<Span bgcolor='#eee' fd='row' h={35} jc='center' w={'100%'}>
         <Span ai='center' w={'25%'} h={35} border={[0, 'silver']} pt={1} >
@@ -53,7 +47,7 @@ const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r
       }
       // textDecorationLine:'underline line-through'
       coulumn3={<Span mt={8} fd='row' jc='space-evenly' w={'100%'}>
-        {item.offerTime.exp > new Date().getTime() ?
+        {item.offerTime?.exp > new Date().getTime() ?
           <Row>
             <P fs={11.5} >{spacePrice(parseInt(item.price - ((item.price / 100) * item.offerValue)))} تومان</P>
             <P style={{ textDecorationLine: 'line-through', color: 'red', fontSize: 9.5 }} >{spacePrice(item.price)} ت </P>
@@ -65,7 +59,7 @@ const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r
           </Span>}
 
       </Span>}
-      c4={item.offerTime.exp > new Date().getTime() ? 1 : .1} coulumn4={item.offerTime.exp > new Date().getTime() ? <Span fd='row' jc='space-between' w={'100%'} bgcolor='red' h='100%' p={7}><P color='white' >{dt}</P><P color='white' >{item.offerValue}%</P></Span> : <></>}
+      c4={item.offerTime?.exp > new Date().getTime() ? 1 : .1} coulumn4={item.offerTime?.exp > new Date().getTime() ? <Span fd='row' jc='space-between' w={'100%'} bgcolor='red' h='100%' p={7}><P color='white' >{dt}</P><P color='white' >{item.offerValue}%</P></Span> : <></>}
     />
   )
 }

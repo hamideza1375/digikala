@@ -2,7 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React, { useEffect } from "react";
 import { View, Platform } from "react-native";
-import { Dropdown, Init, Span } from "./other/Components/Html";
+import { Dropdown, Img, Init, Span } from "./other/Components/Html";
 import _404 from "./other/Components/404/404";
 import { allController, _initController } from "./controllers/_initial";
 import { propTypes, states, contextStates } from "./context/_context";
@@ -52,6 +52,7 @@ import TableCategory from "./views/admin/TableCategory";
 import TableChildItems from "./views/admin/TableChildItems";
 import EditCategory from "./views/admin/EditCategory";
 import EditChildItem from "./views/admin/EditChildItem";
+import SetOffer from "./views/admin/SetOffer";
 import CreateCategory from "./views/admin/CreateCategory";
 import CreateChildItem from "./views/admin/CreateChildItem";
 import PanelAdmin from "./views/admin/PanelAdmin";
@@ -84,7 +85,7 @@ const Mobile = () => {
 
   return (
     p.splash ?
-      <></>
+      <Img src={p.logoUrl}  f={1} style={{resizeMode: 'stretch'}} />
       :
       <Span h={height} w='100%' minw={280} onClick={() => { p.setshownDropdown(false); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}>
         <contextStates.Provider value={p}>
@@ -131,6 +132,7 @@ const Mobile = () => {
               <Tab.Screen initialParams={{ key: 'admin' }} name="TableChildItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(TableChildItems)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="EditCategory" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditCategory)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="EditChildItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditChildItem)} />
+              <Tab.Screen initialParams={{ key: 'admin' }} name="SetOffer" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SetOffer)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="CreateCategory" options={({ route }) => ({ title: 'ساخت دسته ی اغذیه' })} {..._children(CreateCategory)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="CreateChildItem" options={({ route }) => ({ title: `ساخت دسته برای ${'route.params.title'}` })} {..._children(CreateChildItem)} />
               <Tab.Screen initialParams={{ key: 'admin' }} name="AddAdmin" options={{ title: 'اضافه کردن ادمین' }} {..._children(AddAdmin)} />
@@ -194,6 +196,7 @@ const Mobile = () => {
 // propTypes(TableChildItems)
 // propTypes(EditCategory)
 // propTypes(EditChildItem)
+// propTypes(SetOffer)
 // propTypes(CreateCategory)
 // propTypes(CreateChildItem)
 // propTypes(AddAdmin)
@@ -219,7 +222,7 @@ const linking = {
       ChildItems: '/childitems',
       ChildOffers: '/childoffers',
       ChildPopulars: '/childpopulars',
-      SingleItem: '/singleitem',
+      SingleItem: '/singleitem/:id',
       BeforePayment: '/beforepayment',
       SocketIo: '/socketio',
 
@@ -263,6 +266,7 @@ const linking = {
       TableChildItems: '/tableChildItems',
       EditCategory: '/editCategory',
       EditChildItem: '/editchilditem',
+      SetOffer: '/setOffer',
       CreateChildItem: '/createchilditem/:id',
       NotFound: '*'
     },

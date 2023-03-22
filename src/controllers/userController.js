@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Alert from '../other/utils/alert';
-import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen, getTicketSeen } from '../services/userService'
+import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen, getTicketSeen, getSavedItem, savedItem, getSavedItems, removeSavedItem } from '../services/userService'
 import _useEffect from './_initial';
 import jwt_decode from 'jwt-decode';
 import _Alert from '../other/utils/alert';
@@ -254,6 +254,26 @@ export function userController(p) {
         p.setticketSeen(data)
       })()
     }, [])
+  }
+
+
+  this.savedItem = async () => {
+    await savedItem(p.route.params.id)
+  }
+
+
+  this.removeSavedItem = async (itemId) => {
+    await removeSavedItem(itemId)
+  }
+
+
+  this.getSavedItem = async () => {
+    _useEffect(() => {
+      getSavedItems().then(({ data }) => {
+        p.setsavedItems(data)
+      })
+    }, [])
+
   }
 
 

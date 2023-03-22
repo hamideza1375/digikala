@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, ScrollView, Dimensions, ActivityIndicator } from 'react-native';
 import spacePrice from '../../utils/spacePrice';
-import { Row, Span, P, Button, H1, H5, H6, FlatList, Loading } from '../Html';
+import { Row, Span, P, Button, H1, H5, H6, FlatList, Loading, Press } from '../Html';
 
 
 
@@ -10,8 +10,8 @@ import { Row, Span, P, Button, H1, H5, H6, FlatList, Loading } from '../Html';
 const Th = (props) => <View {...props} style={[{ flex: 1, backgroundColor: 'white', borderColor: '#888', borderWidth: 1.5, justifyContent: 'center', alignItems: 'center', borderRadius: 1.5 }, props.style]}>
   <H6 style={[{ textAlign: 'center', paddingVertical: 10, }, props.textStyle]}> {props.children}</H6></View>
 
-const Tb = (props) => <View style={[{ flex: 1, backgroundColor: 'white', borderColor: '#aaa', borderWidth: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 1.5 }, props.style]}>
-  <P onClick={props.onPress} style={[{ fontFamily: 'IRANSansWeb-light', textAlign: 'center', color: '#222', paddingVertical: 10, }, props.textStyle]}> {props.children}</P></View>
+const Tb = (props) => <Press onPressIn={props.onPressIn} style={[{ flex: 1, backgroundColor: 'white', borderColor: '#aaa', borderWidth: 1, justifyContent: 'center', alignItems: 'center', borderRadius: 1.5 }, props.style]}>
+  <P onClick={props.onPress} style={[{ fontFamily: 'IRANSansWeb-light', textAlign: 'center', color: '#222', paddingVertical: 10, }, props.textStyle]}> {props.children}</P></Press>
 
 const Tbtn = (props) => <View style={[{ flex: 1, backgroundColor: 'white', borderColor: '#666', borderWidth: .8, justifyContent: 'center', alignItems: 'center', borderRadius: 1.5, }, props.style]}><Button {...props} textStyle={[{ fontSize: 15, textAlign: 'center' }, props.textStyle]} style={[{ width: '99.9%', flex: 1 }, { paddingHorizontal: 0 }]}>{props.children}</Button></View>
 let odd = [];
@@ -52,7 +52,7 @@ function Table({ titleClick, children, fontSize, mt = 0, border = [], object, se
                         btn5onClick && n === 4 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn5onClick(); }} style={[bgColor(index), btn5Opacity && { opacity: item.available ? 1 : .2 }]} textStyle={{ fontSize }} bgcolor={btn5}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || btn5Opacity ? (item.available ? '✔' : '❌') : b}</Tbtn> :
                           btn6onClick && n === 5 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn6onClick(); }} style={[bgColor(index), btn6Opacity && { opacity: item.available ? 1 : .2 }]} textStyle={{ fontSize }} bgcolor={btn6}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || btn6Opacity ? (item.available ? '✔' : '❌') : b}</Tbtn> :
                             btn7onClick && n === 6 ? <Tbtn key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={() => { btn7onClick(); }} style={[bgColor(index), btn7Opacity && { opacity: item.available ? 1 : .2 }]} textStyle={{ fontSize }} bgcolor={btn7}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || btn7Opacity ? (item.available ? '✔' : '❌') : b}</Tbtn> :
-                              <Tb key={n} onPress={b === 'title' ? (titleClick) : null} style={[bgColor(index)]} textStyle={[textStyle, { fontSize, width: '98%' }]}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b === 'brand' && item.brand || b === 'phone' && item.phone || b}</Tb>
+                              <Tb key={n} onPressIn={() => { setobject && setobject([item, index]); }} onPress={b === 'title' ? (()=>{setobject([item, index]);titleClick()}) : ()=>{}} style={[bgColor(index)]} textStyle={[textStyle, { fontSize, width: '98%' }]}>{b === 'price' && spacePrice(item.price) || b === 'title' && item.title || b === 'total' && spacePrice(item.total) || b === 'brand' && item.brand || b === 'phone' && item.phone || b}</Tb>
               ))}
             </View>
 

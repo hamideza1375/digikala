@@ -22,3 +22,7 @@ export const editAnswerTicket = (data, id, ticketid) => axios.putData(`${localho
 export const getSingleAnswerTicket = (id, ticketid) => axios.get(`${localhost}/getSingleAnswerTicket/${id}?ticketid=${ticketid}`)
 export const ticketSeen = (id) => axios.post(`${localhost}/ticketSeen/${id}`)
 export const getTicketSeen = () => axios.get(`${localhost}/getTicketSeen`)
+
+export const removeSavedItem = async (id) => axios.delete(`${localhost}/removeSavedItem/${id}`)
+export const savedItem = async (id) => axios.post(`${localhost}/savedItem/${id}`)
+export const getSavedItems = () => axios.get(`${localhost}/getSavedItems`)

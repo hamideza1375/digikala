@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import { Platform } from 'react-native'
 import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
 import LinearGradient from '../../../../other/Components/other/LinearGradient'
@@ -7,6 +7,8 @@ import s from '../../style/client.module.scss'
 import CardItem from '../_layoutComponents/CardItem'
 
 const SliderSimilars = (p) => {
+  const [x, setx] = useState(0)
+  useMemo(() => x * 2, [x])
   return (
     <>
       <Span h={330}>
@@ -31,7 +33,10 @@ const SliderSimilars = (p) => {
             data={p.similar}
             renderItem={({ item, index }) => (
               <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} col2={{ marginHorizontal: 3 }}>
-              <CardItem item={item} spacePrice={spacePrice} w={170}/>
+              <CardItem item={item} spacePrice={spacePrice} w={170} onClick={() => { 
+                p.navigation.navigate('SingleItem', { id: item._id }) 
+                p.setsingleItemChange(!p.singleItemChange)
+                }}/>
             </Span>
             )}
           />

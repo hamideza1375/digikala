@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { Badge, Button, Card2, Div, P, Pfa, Press, Py, Span } from '../../../../other/Components/Html'
+import { View } from 'react-native'
+import { Badge, Button, Card2, Div, P, Pfa, Press, Py, Row, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 
 const Description = (p) => {
@@ -20,7 +21,15 @@ const Description = (p) => {
 
             <Span f={2} ph={12} jc='space-between' fd='row' ai='center'>
               <P fs={12} >قیمت: </P>
-              <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(p.singleItem.price)} تومان </Pfa>
+
+
+              {p.singleItem.offerTime.exp > new Date().getTime() ?
+                <Row >
+                  <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue)))} تومان </Pfa>
+                  <Pfa color='#e33'  fs={12} mt={-1} style={{textDecorationLine: 'line-through'}} >{spacePrice(p.singleItem.price)} ت </Pfa>
+                </Row>
+                :
+                <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(p.singleItem.price)} تومان </Pfa>}
             </Span >
 
           </Span>

@@ -44,7 +44,7 @@ function InputImage({ plackTextTop, imIconLeft, imIconRight, imageUrl, setImageU
                     accept={`${accept}/*`}
                     placeholder={p}
                     onChange={(event) => { setImageUrl(event.target.files[0]) }}
-                    style={{ opacity: 0, minWidth: '100%', width: 185, minHeight: '100%', boxSizing: 'border-box', flexGrow: 1 }}
+                    style={{ opacity: 0, minWidth: '100%', width: 185, minHeight: '100%', boxSizing: 'border-box', flexGrow: 1, cursor:'pointer' }}
                   />
                 </form>
               </View>

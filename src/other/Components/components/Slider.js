@@ -1,29 +1,29 @@
 import { useFocusEffect } from '@react-navigation/native';
 import React, { useCallback, useRef, useState } from 'react'
-import { ScrollView } from 'react-native';
+import { Animated, ScrollView, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native';
 import { localhost } from '../../utils/axios/axios';
 import { Img, Span, M_icon, Press, Badge, Row } from '../Html'
 
 var count = 0,
   _width,
   plus = true,
-  minus
+  minus,
+  interval
 
-function Slider({width, style, onClick, data}) {
+function Slider({ width, style, onClick, data }) {
 
   const [badgeActive, setbadgeActive] = useState(0)
 
   const ref = useRef()
 
-  const [interval, setinterval] = useState(true)
 
   const open = () => {
-    if(ref.current) {ref.current.scrollTo({ x: width * count, y: 0, animated: true }); setbadgeActive(count) }
+    if (ref.current) { ref.current.scrollTo({ x: width * count, y: 0, animated: true }); setbadgeActive(count) }
     if (count === 0) { plus = true; minus = false }
     if (count === 5) { minus = true; plus = false }
-    if (minus) { count = count - 1}
-    if (plus) { count += 1}
-    
+    if (minus) { count = count - 1 }
+    if (plus) { count += 1 }
+
   };
 
   const right = () => {
@@ -39,51 +39,83 @@ function Slider({width, style, onClick, data}) {
   };
 
 
-  if (_width !== width) {
-    ref.current && ref.current.scrollTo({ x: 0, y: 0, animated: true });
-    count = 1
-    interval && clearInterval(interval)
-  }
+  
+  // if (_width !== width) {
+  //   ref.current && ref.current.scrollTo({ x: 0, y: 0, animated: true });
+  //   count = 1
+  //   interval && clearInterval(interval)
+  // }
 
   useFocusEffect(useCallback(() => {
-    return () => (
+
+    _width = width
+    interval = setInterval(sum, 6000);
+    function sum() {
+      open()
+    }
+
+    return () => {
+      count = 1
+      _width = 0
+      plus = true;
+      minus = false
+      setbadgeActive(0)
       clearInterval(interval)
-    )
+    }
   }, []))
 
 
   return (
 
     <Span style={style} >
-      <ScrollView dir='ltr' horizontal ref={ref} onLayout={() => {
-        _width = width
-        let int = setInterval(sum, 6000);
-        function sum() {
-          open()
-        }
-        setinterval(int)
-      }} 
-      style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
-        {data.map((image , index) => (
-          image && <Press key={index} onClick={onClick} w={width} ><Img w='100%' h={300} src={`${localhost}/upload/slider/${image}`} /></Press>
+      <ScrollView dir='ltr' horizontal ref={ref} 
+        contentContainerStyle={{ overflow: 'hidden', }}
+        style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
+        {data.map((image, index) => (
+          ((image) && (badgeActive === index)) && <View key={index} style={{ width }} ><AnimationImage image={image} width={width} onClick={onClick} /></View>
         ))
         }
       </ScrollView>
       <M_icon onClick={right} size={30} name="arrow-back-ios" style={{ paddingVertical: 5, position: 'absolute', zIndex: 10, left: 10, top: 130, color: '#222' }} />
       <M_icon onClick={left} size={30} name="arrow-forward-ios" style={{ paddingVertical: 5, position: 'absolute', zIndex: 10, right: 10, top: 130, color: '#222' }} />
 
-      <Row pos='absolute' b={15} w='100%' jc='center' >
-        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 5?'#0cf':'#fff8'}/></Span>
-        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 4?'#0cf':'#fff8'}/></Span>
-        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 3?'#0cf':'#fff8'}/></Span>
-        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 2?'#0cf':'#fff8'}/></Span>
-        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 1?'#0cf':'#fff8'}/></Span>
-        <Span w={18} ><Badge h={7} w={12} bgcolor={badgeActive === 0?'#0cf':'#fff8'}/></Span>
+      <Row fd='row-reverse' pos='absolute' b={15} w='100%' jc='center' >
+        {data.map((image, index) => (
+          data.length - 1 !== index && <Span key={index} w={18} ><Badge h={7} w={12} bgcolor={badgeActive === index ? '#0cf' : '#fff8'} /></Span>
+        ))
+        }
       </Row>
 
     </Span>
   )
 }
+
+
+
+function AnimationImage({ image, width, onClick }) {
+
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+
+  useFocusEffect(useCallback(() => {
+    return () => {
+      fadeAnim.setValue(0)
+    }
+  }, []))
+
+  const setOpacity = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: false
+    }).start();
+  };
+
+  return (
+    <Animated.View onLayout={() => setOpacity()} style={{ width, opacity: fadeAnim }}  ><TouchableHighlight onPress={onClick} style={{ cursor: onClick ? 'pointer' : '', width }} ><Img w='100%' style={{resizeMode: 'stretch'}} h={300} src={`${localhost}/upload/slider/${image}`} /></TouchableHighlight></Animated.View>
+  )
+}
+
+
 
 export default Slider
 

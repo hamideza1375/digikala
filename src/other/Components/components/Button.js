@@ -19,22 +19,21 @@ const _Button = React.forwardRef((props, ref) => {
       <TouchableOpacity
         ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
         activeOpacity={0.8} onPress={props.onClick} {...props} style={[{
-          paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
+          paddingHorizontal: 10, paddingVertical:6, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
           alignSelf: props.as,
         }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableOpacity>
       :
       <TouchableNativeFeedback
         ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
          onPress={() => { }} {...props} style={[{
-          paddingHorizontal: 10, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
+          paddingHorizontal: 10, paddingVertical:6, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
           alignSelf: props.as, opacity:.8,
         }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableNativeFeedback>
 
   );
-  q
 })
 
-const Button = React.forwardRef(({ textStyle, maxw, minw, maxh, minh, as, style, outline, fs = 13, p = 5, pt, pb, pl, pr, pv, ph, h = 40, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
+const Button = React.forwardRef(({ textStyle, maxw, minw, maxh, minh, as, style, outline, fs = 13, p = 5, pt, pb, pl, pr, pv, ph, h, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
 
   return (
     !outline ?

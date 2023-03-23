@@ -180,54 +180,53 @@ export function admin() {
   const [socketIoSeen, setsocketIoSeen] = useState()
   //!
   
-  const [input2, setinput2] = useState('') // brand
-  const [input3, setinput3] = useState('') // ram
-  const [input4, setinput4] = useState('') // cpuCore
-  const [input5, setinput5] = useState('') // camera
-  const [input6, setinput6] = useState('') // storage
-  const [input7, setinput7] = useState('') // waranty
-  const [input8, setinput8] = useState('') // color
-  const [input9, setinput9] = useState('') // display
-  const [input10, setinput10] = useState('') // display
+  // const [input2, setinput2] = useState('') // brand
+  // const [input3, setinput3] = useState('') // ram
+  // const [input4, setinput4] = useState('') // cpuCore
+  // const [input5, setinput5] = useState('') // camera
+  // const [input6, setinput6] = useState('') // storage
+  // const [input7, setinput7] = useState('') // waranty
+  // const [input8, setinput8] = useState('') // color
+  // const [input9, setinput9] = useState('') // display
+  // const [input10, setinput10] = useState('') // display
 
-  const [sliderImage1, setsliderImage1] = useState({})
-  const [sliderImage2, setsliderImage2] = useState({})
-  const [sliderImage3, setsliderImage3] = useState({})
-  const [sliderImage4, setsliderImage4] = useState({})
-  const [sliderImage5, setsliderImage5] = useState({})
-  const [sliderImage6, setsliderImage6] = useState({})
+  // const [sliderImage1, setsliderImage1] = useState({})
+  // const [sliderImage2, setsliderImage2] = useState({})
+  // const [sliderImage3, setsliderImage3] = useState({})
+  // const [sliderImage4, setsliderImage4] = useState({})
+  // const [sliderImage5, setsliderImage5] = useState({})
+  // const [sliderImage6, setsliderImage6] = useState({})
 
 
-  const [image1, setimage1] = useState({})
-  const [image2, setimage2] = useState({})
-  const [image3, setimage3] = useState({})
-  const [image4, setimage4] = useState({})
+  // const [image1, setimage1] = useState({})
+  // const [image2, setimage2] = useState({})
+  // const [image3, setimage3] = useState({})
+  // const [image4, setimage4] = useState({})
 
   this.admin = {
-    image1, setimage1,
-    image2, setimage2,
-    image3, setimage3,
-    image4, setimage4,
-    sliderImage5, setsliderImage5,
-    sliderImage6, setsliderImage6,
+    // image1, setimage1,
+    // image2, setimage2,
+    // image3, setimage3,
+    // image4, setimage4,
 
 
-    sliderImage1, setsliderImage1,
-    sliderImage2, setsliderImage2,
-    sliderImage3, setsliderImage3,
-    sliderImage4, setsliderImage4,
-    sliderImage5, setsliderImage5,
-    sliderImage6, setsliderImage6,
+    // sliderImage1, setsliderImage1,
+    // sliderImage2, setsliderImage2,
+    // sliderImage3, setsliderImage3,
+    // sliderImage4, setsliderImage4,
+    // sliderImage5, setsliderImage5,
+    // sliderImage6, setsliderImage6,
 
-    input2, setinput2,
-    input3, setinput3,
-    input4, setinput4,
-    input5, setinput5,
-    input6, setinput6,
-    input7, setinput7,
-    input8, setinput8,
-    input9, setinput9,
-    input10, setinput10,
+    // input2, setinput2,
+    // input3, setinput3,
+    // input4, setinput4,
+    // input5, setinput5,
+    // input6, setinput6,
+    // input7, setinput7,
+    // input8, setinput8,
+    // input9, setinput9,
+    // input10, setinput10,
+    
     listUnAvailabe, setlistUnAvailabe,
     allPaymentSuccessFalseAndTrue, setallPaymentSuccessFalseAndTrue,
     allAddress, setallAddress,

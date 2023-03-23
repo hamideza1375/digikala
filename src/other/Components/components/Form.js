@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { KeyboardAvoidingView, Pressable, View, Text, TextInput, Image, StyleSheet, ScrollView, Dimensions, Animated, Platform, FlatList } from 'react-native'
-import { Input, Button, CheckBox, Swiper, CheckBoxRadius, List, Column, Row, Py, Br } from '../Html'
+import { Input, Button, CheckBox, Swiper, CheckBoxRadius, List, Column, Row, Py, Br, P } from '../Html'
 import yub from '../../utils/yub'
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
@@ -27,6 +27,7 @@ let interval
 const Form = ({
   webStyle = {}, nativeStyle = {}, timer = false, btn = true,
   contentContainerStyle, mAutoFocus, mt, bgcolor = '#f0f0f0',
+  postal, $plaque, $unit, $address,
   city, f, e, p, cp, m, ch, c, t, pr, im, i, edit, s, ph, $code, v, style,
   plackTextTop = true,
   pb = 25, pt = 10,
@@ -45,26 +46,27 @@ const Form = ({
   fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
   tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
   phoreIconLeft, phoreIconRight, codeIconLeft, codeIconRight, vIconLeft, vIconRight,
-  slider, fourImage, offer,
+  slider = false, fourImage, offer,
   in1, in2, in3, in4, in5, in6, in7, in8, in9, in10,
   ...props
 }) => {
 
 
-  const { toast, stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail,
-    imageUrl, setimageUrl, videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword,
-    confirmPassword, setconfirmPassword, message, setmessage, code, setcode, captcha, setcaptcha, setremember,
-    star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, fiveStar, setfiveStar, refInput, rand, setRand,
+  const { toast, stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail, imageUrl, setimageUrl,
+    videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword, confirmPassword, setconfirmPassword,
+    postalCode, setpostalCode, plaque, setplaque, unit, setunit, address, setaddress, message, setmessage, code, setcode, captcha, setcaptcha,
+    setremember, star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, fiveStar, setfiveStar, refInput, rand, setRand,
 
     input1, setinput1, input2, setinput2, input3, setinput3, input4, setinput4, input5, setinput5, input6, setinput6, input7, setinput7, input8, setinput8, input9, setinput9, input10, setinput10
     , sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3, sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6,
-    image1, setimage1, image2, setimage2, image3, setimage3, image4, setimage4, offerTime, setofferTime, offerValue, setofferValue
+    image1, setimage1, image2, setimage2, image3, setimage3, image4, setimage4, offerTime, setofferTime, offerValue, setofferValue,
+
+    height
   } = context()
 
 
 
-
-
+  const flatlistRef = useRef()
 
   const [hidden, sethidden] = useState(false)
   const [show1, setshow1] = useState(false)
@@ -183,11 +185,11 @@ const Form = ({
 
 
   useFocusEffect(useCallback(() => {
-    if (fiveStar == 1) {setstar1(true); setstar2(false); setstar3(false) ; setstar4(false); setstar5(false) }
-    if (fiveStar == 2) {setstar1(true); setstar2(true); setstar3(false) ; setstar4(false); setstar5(false) }
-    if (fiveStar == 3) {setstar1(true); setstar2(true); setstar3(true) ; setstar4(false); setstar5(false) }
-    if (fiveStar == 4) {setstar1(true); setstar2(true); setstar3(true) ; setstar4(true); setstar5(false) }
-    if (fiveStar == 5) {setstar1(true); setstar2(true); setstar3(true) ; setstar4(true); setstar5(true) }
+    if (fiveStar == 1) { setstar1(true); setstar2(false); setstar3(false); setstar4(false); setstar5(false) }
+    if (fiveStar == 2) { setstar1(true); setstar2(true); setstar3(false); setstar4(false); setstar5(false) }
+    if (fiveStar == 3) { setstar1(true); setstar2(true); setstar3(true); setstar4(false); setstar5(false) }
+    if (fiveStar == 4) { setstar1(true); setstar2(true); setstar3(true); setstar4(true); setstar5(false) }
+    if (fiveStar == 5) { setstar1(true); setstar2(true); setstar3(true); setstar4(true); setstar5(true) }
   }, [fiveStar]))
 
   useFocusEffect(useCallback(() => {
@@ -243,6 +245,10 @@ const Form = ({
   const [_email, set_Email] = useState()
   const [_password, set_Password] = useState()
   const [_confirmPassword, set_ConfirmPassword] = useState()
+  const [_unit, set_Unit] = useState()
+  const [_plaque, set_Plaque] = useState()
+  const [_address, set_Address] = useState()
+  const [_postalCode, set_PostalCode] = useState()
   const [_title, set_Title] = useState()
   const [_price, set_Price] = useState()
   const [_code, set_Code] = useState()
@@ -286,6 +292,10 @@ const Form = ({
   newObj.offerTime = offerTime;
   newObj.offerValue = offerValue;
   newObj.message = message;
+  newObj.plaque = plaque;
+  newObj.unit = unit;
+  newObj.address = address;
+  newObj.postalCode = postalCode;
   newObj.fiveStar = fiveStar;
 
   newObj.input1 = input1;
@@ -299,12 +309,18 @@ const Form = ({
   newObj.input9 = input9;
   newObj.input10 = input10;
 
+
+
   var pon = ph ? newObj.phone === phone : true
   var poe = phore ? newObj.phoneOrEmail === phoneOrEmail : true
   var flm = f ? newObj.fullname === fullname : true
   var eml = e ? newObj.email === email : true
   var psd = p ? newObj.password === password : true
   var cfpsd = cp ? newObj.confirmPassword === confirmPassword : true
+  var unt = $unit ? newObj.unit === unit : true
+  var plq = $plaque ? newObj.plaque === plaque : true
+  var adrs = $address ? newObj.address === address : true
+  var pst = postal ? newObj.postalCode === postalCode : true
   var msg = m ? newObj.message === message : true
   var cap = c ? (rand == captcha) ? true : false : true
   var titl = t ? newObj.title === title : true
@@ -338,26 +354,38 @@ const Form = ({
 
 
           {city &&
-            <KeyboardAvoidingView behavior={"height"} style={[{ height: 200, minHeight: 200, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, flexDirection: 'row-reverse' }]}>
-              <Column ai='center' jc='center' >
-                <Py as='flex-start' ph={8} ta='center' >شهر:</Py>
-                <Column ai='center' jc='center' bgcolor='#fff' border={[1, 'silver']} br={4} >
-                  <Py fw='100' ph={8} pv={2} fs={11} ta='center' >{stateCity[1]}</Py>
+            <View style={[{ width:'100%',height: height / 1.7, minHeight: height / 1.7, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, flexDirection: 'row-reverse' }]}>
+            
+             <Column h='100%' jc='center' mt={2} ph={9} >
+                <Column ai='center' jc='center' >
+                  <Py as='flex-start' ph={8} ta='center' >استان:</Py>
+                  <Column ai='center' jc='center' bgcolor='#fff' border={[1, 'silver']} br={4} >
+                    <P fw='100' ph={8} pv={2} fs={11} ta='center' minw={25} >{stateCity[0]}</P>
+                  </Column>
+                </Column>
+
+                <Column ai='center' jc='center' mt={7} >
+                  <Py as='flex-start' ph={8} ta='center' >شهر:</Py>
+                  <Column ai='center' jc='center' bgcolor='#fff' border={[1, 'silver']} br={4} >
+                    <P fw='100' ph={8} pv={2} fs={11} ta='center' minw={25} >{stateCity[1]}</P>
+                  </Column>
                 </Column>
               </Column>
 
-              <Column f={1}>
+<Column f={1}>
                 <Py ml={8} ph={8} ta='center' >انتخاب استان و شهر:</Py>
-
+  
                 <FlatList
-                  data={selectValues}
-                  renderItem={({ item, index }) => (
-                    <Column m={3} >
-                      <List h={38} fontSize={14} header={item} header2={item === stateCity[0] ? stateCity[1] : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
+                // style={{width:'90%'}}
+                ref={flatlistRef}
+                data={selectValues}
+                renderItem={({ item, index }) => (
+                  <Column m={3} >
+                      <List onClick={() => flatlistRef.current.scrollToIndex({ index: index, animate: true })} h={38} fontSize={14} header={item} header2={item === stateCity[0] ? stateCity[1] : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
                         body={
                           loadCity(item).length && loadCity(item).map((item2, index) =>
-                            <Row key={index} jc='space-between' w='100%' mv={2} bbw={1} ai='center' border={[0, 'silver']} >
-                              <Py fw='100' fs={11} >{item2}</Py>
+                          <Row key={index} jc='space-between' w='100%' mv={2} bbw={1} ai='center' border={[0, 'silver']} >
+                              <P fw='100' fs={11} >{item2}</P>
                               <CheckBoxRadius item={{ value: item + ',' + item2 }} index={index} refObject={(ref) => { ref.show && setstateCity(ref.value.split(',')); }}
                                 border={[1, 'silver']} ml={4} mb={3}
                                 show={show1} setshow={setshow1}
@@ -365,13 +393,13 @@ const Form = ({
                             </Row>
                           )
                         }
-                      >
+                        >
                       </List>
                     </Column>
                   )}
-                />
-              </Column>
-            </KeyboardAvoidingView>}
+                  />
+                  </Column>
+            </View>}
 
 
 
@@ -501,6 +529,88 @@ const Form = ({
               iconPress={() => { setSecure2(!secure2); }}
             />
           }
+
+
+          <Br style={{ height: 0, padding: 0, margin: 0 }} />
+
+          <Row w='100%' jc='space-around' >
+          {$plaque &&
+            <Frm
+              plackTextTop={plackTextTop}
+              // icon={'money-check'}
+              p="پلاک"
+              state={plaque}
+              setState={setplaque}
+              getBlur={_plaque}
+              setBlur={set_Plaque}
+              newObj={newObj.plaque}
+              yub={plq}
+              keyboardType="numeric"
+              w={140}
+              styles={styles}
+            />
+          }
+
+
+          {$unit &&
+            <Frm
+              plackTextTop={plackTextTop}
+              // m_icon={'margin'}
+              // iconSize={29}
+              p="واحد"
+              state={unit}
+              setState={setunit}
+              getBlur={_unit}
+              setBlur={set_Unit}
+              newObj={newObj.unit}
+              yub={unt}
+              keyboardType="numeric"
+              w={140}
+              styles={styles}
+            />
+          }
+</Row>
+
+          {$address &&
+            <Frm
+            initialHeight
+            multiline
+              plackTextTop={plackTextTop}
+              icon={'address-card'}
+              p="آدرس"
+              state={address}
+              setState={setaddress}
+              getBlur={_address}
+              setBlur={set_Address}
+              newObj={newObj.address}
+              yub={adrs}
+              styles={styles}
+            />
+          }
+
+
+
+
+          {postal &&
+            <Frm
+              plackTextTop={plackTextTop}
+              textContentType="postalCode"
+              autoComplete="postal-code"
+              icon={'building'}
+              p="کد پستی"
+              state={postalCode}
+              setState={setpostalCode}
+              getBlur={_postalCode}
+              setBlur={set_PostalCode}
+              newObj={newObj.postalCode}
+              yub={pst}
+              keyboardType="numeric"
+              styles={styles}
+            />
+          }
+
+          <Br style={{ height: 0, padding: 0, margin: 0 }} />
+
 
           {t &&
             <Frm
@@ -669,7 +779,7 @@ const Form = ({
           {in7 &&
             <Frm
               autoComplete="off"
-              icon="ribbon"
+              icon="award"
               plackTextTop={plackTextTop}
               p='گارانتی به ماه'
               state={input7}
@@ -863,7 +973,7 @@ const Form = ({
 
 
           <Br style={{ height: 0, padding: 0, margin: 0 }} />
-          {slider &&
+          {slider === true &&
             <>
               <InputImage
                 plackTextTop={plackTextTop}
@@ -1102,6 +1212,10 @@ const Form = ({
                   set_Email(true);
                   set_Password(true);
                   set_ConfirmPassword(true);
+                  set_Plaque(true);
+                  set_Unit(true);
+                  set_Address(true);
+                  set_PostalCode(true);
                   set_Message(true);
                   set_Checkbox(checkText ? false : true);
                   set_Captcha(true)
@@ -1129,7 +1243,7 @@ const Form = ({
                   set_Input10(true)
                 }}
                 onPress={async () => {
-                  if (flm && eml && psd && cfpsd && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
+                  if (flm && eml && psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
 
                     if (!timer) {
                       onClick()
@@ -1146,7 +1260,7 @@ const Form = ({
                       }
                       if (JSON.parse(svl) < 5 && JSON.parse(svl) > 0) {
                         loginInterval = setTimeout(async () => {
-                          if (JSON.parse(svl) > 0) {
+                          if (JSON.parse(svl) > 0 && locMinut) {
                             AsyncStorage.getItem("several").then((several) => { AsyncStorage.setItem("several", JSON.stringify(JSON.parse(several) - 1)).then(() => { }) })
                             await AsyncStorage.setItem('getMinutes', JSON.stringify(d.getMinutes() - 5))
                           }

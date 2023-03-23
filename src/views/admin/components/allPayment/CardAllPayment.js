@@ -12,7 +12,7 @@ const CartAllPayment = (p) => {
       <View style={[containerColumn, { paddingVertical: 0, paddingBottom: 20 }]} >
         <Text ><Text style={[{ fontWeight: 'bold', textAlign: 'left' }]} >نام: </Text>{p.item.fullname}</Text>
         <View style={{ flexDirection: 'row' }}>
-          <Text >شماره تلفن: </Text><Text  >{p.item.phone}</Text></View>
+          <Text >شماره تلفن: </Text><Text  >{p.item.phoneOrEmail}</Text></View>
       </View>
       <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
         <Text   ><Text >آدرس: </Text >{p.item.formattedAddress}</Text>

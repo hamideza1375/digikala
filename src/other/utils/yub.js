@@ -388,6 +388,54 @@ const yub = {
       }
     }
 
+
+
+    if (propName === 'plaque') {
+      if (Number(target[propName])) {
+        return target[propName]
+      }
+      else {
+        return ('پلاک را به عدد وارد کنید')
+      }
+    }
+
+
+    if (propName === 'unit') {
+      if (Number(target[propName]) && target[propName] < 1000) {
+        return target[propName]
+      }
+      else if (isNaN(target[propName]) || target[propName] < 1 ) {
+        return ('واحد را به عدد وارد کنید')
+      }
+      else if(target[propName] > 1000) {
+        return ('واحد نباید بزرگ تر از ۱۰۰۰ باشد')
+      }
+    }
+
+
+    if (propName === 'address') {
+      if (isNaN(target[propName]) && target[propName].length >= 8) {
+        return target[propName]
+      }
+      else if(target[propName].length < 8){
+        return ('آدرس نباید به این کوتاهی باشد')
+      }
+      else {
+        return ('آدرس را صحیح وارد کنید')
+      }
+    }
+
+
+    if (propName === 'postalCode') {
+      if (Number(target[propName]) && String(target[propName]).length === 10) {
+        return target[propName]
+      }
+      else {
+        return ('کد پستی را صحیح وارد کنید')
+      }
+    }
+
+
   }
 }
 

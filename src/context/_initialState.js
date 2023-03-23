@@ -33,6 +33,10 @@ export function initial() {
   const [star4, setstar4] = useState(true)
   const [star5, setstar5] = useState(true)
   const [fiveStar, setfiveStar] = useState()
+  const [plaque, setplaque] = useState('')
+  const [unit, setunit] = useState('')
+  const [address, setaddress] = useState('')
+  const [postalCode, setpostalCode] = useState('')
   const [message, setmessage] = useState('')
   const [showForm, setshowForm] = useState(false)
   const [token, settoken] = useState('')
@@ -74,6 +78,17 @@ export function initial() {
   const [dropdownValue, setdropdownValue] = useState('')
   const [shownDropdown, setshownDropdown] = useState(false)
 
+
+  const [input2, setinput2] = useState('') // brand
+  const [input3, setinput3] = useState('') // ram
+  const [input4, setinput4] = useState('') // cpuCore
+  const [input5, setinput5] = useState('') // camera
+  const [input6, setinput6] = useState('') // storage
+  const [input7, setinput7] = useState('') // waranty
+  const [input8, setinput8] = useState('') // color
+  const [input9, setinput9] = useState('') // display
+  const [input10, setinput10] = useState('') // display
+
   const [sliderImage1, setsliderImage1] = useState({})
   const [sliderImage2, setsliderImage2] = useState({})
   const [sliderImage3, setsliderImage3] = useState({})
@@ -81,18 +96,42 @@ export function initial() {
   const [sliderImage5, setsliderImage5] = useState({})
   const [sliderImage6, setsliderImage6] = useState({})
 
+
+  const [image1, setimage1] = useState({})
+  const [image2, setimage2] = useState({})
+  const [image3, setimage3] = useState({})
+  const [image4, setimage4] = useState({})
+
+
+
   const [offerTime, setofferTime] = useState('')
   const [offerValue, setofferValue] = useState('')
 
 
 
   this.all = { 
+    image1, setimage1,
+    image2, setimage2,
+    image3, setimage3,
+    image4, setimage4,
+
+
     sliderImage1, setsliderImage1,
     sliderImage2, setsliderImage2,
     sliderImage3, setsliderImage3,
     sliderImage4, setsliderImage4,
     sliderImage5, setsliderImage5,
     sliderImage6, setsliderImage6,
+
+    input2, setinput2,
+    input3, setinput3,
+    input4, setinput4,
+    input5, setinput5,
+    input6, setinput6,
+    input7, setinput7,
+    input8, setinput8,
+    input9, setinput9,
+    input10, setinput10,
     
     offerTime, setofferTime,
     offerValue, setofferValue,
@@ -144,6 +183,10 @@ export function initial() {
     tokenValue, settokenValue,
     token, settoken,
     showForm, setshowForm,
+    unit, setunit,
+    plaque, setplaque,
+    address, setaddress,
+    postalCode, setpostalCode,
     message, setmessage,
     refInput,
     host,

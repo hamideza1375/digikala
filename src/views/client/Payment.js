@@ -1,14 +1,14 @@
 import React from 'react';
-import { Container } from '../../other/Components/Html';
-import Frame from '../../other/Components/other/Frame';
+import {  ContainerNavigation, Form } from '../../other/Components/Html';
 
 function Payment(p) {
-  // p._user.getLastPayment()
+    const confirmPayment =()=> p._client.confirmPayment()
+
 
   return (
-    <Container >
-      <Frame source={{ uri: p.route.params.url }} />
-    </Container>
+    <ContainerNavigation >
+      <Form city postal $plaque $unit $address flexDirection={'row'} onClick={confirmPayment} />
+    </ContainerNavigation>
   )
 }
 export default Payment;

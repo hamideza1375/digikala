@@ -6,7 +6,6 @@ import spacePrice from '../../../../other/utils/spacePrice'
 const Description = (p) => {
   const [color, setcolor] = useState()
 
-  const addBuyBasket = (number) => p._client.addBuyBasket(number)
 
 
   return (
@@ -77,8 +76,7 @@ const Description = (p) => {
 
                   p.setaddNumber(addNumber => {
                     const obj = { ...addNumber }
-                    obj[p.route.params.id] = { number: 1, price: p.singleItem.price }
-                    addBuyBasket(obj)
+                    obj[p.route.params.id] = { number: 1, ...p.singleItem }
                     return obj
                   })
 
@@ -94,7 +92,6 @@ const Description = (p) => {
                     p.setaddNumber(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id].number = obj[p.route.params.id].number + 1 
-                      addBuyBasket(obj)
                       return obj
                     })
 
@@ -106,15 +103,18 @@ const Description = (p) => {
                   <P mt={3} ta='center' >{p.addNumber[p.route.params.id]?.number}</P>
                 </Column>
 
+                  
+                <P onClick={()=>p.navigation.navigate('BeforePayment')} >click</P>
+
                 <Column style={{ height: 20, width: 20 }} >
                   <Icon name='minus' color='#e11' size={20} onClick={() =>
+
 
 
                     p.addNumber[p.route.params.id]?.number &&
                     p.setaddNumber(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id].number = obj[p.route.params.id].number - 1
-                      addBuyBasket(obj)
                       return obj
                     })
 

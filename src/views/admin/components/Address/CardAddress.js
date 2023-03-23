@@ -12,19 +12,20 @@ const CardAddress = (p) => {
   const lineStyle2 = { textDecorationLine: p.item.queueSend ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.item.queueSend ? '#aaa' : 'black', fontWeight: 'bold', textAlign: 'left' }
   const containerColumn = {borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }
 
+
   return (
     <>
       <View style={[containerColumn,{paddingVertical: 0,paddingBottom: 20}]} >
         <Text style={lineStyle}><Text style={[{fontWeight: 'bold',textAlign: 'left'}]} >نام: </Text>{p.item.fullname}</Text>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={lineStyle2} >شماره تلفن: </Text><Text style={lineStyle} >{p.item.phone}</Text></View>
+          <Text style={lineStyle2} >شماره تلفن: </Text><Text style={lineStyle} >{p.item.phoneOrEmail}</Text></View>
       </View>
       <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
         <Text style={lineStyle}  ><Text style={lineStyle2} >آدرس: </Text >{p.item.formattedAddress}</Text>
       </View>
       <View style={containerColumn} >
-        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >پلاک: </Text>{p.item.floor}</Text>
-        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >طبقه: </Text>{p.item.plaque}</Text>
+        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >پلاک: </Text>{p.item.plaque}</Text>
+        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >طبقه: </Text>{p.item.unit}</Text>
         <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >شماره: </Text>{p.item.id}</Text>
       </View>
 

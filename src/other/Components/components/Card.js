@@ -355,9 +355,9 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
             <View style={[{ padding: 12, borderRadius: 3, height: '100%' }]} >
               {header &&
                 <View style={[{
-                  paddingHorizontal: 5, paddingVertical: 12, width: '70%'
+                  paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   //  !
-                }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}               >
+                }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}>
                   <P
                     style={[{
                       color:
@@ -387,7 +387,7 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
 
               {headerRow &&
                 <View style={[{
-                  paddingHorizontal: 5, paddingVertical: 12, width: '70%'
+                  paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   //  !
 
                 }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}>
@@ -456,13 +456,13 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
                 }
               </View>
 
-              {footerRow && <View style={[{ position: 'absolute', bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+              {footerRow && <View style={[{ position: 'absolute', paddingRight:2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
                 {footerRow}
               </View>}
 
               {body &&
                 <View style={[{
-                  paddingHorizontal: 5, paddingVertical: 12, width: '79.4%'
+                  paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   //  !
                 }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
                 >
@@ -486,7 +486,7 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
               }
               {bodyRow &&
                 <View style={[{
-                  paddingHorizontal: 5, paddingVertical: 12, width: '70%'
+                  paddingHorizontal: 5, paddingVertical: 12, width: '79%',
                 }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
                 >
                   <View
@@ -547,7 +547,7 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
               <View style={{ padding: 12, borderRadius: 3, height: '100%' }} >
                 {header &&
                   <View style={[{
-                    paddingHorizontal: 5, paddingVertical: 12, width: '70%'
+                    paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
                   >
                     <P
@@ -567,7 +567,7 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
 
                 {headerRow &&
                   <View style={[{
-                    paddingHorizontal: 5, paddingVertical: 12, width: '70%'
+                    paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
                   >
                     <View
@@ -623,13 +623,13 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
 
                 </View>
 
-                {footerRow && <View style={[{ position: 'absolute', bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+                {footerRow && <View style={[{ position: 'absolute', paddingRight:2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
                   {footerRow}
                 </View>}
 
                 {body &&
                   <View style={[{
-                    paddingHorizontal: 5, paddingVertical: 12, width: '79.4%'
+                    paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
                   >
                     <P style={[{
@@ -643,7 +643,7 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
 
                 {bodyRow &&
                   <View style={[{
-                    paddingHorizontal: 5, paddingVertical: 12, width: '70%'
+                    paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
                   >
                     <View

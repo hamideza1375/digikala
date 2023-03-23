@@ -250,7 +250,7 @@ const linking = {
 
       AdminTicketBox: '/adminTicketBox',
       AddSeller: '/addSeller',
-      CreateSlider: '/createSlider',
+      CreateSlider: '/createslider',
       Sellers: '/sellers',
       PanelAdmin: '/paneladmin',
       AddAdmin: '/addadmin',

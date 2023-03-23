@@ -4,27 +4,22 @@ import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLo
 import _useEffect from './_initial';
 import jwt_decode from 'jwt-decode';
 import _Alert from '../other/utils/alert';
+import seconder from '../other/utils/seconder';
 
 
 export function userController(p) {
 
 
   this.timerTwoMinut = async () => {
-    var second = 1000;
-    var minute = second * 60;
-    var hour = minute * 60;
-    let countDown = new Date(new Date().getTime() + (1000 * 60 * 3))
-    const interval = setInterval(minutsInterval, 1000);
+    const localDate = await AsyncStorage.getItem('localDate')
+    const oldDate = localDate ? JSON.parse(localDate) : new Date().getTime() + (1000 * 60 * 3)
 
-    function minutsInterval() {
-      let nowDate = new Date().getTime(),
-        distance = countDown - nowDate;
-      let second2 = Math.floor((distance % (minute)) / second);
-      let mins = Math.floor((distance % (hour)) / (minute));
-      p.settwoMinut(mins + ':' + second2)
-      if (mins == 0 && second2 <= 1) clearInterval(interval)
-      if (mins == 0 && second2 <= 1) p.settwoMinut(0)
-    }
+    seconder(new Date(oldDate), async ({ days, hours, minutes, seconds, interval }) => {
+      p.settwoMinut(minutes + ':' + seconds)
+      if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) p.settwoMinut(0)
+      if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) await AsyncStorage.removeItem('localDate')
+    })
+    await AsyncStorage.setItem('localDate', JSON.parse(oldDate))
     p.settimerToMinutTrueFalse(true)
   }
 

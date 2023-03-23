@@ -143,18 +143,12 @@ export function clientController(p) {
   }
 
 
+
   this.confirmPayment = async () => {
-    await confirmPayment({ floor: p.floor, plaque: p.plaque, address: p.address, origin: {}, latlng: p.latlng, price: p.price, description: p.description, childItemsTitle: p.childItemsTitle, childItemsId: p.childItemsId })
-  }
-
-
-  this.addBuyBasket = async (productBasket) => {
-    // let num = 0
-    // Object.entries(productBasket).forEach((item, index) => {
-    //   num += (item[1].productBasket * item[1].price)
-    // })
-    // console.log(num);
-      addBuyBasket(p.route.params.id, { productBasket }).then(({ data }) => { })
+    await confirmPayment({
+      productBasket: p.addNumber, unit: p.unit, plaque: p.plaque, postalCode: p.postalCode,
+      address: p.stateCity.toString() + ',' + p.address, origin: {}, latlng: p.latlng, description: p.description
+    })
   }
 
 

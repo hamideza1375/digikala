@@ -25,8 +25,9 @@ export default function App({ border = [], br = 3, w, h, sh = {}, m_icon2, a_ico
   return (
     <>
       <Pressable
-        onPressIn={() => { sethidden(!hidden); }}
+        // onPressIn={() => { sethidden(!hidden); }}
         onPress={() => {
+          sethidden(!hidden);
           onClick && onClick()
           setTimeout(() => { ref.current && ref.current.setNativeProps({ style: { height: mIcon !== 'arrow-drop-down' ? null : 0 } }) }, 100);
           setTimeout(() => { if (!iconPress && m_icon === 'arrow-left') mIcon === 'arrow-drop-down' ? setmIcon('arrow-left') : setmIcon('arrow-drop-down'); }, 210);

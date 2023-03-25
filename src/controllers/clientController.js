@@ -145,10 +145,18 @@ export function clientController(p) {
 
 
   this.confirmPayment = async () => {
-    await confirmPayment({
-      productBasket: p.addNumber, unit: p.unit, plaque: p.plaque, postalCode: p.postalCode,
-      address: p.stateCity.toString() + ',' + p.address, origin: {}, latlng: p.latlng, description: p.description
+    p.setshowActivity(true)
+    const { data } = await confirmPayment({
+      productBasket: p.addNumber,
+      phone: p.phone,
+      unit: p.unit,
+      plaque: p.plaque,
+      postalCode: p.postalCode,
+      address: `${p.state}, ${p.City}, ${p.address}`,
+      latlng: p.latlng,
+      description: p.description
     })
+    p.navigation.replace('FramePayment', { url: data })
   }
 
 

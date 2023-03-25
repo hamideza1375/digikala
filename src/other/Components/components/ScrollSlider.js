@@ -45,11 +45,12 @@ function ScrollSlider(p) {
 
   return (
     <Span
+      style={{ cursor: 'grab' }}
       class={s.selectNone}
       // <Span onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
-      onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10);}}
-      onMoveShouldSetResponder={() => { setscroll2(false);}}
-      onTouchMove={() => { setscroll2(false);}} >
+      onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10); }}
+      onMoveShouldSetResponder={() => { setscroll2(false); }}
+      onTouchMove={() => { setscroll2(false); }} >
       <View
         onMoveShouldSetResponder={(e) => {
           setscroll2(!scroll2)

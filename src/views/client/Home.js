@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import { Span, Slider, Scroll, Div, ContainerTab, Loading } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import Category from './components/home/Category';
-import { states } from '../../context/_context';
+import _useEffect from '../../controllers/_initial';
 const SliderOffers = lazy(() => import('./components/home/SliderOffers'));
 const SliderPopulars = lazy(() => import('./components/home/SliderPopulars'));
 const Banner = lazy(() => import('./components/home/Banner'));
@@ -13,10 +13,10 @@ function Home(p) {
 
   // const pr = states()
 
+  p._client.getCategory()
+  p._client.getOffers()
+  p._client.getPopulars()
 
-    p._client.getCategory()
-    p._client.getOffers()
-    p._client.getPopulars()
 
 
   return (

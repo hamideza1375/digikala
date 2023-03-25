@@ -53,7 +53,7 @@ export const CheckBox = (props) => {
 };
 
 export const CheckBoxRadius = (p) => {
-  const { item, index, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onClick, style, refObject } = p;
+  const { item={}, index, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onPressIn, style, refObject } = p;
 
   const ref = useRef();
   //! const show = useRef({show:false});
@@ -63,7 +63,7 @@ export const CheckBoxRadius = (p) => {
   useEffect(() => {
     ref.current.setNativeProps({ style: { backgroundColor: "#fff" } })
     showValue.current.show = false
-    refObject(showValue.current)
+    refObject && refObject(showValue.current)
   }, [show])
 
   useEffect(() => {
@@ -78,12 +78,12 @@ export const CheckBoxRadius = (p) => {
     <View
       ref={ref} style={[{ backgroundColor: 'white', width: 20, height: 20, borderRadius: 50, borderWidth: border[0], borderColor: border[1], margin: m, alignSelf, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginHorizontal: mh, marginVertical: mv }, style]}>
       <_icon onPress={() => {
-        onClick && onClick()
+        if(onPressIn) {onPressIn()}
         setshow(!show)
         setTimeout(() => {
           ref.current.setNativeProps({ style: { backgroundColor: '#2c1' } })
           showValue.current.show = true
-          refObject(showValue.current)
+          refObject && refObject(showValue.current)
         }, 200);
       }}
         name={"check"} size={18} color="#fff" {...p}

@@ -1,13 +1,19 @@
 import React from 'react';
-import {  ContainerNavigation, Form } from '../../other/Components/Html';
+import _useEffect from '../../controllers/_initial';
+import { ContainerNavigation, Form } from '../../other/Components/Html';
 
 function Payment(p) {
-    const confirmPayment =()=> p._client.confirmPayment()
+  const confirmPayment = () => p._client.confirmPayment()
+
+  _useEffect(() => {
+    p.tokenValue.phone && p.setphone(p.tokenValue.phone)
+  }, [])
+
 
 
   return (
     <ContainerNavigation >
-      <Form city postal $plaque $unit $address flexDirection={'row'} onClick={confirmPayment} />
+      <Form city ph postal $plaque $unit $address flexDirection={'row'} onClick={confirmPayment} />
     </ContainerNavigation>
   )
 }

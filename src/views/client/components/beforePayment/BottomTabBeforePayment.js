@@ -10,7 +10,7 @@ const BottomTabBeforePayment = (p) => {
         <P fs={13} mt={3} mr={3} color='#222'>قیمت کل: </P>
         <P fs={13} mt={3} mr={8} color='#0ac'>{spacePrice(3450000)} تومان</P>
       </Span>
-      <Button onClick={() => p.navigation.navigate('Payment')} mt={15} fg={1} maxw={'50%'} mr={7} ml={10} >پرداخت</Button>
+      <Button onClick={() => Object.values(p.addNumber).length ? p.navigation.navigate('Location') : p.toast.error('خطا', 'هنوز محصولی انتخاب نکرده اید')} mt={15} fg={1} maxw={'50%'} mr={7} ml={10} >پرداخت</Button>
       <Press jc='center' ai='center' w={70} h={60} as='center' sh={{ r: 5, o: .4 }} br={3} p={3} bgcolor='#eee'>
         <Icon style={{ marginTop: 1 }} name='cart-plus' size={22} />
         <P fs={10} mt={3} ta={'center'} color='#0ac'>بازگشت به ادامه ی خرید</P>

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useFocusEffect } from '@react-navigation/native'
 import Axios from 'axios'
 import jwt_decode from "jwt-decode";
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { Dimensions } from 'react-native'
 
 import { adminController } from "./adminController";
@@ -13,9 +13,11 @@ import { Layout } from "../other/Layout/Layout";
 import backgroundTimer from '../other/utils/backgroundTimer';
 import { create } from '../other/utils/notification';
 import { getNotification, getSlider } from '../services/clientService';
+import { Loading } from '../other/Components/Html';
 
-
+var _show = false
 export const _initController = (p) => {
+  const [show, setshow] = useState(false)
 
   useEffect(() => {
     var toastOK = (data) => { typeof data !== 'string' ? p.toast.success('موفق آمیز', '✅', 2500) : p.toast.success('موفق آمیز', data, 3500) }
@@ -25,24 +27,38 @@ export const _initController = (p) => {
     Axios.interceptors.response.use(function (response) {
       if (response.config.method !== 'get' && response.data !== '' && (response.status === 200 || response.status === 201)) toastOK(response.data)
       p.setshowActivity(false)
+      if (_show == false && response.config.method === 'get' && response.request.response && response.statusText === 'OK' && (response.status === 200 || response.status === 201)) {
+        _show = true
+        setshow(true)
+      }
       return response
     }, function (error) {
 
-      if (error['request'].statusText === '' && error['request'].status === 0 && error['request'].response === '' && error['isAxiosError'] === true) return toastErrorNetwork()
-
+      if (error['request'].statusText === '' && error['request'].status === 0 && error['request'].response === '' && error['isAxiosError'] === true) {
+        _show = false
+        setshow(false)
+        return toastErrorNetwork()
+      }
       else if (error?.response?.status) {
         if (error.response.status > 400 && error.response.status <= 500) { toast500() };
         if (error.response.status === 400) { toast400(error.response.data) };
         p.setshowActivity(false)
       } return Promise.reject(error);
     });
-    AsyncStorage.getItem("token").then((token) => { if (token) { const user = jwt_decode(token); p.settokenValue(user); } })
+    AsyncStorage.getItem("token").then((token) => {
+      if (token) {
+        const user = jwt_decode(token);
+        p.settokenValue(user);
+        if (token) Axios.defaults.headers.common["Authorization"] = token;
+      }
+    })
   }, [])
 
 
   useEffect(() => { p.$input.set('a', 'a') }, [])
+  // useEffect(() => { alert(8) ;p.set$(new Map()) }, [p.navigation])
 
-  useEffect(() => { setTimeout(() => { p.setSplash(false) }, 500) }, [])
+  useEffect(() => { show === true && setTimeout(() => { p.setSplash(false) }, 500) }, [show])
   Dimensions.addEventListener('change', ({ window: { width, height } }) => { p.setwidth(width); p.setheight(height) })
 
 
@@ -88,7 +104,8 @@ export function allController(p) {
   const _user = ({ navigation, route }) => new userController({ ...p, navigation, route })
   const _admin = ({ navigation, route }) => new adminController({ ...p, navigation, route })
   const reducer = (props) => ({ _client: _client(props), _user: _user(props), _admin: _admin(props), })
-  this._children = (Component, key) => ({ children: (props) => <Layout _key={key} {...props} {...p}><Component {...props} {...p} {...reducer(props)} /></Layout> })
+  this._children = (Component, key) => ({ children: (props) => 
+  <Layout _key={key} {...props} {...p}>{p.showActivity && <Loading setshowActivity={p.setshowActivity} pos='absolute' top={15} time={900000} />}<Component {...props} {...p} {...reducer(props)} /></Layout> })
 }
 
 export default function _useEffect(call, state) { useFocusEffect(useCallback(() => call(), state)) }

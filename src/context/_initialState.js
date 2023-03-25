@@ -102,14 +102,20 @@ export function initial() {
   const [image3, setimage3] = useState({})
   const [image4, setimage4] = useState({})
 
-
+  
+  
 
   const [offerTime, setofferTime] = useState('')
   const [offerValue, setofferValue] = useState('')
-
-
+  
+  const [City, setCity] = useState('')
+  const [state, setstate] = useState('')
+  
+  const [latlng, setlatlng] = useState({ lat: 35.6892523, lng: 51.3896004 })
 
   this.all = { 
+    latlng, setlatlng,
+    state, setstate, City, setCity,
     image1, setimage1,
     image2, setimage2,
     image3, setimage3,

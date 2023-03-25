@@ -23,6 +23,7 @@ let loginInterval = null
   autocomplete="one-time-code"
 /> */}
 
+
 let interval
 const Form = ({
   webStyle = {}, nativeStyle = {}, timer = false, btn = true,
@@ -42,6 +43,7 @@ const Form = ({
   sizeY = 1,
   top = 10,
   flexDirection,
+  $codeAutoFocus,
 
   fIconLeft, fIconRight, eIconLeft, eIconRight, pIconLeft, pIconRight, cpIconLeft, cpIconRight,
   tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
@@ -52,7 +54,7 @@ const Form = ({
 }) => {
 
 
-  const { toast, stateCity, setstateCity, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail, imageUrl, setimageUrl,
+  const { toast, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail, imageUrl, setimageUrl,
     videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword, confirmPassword, setconfirmPassword,
     postalCode, setpostalCode, plaque, setplaque, unit, setunit, address, setaddress, message, setmessage, code, setcode, captcha, setcaptcha,
     setremember, star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, fiveStar, setfiveStar, refInput, rand, setRand,
@@ -60,30 +62,37 @@ const Form = ({
     input1, setinput1, input2, setinput2, input3, setinput3, input4, setinput4, input5, setinput5, input6, setinput6, input7, setinput7, input8, setinput8, input9, setinput9, input10, setinput10
     , sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3, sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6,
     image1, setimage1, image2, setimage2, image3, setimage3, image4, setimage4, offerTime, setofferTime, offerValue, setofferValue,
-
-    height
+    state, setstate, City, setCity,
+    height, showActivity
   } = context()
 
 
 
   const flatlistRef = useRef()
 
+  const [disableClick, setdisableClick] = useState(false)
   const [hidden, sethidden] = useState(false)
   const [show1, setshow1] = useState(false)
 
-  const selectValues = [
+  const [selectStatesValues] = useState([
     "آذربایجان شرقی", "آذربایجان غربی", "اردبیل", "اصفهان", "البرز", "ایلام",
     "بوشهر", "تهران", "چهارمحال و بختیاری", "خراسان جنوبی", "خراسان رضوی", "خراسان شمالی", "خوزستان",
     "زنجان", "سمنان", "سیستان و بلوچستان", "فارس", "قزوین", "قم", "کردستان",
     "کرمان", "کرمانشاه", "کهگیلویه و بویراحمد", "گلستان", "گیلان", "لرستان", "مازندران",
     "مرکزی", "هرمزگان", "همدان", "یزد"
-  ]
+  ])
 
 
 
-  function loadCity(province) {
-    var selectValues = {}
-    switch (province) {
+  const [loadCity, setloadCity] = useState([])
+
+
+
+
+  useFocusEffect(useCallback(() => {
+
+    var selectValues = []
+    switch (state) {
       case "آذربایجان شرقی":
         selectValues = ["آذرشهر", "اسکو", "اهر", "بستان آباد", "بناب", "تبریز", "جلفا", "چاراویماق", "سراب", "شبستر", "عجب‌شیر", "کلیبر", "مراغه", "مرند", "ملکان", "میانه", "ورزقان", "هریس", "هشترود"];
         break;
@@ -179,8 +188,12 @@ const Form = ({
         break;
 
     }
-    return selectValues
-  }
+    setloadCity(selectValues)
+  }, [state]))
+
+
+
+
 
 
 
@@ -225,9 +238,13 @@ const Form = ({
   }, [star1, star2, star3, star4, star5])
 
 
-  // Dimensions.addEventListener('change', ({ window: { width, height } }) => {
-  //   setwidth(width); setheight(height)
-  // })
+
+  useEffect(() => {
+    if (showActivity) setdisableClick(true)
+    else setdisableClick(false)
+  }, [showActivity])
+
+
 
   const [secure, setSecure] = useState(true)
   const [secure2, setSecure2] = useState(true)
@@ -264,6 +281,7 @@ const Form = ({
   const [_fiveStar, set_FiveStar] = useState()
   const [_phone, set_Phone] = useState()
   const [_phore, set_Phore] = useState()
+  const [_stateCity, set_StateCity] = useState()
 
   const [_input1, set_Input1] = useState()
   const [_input2, set_Input2] = useState()
@@ -311,6 +329,8 @@ const Form = ({
 
 
 
+  var stct = city ? (City.length && state.length) ? true : false : true
+
   var pon = ph ? newObj.phone === phone : true
   var poe = phore ? newObj.phoneOrEmail === phoneOrEmail : true
   var flm = f ? newObj.fullname === fullname : true
@@ -354,53 +374,54 @@ const Form = ({
 
 
           {city &&
-            <View style={[{ width:'100%',height: height / 1.7, minHeight: height / 1.7, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, flexDirection: 'row-reverse' }]}>
-            
-             <Column h='100%' jc='center' mt={2} ph={9} >
+            <View style={[{ borderWidth: (!stct && _stateCity) ? 1 : 0, borderColor: 'red', width: '100%', height: height / 1.7, minHeight: height / 1.7, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, flexDirection: 'row-reverse' }]}>
+
+              <Column h='100%' jc='center' mt={2} ph={9} >
                 <Column ai='center' jc='center' >
                   <Py as='flex-start' ph={8} ta='center' >استان:</Py>
                   <Column ai='center' jc='center' bgcolor='#fff' border={[1, 'silver']} br={4} >
-                    <P fw='100' ph={8} pv={2} fs={11} ta='center' minw={25} >{stateCity[0]}</P>
+                    <Input value={state} onChangeText={(text) => setstate(text)} fw='100' fs={11} ta='center' style={{ maxWidth: 90, height: 33 }} />
                   </Column>
                 </Column>
 
                 <Column ai='center' jc='center' mt={7} >
                   <Py as='flex-start' ph={8} ta='center' >شهر:</Py>
                   <Column ai='center' jc='center' bgcolor='#fff' border={[1, 'silver']} br={4} >
-                    <P fw='100' ph={8} pv={2} fs={11} ta='center' minw={25} >{stateCity[1]}</P>
+                    <Input value={City} onChangeText={(text) => setCity(text)} fw='100' fs={11} ta='center' style={{ maxWidth: 90, height: 33 }} />
                   </Column>
                 </Column>
               </Column>
 
-<Column f={1}>
+              <Column f={1}>
                 <Py ml={8} ph={8} ta='center' >انتخاب استان و شهر:</Py>
-  
+
                 <FlatList
-                // style={{width:'90%'}}
-                ref={flatlistRef}
-                data={selectValues}
-                renderItem={({ item, index }) => (
-                  <Column m={3} >
-                      <List onClick={() => flatlistRef.current.scrollToIndex({ index: index, animate: true })} h={38} fontSize={14} header={item} header2={item === stateCity[0] ? stateCity[1] : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
-                        body={
-                          loadCity(item).length && loadCity(item).map((item2, index) =>
-                          <Row key={index} jc='space-between' w='100%' mv={2} bbw={1} ai='center' border={[0, 'silver']} >
+                  // style={{width:'90%'}}
+                  ref={flatlistRef}
+                  data={selectStatesValues}
+                  renderItem={({ item, index }) => (
+                    <Column m={3} >
+                      <List onClick={() => { setstate(item); setTimeout(() => { flatlistRef.current.scrollToIndex({ index: index, animate: true }) }, 330) }} h={42} fontSize={12} header={item} header2={item === state ? City : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
+                        bodyRow={
+                          loadCity.length && loadCity.map((item2, index) =>
+                            <Row key={index} maxw={400} jc='space-between' w='100%' mv={2} bbw={1} ai='center' border={[0, 'silver']} >
                               <P fw='100' fs={11} >{item2}</P>
-                              <CheckBoxRadius item={{ value: item + ',' + item2 }} index={index} refObject={(ref) => { ref.show && setstateCity(ref.value.split(',')); }}
+                              <CheckBoxRadius onPressIn={() => { setCity(item2); }} item={{ value: item + ',' + item2 }} index={index}
                                 border={[1, 'silver']} ml={4} mb={3}
                                 show={show1} setshow={setshow1}
                                 style={{ transform: [{ scale: .9 }] }} />
                             </Row>
                           )
                         }
-                        >
+                      >
                       </List>
                     </Column>
                   )}
-                  />
-                  </Column>
+                />
+              </Column>
             </View>}
 
+          {(!stct && _stateCity) ? <Py pr={5} style={[styles.textinput, { color: 'red', fontSize: 10, fontWeight: '100' }]} >کادر بالا را تکمیل کنید</Py> : <></>}
 
 
 
@@ -408,9 +429,8 @@ const Form = ({
 
           {f &&
             <Frm
-              register={register}
               plackTextTop={plackTextTop}
-              textContentType="username"
+              textContentType={autoComplete ? "username" : 'none'}
               autoComplete={autoComplete ? "username" : 'off'}
               icon='user'
               p='نام و نام خوانوادگی'
@@ -427,9 +447,8 @@ const Form = ({
 
           {e &&
             <Frm
-              register={register}
               plackTextTop={plackTextTop}
-              textContentType="emailAddress"
+              textContentType={autoComplete ? "emailAddress" : 'none'}
               autoComplete={autoComplete ? "autoComplete" : 'off'}
               keyboardType="email-address"
               icon="envelope"
@@ -448,9 +467,8 @@ const Form = ({
 
           {ph &&
             <Frm
-              register={register}
               plackTextTop={plackTextTop}
-              textContentType="telephoneNumber"
+              textContentType={autoComplete ? "telephoneNumber" : 'none'}
               autoComplete={autoComplete ? "tel" : 'off'}
               keyboardType="phone-pad"
               icon="phone"
@@ -470,7 +488,6 @@ const Form = ({
 
           {phore &&
             <Frm
-              register={register}
               plackTextTop={plackTextTop}
               icon="phone"
               p='ایمیل یا شماره تلفن'
@@ -488,9 +505,8 @@ const Form = ({
 
           {p &&
             <Frm
-              register={register}
               plackTextTop={plackTextTop}
-              textContentType="password"
+              textContentType={autoComplete ? "password" : 'none'}
               autoComplete={autoComplete ? "password" : 'off'}
               icon={!secure ? "eye" : "eye-slash"}
               p="رمز عبور"
@@ -510,9 +526,8 @@ const Form = ({
 
           {cp &&
             <Frm
-              register={register}
               plackTextTop={plackTextTop}
-              textContentType="password"
+              textContentType={autoComplete ? "password" : 'none'}
               autoComplete={autoComplete ? "password" : 'off'}
               icon={!secure2 ? "eye" : "eye-slash"}
               p=" تکرار رمز عبور "
@@ -533,48 +548,10 @@ const Form = ({
 
           <Br style={{ height: 0, padding: 0, margin: 0 }} />
 
-          <Row w='100%' jc='space-around' >
-          {$plaque &&
-            <Frm
-              plackTextTop={plackTextTop}
-              // icon={'money-check'}
-              p="پلاک"
-              state={plaque}
-              setState={setplaque}
-              getBlur={_plaque}
-              setBlur={set_Plaque}
-              newObj={newObj.plaque}
-              yub={plq}
-              keyboardType="numeric"
-              w={140}
-              styles={styles}
-            />
-          }
-
-
-          {$unit &&
-            <Frm
-              plackTextTop={plackTextTop}
-              // m_icon={'margin'}
-              // iconSize={29}
-              p="واحد"
-              state={unit}
-              setState={setunit}
-              getBlur={_unit}
-              setBlur={set_Unit}
-              newObj={newObj.unit}
-              yub={unt}
-              keyboardType="numeric"
-              w={140}
-              styles={styles}
-            />
-          }
-</Row>
-
           {$address &&
             <Frm
-            initialHeight
-            multiline
+              initialHeight
+              multiline
               plackTextTop={plackTextTop}
               icon={'address-card'}
               p="آدرس"
@@ -608,6 +585,50 @@ const Form = ({
               styles={styles}
             />
           }
+
+
+          <Br style={{ height: 0, padding: 0, margin: 0 }} />
+
+
+
+          <Row w='100%' jc='space-around' >
+            {$plaque &&
+              <Frm
+                plackTextTop={plackTextTop}
+                // icon={'money-check'}
+                p="پلاک"
+                state={plaque}
+                setState={setplaque}
+                getBlur={_plaque}
+                setBlur={set_Plaque}
+                newObj={newObj.plaque}
+                yub={plq}
+                keyboardType="numeric"
+                w={140}
+                styles={styles}
+              />
+            }
+
+
+            {$unit &&
+              <Frm
+                plackTextTop={plackTextTop}
+                // m_icon={'margin'}
+                // iconSize={29}
+                p="واحد"
+                state={unit}
+                setState={setunit}
+                getBlur={_unit}
+                setBlur={set_Unit}
+                newObj={newObj.unit}
+                yub={unt}
+                keyboardType="numeric"
+                w={140}
+                styles={styles}
+              />
+            }
+          </Row>
+
 
           <Br style={{ height: 0, padding: 0, margin: 0 }} />
 
@@ -651,7 +672,8 @@ const Form = ({
             <Frm
               plackTextTop={plackTextTop}
               textContentType="oneTimeCode"
-              autoComplete={'off'}
+              autoComplete={'on-time-code'}
+              autoFocus={$codeAutoFocus}
               m_icon="textsms"
               p="کد ورود"
               iconLeft={codeIconLeft}
@@ -1206,6 +1228,7 @@ const Form = ({
           {btn &&
             <KeyboardAvoidingView behavior={"height"} style={{ height: 70, minHeight: 70, marginBottom: 15, width: '100%' }}>
               {btn && <Button
+                disable={disableClick}
                 onPressIn={() => {
                   setremember && setremember(changeremember ? (60000 * 60 * 24 * 365) : ('24h'))
                   set_Fullname(true);
@@ -1229,6 +1252,7 @@ const Form = ({
                   set_FiveStar(true)
                   set_Phone(true)
                   set_Phore(true)
+                  set_StateCity(true)
                   set_Code(true)
 
                   set_Input1(true)
@@ -1241,9 +1265,13 @@ const Form = ({
                   set_Input8(true)
                   set_Input9(true)
                   set_Input10(true)
+
                 }}
                 onPress={async () => {
-                  if (flm && eml && psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
+
+                  if (stct && flm && eml && psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
+
+                    setdisableClick(true)
 
                     if (!timer) {
                       onClick()

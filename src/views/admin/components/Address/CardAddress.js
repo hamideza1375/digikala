@@ -18,19 +18,20 @@ const CardAddress = (p) => {
       <View style={[containerColumn,{paddingVertical: 0,paddingBottom: 20}]} >
         <Text style={lineStyle}><Text style={[{fontWeight: 'bold',textAlign: 'left'}]} >نام: </Text>{p.item.fullname}</Text>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={lineStyle2} >شماره تلفن: </Text><Text style={lineStyle} >{p.item.phoneOrEmail}</Text></View>
+          <Text style={lineStyle2} >شماره تلفن: </Text><Text style={lineStyle} >{p.item.phone}</Text></View>
       </View>
       <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
-        <Text style={lineStyle}  ><Text style={lineStyle2} >آدرس: </Text >{p.item.formattedAddress}</Text>
+        <Text style={lineStyle}  ><Text style={lineStyle2} >آدرس: </Text >{p.item.address}</Text>
       </View>
       <View style={containerColumn} >
         <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >پلاک: </Text>{p.item.plaque}</Text>
         <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >طبقه: </Text>{p.item.unit}</Text>
-        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >شماره: </Text>{p.item.id}</Text>
+        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >کد پستی: </Text>{p.item.postalCode}</Text>
+        {/* <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >شماره: </Text>{p.item.id}</Text> */}
       </View>
 
       <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
-        <Text style={lineStyle}  ><Text style={lineStyle2} >اسامی سفارش: </Text >{p.item.foodTitle}</Text>
+        <Text style={lineStyle}  ><Text style={lineStyle2} >اسامی سفارش: </Text >{p.item.titles}</Text>
       </View>
 
       {p.item.description && <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >

@@ -20,8 +20,7 @@ const ImageDisplay = (p) => {
           </Span>
         }
         c2={1} coulumn2={
-          <Scroll f={1} ccStyle={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}  >
-
+          <Scroll onLayout={() => { p.$.id(imageMap[0])?.setNativeProps({ style: { borderWidth: 1, borderColor: 'aqua' } }) }} f={1} ccStyle={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}  >
             {imageMap.length && (imageMap).map((item, index) => (
               <Press key={index} id={item} onClick={() => {
 
@@ -32,7 +31,7 @@ const ImageDisplay = (p) => {
                 p.$.id('img').$({ src: `${localhost}/upload/childItem/${item}` })
 
               }} f={1}  >
-                <Img f={1} m={4} br={4} style={{ resizeMode: 'stretch',}} src={`${localhost}/upload/childItem/${item}`} />
+                <Img f={1} m={4} br={4} style={{ resizeMode: 'stretch', }} src={`${localhost}/upload/childItem/${item}`} />
               </Press>
             ))}
 

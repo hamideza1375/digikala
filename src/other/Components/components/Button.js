@@ -25,7 +25,7 @@ const _Button = React.forwardRef((props, ref) => {
       :
       <TouchableNativeFeedback
         ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
-         onPress={() => { }} {...props} style={[{
+        {...props} onPress={() => { }} onPressIn={() => { }} onPressOut={() => { }} style={[{
           paddingHorizontal: 10, paddingVertical:6, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
           alignSelf: props.as, opacity:.8,
         }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableNativeFeedback>

@@ -20,3 +20,5 @@ export const confirmPayment = async (body) => axios.post(`${localhost}/confirmPa
 export const commentLike = async (id) => axios.post(`${localhost}/commentLike/${id}`)
 export const commentDisLike = async (id) => axios.post(`${localhost}/commentDisLike/${id}`)
 export const addBuyBasket = async (id, body) => axios.post(`${localhost}/addBuyBasket/${id}`, body)
+export const getAddress = async () => axios.get(`${localhost}/getAddress`)
+

@@ -5,16 +5,17 @@ import _useEffect from './_initial';
 import jwt_decode from 'jwt-decode';
 import _Alert from '../other/utils/alert';
 import seconder from '../other/utils/seconder';
+import { Axios } from 'axios';
 
 
 export function userController(p) {
 
 
-  this.timerTwoMinut = async () => {
+  this.timerThreeMinut = async (call) => {
     const localDate = await AsyncStorage.getItem('localDate')
     const oldDate = localDate ? JSON.parse(localDate) : new Date().getTime() + (1000 * 60 * 3)
-
     seconder(new Date(oldDate), async ({ days, hours, minutes, seconds, interval }) => {
+      call(interval)
       p.settwoMinut(minutes + ':' + seconds)
       if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) p.settwoMinut(0)
       if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) await AsyncStorage.removeItem('localDate')
@@ -24,40 +25,53 @@ export function userController(p) {
   }
 
 
+  this.deleteTimerThreeMinut = async () => {
+    p.setshowActivity(true)
+    await AsyncStorage.removeItem('localDate')
+  }
+
+
 
   this.getNewCode = async () => {
+    p.setshowActivity(true)
     await getNewCode()
-    this.timerTwoMinut()
+    this.timerThreeMinut(() => { })
   }
 
 
   this.loadPageTimer = () => {
     _useEffect(() => {
-      if (!p.timerToMinutTrueFalse)
-        this.timerTwoMinut()
+      let timerInterwal
+      // if (!p.timerToMinutTrueFalse) 
+      this.timerThreeMinut((interval) => timerInterwal = interval)
+      return () => { timerInterwal && clearInterval(timerInterwal) }
     }, [])
   }
 
   this.getCodeForRegister = async () => {
+    p.setshowActivity(true)
     await getCodeForRegister({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, password: p.password })
-    this.timerTwoMinut()
+    this.timerThreeMinut(() => { })
     p.navigation.navigate('GetCode', { register: true })
   }
 
 
   this.verifycodeRegister = async () => {
+    p.setshowActivity(true)
     await verifycodeRegister({ code: p.code })
+    this.deleteTimerThreeMinut()
     p.navigation.navigate('Login')
   }
 
 
 
   this.login = async () => {
+    p.setshowActivity(true)
     const { data } = await login({ phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember, captcha: p.captcha })
     await AsyncStorage.removeItem("several")
     await AsyncStorage.removeItem('getMinutes')
     if (!data?.token) {
-      this.timerTwoMinut()
+      this.timerThreeMinut(() => { })
       p.navigation.navigate('GetCode', { login: true })
     }
     else {
@@ -71,22 +85,26 @@ export function userController(p) {
 
 
   this.verifyCodeLoginForAdmin = async () => {
+    p.setshowActivity(true)
     const { data } = await verifyCodeLoginForAdmin({ code: p.code, phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember })
     await AsyncStorage.setItem('token', data.token)
     const user = jwt_decode(data.token)
+    this.deleteTimerThreeMinut()
     p.settokenValue(user)
-    p.navigation.navigate('Profile')
+    p.navigation.navigate('PanelAdmin')
   }
 
 
   this.getCodeForgetPass = async () => {
+    p.setshowActivity(true)
     await getCodeForgetPass({ phoneOrEmail: p.phoneOrEmail })
-    this.timerTwoMinut()
+    this.timerThreeMinut(() => { })
     p.navigation.navigate('GetCode', { forgetPass: true })
   }
 
 
   this.verifycodeForgetPass = async () => {
+    p.setshowActivity(true)
     await verifycodeForgetPass({ code: p.code })
     p.navigation.navigate('ResetPass')
   }
@@ -106,12 +124,14 @@ export function userController(p) {
 
 
   this.resetPassword = async () => {
+    p.setshowActivity(true)
     await resetPassword({ password: p.password, confirmPassword: p.confirmPassword })
     p.navigation.navigate('Login')
   }
 
 
   this.sendImageProfile = async () => {
+    p.setshowActivity(true)
     const { data } = await sendImageProfile({ imageUrl: p.imageUrl })
   }
 
@@ -119,6 +139,7 @@ export function userController(p) {
   this.getImageProfile = async () => {
     _useEffect(() => {
       (async () => {
+        p.setshowActivity(true)
         const { data } = await getImageProfile()
       })()
     }, [])
@@ -126,6 +147,7 @@ export function userController(p) {
 
 
   this.sendProposal = async () => {
+    p.setshowActivity(true)
     await sendProposal({ message: p.message })
   }
 
@@ -133,6 +155,7 @@ export function userController(p) {
   this.getLastPayment = () => {
     _useEffect(() => {
       (async () => {
+        p.setshowActivity(true)
         const { data } = await getLastPayment()
       })()
     }, [])
@@ -142,6 +165,7 @@ export function userController(p) {
   this.getAnswersTicket = () => {
     _useEffect(() => {
       (async () => {
+        p.setshowActivity(true)
         const { data } = await getAnswersTicket(p.route.params.id)
         p.setanswersTicket(data)
       })()
@@ -150,6 +174,7 @@ export function userController(p) {
 
 
   this.sendNewTicket = async () => {
+    p.setshowActivity(true)
     const { data } = await sendNewTicket({ title: p.title, message: p.message, imageUrl: p.imageUrl })
     p.setuserTicketBox(ticketBox => {
       const ticket = [...ticketBox]
@@ -161,6 +186,7 @@ export function userController(p) {
 
 
   this.sendTicketAnswer = async (call) => {
+    p.setshowActivity(true)
     const { data } = await sendTicketAnswer({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id)
     p.setanswersTicket(singleTicket => {
       const answer = [...singleTicket]
@@ -175,6 +201,7 @@ export function userController(p) {
 
 
   this.deleteAnswerTicket = async (ticketId) => {
+    p.setshowActivity(true)
     await deleteAnswerTicket(p.route.params.id, ticketId)
     p.setanswersTicket(singleTicket => {
       const filter = singleTicket.filter(a => a._id !== ticketId)
@@ -185,6 +212,7 @@ export function userController(p) {
 
 
   this.editAnswerTicket = async (ticketId, call) => {
+    p.setshowActivity(true)
     const { data } = await editAnswerTicket({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id, ticketId)
     p.setanswersTicket(singleTicket => {
       let ticket = [...singleTicket]
@@ -200,6 +228,7 @@ export function userController(p) {
 
 
   this.getSingleAnswerTicket = async (itemId) => {
+    p.setshowActivity(true)
     const { data } = await getSingleAnswerTicket(p.route.params.id, itemId)
     p.setmessage(data.message)
   }
@@ -220,6 +249,7 @@ export function userController(p) {
         { text: 'Cancel', onPress: () => { } },
         {
           text: 'OK', onPress: async () => {
+            p.setshowActivity(true)
             await deleteTicket(ticketId)
             p.setuserTicketBox(ticketBox => {
               const filter = ticketBox.filter(t => t._id !== ticketId)
@@ -235,6 +265,7 @@ export function userController(p) {
   this.ticketBox = () => {
     _useEffect(() => {
       (async () => {
+        p.setshowActivity(true)
         const { data } = await ticketBox()
         p.setuserTicketBox(data)
       })()
@@ -245,6 +276,7 @@ export function userController(p) {
   this.getTicketSeen = () => {
     _useEffect(() => {
       (async () => {
+        p.setshowActivity(true)
         const { data } = await getTicketSeen()
         p.setticketSeen(data)
       })()
@@ -253,11 +285,13 @@ export function userController(p) {
 
 
   this.savedItem = async () => {
+    p.setshowActivity(true)
     await savedItem(p.route.params.id)
   }
 
 
   this.removeSavedItem = async (itemId) => {
+    p.setshowActivity(true)
     await removeSavedItem(itemId)
   }
 

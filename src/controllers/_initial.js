@@ -35,8 +35,8 @@ export const _initController = (p) => {
     }, function (error) {
 
       if (error['request'].statusText === '' && error['request'].status === 0 && error['request'].response === '' && error['isAxiosError'] === true) {
-        _show = false
-        setshow(false)
+        _show = true
+        setshow(true)
         return toastErrorNetwork()
       }
       else if (error?.response?.status) {

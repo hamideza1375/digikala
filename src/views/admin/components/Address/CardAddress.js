@@ -3,6 +3,7 @@ import React, { useRef, useState } from 'react'
 import { Text, View } from 'react-native';
 import { Button } from '../../../../other/Components/Html';
 import spacePrice from '../../../../other/utils/spacePrice';
+import linking from '../../../../other/utils/linking';
 
 const CardAddress = (p) => {
   const postedOrder = (_id) => p._admin.postedOrder(_id)
@@ -18,7 +19,7 @@ const CardAddress = (p) => {
       <View style={[containerColumn, { paddingVertical: 0, paddingBottom: 20 }]} >
         <Text style={lineStyle}><Text style={[{ fontWeight: 'bold', textAlign: 'left' }]} >نام: </Text>{p.item.fullname}</Text>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={lineStyle2} >شماره تلفن: </Text><Text style={lineStyle} >{p.item.phone}</Text></View>
+          <Text style={lineStyle2} >شماره تلفن: </Text><Text onPress={() => linking('tel:p.item.phone')} style={lineStyle} >{p.item.phone}</Text></View>
       </View>
       <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
         <Text style={lineStyle}  ><Text style={lineStyle2} >آدرس: </Text >{p.item.address}</Text>
@@ -46,7 +47,7 @@ const CardAddress = (p) => {
       <View style={{ paddingTop: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-around', }} >
         <Button outline bgcolor={!p.item.queueSend ? 'orange' : 'red'} style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { postQueue(p.item._id); }} > {!p.item.queueSend ? 'در صف ارسال ' : 'خروج از صف'}</Button>
         <Button outline bgcolor='green' style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { postedOrder(p.item._id) }} >ارسال شد</Button>
-        {p.item.latlng?.lat ? <Button outline bgcolor='blue' style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { p.navigation.navigate('ShowLatLngOnMap',{latlng: p.item.latlng}) }} >نمایش</Button> : <></>}
+        {p.item.latlng?.lat ? <Button outline bgcolor='blue' style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { p.navigation.navigate('ShowLatLngOnMap', { latlng: p.item.latlng }) }} >نمایش</Button> : <></>}
       </View>
     </>
   )

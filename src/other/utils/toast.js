@@ -111,7 +111,7 @@ const ToastProvider = (p) => {
           onLayout={() => { start(); }}
           style={[{ ...shadow }, {
             zIndex: 1111,
-            position: Platform.OS === 'web'?'fixed':'absolute', top: i * 120, right: fadeAnim, width: 300, height: 95, maxWidth: '88%',
+            position: Platform.OS === 'web'?'fixed':'absolute', top: i * 120, left: fadeAnim, width: 300, height: 95, maxWidth: '88%',
             display: 'flex',
              backgroundColor: toast.backgroundColor, borderRadius: 5,
           },Platform.OS === 'ios' ?{marginTop:55}:{marginTop:15}]}>

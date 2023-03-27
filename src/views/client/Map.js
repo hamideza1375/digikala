@@ -31,7 +31,6 @@ const Location = (p) => {
 
     //! map dragstart
     map.on('dragstart', async (ev) => {
-      disable.current = true
       document.getElementById('bottomDiv').style.display = 'flex'
     });
     //! map dragstart
@@ -77,9 +76,11 @@ const Location = (p) => {
           map.setView({ lat: data[0].latitude, lng: data[0].longitude });
           marker.setLatLng({ lat: data[0].latitude, lng: data[0].longitude })
           marker.bindPopup(street.trim() ? street : '!پیدا نشد').openPopup()
+          disable.current = false
         }
         else {
           marker.bindPopup('!پیدا نشد ').openPopup()
+          disable.current = true
         }
       }
     }
@@ -104,6 +105,7 @@ const Location = (p) => {
             setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
             document.getElementById('bottomDiv').style.display = 'none'
             map.stopLocate()
+          disable.current = false
           }
         }
       })()

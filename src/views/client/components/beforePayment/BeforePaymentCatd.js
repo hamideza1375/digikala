@@ -33,7 +33,7 @@ const BeforePaymentCatd = (p) => {
 
 
 
-                  p.setaddNumber(addNumber => {
+                  p.setproductBasket(addNumber => {
                     const obj = { ...addNumber }
                     obj[p.item[0]].number = obj[p.item[0]].number + 1
                     return obj
@@ -44,13 +44,13 @@ const BeforePaymentCatd = (p) => {
               </Column>
 
               <Column style={{ height: 17, width: 20 }} >
-                <P mt={3} ta='center' >{p.addNumber[p.item[0]]?.number}</P>
+                <P mt={3} ta='center' >{p.productBasket[p.item[0]]?.number}</P>
               </Column>
 
               <Column style={{ height: 20, width: 20 }} >
                 <Icon name='minus' color='#e11' size={20} onClick={() =>
-                  p.addNumber[p.item[0]]?.number &&
-                  p.setaddNumber(addNumber => {
+                  p.productBasket[p.item[0]]?.number &&
+                  p.setproductBasket(addNumber => {
                     const obj = { ...addNumber }
                     obj[p.item[0]].number = obj[p.item[0]].number - 1
                     return obj
@@ -73,7 +73,7 @@ const BeforePaymentCatd = (p) => {
 
       footerRow={<Press onClick={() => {
 
-        p.setaddNumber(addNumber => {
+        p.setproductBasket(addNumber => {
           const obj = { ...addNumber }
           delete obj[p.item[0]]
           return obj

@@ -286,13 +286,15 @@ export function userController(p) {
 
   this.savedItem = async () => {
     p.setshowActivity(true)
-    await savedItem(p.route.params.id)
+    const { data } = await savedItem(p.route.params.id)
+    p.setbookmark(data)
   }
 
 
   this.removeSavedItem = async (itemId) => {
     p.setshowActivity(true)
     await removeSavedItem(itemId)
+    p.setbookmark(false)
   }
 
 
@@ -302,7 +304,6 @@ export function userController(p) {
         p.setsavedItems(data)
       })
     }, [])
-
   }
 
 

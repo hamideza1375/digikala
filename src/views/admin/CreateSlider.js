@@ -5,7 +5,7 @@ const CreateSlider = (p) => {
 
   return (
     <Container2>
-      <Form slider onClick={()=>p._admin.createSlider()} />
+      <Form slider flexDirection={'row'} onClick={()=>p._admin.createSlider()} />
     </Container2>
   )
 }

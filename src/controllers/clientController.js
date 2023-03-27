@@ -1,4 +1,5 @@
 import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleItem, getSlider, offers, reverse } from "../services/clientService";
+import { getSingleSavedItems } from "../services/userService";
 import _useEffect from "./_initial";
 
 export function clientController(p) {
@@ -30,7 +31,8 @@ export function clientController(p) {
         const { data } = await getSingleItem(p.route.params.id)
         p.setsingleItem(data.singleItem)
       })()
-    }, [p.singleItemChange])
+      return () => p.setsingleItem({})
+    }, [p.route.params])
   }
 
 
@@ -50,7 +52,7 @@ export function clientController(p) {
         const { data } = await getSimilars(p.route.params.id)
         p.setsimilar(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
       })()
-    }, [])
+    }, [p.route.params])
   }
 
 
@@ -77,7 +79,7 @@ export function clientController(p) {
       getChildItemComments(p.route.params.id).then(({ data }) => {
         p.setchildItemComment(data.comment)
       })
-    }, [])
+    }, [p.route.params])
   }
 
 
@@ -121,7 +123,6 @@ export function clientController(p) {
   }
 
 
-
   this.disLike = async (commentid) => {
     const { data } = await commentDisLike(commentid)
     p.setchildItemComment(comment => {
@@ -130,7 +131,6 @@ export function clientController(p) {
       return comment
     })
   }
-
 
 
   this.reverse = async () => {
@@ -143,11 +143,29 @@ export function clientController(p) {
   }
 
 
+  this.getSingleSavedItems = () => {
+    _useEffect(() => {
+      getSingleSavedItems(p.route.params.id).then(({ data }) => { p.setbookmark(data) })
+      return () => p.setbookmark(false)
+    }, [p.route.params])
+  }
+
+
+  this.setColor = () => {
+    _useEffect(() => {
+      p.singleItem.title && p.setcolor((color) => {
+        const c = { ...color }
+        c[p.route.params.id] = color[p.route.params.id] ? color[p.route.params.id] : p.singleItem.color[0]
+        return c
+      })
+    }, [p.singleItem])
+  }
+
 
   this.confirmPayment = async () => {
     p.setshowActivity(true)
     const { data } = await confirmPayment({
-      productBasket: p.addNumber,
+      productBasket: p.productBasket,
       phone: p.phone,
       unit: p.unit,
       plaque: p.plaque,

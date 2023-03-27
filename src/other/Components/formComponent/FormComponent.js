@@ -18,7 +18,7 @@ export const Textarea = React.forwardRef((props, ref) => {
 
 
 export const Input = React.forwardRef((props, ref) => {
-  const { dropdown, onFocus, $input, textId, fg, f, ta, dr = 'rtl', as, fs=13, p, pt, pb, pl, pr, pv, ph, h = 50, w, m, mt, mb, ml, mr, mv, mh, color = '#222', bgcolor = '#fff', border = [.3], pColor = '#777', } = props;
+  const { dropdown, onFocus, $input, textId, fg, f, ta, dr = 'rtl', as, fs=13, p, pt, pb, pl, pr, pv, ph, h = 50, w, m, mt, mb, ml, mr, mv, mh, color = '#222', bgcolor = '#fff', border = [.3], pColor = '#999', } = props;
   return (
     <View
       style={[{

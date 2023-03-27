@@ -10,13 +10,13 @@ const CardAddress = (p) => {
 
   const lineStyle = { textDecorationLine: p.item.queueSend ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.item.queueSend ? '#aaa' : 'black' }
   const lineStyle2 = { textDecorationLine: p.item.queueSend ? 'line-through' : 'none', textDecorationStyle: 'solid', color: p.item.queueSend ? '#aaa' : 'black', fontWeight: 'bold', textAlign: 'left' }
-  const containerColumn = {borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }
+  const containerColumn = { borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }
 
 
   return (
     <>
-      <View style={[containerColumn,{paddingVertical: 0,paddingBottom: 20}]} >
-        <Text style={lineStyle}><Text style={[{fontWeight: 'bold',textAlign: 'left'}]} >نام: </Text>{p.item.fullname}</Text>
+      <View style={[containerColumn, { paddingVertical: 0, paddingBottom: 20 }]} >
+        <Text style={lineStyle}><Text style={[{ fontWeight: 'bold', textAlign: 'left' }]} >نام: </Text>{p.item.fullname}</Text>
         <View style={{ flexDirection: 'row' }}>
           <Text style={lineStyle2} >شماره تلفن: </Text><Text style={lineStyle} >{p.item.phone}</Text></View>
       </View>
@@ -44,11 +44,12 @@ const CardAddress = (p) => {
         {/* <Text style={{ color: '#ababab', }}>{p.item.createdAt.split(" ")[4]}</Text> */}
       </View>
       <View style={{ paddingTop: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-around', }} >
-        <Button outline bgcolor={!p.item.queueSend ? 'blue' : 'orange'} style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { postQueue(p.item._id); }} > {!p.item.queueSend ? 'در صف ارسال ' : 'خروج از صف'}</Button>
+        <Button outline bgcolor={!p.item.queueSend ? 'orange' : 'red'} style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { postQueue(p.item._id); }} > {!p.item.queueSend ? 'در صف ارسال ' : 'خروج از صف'}</Button>
         <Button outline bgcolor='green' style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { postedOrder(p.item._id) }} >ارسال شد</Button>
+        {p.item.latlng?.lat ? <Button outline bgcolor='blue' style={{ backgroundColor: '#f7f7f7', height: 30 }} onPress={() => { p.navigation.navigate('ShowLatLngOnMap',{latlng: p.item.latlng}) }} >نمایش</Button> : <></>}
       </View>
     </>
   )
-}
+}//! tel:
 
 export default CardAddress

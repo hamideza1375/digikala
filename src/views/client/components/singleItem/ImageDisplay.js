@@ -5,6 +5,17 @@ import { localhost } from '../../../../other/utils/axios/axios'
 
 const ImageDisplay = (p) => {
 
+  _useEffect(() => {
+    p.$.id(imageMap[0])?.setNativeProps({ style: { borderWidth: 1, borderColor: 'aqua' } })
+
+    return()=>{
+    p.$.id(imageMap[1])?.setNativeProps({ style: { borderWidth: 0 } })
+    p.$.id(imageMap[2])?.setNativeProps({ style: { borderWidth: 0 } })
+    p.$.id(imageMap[3])?.setNativeProps({ style: { borderWidth: 0 } })
+    }
+
+  }, [p.singleItem])
+  
 
   const imageMap = [p.singleItem.imageUrl1, p.singleItem.imageUrl2, p.singleItem.imageUrl3, p.singleItem.imageUrl4]
 
@@ -15,12 +26,12 @@ const ImageDisplay = (p) => {
         c1={4} coulumn1={
           <Span f={1} >
             <Span f={1} >
-              <Img id='img' f={1} style={{ resizeMode: 'stretch', borderTopLeftRadius: 8, borderTopRightRadius: 8 }} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl1}`} />
+              {p.singleItem.imageUrl1 && <Img id='img' f={1} style={{ resizeMode: 'stretch', borderTopLeftRadius: 8, borderTopRightRadius: 8 }} src={`${localhost}/upload/childItem/${p.singleItem.imageUrl1}`} />}
             </Span>
           </Span>
         }
         c2={1} coulumn2={
-          <Scroll onLayout={() => { p.$.id(imageMap[0])?.setNativeProps({ style: { borderWidth: 1, borderColor: 'aqua' } }) }} f={1} ccStyle={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}  >
+          <Scroll f={1} ccStyle={{ flex: 1, justifyContent: 'center', flexDirection: 'row' }}  >
             {imageMap.length && (imageMap).map((item, index) => (
               <Press key={index} id={item} onClick={() => {
 
@@ -31,7 +42,7 @@ const ImageDisplay = (p) => {
                 p.$.id('img').$({ src: `${localhost}/upload/childItem/${item}` })
 
               }} f={1}  >
-                <Img f={1} m={4} br={4} style={{ resizeMode: 'stretch', }} src={`${localhost}/upload/childItem/${item}`} />
+               {item? <Img f={1} m={4} br={4} style={{ resizeMode: 'stretch' }} src={`${localhost}/upload/childItem/${item}`} /> : <></> }
               </Press>
             ))}
 

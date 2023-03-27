@@ -9,24 +9,32 @@ function SetAddressInTehran(p) {
   const confirmPayment = () => p._client.confirmPayment()
 
   _useEffect(() => {
-    p.tokenValue.phone && p.setphone(p.tokenValue.phone)
+    if (p.tokenValue.fullname) p.setfullname(p.tokenValue.fullname)
+
+
+
   }, [])
 
   _useEffect(() => {
     getAddress().then(({ data }) => {
-      console.log(data);
-      data && p.setaddress(data)
+      if (data.phone) { p.setphone(data.phone) }
+      else if (p.tokenValue.phone) { p.setphone(p.tokenValue.phone) }
+      else if (p.tokenValue.phoneOrEmail) {
+        if (Number(p.tokenValue.phoneOrEmail) && (!p.tokenValue.phoneOrEmail.includes('@')))
+          p.setphone(p.tokenValue.phoneOrEmail)
+      }
+      data.address && p.setaddress(data.address)
+      data.latlng && p.setlatlng(data.latlng)
     })
-
-    return () => p.setaddress('')
-
+    p.setCity('تهران')
+    return () => {p.setaddress(''); p.setCity('') }
   }, [])
 
 
 
   return (
     <Container>
-      <Form ph $plaque $unit $address flexDirection={'row'} onClick={confirmPayment} />
+      <Form f ph $plaque $unit $address flexDirection='row' onClick={confirmPayment} />
     </Container>
   )
 }

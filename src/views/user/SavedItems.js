@@ -14,15 +14,14 @@ const SavedItems = (p) => {
       <FlatList
         data={p.savedItems}
         renderItem={({ item, index }) => (
-          <Press m={5} onClick={()=>{p.navigation.navigate('SingleItem',{id:item.itemId})}} >
-          <Card
-          style={{minHeight:135}}
+          <Card 
+          imgClick={()=>{p.navigation.navigate('SingleItem',{id:item.itemId})}}
+           style={{minHeight:135, margin:5}}
             header={item.title}
-            bodyRow={<M_icon color='#d00' name='delete' size={22} onClick={() => { removeSavedItem(item.itemId) }} />}
+            bodyRow={<M_icon color='#d00' name='delete' size={22} style={{ width:20, textAlign:'center'}} onClick={() => { removeSavedItem(item.itemId) }} />}
             img={`${localhost}/upload/childItem/${item.imageUrl}`}
             footer={spacePrice(String(item.price).padEnd(4)) + ' تومان'}
             />
-            </Press>
         )}
       />
     </Span>

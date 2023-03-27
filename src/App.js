@@ -57,6 +57,7 @@ import EditChildItem from "./views/admin/EditChildItem";
 import SetOffer from "./views/admin/SetOffer";
 import CreateCategory from "./views/admin/CreateCategory";
 import CreateChildItem from "./views/admin/CreateChildItem";
+import ShowLatLngOnMap from "./views/admin/ShowLatLngOnMap";
 import PanelAdmin from "./views/admin/PanelAdmin";
 import Sellers from "./views/admin/Sellers";
 import AddSeller from "./views/admin/AddSeller";
@@ -156,6 +157,7 @@ const Mobile = () => {
                   <Tab.Screen initialParams={{ key: 'admin' }} name="AddSeller" options={{ title: 'AddSeller' }} {..._children(AddSeller)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="CreateSlider" options={{ title: 'CreateSlider' }} {..._children(CreateSlider)} />
                   <Tab.Screen name="AdminTicketBox" options={{ title: 'ارسال تیکت' }} {..._children(AdminTicketBox)} />
+                  <Tab.Screen name="ShowLatLngOnMap" options={{ title: 'پروفایل', headerShown: false }} {..._children(ShowLatLngOnMap)} />
                 </Tab.Group>
 
                 <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
@@ -224,6 +226,7 @@ const Mobile = () => {
 // propTypes(AddSeller)
 // propTypes(CreateSlider)
 // propTypes(AdminTicketBox)
+// propTypes(ShowLatLngOnMap)
 
 
 const linking = {
@@ -282,6 +285,7 @@ const linking = {
       EditChildItem: '/editchilditem',
       SetOffer: '/setOffer',
       CreateChildItem: '/createchilditem/:id',
+      ShowLatLngOnMap: '/showlatlngonmap',
       NotFound: '*'
     },
   },

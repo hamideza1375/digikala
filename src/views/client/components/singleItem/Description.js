@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { View } from 'react-native'
+import React from 'react'
 import { Badge, Button, Card2, Column, Div, Icon, P, Pfa, Press, Py, Row, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
+import _useEffect from '../../../../controllers/_initial';
+
 
 const Description = (p) => {
-  const [color, setcolor] = useState()
 
-
+  p._client.setColor()
 
   return (
 
@@ -58,8 +58,22 @@ const Description = (p) => {
 
                 {p.singleItem.color?.map((item, index) => (
                   <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
-                    <Press onLayout={() => setcolor(p.singleItem.color[0])} onClick={() => { setcolor(item) }} ai='center' h={30} mt={6}>
-                      <Badge bgcolor={color !== item ? '#fff' : item} border={[2, item]} w={30} h={30} /></Press>
+                    <Press onClick={() => {
+                      console.log(p.productBasket);
+                      p.setcolor((color) => {
+                        const c = { ...color }
+                        c[p.route.params.id] = item
+
+                        p.productBasket[p.route.params.id] && p.setproductBasket(addNumber => {
+                          const obj = { ...addNumber }
+                          obj[p.route.params.id].color = item
+                          return obj
+                        })
+
+                        return c
+                      })
+                    }} ai='center' h={30} mt={6}>
+                      <Badge bgcolor={p.color[p.route.params.id] !== item ? '#fff' : item} border={[2, item]} w={30} h={30} /></Press>
                     <Span><P fs={10} >{item}</P></Span>
                   </Span>
                 ))}
@@ -71,12 +85,12 @@ const Description = (p) => {
             <Row fg={1} mb={10} jc='space-around' ai='center'>
 
               <Column w='70%' h={'100%'} jc='center' >
-                <Button disable={p.addNumber[p.route.params.id]?.number} onClick={() =>
+                <Button disable={p.productBasket[p.route.params.id]?.number} onClick={() =>
 
 
-                  p.setaddNumber(addNumber => {
+                  p.setproductBasket(addNumber => {
                     const obj = { ...addNumber }
-                    obj[p.route.params.id] = { number: 1, ...p.singleItem }
+                    obj[p.route.params.id] = { number: 1, ...p.singleItem, color: p.color[p.route.params.id] }
                     return obj
                   })
 
@@ -84,14 +98,14 @@ const Description = (p) => {
                 } w='100%' bgcolor='#909' style={{ alignSelf: 'center' }} >افزودن به سبد خرید</Button>
               </Column>
 
-              {p.addNumber[p.route.params.id]?.number ? <Column h={'100%'} jc='center' >
+              {p.productBasket[p.route.params.id]?.number ? <Column h={'100%'} jc='center' >
                 <Column style={{ height: 20, width: 20 }} >
                   <Icon name='plus' color='#0ad' size={20} onClick={() =>
 
 
-                    p.setaddNumber(addNumber => {
+                    p.setproductBasket(addNumber => {
                       const obj = { ...addNumber }
-                      obj[p.route.params.id].number = obj[p.route.params.id].number + 1 
+                      obj[p.route.params.id].number = obj[p.route.params.id].number + 1
                       return obj
                     })
 
@@ -100,19 +114,19 @@ const Description = (p) => {
                 </Column>
 
                 <Column style={{ height: 17, width: 20 }} >
-                  <P mt={3} ta='center' >{p.addNumber[p.route.params.id]?.number}</P>
+                  <P mt={3} ta='center' >{p.productBasket[p.route.params.id]?.number}</P>
                 </Column>
 
-                  
-                <P onClick={()=>p.navigation.navigate('BeforePayment')} >click</P>
+
+                <P onClick={() => p.navigation.navigate('BeforePayment')} >click</P>
 
                 <Column style={{ height: 20, width: 20 }} >
                   <Icon name='minus' color='#e11' size={20} onClick={() =>
 
 
 
-                    p.addNumber[p.route.params.id]?.number &&
-                    p.setaddNumber(addNumber => {
+                    p.productBasket[p.route.params.id]?.number &&
+                    p.setproductBasket(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id].number = obj[p.route.params.id].number - 1
                       return obj

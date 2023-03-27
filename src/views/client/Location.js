@@ -9,10 +9,19 @@ function Location(p) {
   const confirmPayment = () => p._client.confirmPayment()
 
   _useEffect(() => {
-    p.tokenValue.phone && p.setphone(p.tokenValue.phone)
+    if (p.tokenValue.fullname) p.setfullname(p.tokenValue.fullname)
   }, [])
 
-
+  _useEffect(() => {
+    getAddress().then(({ data }) => {
+      if (data.phone) { p.setphone(data.phone) }
+      else if (p.tokenValue.phone) { p.setphone(p.tokenValue.phone) }
+      else if (p.tokenValue.phoneOrEmail) {
+        if (Number(p.tokenValue.phoneOrEmail) && (!p.tokenValue.phoneOrEmail.includes('@')))
+          p.setphone(p.tokenValue.phoneOrEmail)
+      }
+    })
+  }, [])
 
   return (
     <Container>
@@ -28,7 +37,7 @@ function Location(p) {
             </Press>
 
             <Column f={1} >
-              <Form city ph postal $plaque $unit $address flexDirection={'row'} onClick={confirmPayment} />
+              <Form f city ph postal $plaque $unit $address flexDirection={'row'} onClick={confirmPayment} />
             </Column>
           </>
       }

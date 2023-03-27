@@ -1,8 +1,10 @@
-import React, { lazy, Suspense } from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import React, { lazy, Suspense, useState } from 'react'
 import { Platform } from 'react-native'
 import _useEffect from '../../controllers/_initial';
 import { Br, Button, Container2, Div, Icon, Loading, M_icon, P, Row, Scroll, Span } from '../../other/Components/Html'
 import share from '../../other/utils/share';
+import { getSingleSavedItems } from '../../services/userService';
 import Chat from './components/home/Chat'
 
 const Obligations = lazy(() => import('./components/singleItem/Obligations'));
@@ -19,6 +21,7 @@ const SingleItem = (p) => {
   p._client.getSingleItem()
   p._client.getChildItemComments()
   p._client.getSimilars()
+  p._client.getSingleSavedItems()
   const savedItem = () => p._user.savedItem()
 
   return (
@@ -27,8 +30,11 @@ const SingleItem = (p) => {
         <Row bgcolor='#fff' w='100%' h={50} jc='space-between' >
           <P pr={10} mt={14} fw='bold'>{p.singleItem.title}</P>
           <Row pr={10} mt={14} jc='space-around' w={100} >
-            <M_icon color='#ccc' size={17} name='bookmark' onClick={savedItem} />
-            <M_icon color='#ccc' size={17} name='bookmark-border' onClick={savedItem} />
+            {p.bookmark ?
+              <M_icon color='#ccc' size={17} name='bookmark' onClick={() => savedItem()} />
+              :
+              <M_icon color='#ccc' size={17} name='bookmark-border' onClick={() => savedItem()} />
+            }
             <Icon color='#ccc' name='share-alt' size={17} onClick={async () => { share(`http://localhost:3000/singleitem/${p.route.params.id}`, 'دیجیکالا') }} />
           </Row>
         </Row>

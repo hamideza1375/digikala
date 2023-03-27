@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Image, Pressable, Platform } from 'react-native';
 import { P } from '../Html';
 
-function Card({ style, header, body, footer, bgcolor='white', color, alert, border = [1], img, dr = 'ltr', imageStyle, headerRow, footerRow, bodyRow, ...prop }) {
+function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color, alert, border = [1], img, dr = 'ltr', imageStyle, headerRow, footerRow, bodyRow, ...prop }) {
 
   const [heightLayout, setheightLayout] = useState(0)
 
@@ -423,23 +423,22 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
                   position: 'absolute',
                   height: 100,
                   justifyContent: 'center',
-                  maxWidth:'20%',
-                }, dr === 'ltr' ? { left: 5, paddingLeft:10 } : { right: 5, paddingRight:10 }]} >
-                <Image source={img} style={[{
-                  top: 15,
-                  position: 'absolute',
-                  width: 70,
-                  height: 70,
-                  borderRadius: 50,
-                  alignSelf: 'center',
-                  resizeMode: 'stretch',
-                }, imageStyle]}
-                />
+                  maxWidth: '20%',
+                }, dr === 'ltr' ? { left: 5, paddingLeft: 10 } : { right: 5, paddingRight: 10 }]} >
+
+                <Pressable onPress={imgClick} style={{ width: 70, height: 70, borderRadius: 50, alignSelf: 'center', top: 15, position: 'absolute', cursor: imgClick ? 'pointer' : '' }} >
+                  <Image source={img} style={[{
+                    width: 70, height: 70, borderRadius: 50, alignSelf: 'center', resizeMode: 'stretch',
+                  }, imageStyle]}
+                  />
+                </Pressable>
+
                 {footer &&
-                  <View style={[{ 
+                  <View style={[{
                     top: 58,
-                    paddingRight:2,
-                    paddingVertical: 5, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
+                    paddingRight: 2,
+                    paddingVertical: 5, width: '100%'
+                  }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
                     textAlign: 'center',
                     color:
                       !color ?
@@ -456,7 +455,7 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
                 }
               </View>
 
-              {footerRow && <View style={[{ position: 'absolute', paddingRight:2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+              {footerRow && <View style={[{ position: 'absolute', paddingRight: 2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
                 {footerRow}
               </View>}
 
@@ -591,21 +590,19 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
                   position: 'absolute',
                   height: 90,
                   justifyContent: 'center',
-                  maxWidth:'20%',
-                }, dr === 'ltr' ? { left: 5, paddingLeft:10 } : { right: 5, paddingRight:10 }]} >
-                  <Image source={img} style={[{
-                    top: 15,
-                    position: 'absolute',
-                    width: 70,
-                    height: 70,
-                    borderRadius: 50,
-                    alignSelf: 'center',
-                    resizeMode: 'stretch',
-                  }, imageStyle]}
-                  />
+                  maxWidth: '20%',
+                }, dr === 'ltr' ? { left: 5, paddingLeft: 10 } : { right: 5, paddingRight: 10 }]} >
+
+                  <Pressable onPress={imgClick} style={{ width: 70, height: 70, borderRadius: 50, alignSelf: 'center', top: 15, position: 'absolute', cursor: imgClick ? 'pointer' : '' }} >
+                    <Image source={img} style={[{
+                      width: 70, height: 70, borderRadius: 50, alignSelf: 'center', resizeMode: 'stretch',
+                    }, imageStyle]}
+                    />
+                  </Pressable>
+
                   {footer &&
-                    
-                    <View style={[{top: 63, paddingRight:2, paddingVertical: 5, color, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
+
+                    <View style={[{ top: 63, paddingRight: 2, paddingVertical: 5, color, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
                       textAlign: 'center',
                       color:
                         !color ?
@@ -623,7 +620,7 @@ function Card({ style, header, body, footer, bgcolor='white', color, alert, bord
 
                 </View>
 
-                {footerRow && <View style={[{ position: 'absolute', paddingRight:2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+                {footerRow && <View style={[{ position: 'absolute', paddingRight: 2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
                   {footerRow}
                 </View>}
 

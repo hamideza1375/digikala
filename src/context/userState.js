@@ -29,8 +29,10 @@ export function user() {
   const [answersTicket, setanswersTicket] = useState([])
   const [singleAnswer, setsingleAnswer] = useState({})
   // const [userTicketBox, setuserTicketBox] = useState([])
+  const [bookmark, setbookmark] = useState(false)
 
   this.user = {
+    bookmark, setbookmark,
     savedItems, setsavedItems,
     ticketSeen, setticketSeen,
     userTicketBox, setuserTicketBox,

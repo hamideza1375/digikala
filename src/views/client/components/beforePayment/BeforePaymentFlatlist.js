@@ -11,7 +11,7 @@ const BeforePaymentFlatlist = (p) => {
       <FlatList
         colomn={1} colomn1={1} colomn2={1} colomn3={2}
         colomn4={2} colomn5={3} colomn6={3}
-        data={ Object.entries(p.addNumber)}
+        data={ Object.entries(p.productBasket)}
         renderItem={({ item, index }) => (
           <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} ai='center' col2={{ marginHorizontal: 3 }} col1={{ marginHorizontal: 3 }}>
             <BeforePaymentCatd item={item} {...p}/>

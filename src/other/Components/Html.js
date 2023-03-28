@@ -223,7 +223,7 @@ export const Scroll = (props) => <Component {...props} Component={ScrollView} />
 
 export const ScrollHorizontal = (props) => <Component {...props} horizontal={true} Component={ScrollView} />
 
-export const FlatList = ({ colomn1, colomn2, colomn3, colomn4, colomn5, colomn6, colomn, renderItem, numColumns, data, ...props }) => {
+export const FlatList = ({ loading=true, colomn1, colomn2, colomn3, colomn4, colomn5, colomn6, colomn, renderItem, numColumns, data, ...props }) => {
 
   const width = Dimensions.get('window').width
   const [index, setindex] = useState(0)
@@ -254,7 +254,7 @@ export const FlatList = ({ colomn1, colomn2, colomn3, colomn4, colomn5, colomn6,
         ListFooterComponent={() => data[data.length - 1]?._id !== data[index]?._id ? <_Loading scale={1.5} time={99999} /> : <></>}
       />
       :
-      <_Loading />
+      loading? <_Loading /> : <View/>
   )
 }
 

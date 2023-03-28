@@ -1,10 +1,10 @@
 import React from 'react'
 import { Column, Img, Press, Span } from '../Html'
 
-const card2 = ({ cStyle, imgStyle, imageWidth = '100%', onClick, img, src, br = 4, brImg, style, border = [], coulumn1, coulumn2, coulumn3, coulumn4, coulumn5, coulumn6, h = '100%', w = '100%', c1, c2, c3, c4, c5, c6, bgcolor, ...p }) => {
+const card2 = ({row=false, cStyle, imgStyle, imageWidth = '100%', onClick, img, src, br = 4, brImg, style, border = [], coulumn1, coulumn2, coulumn3, coulumn4, coulumn5, coulumn6, h = '100%', w = '100%', c1, c2, c3, c4, c5, c6, bgcolor, ...p }) => {
 
   return (
-    <Column style={style} h={h} w={w} as={'center'} br={br} border={border.length ? border : [1]} {...p} >
+    <Column fd={row?'row':'column'} style={style} h={h} w={w} as={'center'} br={br} border={border.length ? border : [1]} {...p} >
 
       {((img) || (src)) && <Span h={'45%'} ai='center' >
         {src && <Press onClick={onClick} h='100%' w='100%' ai='center' ><Img w={imageWidth} h='100%' style={[{ resizeMode: 'stretch', borderTopRightRadius: br, borderTopLeftRadius: br, borderRadius: brImg }, imgStyle]} src={src} /></Press>}

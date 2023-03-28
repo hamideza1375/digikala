@@ -15,13 +15,13 @@ const PanelAdmin = (p) => {
           <Span fd='row' h='100%' style={{ flexWrap: 'wrap' }} >
 
             <Scroll ccStyle={{ flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around' }} >
-              <Span w={280} h={220} fg={1} m={4}>
-                <Row jc='center' ><Py fs={11} fw='100' >خرید های هفت روز گذشته</Py></Row>
-                <DaysChartTotal h={200} data={p.chartData} />
+              <Span w={280} h={235} fg={1} m={4}>
+                <Row h={20} jc='center' ><Py fs={11} fw='100' >خرید های هفت روز گذشته</Py></Row>
+                <DaysChartTotal h={215} data={p.chartData} />
               </Span>
-              <Span w={280} h={220} fg={1} m={4}>
-                <Row jc='center' ><Py fs={11} fw='100' >تعداد کل کاربران: {p.chartUserLength.length}</Py></Row>
-                <UserLengthChart h={200} data={p.chartUserLength} />
+              <Span w={280} h={235} fg={1} m={4}>
+                <Row h={20} jc='center' ><Py fs={11} fw='100' >تعداد کل کاربران: {p.chartUserLength.length}</Py></Row>
+                <UserLengthChart h={215} data={p.chartUserLength} />
               </Span>
             </Scroll>
 
@@ -32,9 +32,9 @@ const PanelAdmin = (p) => {
             </Span>
 
             <Scroll ccStyle={{ flexWrap: 'wrap' }} >
-              <Span h={225} fg={1} m={4} jc='flex-end' >
-                <Row jc='center' ><Py fs={11} fw='100' >خرید های سال گذشته</Py></Row>
-                <YearsChartTotal h={200} data={p.chartData} />
+              <Span h={235} fg={1} m={4} jc='flex-end' >
+                <Row h={20} jc='center' ><Py fs={11} fw='100' >خرید های سال گذشته</Py></Row>
+                <YearsChartTotal h={215} data={p.chartData} />
               </Span>
             </Scroll>
 

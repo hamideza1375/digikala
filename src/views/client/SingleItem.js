@@ -40,31 +40,31 @@ const SingleItem = (p) => {
         </Row>
         <Br />
         <Span>
-          <Span fd='row-reverse' fw={'wrap'} w='100%' jc='space-between' bgcolor='#fff' ph={8} pb={25} >
+          <Span fd='row-reverse' fw={'wrap'} w='100%' jc='space-between' bgcolor='#fff' pb={25} >
 
-            <Span fg={1} mh={5} mt={20}>
-              <Span w='95%'>
+            <Span fg={1} mt={20}>
+              <Span w='98.5%'>
                 <Suspense>
                   <Description {...p} />
                 </Suspense>
               </Span>
             </Span>
 
-            <Span fg={1} mh={5} mt={20}>
-              <Span w='95%'>
+            <Span fg={1} mt={20}>
+              <Span w='98.5%'>
                 <Suspense>
                   <ImageDisplay {...p} />
                 </Suspense>
               </Span>
             </Span>
 
-            <Span ai='center' fg={1} mh={5} mt={20}>
-              <Span ai='center' w='95%'>
+            <Span ai='center' fg={1} mt={20}>
+              <Span ai='center' w='98%' as='center'>
                 <Suspense>
                   <Specifications {...p} />
                 </Suspense>
 
-                <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+                <Suspense style={{backgroundColor: 'red',}} fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
                   <Obligations mt={15} {...p} />
                 </Suspense>
               </Span>

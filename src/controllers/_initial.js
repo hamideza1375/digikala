@@ -37,10 +37,11 @@ export const _initController = (p) => {
       if (error['request'].statusText === '' && error['request'].status === 0 && error['request'].response === '' && error['isAxiosError'] === true) {
         _show = true
         setshow(true)
+        p.setshowActivity(false)
         return toastErrorNetwork()
       }
       else if (error?.response?.status) {
-        if (error.response.status > 400 && error.response.status <= 500) { toast500() };
+        if (error.response.status > 400 && error.response.status <= 500) { toast500(); p.setshowActivity(false) };
         if (error.response.status === 400) { toast400(error.response.data) };
         p.setshowActivity(false)
       } return Promise.reject(error);
@@ -58,7 +59,7 @@ export const _initController = (p) => {
   useEffect(() => { p.$input.set('a', 'a') }, [])
   // useEffect(() => { alert(8) ;p.set$(new Map()) }, [p.navigation])
 
-  useEffect(() => { show === true && setTimeout(() => { p.setSplash(false) }, 500) }, [show])
+  useEffect(() => { show === true && setTimeout(() => { p.setSplash(false); p.setshowActivity(false) }, 500) }, [show])
   Dimensions.addEventListener('change', ({ window: { width, height } }) => { p.setwidth(width); p.setheight(height) })
 
 

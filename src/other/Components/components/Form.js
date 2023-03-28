@@ -63,7 +63,7 @@ const Form = ({
     , sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3, sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6,
     image1, setimage1, image2, setimage2, image3, setimage3, image4, setimage4, offerTime, setofferTime, offerValue, setofferValue,
     state, setstate, City, setCity,
-    height, showActivity
+    height, showActivity, setshowActivity
   } = context()
 
 
@@ -1268,7 +1268,7 @@ const Form = ({
 
                 }}
                 onPress={async () => {
-
+                  setshowActivity(true)
                   if (stct && flm && eml && psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
 
                     setdisableClick(true)

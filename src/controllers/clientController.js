@@ -1,4 +1,5 @@
-import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, deleteComment, editComment, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleItem, getSlider, offers, reverse } from "../services/clientService";
+import { useEffect } from "react";
+import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, createCommentAnswer, deleteComment, deleteCommentAnswer, disLikeAnswer, editComment, editCommentAnswer, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleItem, getSlider, likeAnswer, offers, reverse } from "../services/clientService";
 import { getSingleSavedItems } from "../services/userService";
 import _useEffect from "./_initial";
 
@@ -68,14 +69,26 @@ export function clientController(p) {
 
   this.createComment = async () => {
     const { data } = await createComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
-    p.setchildItemComment(comment => {
-      comment.push(data.comment)
-      return comment
+    p.childItemComment.length && p.setchildItemComment(comment => {
+      const _comment = [...comment]
+      _comment.unshift(data.comment);
+      return _comment
+    })
+  }
+
+  this.createCommentAnswer = async () => {
+    const { data } = await createCommentAnswer(p.route.params.commentId,
+      { message: p.message, to: JSON.parse(p.route.params.userphoneOrEmail).map((u, i) => u.slice(0, u.lastIndexOf(i))).join('') })
+    p.childItemComment.length && p.setchildItemComment(comment => {
+      const _comment = [...comment]
+      const index = _comment.findIndex((c) => c._id === p.route.params.commentId)
+      _comment[index].answer.push(data)
+      return _comment
     })
   }
 
   this.getChildItemComments = async () => {
-    _useEffect(() => {
+    useEffect(() => {
       getChildItemComments(p.route.params.id).then(({ data }) => {
         p.setchildItemComment(data.comment)
       })
@@ -94,9 +107,9 @@ export function clientController(p) {
 
 
   this.editComment = async () => {
-    await editComment(p.route.params.id, p.route.params.commentid, { message: p.message, fiveStar: p.fiveStar })
+    await editComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
     p.childItemComment.length && p.setchildItemComment(comment => {
-      const findIndex = comment.findIndex(c => c._id === p.route.params.commentid)
+      const findIndex = comment.findIndex(c => c._id === p.route.params.id)
       if (findIndex) {
         comment[findIndex].message = p.message
         comment[findIndex].fiveStar = p.fiveStar
@@ -106,11 +119,35 @@ export function clientController(p) {
   }
 
 
+  this.editCommentAnswer = async () => {
+    await editCommentAnswer(p.route.params.id, p.route.params.commentId, { message: p.message })
+    p.childItemComment.length && p.setchildItemComment(comment => {
+      const _comment = [...comment]
+      const index = _comment.findIndex((c) => c._id === p.route.params.id)
+      const answer = _comment[index].answer
+      const answerIndex = answer.findIndex((a) => (a._id === p.route.params.commentId))
+      answer[answerIndex].message = p.message
+      return _comment
+    })
+  }
+
+
   this.deleteComment = async (commentid) => {
     await deleteComment(commentid)
     p.setchildItemComment(comment => comment.filter(c => c._id !== commentid))
   }
 
+
+  this.deleteCommentAnswer = async (id, commentId) => {
+    await deleteCommentAnswer(id, commentId)
+    p.childItemComment.length && p.setchildItemComment(comment => {
+      const _comment = [...comment]
+      const index = _comment.findIndex((c) => c._id === id)
+      const filter = _comment[index].answer.filter((a) => (a._id !== commentId))
+      _comment[index].answer = filter
+      return _comment
+    })
+  }
 
 
   this.like = async (commentid) => {
@@ -123,12 +160,41 @@ export function clientController(p) {
   }
 
 
+
   this.disLike = async (commentid) => {
     const { data } = await commentDisLike(commentid)
     p.setchildItemComment(comment => {
       let findIndex = comment.findIndex(c => c._id === commentid)
       comment[findIndex].disLikeCount = data
       return comment
+    })
+  }
+
+
+  this.likeAnswer = async (id, commentId) => {
+    const { data } = await likeAnswer(id, commentId)
+    p.setchildItemComment(comment => {
+      const _comment = [...comment]
+      const findIndex = _comment.findIndex(c => c._id === id)
+      const answer = _comment[findIndex].answer
+      const answerIndex = answer.findIndex((a) => a._id === commentId)
+      console.log(answer[answerIndex]);
+      _comment[findIndex].answer[answerIndex].likeCount = data
+      return _comment
+    })
+  }
+
+
+  this.disLikeAnswer = async (id, commentId) => {
+    const { data } = await disLikeAnswer(id, commentId)
+    p.setchildItemComment(comment => {
+      const _comment = [...comment]
+      const findIndex = _comment.findIndex(c => c._id === id)
+      const answer = _comment[findIndex].answer
+      const answerIndex = answer.findIndex((a) => a._id === commentId)
+      console.log(answer[answerIndex]);
+      _comment[findIndex].answer[answerIndex].disLikeCount = data
+      return _comment
     })
   }
 

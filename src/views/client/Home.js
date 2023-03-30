@@ -13,6 +13,7 @@ function Home(p) {
 
   // const pr = states()
 
+  p._client.getSlider()
   p._client.getCategory()
   p._client.getOffers()
   p._client.getPopulars()

@@ -3,7 +3,6 @@ import { Scroll, Span, P, Press, Py, Badge } from '../../../other/Components/Htm
 
 const PanelAdminDrawer = (p) => {
   return (
-    <Scroll ccStyle={{ flexGrow: 1 }} >
       <Scroll ccStyle={{ flexGrow: 1 }} >
         <Span mr={2} w={'95%'} border={[1, '#0479']}>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
@@ -16,7 +15,7 @@ const PanelAdminDrawer = (p) => {
             <Press mt={10} onClick={() => p.navigation.navigate('GetProposal')} ><Py>صندوق انتقادات و پیشنهادات</Py></Press>
           </Span>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
-            <Press onClick={() => { p.navigation.navigate('Sellers') }} ><Py>فروشندگان</Py></Press>
+            <Press onClick={() => { p.navigation.navigate('TableCategory') }} ><Py>محصولات</Py></Press>
             <Press onClick={() => p.navigation.navigate('ListUnAvailable')} mt={10} ><Py>محصولات ناموجود</Py></Press>
           </Span>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
@@ -28,9 +27,11 @@ const PanelAdminDrawer = (p) => {
             <Press onClick={() => p.navigation.navigate('Notifee')} ><Py>ارسال نوتیفیکیشن</Py></Press>
             <Press mt={10} onClick={() => p.navigation.navigate('CreateSlider')} ><Py>ساخت اسلایدر</Py></Press>
           </Span>
+          <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
+            <Press onClick={() => p.navigation.navigate('Profile')} ><Py>حساب کاربری</Py></Press>
+          </Span>
         </Span>
       </Scroll>
-    </Scroll>
   )
 }
 

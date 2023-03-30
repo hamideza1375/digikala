@@ -15,7 +15,7 @@ const GetCode = memo((p) => {
   return (
     <Column >
       <Form $code $codeAutoFocus onClick={verifycode} {...p} >
-        <Press onClick={() => { if (p.twoMinut === 0 ) { p.settwoMinut(0); getNewCode() } }} style={{ cursor: (p.twoMinut === 0 ) ? 'pointer' : '' }} >
+        <Press mt={5} onClick={() => { if (p.twoMinut === 0 && !p.showActivity) { getNewCode();  p.$input?.get('inputCodeId')?.focus() } }} style={{ cursor: (p.twoMinut === 0 ) ? 'pointer' : '' }} >
           <P color={p.twoMinut === 0  ? '#08f' : '#c1c1c1'}>ارسال دوباره کد {(p.twoMinut === 0 ) ? 'فعال' : p.twoMinut}</P>
         </Press>
       </Form>

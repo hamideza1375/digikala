@@ -6,7 +6,7 @@ import { axios, localhost } from '../../other/utils/axios/axios'
 
 const Location = (p) => {
 
-  const disable = useRef(false)
+  const disable = useRef(true)
 
   useEffect(() => {
 
@@ -23,9 +23,9 @@ const Location = (p) => {
 
 
     //! onload
-    const street = 'شهر تهران بخش مرکزی شهرستان تهران'
-    marker.bindPopup(street).openPopup()
-    marker.bindPopup(street).openPopup()
+    // const street = 'شهر تهران بخش مرکزی شهرستان تهران'
+    // marker.bindPopup(street).openPopup()
+    // marker.bindPopup(street).openPopup()
     //! onload
 
 
@@ -91,7 +91,7 @@ const Location = (p) => {
 
 
     //! getUserLocation
-    function onLocationError(e) { alert('نتوانست موقعیت مکانیتان را پیدا کند'); }
+    function onLocationError(e) { p.toast.warning('خطای دریافت موقعیت', 'نتوانسایم به موقعیت مکانیتان دسترسی پیدا کنیم'); }
     async function onLocationFound(e) {
       (async () => {
         const { data, status } = await axios.post(`${localhost}/reverse`, e.latlng, { headers: { 'Content-Type': 'application/json' } })
@@ -105,7 +105,7 @@ const Location = (p) => {
             setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
             document.getElementById('bottomDiv').style.display = 'none'
             map.stopLocate()
-          disable.current = false
+            disable.current = false
           }
         }
       })()
@@ -129,7 +129,7 @@ const Location = (p) => {
           style={{ width: 200, margin: ' 3px 2px 0 0', display: 'flex', flexDirection: 'row', alignItems: ' flex-end', }}>
           <input type="text" placeholder="مناطق تهران را جستجو کنید" id='inputSearch' style={{ borderTopRightRadius: 3, borderBottomRightRadius: 3, textAlign: 'right', border: '1px solid rgb(150, 146, 146)', display: 'block', flexGrow: 1, height: 30, position: 'relative', zIndex: 1000, paddingRight: 5, fontSize: 12 }} />
           <i className="fa fa-search" id='searching' style={{ cursor: 'pointer', borderTopLeftRadius: 3, borderBottomLeftRadius: 3, border: '1px solid rgb(150, 146, 146)', borderRightWidth: 0, backgroundColor: '#fff', fontSize: 15, display: 'block', height: 30, width: 30, position: 'relative', zIndex: 1000, boxSizing: 'border-box', }}>
-            <span style={{ display: 'flex', alignItems: 'center', transform: 'rotate(-45deg)', marginTop:13, marginLeft:-9 }} >
+            <span style={{ display: 'flex', alignItems: 'center', transform: 'rotate(-45deg)', marginTop: 13, marginLeft: -9 }} >
               <span style={{ border: '3px solid black', height: 8, width: 8, borderRadius: '50%' }} />
               <span style={{ background: 'black', height: 3.5, width: 7 }} />
             </span>
@@ -140,7 +140,7 @@ const Location = (p) => {
       <div id="map" style={{ width: '100%', height: 'calc(99vh)', position: 'fixed', bottom: 0, left: 0 }}></div>
 
       <div id='bottomDiv' style={{ display: 'flex', flexDirection: 'row', visibility: 'visible', zIndex: 10000, position: 'fixed', bottom: 0, width: '100%', height: 42, background: '#fff', padding: '6px 5px 0px', boxSizing: 'border-box' }}>
-        <button disabled={disable.current} id='btnPayment' onClick={() => p.navigation.navigate('SetAddressInTehran')} style={{ display: 'block', border: '1px solid #07f', background: "#fff", color: '#07f', height: '30px', width: '90%', margin: '0 auto', fontSize: '16px', borderRadius: '5px', cursor: 'pointer' }} >تایید</button>
+        <button disabled={disable.current} id='btnPayment' onClick={() => p.navigation.replace('SetAddressInTehran')} style={{ display: 'block', border: '1px solid #07f', background: "#fff", color: '#07f', height: '30px', width: '90%', margin: '0 auto', fontSize: '16px', borderRadius: '5px', cursor: !disable.current ? 'pointer' : '' }} >تایید</button>
       </div>
 
     </div>

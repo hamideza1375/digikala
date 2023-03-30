@@ -16,6 +16,7 @@ export const editComment = async (id, body) => axios.put(`${localhost}/editComme
 export const deleteComment = async (id) => axios.delete(`${localhost}/deleteComment/${id}`)
 export const deleteCommentAnswer = async (id, commentId) => axios.delete(`${localhost}/deleteCommentAnswer/${id}?commentId=${commentId}`)
 export const getSingleComment = async (id) => axios.get(`${localhost}/getSingleComment/${id}`)
+export const getSingleCommentAnswer = async (id, commentId) => axios.get(`${localhost}/getSingleCommentAnswer/${id}?commentId=${commentId}`)
 export const getNotification = async () => axios.get(`${localhost}/getNotification`)
 export const reverse = async (body) => axios.post(`${localhost}/reverse`, body)
 export const geocode = async (body) => axios.post(`${localhost}/geocode`, body)

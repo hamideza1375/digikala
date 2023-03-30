@@ -16,6 +16,7 @@ export function user() {
   const [confirmPassword, setconfirmPassword] = useState('')
   const [imageUrl, setimageUrl] = useState('')
   const [message, setmessage] = useState('')
+  const [oldPassword, setoldPassword] = useState('')
   const [password, setpassword] = useState('')
   const [remember, setremember] = useState('')
   const [phoneOrEmail, setphoneOrEmail] = useState('')
@@ -44,6 +45,7 @@ export function user() {
     confirmPassword, setconfirmPassword,
     imageUrl, setimageUrl,
     message, setmessage,
+    oldPassword, setoldPassword,
     password, setpassword,
     phoneOrEmail, setphoneOrEmail,
 

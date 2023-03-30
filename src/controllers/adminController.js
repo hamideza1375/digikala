@@ -1,4 +1,4 @@
-import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer } from "../services/adminService"
+import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable } from "../services/adminService"
 import { getSingleItem } from "../services/clientService"
 import _useEffect from "./_initial"
 import seconder from '../other/utils/seconder'
@@ -69,8 +69,17 @@ export function adminController(p) {
   }
 
 
+  this.getChildItemsTable = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getChildItemsTable(p.route.params.id, p.route.params.sellerId)
+        p.setchildItem(data.childItems.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+      })()
+    }, [])
+  }
+
   this.createChildItem = async () => {
-    await createChildItem(p.route.params.id, {
+    await createChildItem(p.route.params.id, p.route.params.sellerId, {
       image1: p.image1,
       image2: p.image2,
       image3: p.image3,
@@ -222,11 +231,14 @@ export function adminController(p) {
   }
 
 
-  this.getAllAddressForChart = async () => {
+  this.getDataForChart = async () => {
     _useEffect(() => {
       (async () => {
-        const { data } = await getAllAddressForChart()
-        p.setchartData(data)
+        const { data } = await getDataForChart()
+        p.setaddress7DeyForChart(data.getAddress7DeyForChart)
+        p.setusers7DeyForChart(data.getUsers7DeyForChart)
+        p.setaddress1YearsForChart(data.getAddress1YearsForChart)
+        p.setusersLength(data.getUsersLength)
       })()
     }, [])
   }
@@ -281,14 +293,6 @@ export function adminController(p) {
     }, [])
   }
 
-
-  this.getAllUser = async () => {
-    _useEffect(() => {
-      getAllUser().then(({ data }) => {
-        p.setchartUserLength(data.allUsers)
-      })
-    }, [])
-  }
 
 
   this.adminTicketBox = async () => {

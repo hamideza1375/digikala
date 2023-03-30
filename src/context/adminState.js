@@ -3,7 +3,11 @@ import { useState } from "react"
 
 export function admin() {
 
-  const [chartData, setchartData] = useState([
+  const [usersLength, setusersLength] = useState('')
+  const [users7DeyForChart, setusers7DeyForChart] = useState([])
+  const [address7DeyForChart, setaddress7DeyForChart] = useState([])
+  const [address1YearsForChart, setaddress1YearsForChart] = useState([])
+    const [chartData, setchartData] = useState([
 
     // { _id: '1', date: new Date('2023-1-1 22:3:0'), name: 'reza', price: 200000, checkSend: 0, queueSend: 1, send: 0 },
     // { _id: '1', date: new Date('2023-1-1 22:3:0'), name: 'reza', price: 200000, checkSend: 0, queueSend: 0, send: 1 },
@@ -237,6 +241,10 @@ export function admin() {
     chartUserLength, setchartUserLength,
     adminTicketBox, setadminTicketBox,
     chartData, setchartData,
+    users7DeyForChart, setusers7DeyForChart,
+    usersLength, setusersLength,
+    address7DeyForChart, setaddress7DeyForChart,
+    address1YearsForChart, setaddress1YearsForChart,
     showProgressChartDropdown, setshowProgressChartDropdown,
     currentSellerTable, setcurrentSellerTable,
     sellerTable, setsellerTable,

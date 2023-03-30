@@ -6,7 +6,6 @@ export default function DeleteAdmin(p) {
   const sendDeleteAdmin = () => p._admin.deleteAdmin()
   p._admin.getAllAdmin()
 
-  console.log('p.allAdmin', p.allAdmin);
 
   return (
     <>

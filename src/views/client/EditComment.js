@@ -3,7 +3,7 @@ import { Container2, Form } from '../../other/Components/Html'
 
 const EditComment = (p) => {
 
-  // p._client.getSingleComment()
+  p._client.getSingleComment()
 
   return (
     <Container2>

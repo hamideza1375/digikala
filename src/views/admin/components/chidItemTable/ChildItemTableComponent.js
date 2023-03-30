@@ -1,5 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Table } from '../../../../other/Components/Html';
+import seconder from '../../../../other/utils/seconder';
 
 const ChildItemTableComponent = (p) => {
   const [childItemsTable, setchildItemsTable] = useState([])
@@ -7,12 +8,13 @@ const ChildItemTableComponent = (p) => {
   const deleteChildItem =(id)=> p._admin.deleteChildItem(id)
   const changeAvailable =(id)=> p._admin.changeAvailable(id)
 
+
   return (
     <Table
       color={['#fff', '#eee', 'black']}
       border={[1, '#ccc']}
       header={['تخفیف' ,'حذف','موجودیت', 'ویرایش', 'قیمت', 'عنوان']}
-      body={['off' ,'حذف','title', 'ویرایش', 'price', 'title']}
+      body={['off', 'حذف','title', 'ویرایش', 'price', 'title']}
       btn1={'#e63'}
       btn1onClick={() => { p.navigation.navigate('SetOffer',{id:childItemsTable[0]._id})  }}
       btn2={'#e33'}

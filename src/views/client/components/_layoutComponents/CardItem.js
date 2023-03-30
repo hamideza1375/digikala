@@ -7,7 +7,7 @@ import { localhost } from '../../../../other/utils/axios/axios'
 import seconder from '../../../../other/utils/seconder'
 
 let interval
-const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {
+const CardItem = ({ onClick, item, spacePrice, h = 240, w , style, sh = { r: 6, o: .4, of: { width: 0, height: 2 } } }) => {
 
   const [dt, setdt] = useState()
 
@@ -23,7 +23,7 @@ const CardItem = ({ onClick, item, spacePrice, h = 240, w = 200, style, sh = { r
     <Card2
       onClick={onClick}
       bgcolor={'#fff'} sh={sh}
-      style={[{ minWidth: 161, maxWidth: 300, borderColor: 'silver', width: w, flexGrow: 1, marginVertical: 15, height: h }, style]}
+      style={[{ minWidth: 161, maxWidth: 500, width: w, borderColor: 'silver',  flexGrow: 1, marginVertical: 15, height: h }, style]}
        src={item.imageUrl && `${localhost}/upload/childItem/${item.imageUrl}`}
       coulumn1={<Span mt={8} w={'100%'}><P fs={11} ta='center' as='center' >{item.title}</P></Span>}
       coulumn2={<Span bgcolor='#eee' fd='row' h={35} jc='center' w={'100%'}>

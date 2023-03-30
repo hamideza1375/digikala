@@ -64,7 +64,7 @@ const SingleItem = (p) => {
                   <Specifications {...p} />
                 </Suspense>
 
-                <Suspense style={{backgroundColor: 'red',}} fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+                <Suspense style={{backgroundColor: 'red'}} fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
                   <Obligations mt={15} {...p} />
                 </Suspense>
               </Span>
@@ -99,4 +99,3 @@ const SingleItem = (p) => {
 export default SingleItem
 
 
-// هرکس که نظر میده بتونه لایک کنه و اگه لایک کرده بود بزن این کاربر این کالارا پیشنهاد میکند و ستاره رو فقط افرادی که دانلود کردن بتونن بدن

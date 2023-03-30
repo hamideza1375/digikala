@@ -29,7 +29,7 @@ const Form = ({
   webStyle = {}, nativeStyle = {}, timer = false, btn = true,
   contentContainerStyle, mAutoFocus, mt, bgcolor = '#f0f0f0',
   postal, $plaque, $unit, $address,
-  city, f, e, p, cp, m, ch, c, t, pr, im, i, edit, s, ph, $code, v, style,
+  city, f, e, op, p, cp, m, ch, c, t, pr, im, i, edit, s, ph, $code, v, style,
   plackTextTop = true,
   pb = 25, pt = 10,
   register,
@@ -55,7 +55,7 @@ const Form = ({
 
 
   const { toast, title, settitle, price, setprice, phone, setphone, phoneOrEmail, setphoneOrEmail, imageUrl, setimageUrl,
-    videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, password, setpassword, confirmPassword, setconfirmPassword,
+    videoUrl, setvideoUrl, info, setinfo, fullname, setfullname, email, setemail, oldPassword, setoldPassword, password, setpassword, confirmPassword, setconfirmPassword,
     postalCode, setpostalCode, plaque, setplaque, unit, setunit, address, setaddress, message, setmessage, code, setcode, captcha, setcaptcha,
     setremember, star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, fiveStar, setfiveStar, refInput, rand, setRand,
 
@@ -63,7 +63,7 @@ const Form = ({
     , sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3, sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6,
     image1, setimage1, image2, setimage2, image3, setimage3, image4, setimage4, offerTime, setofferTime, offerValue, setofferValue,
     state, setstate, City, setCity,
-    height, showActivity, setshowActivity
+    height, showActivity, setshowActivity, $input
   } = context()
 
 
@@ -246,6 +246,7 @@ const Form = ({
 
 
 
+  const [oSecure, setoSecure] = useState(true)
   const [secure, setSecure] = useState(true)
   const [secure2, setSecure2] = useState(true)
   const [show, setshow] = useState(ch && !checkText ? false : true)
@@ -260,6 +261,7 @@ const Form = ({
 
   const [_fullname, set_Fullname] = useState()
   const [_email, set_Email] = useState()
+  const [_oldPassword, set_OldPassword] = useState()
   const [_password, set_Password] = useState()
   const [_confirmPassword, set_ConfirmPassword] = useState()
   const [_unit, set_Unit] = useState()
@@ -299,6 +301,7 @@ const Form = ({
   newObj.phoneOrEmail = phoneOrEmail;
   newObj.fullname = fullname
   newObj.email = email;
+  newObj.oldPassword = oldPassword;
   newObj.password = password;
   newObj.confirmPassword = confirmPassword;
   newObj.title = title
@@ -335,6 +338,7 @@ const Form = ({
   var poe = phore ? newObj.phoneOrEmail === phoneOrEmail : true
   var flm = f ? newObj.fullname === fullname : true
   var eml = e ? newObj.email === email : true
+  var opsd = op ? newObj.oldPassword === oldPassword : true
   var psd = p ? newObj.password === password : true
   var cfpsd = cp ? newObj.confirmPassword === confirmPassword : true
   var unt = $unit ? newObj.unit === unit : true
@@ -503,6 +507,25 @@ const Form = ({
             />
           }
 
+          {op &&
+            <Frm
+              plackTextTop={plackTextTop}
+              textContentType={'none'}
+              autoComplete={'off'}
+              icon={!oSecure ? "eye" : "eye-slash"}
+              p="رمز عبور قبلی"
+              state={oldPassword}
+              setState={setoldPassword}
+              getBlur={_oldPassword}
+              setBlur={set_OldPassword}
+              newObj={newObj.oldPassword}
+              yub={opsd}
+              styles={styles}
+              secureTextEntry={oSecure}
+              iconPress={() => { setoSecure(!oSecure); }}
+            />
+          }
+
           {p &&
             <Frm
               plackTextTop={plackTextTop}
@@ -510,6 +533,7 @@ const Form = ({
               autoComplete={autoComplete ? "password" : 'off'}
               icon={!secure ? "eye" : "eye-slash"}
               p="رمز عبور"
+              p2="رمز عبور جدید"
               iconLeft={pIconLeft}
               iconRight={pIconRight}
               state={password}
@@ -670,6 +694,8 @@ const Form = ({
 
           {$code &&
             <Frm
+              $input={$input}
+              textId='inputCodeId'
               plackTextTop={plackTextTop}
               textContentType="oneTimeCode"
               autoComplete={'on-time-code'}
@@ -1130,12 +1156,13 @@ const Form = ({
                   <TextInput
                     ref={refInput}
                     keyboardType="numeric"
+                    maxLength={4}
                     value={captcha}
                     placeholder="کد امنیتی" style={[styles.TextInput, { borderColor: '#666' }, rand != captcha && _captcha && { borderColor: '#a22' }]}
                     onChangeText={text => setcaptcha(text)} />
                 </View>
-                {((_captcha) && (!captcha) ? <Text style={{ color: 'red', width: captcha ? 280 : 260 }}>لطفا کادر را پر کنید</Text> : <></>)}
-                {((_captcha) && (captcha) && (rand != captcha) ? <Text style={{ color: 'red', width: captcha ? 280 : 260 }}> کد وارد شده اشتباه هست</Text> : <></>)}
+                {((_captcha) && (!captcha) ? <Py fs={11} style={{ color: 'red', width: captcha ? 280 : 260 }}>لطفا کادر را پر کنید</Py> : <></>)}
+                {((_captcha) && (captcha) && (rand != captcha) ? <Py fs={11} style={{ color: 'red', width: captcha ? 280 : 260 }}> کد وارد شده اشتباه هست</Py> : <></>)}
               </KeyboardAvoidingView>
             </>
           }
@@ -1230,9 +1257,10 @@ const Form = ({
               {btn && <Button
                 disable={disableClick}
                 onPressIn={() => {
-                  setremember && setremember(changeremember ? (60000 * 60 * 24 * 365) : ('24h'))
+                  setremember && setremember(changeremember ? (60 * 1000 * 60 * 24 * 365) : ('24h'))
                   set_Fullname(true);
                   set_Email(true);
+                  set_OldPassword(true)
                   set_Password(true);
                   set_ConfirmPassword(true);
                   set_Plaque(true);
@@ -1268,12 +1296,12 @@ const Form = ({
 
                 }}
                 onPress={async () => {
-                  setshowActivity(true)
-                  if (stct && flm && eml && psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
+                  if (stct && flm && eml && opsd, psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
 
                     setdisableClick(true)
 
                     if (!timer) {
+                      setshowActivity(true)
                       onClick()
                       // setRand(parseInt(Math.random() * 9000 + 1000))
                     } else {
@@ -1300,6 +1328,7 @@ const Form = ({
                         AsyncStorage.getItem("several").then((several) => {
                           AsyncStorage.setItem("several", JSON.stringify(JSON.parse(several) + 1)).then(() => { })
                         })
+                        setshowActivity(true)
                         onClick()
                         // setRand(parseInt(Math.random() * 9000 + 1000))
                       }

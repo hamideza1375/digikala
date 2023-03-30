@@ -1,10 +1,18 @@
 import { useEffect } from "react";
-import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, createCommentAnswer, deleteComment, deleteCommentAnswer, disLikeAnswer, editComment, editCommentAnswer, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleItem, getSlider, likeAnswer, offers, reverse } from "../services/clientService";
+import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, createCommentAnswer, deleteComment, deleteCommentAnswer, disLikeAnswer, editComment, editCommentAnswer, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleCommentAnswer, getSingleItem, getSlider, likeAnswer, offers, reverse } from "../services/clientService";
 import { getSingleSavedItems } from "../services/userService";
 import _useEffect from "./_initial";
 
 export function clientController(p) {
 
+
+  this.getSlider = () => {
+    // _useEffect(() => {
+    //   getSlider().then(({ data }) => {
+    //     data && p.setslider(Object.values(data))
+    //   })
+    // }, [])
+  }
 
   this.getCategory = () => {
     _useEffect(() => {
@@ -14,6 +22,9 @@ export function clientController(p) {
       })()
     }, [])
   }
+
+
+ 
 
 
   this.getChildItems = () => {
@@ -69,9 +80,9 @@ export function clientController(p) {
 
   this.createComment = async () => {
     const { data } = await createComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
-    p.childItemComment.length && p.setchildItemComment(comment => {
+    p.setchildItemComment(comment => {
       const _comment = [...comment]
-      _comment.unshift(data.comment);
+      _comment.push(data.comment);
       return _comment
     })
   }
@@ -98,10 +109,17 @@ export function clientController(p) {
 
   this.getSingleComment = async () => {
     _useEffect(() => {
-      getSingleComment(p.route.params.commentid).then(({ data }) => {
+      if(!p.route.params.commentId){
+      getSingleComment(p.route.params.id).then(({ data }) => {
         p.setmessage(data.comment.message);
         p.setfiveStar(data.comment.fiveStar);
       })
+    } else {
+      getSingleCommentAnswer(p.route.params.id, p.route.params.commentId).then(({ data }) => {
+        p.setmessage(data.comment.message);
+        p.setfiveStar(data.comment.fiveStar);
+      })
+    }
     }, [])
   }
 
@@ -178,7 +196,6 @@ export function clientController(p) {
       const findIndex = _comment.findIndex(c => c._id === id)
       const answer = _comment[findIndex].answer
       const answerIndex = answer.findIndex((a) => a._id === commentId)
-      console.log(answer[answerIndex]);
       _comment[findIndex].answer[answerIndex].likeCount = data
       return _comment
     })
@@ -192,7 +209,6 @@ export function clientController(p) {
       const findIndex = _comment.findIndex(c => c._id === id)
       const answer = _comment[findIndex].answer
       const answerIndex = answer.findIndex((a) => a._id === commentId)
-      console.log(answer[answerIndex]);
       _comment[findIndex].answer[answerIndex].disLikeCount = data
       return _comment
     })
@@ -229,7 +245,6 @@ export function clientController(p) {
 
 
   this.confirmPayment = async () => {
-    p.setshowActivity(true)
     const { data } = await confirmPayment({
       productBasket: p.productBasket,
       phone: p.phone,
@@ -244,7 +259,7 @@ export function clientController(p) {
   }
 
 
-
+  
 
   // countMap.forEach((item, index) => ())
   // countMap.keys()

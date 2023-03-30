@@ -83,7 +83,22 @@ const yub = {
     }
 
 
-
+    if (propName === 'oldPassword') {
+      if (typeof target[propName] === 'string') {
+        if (target[propName].length < 4) {
+          return ('رمز عبور نباید کوچک تر از ۴ کلمه باشد')
+        }
+        else if (target[propName].length > 20) {
+          return ('رمز عبور نباید بزرگ تر از ۲۰ کلمه باشد')
+        }
+        else {
+          return target[propName]
+        }
+      }
+      else {
+        return "رمز عبور نباید خالی باشد"
+      }
+    }
 
 
 
@@ -152,8 +167,8 @@ const yub = {
 
 
     if (propName === 'code') {
-      if (target[propName].length < 4 || target[propName].length > 5) {
-        return ('کد را صحیح وارد کنید')
+      if (target[propName].length !== 5) {
+        return ('تعداد اعداد را صحیح وارد کنید')
       }
       else {
         return target[propName]

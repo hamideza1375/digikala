@@ -16,7 +16,6 @@ const Map = ({ region,coordinate, showsUserLocation, draggable, marker, onPress,
       timeout: 15000,
    })
       .then(location => {
-         console.log(region2.latitude);
          setregion2({
            latitude:location.latitude,
            longitude:location.longitude,

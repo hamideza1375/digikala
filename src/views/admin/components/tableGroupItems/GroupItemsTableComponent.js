@@ -18,7 +18,7 @@ const GroupItemsTableComponent = (p) => {
       btn2={'orange'}
       btn2onClick={() => { p.navigation.navigate('EditCategory', { title: categoryTable[0].title, id: categoryTable[0]._id }) }}
       btn3={'#09f'}
-      btn3onClick={() => { p.navigation.navigate('TableChildItems', { title: categoryTable[0].title, id: categoryTable[0]._id }) }}
+      btn3onClick={() => { p.navigation.navigate('Sellers', { title: categoryTable[0].title, id: categoryTable[0]._id }) }}
       object={p.category}
       setobject={setcategoryTable}
     />

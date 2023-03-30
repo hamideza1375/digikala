@@ -26,10 +26,13 @@ const AnswerComment = (p) => {
                   <Span ><P color='#777' >{moment(item.date).format('jYYYY/jM/jD')}</P></Span>
 
 
-                  <Row mh={15} >
-                    <A_icon onClick={() => { p.navigation.navigate('EditComment', { id: item.commentId, commentId: item._id }) }} name='edit' size={18} color='#777' style={{ marginHorizontal: 5 }} />
-                    <M_icon onClick={() => { deleteCommentAnswer(item.commentId, item._id) }} name='delete-outline' size={18} color='#777' style={{ marginHorizontal: 5 }} />
-                  </Row>
+                  {((item.userphoneOrEmail === p.tokenValue.phoneOrEmail) || (p.tokenValue.isAdmin)) ?
+                    <Row mh={15} >
+                      <A_icon onClick={() => { p.navigation.navigate('EditComment', { id: item.commentId, commentId: item._id }) }} name='edit' size={18} color='#777' style={{ marginHorizontal: 5 }} />
+                      <M_icon onClick={() => { deleteCommentAnswer(item.commentId, item._id) }} name='delete-outline' size={18} color='#777' style={{ marginHorizontal: 5 }} />
+                    </Row> :
+                    <></>
+                  }
 
                   <Span ml='auto' >
                     <Py color='#777' >{item.fullname}</Py>
@@ -99,10 +102,14 @@ const ShowComment = (p) => {
                       <Icon name='star' color='orange' size={25} />
                     </Span>
 
-                    <Row mh={15} >
-                      <A_icon onClick={() => { p.navigation.navigate('EditComment', { id: item._id }) }} name='edit' size={18} color='#777' style={{ marginHorizontal: 5 }} />
-                      <M_icon onClick={() => { deleteComment(item._id) }} name='delete-outline' size={18} color='#777' style={{ marginHorizontal: 5 }} />
-                    </Row>
+                    {((item.userphoneOrEmail === p.tokenValue.phoneOrEmail) || (p.tokenValue.isAdmin)) ?
+                      <Row mh={15} >
+                        <A_icon onClick={() => { p.navigation.navigate('EditComment', { id: item._id }) }} name='edit' size={18} color='#777' style={{ marginHorizontal: 5 }} />
+                        <M_icon onClick={() => { deleteComment(item._id) }} name='delete-outline' size={18} color='#777' style={{ marginHorizontal: 5 }} />
+                      </Row>
+                      :
+                      <></>
+                    }
 
                     <Span ml='auto' >
                       <Py color='#777' >{item.fullname}</Py>

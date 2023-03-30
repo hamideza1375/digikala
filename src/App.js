@@ -29,6 +29,7 @@ import Login from "./views/user/Login";
 import Profile from "./views/user/Profile";
 import ForgetPass from "./views/user/ForgetPass";
 import ResetPass from "./views/user/ResetPass";
+import ResetSpecification from "./views/user/ResetSpecification";
 import Logout from "./views/user/Logout";
 import LastPayment from "./views/user/LastPayment";
 import SendProposal from "./views/user/SendProposal";
@@ -122,6 +123,7 @@ const Mobile = () => {
                   <Tab.Screen name="Profile" options={{ title: 'پروفایل' }} {..._children(Profile)} />
                   <Tab.Screen name="ForgetPass" options={{ title: 'فراموشی رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ForgetPass)} />
                   <Tab.Screen name="ResetPass" options={{ title: 'عوض کردن رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetPass)} />
+                  <Tab.Screen name="ResetSpecification" options={{ title: 'عوض کردن رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetSpecification)} />
                   <Tab.Screen name="Logout" options={{ title: 'خروج' }} {..._children(Logout)} />
                   <Tab.Screen name="SendProposal" options={{ headerShown: true, headerTitleStyle: { color: '#222', fontFamily: 'IRANSansWeb', fontSize: 15 }, title: 'ارسال نظرات و پیشنهادات' }} {..._children(SendProposal)} />
                   <Tab.Screen name="LastPayment" options={{ title: 'آخرین خرید' }} {..._children(LastPayment, '100')} />
@@ -187,6 +189,7 @@ const Mobile = () => {
 // propTypes(Login)
 // propTypes(ForgetPass)
 // propTypes(ResetPass)
+// propTypes(ResetSpecification)
 // propTypes(Logout)
 // propTypes(SendProposal)
 // propTypes(LastPayment)
@@ -246,6 +249,7 @@ const linking = {
       Login: '/login',
       ForgetPass: '/forgetpass',
       ResetPass: '/resetpass',
+      ResetSpecification: '/resetspecification',
       Logout: '/logout',
       SendProposal: '/sendproposal',
       LastPayment: '/lastpayment',

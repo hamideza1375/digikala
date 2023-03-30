@@ -5,7 +5,7 @@ import Swiper from '../components/Swiper'
 import { Py } from "../Html";
 
 
-export default function ({initialHeight, iconSize, w,plackTextTop, autoFocus = false, multiline = false, m_icon, iconPress, secureTextEntry, icon, textContentType, autoComplete='off', keyboardType = 'default', p, p2, newObj, iconLeft, iconRight, setBlur, getBlur, state, setState, styles, yub }) {
+export default function ({ textId, $input, initialHeight, iconSize, w, plackTextTop, autoFocus = false, multiline = false, m_icon, iconPress, secureTextEntry, icon, textContentType, autoComplete = 'off', keyboardType = 'default', p, p2, newObj, iconLeft, iconRight, setBlur, getBlur, state, setState, styles, yub }) {
 
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -45,7 +45,7 @@ export default function ({initialHeight, iconSize, w,plackTextTop, autoFocus = f
 
 
   return (
-    <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, maxWidth:w,  }, w === '100%' && {minWidth:'92%'}, (multiline && !initialHeight) && { height: 140, minHeight: 140, marginTop:12 }]}>
+    <KeyboardAvoidingView behavior={"height"} style={[{ height: 70, minHeight: 70, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, maxWidth: w, }, w === '100%' && { minWidth: '92%' }, (multiline && !initialHeight) && { height: 140, minHeight: 140, marginTop: 12 }]}>
       <Animated.View style={[styles.viewInput, { minHeight: 90 }, (multiline && !initialHeight) && { height: 120, minHeight: 120 }, { marginBottom: 5 }]} >
         <Swiper
           cansel={(iconLeft || iconRight) ? false : true}
@@ -56,15 +56,17 @@ export default function ({initialHeight, iconSize, w,plackTextTop, autoFocus = f
           iconRight={iconRight}
         >
           {plackTextTop && <Py fw='100' style={[styles.textinput, { marginTop: 5 }, (multiline && !initialHeight) && { marginVertical: 5 }]} >{p}</Py>}
-          <Animated.View style={[styles.animatedBorder, getBlur && !yub && { borderWidth: 1.2, borderColor: iterPlt, transform: [{ translateX: fadeAnim }] }, (multiline && !initialHeight) && { height: '101%', minHeight: '101%', marginTop:-3 }]} >
+          <Animated.View style={[styles.animatedBorder, getBlur && !yub && { borderWidth: 1.2, borderColor: iterPlt, transform: [{ translateX: fadeAnim }] }, (multiline && !initialHeight) && { height: '101%', minHeight: '101%', marginTop: -3 }]} >
             <Input
+              $input={$input}
+              textId={textId}
               textContentType={textContentType}
               autoComplete={autoComplete}
               keyboardType={keyboardType}
               icon={icon}
               iconSize={iconSize}
               m_icon={m_icon}
-              placeholder={p2?p2:p}
+              placeholder={p2 ? p2 : p}
               value={String(state)}
               onChangeText={(text) => setState(text)}
               onBlur={() => { setBlur(true); !yub && fadeOut() }}
@@ -75,7 +77,7 @@ export default function ({initialHeight, iconSize, w,plackTextTop, autoFocus = f
               multiline={multiline}
             />
           </Animated.View>
-          {getBlur && !yub && <Py style={[styles.textinput, { color: 'red', fontSize:10 , fontWeight:'100'}]} >
+          {getBlur && !yub && <Py style={[styles.textinput, { color: 'red', fontSize: 10, fontWeight: '100' }]} >
             {newObj}
           </Py>
           }

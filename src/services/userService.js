@@ -1,13 +1,16 @@
 import { axios, localhost } from '../other/utils/axios/axios'
 
 export const getCodeForRegister = (body) => axios.post(`${localhost}/getCodeForRegister`, body)
-export const getNewCode = () => axios.post(`${localhost}/getNewCode`)
+export const getNewCode = (newCode) => axios.post(`${localhost}/getNewCode?newCode=${newCode}`)
 export const verifycodeRegister = (body) => axios.post(`${localhost}/verifycodeRegister`, body)
 export const login = (body) => axios.post(`${localhost}/login`, body)
 export const verifyCodeLoginForAdmin = (body) => axios.post(`${localhost}/verifyCodeLoginForAdmin`, body)
 export const getCodeForgetPass = (body) => axios.post(`${localhost}/getCodeForgetPass`, body)
 export const verifycodeForgetPass = (body) => axios.post(`${localhost}/verifycodeForgetPass`, body)
 export const resetPassword = (body) => axios.post(`${localhost}/resetPassword`, body)
+export const resetSpecification = (body) => axios.post(`${localhost}/resetSpecification`, body)
+export const verifycodeResetSpecification = (body) => axios.post(`${localhost}/verifycodeResetSpecification`, body)
+export const getUserSpecification = () => axios.get(`${localhost}/getUserSpecification`)
 export const sendImageProfile = (body) => axios.postData(`${localhost}/sendImageProfile`, body)
 export const getImageProfile = (body) => axios.post(`${localhost}/getImageProfile`, body)
 export const sendProposal = (body) => axios.post(`${localhost}/sendProposal`,body)

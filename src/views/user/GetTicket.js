@@ -33,7 +33,7 @@ const PvTicket = (p) => {
           data={p.answersTicket}
           renderItem={({ item, index }) => (
             item.userId === p.tokenValue.userId ? <Column mv={8} mh={5} w={'80%'} maxw={600} bgcolor='#fff' border={[1, '#f5f5f5']} br={8} p={8} as='flex-start'>
-              <Row onLayout={() => { console.log(); }} w='100%' jc='space-between' >
+              <Row w='100%' jc='space-between' >
                 <P ta='right' fs={9} color='#999' >شما</P>
                 <Row >
                   <Column w={50} ai='flex-start' ><P fs={12} color='#ccce' >{moment(item.date).format('jM/jD')}</P></Column>

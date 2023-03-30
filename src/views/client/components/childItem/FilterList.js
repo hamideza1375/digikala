@@ -297,7 +297,6 @@ const FilterList = (p) => {
                 ((priceFilter) ? (f.price >= priceFilter[0] && f.price <= priceFilter[1]) : (f.price)) &&
                 ((Boolean(isEnabled) === true) ? (Boolean(f.available)) : (typeof Boolean(f.available) === 'boolean'))
               ))
-              console.log(filterArray);
               p.setshowFilterModal(false)
             }}
           >انجام شد</Button>

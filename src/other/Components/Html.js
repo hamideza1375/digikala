@@ -47,8 +47,8 @@ export const Component = React.forwardRef((props, ref) => {
   const width = Dimensions.get('window').width
   const height = Dimensions.get('window').height
 
-  if (width < 320) _col = props._col
-  else if (width >= 320 && width <= 480) _col = props._col1
+  if (width <= 320) _col = props._col
+  else if (width > 320 && width <= 480) _col = props._col1
   else if (width > 480 && width <= 600) _col = props._col2
   else if (width > 600 && width <= 768) _col = props._col3
   else if (width > 768 && width <= 900) _col = props._col4
@@ -62,8 +62,8 @@ export const Component = React.forwardRef((props, ref) => {
   else if (Platform.OS === 'android') stl2 = [props.androidStyle]
   else if (Platform.OS === 'web') stl2 = [props.webStyle]
 
-  if (width < 320) col = props.col
-  else if (width >= 320 && width <= 480) col = col1
+  if (width <= 320) col = props.col
+  else if (width > 320 && width <= 480) col = col1
   else if (width > 480 && width <= 600) _col = col = col2
   else if (width > 600 && width <= 768) col = col3
   else if (width > 768 && width <= 900) col = col4
@@ -116,8 +116,8 @@ export const _text = React.forwardRef((props, ref) => {
   const width = Dimensions.get('window').width
   const height = Dimensions.get('window').height
 
-  if (width < 320) _col = props._col
-  else if (width >= 320 && width <= 480) _col = props._col1
+  if (width <= 320) _col = props._col
+  else if (width > 320 && width <= 480) _col = props._col1
   else if (width > 480 && width <= 600) _col = props._col2
   else if (width > 600 && width <= 768) _col = props._col3
   else if (width > 768 && width <= 900) _col = props._col4
@@ -128,8 +128,8 @@ export const _text = React.forwardRef((props, ref) => {
   if (Platform.OS === 'web') stl = [props.webStyle, props.style]
   else stl = [props.nativeStyle, props.nativeClass, props.initalClass, props.class, props.style, _col, _orientation]
 
-  if (width < 320) col = props.col
-  else if (width >= 320 && width <= 480) col = col1
+  if (width <= 320) col = props.col
+  else if (width > 320 && width <= 480) col = col1
   else if (width > 480 && width <= 600) _col = col = col2
   else if (width > 600 && width <= 768) col = col3
   else if (width > 768 && width <= 900) col = col4
@@ -229,8 +229,8 @@ export const FlatList = ({ loading=true, colomn1, colomn2, colomn3, colomn4, col
   const [index, setindex] = useState(0)
 
   let column
-  if (width < 320) column = colomn ? colomn : 1
-  else if (width >= 320 && width <= 480) column = colomn1
+  if (width <= 320) column = colomn ? colomn : 1
+  else if (width > 320 && width <= 480) column = colomn1
   else if (width > 480 && width <= 600) column = colomn2
   else if (width > 600 && width <= 768) column = colomn3
   else if (width > 768 && width <= 900) column = colomn4

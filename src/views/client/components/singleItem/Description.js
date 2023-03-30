@@ -8,6 +8,11 @@ const Description = (p) => {
 
   p._client.setColor()
 
+  let price = 0
+  if (p.singleItem.offerTime?.exp > new Date().getTime())
+    price = parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue))
+  else price = p.singleItem.price
+
   return (
 
     <Span minw={290} w={'100%'} ai='center' jc='center'>
@@ -26,7 +31,7 @@ const Description = (p) => {
               <P fs={12} >قیمت: </P>
 
 
-              {p.singleItem.offerTime.exp > new Date().getTime() ?
+              {p.singleItem.offerTime?.exp > new Date().getTime() ?
                 <Row >
                   <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue)))} تومان </Pfa>
                   <Pfa color='#e33' fs={12} mt={-1} style={{ textDecorationLine: 'line-through' }} >{spacePrice(p.singleItem.price)} ت </Pfa>
@@ -59,7 +64,6 @@ const Description = (p) => {
                 {p.singleItem.color?.map((item, index) => (
                   <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
                     <Press onClick={() => {
-                      console.log(p.productBasket);
                       p.setcolor((color) => {
                         const c = { ...color }
                         c[p.route.params.id] = item
@@ -90,7 +94,7 @@ const Description = (p) => {
 
                   p.setproductBasket(addNumber => {
                     const obj = { ...addNumber }
-                    obj[p.route.params.id] = { number: 1, ...p.singleItem, color: p.color[p.route.params.id] }
+                    obj[p.route.params.id] = { number: 1, ...p.singleItem, price:price, color: p.color[p.route.params.id] }
                     return obj
                   })
 

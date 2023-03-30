@@ -15,14 +15,14 @@ const Sellers = (p) => {
         <Table
           color={['#fff', '#eee', 'black']}
           border={[1, '#ccc']}
-          header={['حدف', 'غیر فعال', ' نمایش محصولات', 'تلفن', 'نام تجاری']}
+          header={['حدف', 'موجودیت', ' نمایش محصولات', 'تلفن', 'نام تجاری']}
           body={['حدف', 'فعال', 'نمایش', 'phone', 'brand']}
           btn1={'#f55'}
           btn1onClick={() => { deleteSeller(sellerTable[0]._id) }}
           btn2={'#1e1'}
           btn2onClick={() => { setSellerAvailable(sellerTable[0]._id) }}
           btn3={'#09f'}
-          btn3onClick={() => { p.navigation.navigate('TableCategory', { title: sellerTable[0].title, id: sellerTable[0]._id }) }}
+          btn3onClick={() => { p.navigation.navigate('TableChildItems', { title: sellerTable[0].title, id:p.route.params.id ,sellerId: sellerTable[0]._id }) }}
           btn2Opacity
           object={p.currentSellerTable}
           setobject={setsellerTable}
@@ -31,5 +31,6 @@ const Sellers = (p) => {
     </Container2>
   )
 }
+
 
 export default Sellers

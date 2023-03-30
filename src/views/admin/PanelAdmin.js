@@ -3,8 +3,7 @@ import { ProgressChart, Scroll, Span, Drawer2, Container2, Press, DaysChartTotal
 const PanelAdmin = (p) => {
   p._user.getTicketSeen()
   p._admin.getSocketIoSeen()
-  p._admin.getAllAddressForChart()
-  p._admin.getAllUser()
+  p._admin.getDataForChart()
   return (
     <Container2 fd='row'>
       {/* //! یک هم درست کن برای نمایش محصولات که بتونه وارد صفحه ی تکی محصول بشه از توی لیست و کامنتشو ویرایش کنه */}
@@ -17,24 +16,24 @@ const PanelAdmin = (p) => {
             <Scroll ccStyle={{ flexWrap: 'wrap', flexDirection: 'row', justifyContent: 'space-around' }} >
               <Span w={280} h={235} fg={1} m={4}>
                 <Row h={20} jc='center' ><Py fs={11} fw='100' >خرید های هفت روز گذشته</Py></Row>
-                <DaysChartTotal h={215} data={p.chartData} />
+                <DaysChartTotal h={215} data={p.address7DeyForChart} />
               </Span>
               <Span w={280} h={235} fg={1} m={4}>
-                <Row h={20} jc='center' ><Py fs={11} fw='100' >تعداد کل کاربران: {p.chartUserLength.length}</Py></Row>
-                <UserLengthChart h={215} data={p.chartUserLength} />
+                <Row h={20} jc='center' ><Py fs={11} fw='100' >تعداد کل کاربران: {p.usersLength}</Py></Row>
+                <UserLengthChart h={215} data={p.users7DeyForChart} />
               </Span>
             </Scroll>
 
             <Span w='100%' fd='row'>
               <Span w={280} h={200} fg={1} m={4}>
-                <ProgressChart data={p.chartData} />
+                <ProgressChart data={p.address1YearsForChart} />
               </Span>
             </Span>
 
             <Scroll ccStyle={{ flexWrap: 'wrap' }} >
               <Span h={235} fg={1} m={4} jc='flex-end' >
                 <Row h={20} jc='center' ><Py fs={11} fw='100' >خرید های سال گذشته</Py></Row>
-                <YearsChartTotal h={215} data={p.chartData} />
+                <YearsChartTotal h={215} data={p.address1YearsForChart} />
               </Span>
             </Scroll>
 

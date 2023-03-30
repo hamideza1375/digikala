@@ -1,11 +1,11 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Alert from '../other/utils/alert';
-import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen, getTicketSeen, getSavedItem, savedItem, getSavedItems, removeSavedItem } from '../services/userService'
+import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen, getTicketSeen, getSavedItem, savedItem, getSavedItems, removeSavedItem, resetSpecification, getUserSpecification, verifycodeResetSpecification } from '../services/userService'
 import _useEffect from './_initial';
-import jwt_decode from 'jwt-decode';
 import _Alert from '../other/utils/alert';
 import seconder from '../other/utils/seconder';
-import { Axios } from 'axios';
+import axios from 'axios';
+import jwtDecode from 'jwt-decode';
 
 
 export function userController(p) {
@@ -13,11 +13,11 @@ export function userController(p) {
 
   this.timerThreeMinut = async (call) => {
     const localDate = await AsyncStorage.getItem('localDate')
-    const oldDate = localDate ? JSON.parse(localDate) : new Date().getTime() + (1000 * 60 * 3)
+    const oldDate = localDate && localDate > new Date().getTime() ? JSON.parse(localDate) : new Date().getTime() + (1000 * 60 * 3)
     seconder(new Date(oldDate), async ({ days, hours, minutes, seconds, interval }) => {
       call(interval)
       p.settwoMinut(minutes + ':' + seconds)
-      if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) p.settwoMinut(0)
+      if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) setTimeout(() => { p.settwoMinut(0) }, 2000);
       if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) await AsyncStorage.removeItem('localDate')
     })
     await AsyncStorage.setItem('localDate', JSON.parse(oldDate))
@@ -26,7 +26,6 @@ export function userController(p) {
 
 
   this.deleteTimerThreeMinut = async () => {
-    p.setshowActivity(true)
     await AsyncStorage.removeItem('localDate')
   }
 
@@ -34,7 +33,8 @@ export function userController(p) {
 
   this.getNewCode = async () => {
     p.setshowActivity(true)
-    await getNewCode()
+    await getNewCode(p.route.params.newCode)
+    this.deleteTimerThreeMinut()
     this.timerThreeMinut(() => { })
   }
 
@@ -42,22 +42,25 @@ export function userController(p) {
   this.loadPageTimer = () => {
     _useEffect(() => {
       let timerInterwal
-      // if (!p.timerToMinutTrueFalse) 
-      this.timerThreeMinut((interval) => timerInterwal = interval)
+      (async () => {
+        const localDate = await AsyncStorage.getItem('localDate')
+        if (localDate > new Date().getTime()) {
+          this.timerThreeMinut((interval) => timerInterwal = interval)
+        } else p.settwoMinut(0)
+      })()
       return () => { timerInterwal && clearInterval(timerInterwal) }
     }, [])
   }
 
   this.getCodeForRegister = async () => {
-    p.setshowActivity(true)
     await getCodeForRegister({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, password: p.password })
+    this.deleteTimerThreeMinut()
     this.timerThreeMinut(() => { })
     p.navigation.navigate('GetCode', { register: true })
   }
 
 
   this.verifycodeRegister = async () => {
-    p.setshowActivity(true)
     await verifycodeRegister({ code: p.code })
     this.deleteTimerThreeMinut()
     p.navigation.navigate('Login')
@@ -66,46 +69,46 @@ export function userController(p) {
 
 
   this.login = async () => {
-    p.setshowActivity(true)
     const { data } = await login({ phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember, captcha: p.captcha })
     await AsyncStorage.removeItem("several")
     await AsyncStorage.removeItem('getMinutes')
     if (!data?.token) {
+      this.deleteTimerThreeMinut()
       this.timerThreeMinut(() => { })
       p.navigation.navigate('GetCode', { login: true })
     }
     else {
       await AsyncStorage.setItem('token', data.token)
-      const user = jwt_decode(data.token)
-      console.log('user', user);
+      axios.defaults.headers.common["Authorization"] = data.token
+      const user = jwtDecode(data.token)
       p.settokenValue(user)
-      p.navigation.navigate('Profile')
+      p.navigation.replace('Profile')
     }
   }
 
 
   this.verifyCodeLoginForAdmin = async () => {
-    p.setshowActivity(true)
     const { data } = await verifyCodeLoginForAdmin({ code: p.code, phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember })
     await AsyncStorage.setItem('token', data.token)
-    const user = jwt_decode(data.token)
-    this.deleteTimerThreeMinut()
+    axios.defaults.headers.common["Authorization"] = data.token
+    const user = jwtDecode(data.token)
     p.settokenValue(user)
-    p.navigation.navigate('PanelAdmin')
+    this.deleteTimerThreeMinut()
+    p.navigation.replace('PanelAdmin')
   }
 
 
   this.getCodeForgetPass = async () => {
-    p.setshowActivity(true)
     await getCodeForgetPass({ phoneOrEmail: p.phoneOrEmail })
+    this.deleteTimerThreeMinut()
     this.timerThreeMinut(() => { })
-    p.navigation.navigate('GetCode', { forgetPass: true })
+    p.navigation.navigate('GetCode', { forgetPass: true, newCode: true })
   }
 
 
   this.verifycodeForgetPass = async () => {
-    p.setshowActivity(true)
     await verifycodeForgetPass({ code: p.code })
+    this.deleteTimerThreeMinut()
     p.navigation.navigate('ResetPass')
   }
 
@@ -120,18 +123,51 @@ export function userController(p) {
     else if (p.route.params.forgetPass) {
       this.verifycodeForgetPass()
     }
+    else if (p.route.params.resetSpecification) {
+      this.verifycodeResetSpecification()
+    }
   }
 
 
   this.resetPassword = async () => {
-    p.setshowActivity(true)
     await resetPassword({ password: p.password, confirmPassword: p.confirmPassword })
     p.navigation.navigate('Login')
   }
 
 
+  this.getUserSpecification = async () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getUserSpecification()
+        p.setfullname(data.fullname)
+        p.setphoneOrEmail(data.phoneOrEmail)
+      })()
+    }, [])
+  }
+
+
+  this.resetSpecification = async () => {
+    await resetSpecification({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, oldPassword: p.oldPassword, password: p.password })
+    this.deleteTimerThreeMinut()
+    this.timerThreeMinut(() => { })
+    p.navigation.navigate('GetCode', { resetSpecification: true, newCode: true })
+  }
+
+
+
+  this.verifycodeResetSpecification = async () => {
+    const { data } = await verifycodeResetSpecification({ code: p.code })
+    await AsyncStorage.setItem("token", data.token)
+    axios.defaults.headers.common["Authorization"] = data.token;
+    const user = jwtDecode(data.token);
+    p.settokenValue(user);
+    this.deleteTimerThreeMinut()
+    p.navigation.navigate('Profile')
+  }
+
+
+
   this.sendImageProfile = async () => {
-    p.setshowActivity(true)
     const { data } = await sendImageProfile({ imageUrl: p.imageUrl })
   }
 
@@ -139,7 +175,6 @@ export function userController(p) {
   this.getImageProfile = async () => {
     _useEffect(() => {
       (async () => {
-        p.setshowActivity(true)
         const { data } = await getImageProfile()
       })()
     }, [])
@@ -147,7 +182,6 @@ export function userController(p) {
 
 
   this.sendProposal = async () => {
-    p.setshowActivity(true)
     await sendProposal({ message: p.message })
   }
 
@@ -155,7 +189,6 @@ export function userController(p) {
   this.getLastPayment = () => {
     _useEffect(() => {
       (async () => {
-        p.setshowActivity(true)
         const { data } = await getLastPayment()
       })()
     }, [])
@@ -165,7 +198,6 @@ export function userController(p) {
   this.getAnswersTicket = () => {
     _useEffect(() => {
       (async () => {
-        p.setshowActivity(true)
         const { data } = await getAnswersTicket(p.route.params.id)
         p.setanswersTicket(data)
       })()
@@ -174,7 +206,6 @@ export function userController(p) {
 
 
   this.sendNewTicket = async () => {
-    p.setshowActivity(true)
     const { data } = await sendNewTicket({ title: p.title, message: p.message, imageUrl: p.imageUrl })
     p.setuserTicketBox(ticketBox => {
       const ticket = [...ticketBox]
@@ -186,7 +217,6 @@ export function userController(p) {
 
 
   this.sendTicketAnswer = async (call) => {
-    p.setshowActivity(true)
     const { data } = await sendTicketAnswer({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id)
     p.setanswersTicket(singleTicket => {
       const answer = [...singleTicket]
@@ -201,7 +231,6 @@ export function userController(p) {
 
 
   this.deleteAnswerTicket = async (ticketId) => {
-    p.setshowActivity(true)
     await deleteAnswerTicket(p.route.params.id, ticketId)
     p.setanswersTicket(singleTicket => {
       const filter = singleTicket.filter(a => a._id !== ticketId)
@@ -212,7 +241,6 @@ export function userController(p) {
 
 
   this.editAnswerTicket = async (ticketId, call) => {
-    p.setshowActivity(true)
     const { data } = await editAnswerTicket({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id, ticketId)
     p.setanswersTicket(singleTicket => {
       let ticket = [...singleTicket]
@@ -228,7 +256,6 @@ export function userController(p) {
 
 
   this.getSingleAnswerTicket = async (itemId) => {
-    p.setshowActivity(true)
     const { data } = await getSingleAnswerTicket(p.route.params.id, itemId)
     p.setmessage(data.message)
   }
@@ -249,7 +276,6 @@ export function userController(p) {
         { text: 'Cancel', onPress: () => { } },
         {
           text: 'OK', onPress: async () => {
-            p.setshowActivity(true)
             await deleteTicket(ticketId)
             p.setuserTicketBox(ticketBox => {
               const filter = ticketBox.filter(t => t._id !== ticketId)
@@ -265,7 +291,6 @@ export function userController(p) {
   this.ticketBox = () => {
     _useEffect(() => {
       (async () => {
-        p.setshowActivity(true)
         const { data } = await ticketBox()
         p.setuserTicketBox(data)
       })()
@@ -276,7 +301,6 @@ export function userController(p) {
   this.getTicketSeen = () => {
     _useEffect(() => {
       (async () => {
-        p.setshowActivity(true)
         const { data } = await getTicketSeen()
         p.setticketSeen(data)
       })()
@@ -285,14 +309,12 @@ export function userController(p) {
 
 
   this.savedItem = async () => {
-    p.setshowActivity(true)
     const { data } = await savedItem(p.route.params.id)
     p.setbookmark(data)
   }
 
 
   this.removeSavedItem = async (itemId) => {
-    p.setshowActivity(true)
     await removeSavedItem(itemId)
     p.setbookmark(false)
   }
@@ -316,10 +338,10 @@ export function userController(p) {
         [{ text: 'no', onPress: () => { p.navigation.goBack() } },
         {
           text: 'yes', onPress: async () => {
-            p.settokenValue({})
             p.settoken(false)
             await AsyncStorage.removeItem("token");
-            await AsyncStorage.removeItem("exp");
+            p.settokenValue({})
+            axios.defaults.headers.common["Authorization"] = ''
             p.navigation.replace("Home")
           }
         }])

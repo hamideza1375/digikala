@@ -85,7 +85,7 @@ export function initial() {
   const [input5, setinput5] = useState('') // camera
   const [input6, setinput6] = useState('') // storage
   const [input7, setinput7] = useState('') // waranty
-  const [input8, setinput8] = useState('') // color
+  const [input8, setinput8] = useState([]) // color
   const [input9, setinput9] = useState('') // display
   const [input10, setinput10] = useState('') // display
 
@@ -111,7 +111,7 @@ export function initial() {
   const [City, setCity] = useState('')
   const [state, setstate] = useState('')
   
-  const [latlng, setlatlng] = useState({ lat: 35.6892523, lng: 51.3896004 })
+  const [latlng, setlatlng] = useState({ lat: 0, lng: 0 })
 
   this.all = { 
     latlng, setlatlng,

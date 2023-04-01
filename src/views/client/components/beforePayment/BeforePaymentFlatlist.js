@@ -9,8 +9,8 @@ const BeforePaymentFlatlist = (p) => {
   return (
     <Span f={2} border={[1, 'red']} >
       <FlatList
-        colomn={1} colomn1={1} colomn2={1} colomn3={2}
-        colomn4={2} colomn5={3} colomn6={3}
+        column1={1} column2={1} column3={1} column4={2}
+        column5={2} column6={3}
         data={ Object.entries(p.productBasket)}
         renderItem={({ item, index }) => (
           <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} ai='center' col2={{ marginHorizontal: 3 }} col1={{ marginHorizontal: 3 }}>

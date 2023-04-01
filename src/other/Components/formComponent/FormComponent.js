@@ -47,13 +47,13 @@ export const Input = React.forwardRef((props, ref) => {
 
 
 export const CheckBox = (props) => {
-  const { alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1] } = props;
+  const { alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], bgcolor = "#2c1", br } = props;
   return <_icon checked={props.show} onPress={() => props.setshow && props.setshow(!props.show)} name={"check"} size={18.5} color="#fff" {...props}
-    style={[{ width: 20, height: 20, borderWidth: border[0], borderColor: border[1], textAlign: 'center', margin: m, alignSelf, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginHorizontal: mh, marginVertical: mv }, { backgroundColor: props.show === false ? '#fff' : "#2c1" }, props.style]} />;
+    style={[{ borderRadius:br,width: 20, height: 20, borderWidth: border[0], borderColor: border[1], textAlign: 'center', margin: m, alignSelf, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginHorizontal: mh, marginVertical: mv }, { backgroundColor: props.show === false ? '#fff' : bgcolor }, props.style]} />;
 };
 
 export const CheckBoxRadius = (p) => {
-  const { item={}, index, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onPressIn, style, refObject } = p;
+  const { item={}, index, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onPressIn, style, refObject , bgcolor = "#2c1"} = p;
 
   const ref = useRef();
   //! const show = useRef({show:false});
@@ -61,14 +61,14 @@ export const CheckBoxRadius = (p) => {
   const showValue = useRef({...item});
 
   useEffect(() => {
-    ref.current.setNativeProps({ style: { backgroundColor: "#fff" } })
+    ref.current?.setNativeProps({ style: { backgroundColor: "#fff" } })
     showValue.current.show = false
     refObject && refObject(showValue.current)
   }, [show])
 
   useEffect(() => {
     if (item?.filterValue === '' /* || index === 0 */ ) {
-      ref.current.setNativeProps({ style: { backgroundColor: "#2c1" } })
+      ref.current?.setNativeProps({ style: { backgroundColor: bgcolor } })
       showValue.current.show = true
     }
   }, [])
@@ -81,7 +81,7 @@ export const CheckBoxRadius = (p) => {
         if(onPressIn) {onPressIn()}
         setshow(!show)
         setTimeout(() => {
-          ref.current.setNativeProps({ style: { backgroundColor: '#2c1' } })
+          ref.current?.setNativeProps({ style: { backgroundColor: '#2c1' } })
           showValue.current.show = true
           refObject && refObject(showValue.current)
         }, 200);

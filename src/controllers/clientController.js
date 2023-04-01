@@ -1,4 +1,6 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
+import _Alert from "../other/utils/alert";
 import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, createCommentAnswer, deleteComment, deleteCommentAnswer, disLikeAnswer, editComment, editCommentAnswer, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleCommentAnswer, getSingleItem, getSlider, likeAnswer, offers, reverse } from "../services/clientService";
 import { getSingleSavedItems } from "../services/userService";
 import _useEffect from "./_initial";
@@ -24,7 +26,7 @@ export function clientController(p) {
   }
 
 
- 
+
 
 
   this.getChildItems = () => {
@@ -109,17 +111,17 @@ export function clientController(p) {
 
   this.getSingleComment = async () => {
     _useEffect(() => {
-      if(!p.route.params.commentId){
-      getSingleComment(p.route.params.id).then(({ data }) => {
-        p.setmessage(data.comment.message);
-        p.setfiveStar(data.comment.fiveStar);
-      })
-    } else {
-      getSingleCommentAnswer(p.route.params.id, p.route.params.commentId).then(({ data }) => {
-        p.setmessage(data.comment.message);
-        p.setfiveStar(data.comment.fiveStar);
-      })
-    }
+      if (!p.route.params.commentId) {
+        getSingleComment(p.route.params.id).then(({ data }) => {
+          p.setmessage(data.comment.message);
+          p.setfiveStar(data.comment.fiveStar);
+        })
+      } else {
+        getSingleCommentAnswer(p.route.params.id, p.route.params.commentId).then(({ data }) => {
+          p.setmessage(data.comment.message);
+          p.setfiveStar(data.comment.fiveStar);
+        })
+      }
     }, [])
   }
 
@@ -151,20 +153,43 @@ export function clientController(p) {
 
 
   this.deleteComment = async (commentid) => {
-    await deleteComment(commentid)
-    p.setchildItemComment(comment => comment.filter(c => c._id !== commentid))
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteComment(commentid)
+            p.setchildItemComment(comment => comment.filter(c => c._id !== commentid))
+          }
+        }
+      ]
+    )
   }
 
 
   this.deleteCommentAnswer = async (id, commentId) => {
-    await deleteCommentAnswer(id, commentId)
-    p.childItemComment.length && p.setchildItemComment(comment => {
-      const _comment = [...comment]
-      const index = _comment.findIndex((c) => c._id === id)
-      const filter = _comment[index].answer.filter((a) => (a._id !== commentId))
-      _comment[index].answer = filter
-      return _comment
-    })
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteCommentAnswer(id, commentId)
+            p.childItemComment.length && p.setchildItemComment(comment => {
+              const _comment = [...comment]
+              const index = _comment.findIndex((c) => c._id === id)
+              const filter = _comment[index].answer.filter((a) => (a._id !== commentId))
+              _comment[index].answer = filter
+              return _comment
+            })
+          }
+        }
+      ]
+    )
+
   }
 
 
@@ -244,22 +269,46 @@ export function clientController(p) {
   }
 
 
-  this.confirmPayment = async () => {
+  this.confirmPayment = async (city) => {
     const { data } = await confirmPayment({
       productBasket: p.productBasket,
       phone: p.phone,
       unit: p.unit,
       plaque: p.plaque,
       postalCode: p.postalCode,
-      address: `${p.state}, ${p.City}, ${p.address}`,
+      address: `${p.state}, ${city ? city : p.City}, ${p.address}`,
       latlng: p.latlng,
       description: p.description
     })
+
+   const address = await AsyncStorage.getItem('address')
+
+
+    if(address !== p.address){
+    if (p.route.name === 'Location') {
+      _Alert.alert(
+        "آدرس جدید در مرورگر ذخیره شود؟",
+        "",
+        [
+          { text: 'cancel', onPress: () => { } },
+          {
+            text: 'OK', onPress: () => {
+              AsyncStorage.setItem('postalCode', p.postalCode).then(() => { })
+              AsyncStorage.setItem('address', p.address).then(() => { })
+              AsyncStorage.setItem('state', p.state).then(() => { })
+              AsyncStorage.setItem('City', p.City).then(() => { })
+
+            }
+          }
+        ]
+      )
+    }
+}
     p.navigation.replace('FramePayment', { url: data })
   }
 
 
-  
+
 
   // countMap.forEach((item, index) => ())
   // countMap.keys()

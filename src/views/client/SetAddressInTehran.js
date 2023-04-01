@@ -6,13 +6,18 @@ import { getAddress } from '../../services/clientService';
 
 
 function SetAddressInTehran(p) {
-  const confirmPayment = () => p._client.confirmPayment()
+  const confirmPayment = () => {
+    if (p.latlng.lat < 35.5578099 || p.latlng.lat > 35.7767168 || p.latlng.lng < 51.1029017 || p.latlng.lng > 51.6488662) {
+      p.toast.warning('', 'ارسال سفارش فقط در تهران با نقشه پشتیبانی میشود')
+      p.setshowActivity(false)
+    }
+    else {
+      p._client.confirmPayment('تهران')
+    }
+  }
 
   _useEffect(() => {
     if (p.tokenValue.fullname) p.setfullname(p.tokenValue.fullname)
-
-
-
   }, [])
 
   _useEffect(() => {
@@ -26,15 +31,17 @@ function SetAddressInTehran(p) {
       data.address && p.setaddress(data.address)
       data.latlng && p.setlatlng(data.latlng)
     })
-    p.setCity('تهران')
-    return () => {p.setaddress(''); p.setCity('') }
+    return () => { p.setaddress(''); p.setlatlng({ lat: 0, lng: 0 }) }
   }, [])
 
 
 
   return (
     <Container>
-      <Form f ph $plaque $unit $address flexDirection='row' onClick={confirmPayment} />
+      <Form f ph $plaque $unit $address flexDirection='row' onClick={() => p.latlng.lat ?
+        confirmPayment()
+        :
+        p.toast.show('', 'برگردین روی نقشه موقعیتتان را مشخص کنید')} />
     </Container>
   )
 }

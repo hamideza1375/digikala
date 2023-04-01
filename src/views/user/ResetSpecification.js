@@ -9,7 +9,7 @@ export const ResetSpecification = (p) => {
     <Container2 gcolor='#fff'>
       <Span br={4} bgcolor={[1, 'silver']} p={12} f={1}>
         <Form autoComplete={false} flexDirection='row' f phore op p {...p} onClick={resetSpecification} >
-          <P mt={10} w={110} pr={13} color='#09e' onClick={() => p.navigation.navigate('ForgetPass')} >فراموشی رمز عبور</P>
+          <P mt={10} w={110} pr={13} color='#09e' onClick={() => p.navigation.navigate('ForgetPass', { newCode: 'true' })} >فراموشی رمز عبور</P>
         </Form>
       </Span>
     </Container2>

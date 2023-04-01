@@ -9,7 +9,7 @@ const Dropdown = ({bodyStyle,displayFlex,$input,textId,h, child, border = [.5, '
   const ref = useRef()
 
   useEffect(() => {
-    ref?.current && ref.current.setNativeProps({ style: {display:displayFlex?'flex':'none', transform: [{ scale: 0 }] } })
+    ref?.current && ref.current?.setNativeProps({ style: {display:displayFlex?'flex':'none', transform: [{ scale: 0 }] } })
   }, [show])
 
 
@@ -25,7 +25,7 @@ const Dropdown = ({bodyStyle,displayFlex,$input,textId,h, child, border = [.5, '
         onPress={() => {
           () => { setshow(!show); setTimeout(() => { setshow(!show) }, 2) };
           setTimeout(() => {
-            ref?.current && ref.current.setNativeProps({ style: { display:'flex',transform: [{ scale: 1 }] } })
+            ref?.current && ref.current?.setNativeProps({ style: { display:'flex',transform: [{ scale: 1 }] } })
           }, 5);
         }}
 

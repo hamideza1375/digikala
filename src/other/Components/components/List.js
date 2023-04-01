@@ -12,7 +12,7 @@ export default function App({ border = [], br = 3, w, h, sh = {}, m_icon2, a_ico
   const ref = useRef()
 
   useEffect(() => {
-    ref?.current && ref.current.setNativeProps({ style: { height: 0 } })
+    ref.current?.setNativeProps({ style: { height: 0 } })
 
     setTimeout(() => {
       setshow(!show)
@@ -29,7 +29,7 @@ export default function App({ border = [], br = 3, w, h, sh = {}, m_icon2, a_ico
         onPress={() => {
           // sethidden(!hidden);
           onClick && onClick()
-          setTimeout(() => { ref.current && ref.current.setNativeProps({ style: { height: mIcon !== 'arrow-drop-down' ? null : 0 } }) }, 100);
+          setTimeout(() => {  ref.current?.setNativeProps({ style: { height: mIcon !== 'arrow-drop-down' ? null : 0 } }) }, 100);
           setTimeout(() => { if (!iconPress && m_icon === 'arrow-left') mIcon === 'arrow-drop-down' ? setmIcon('arrow-left') : setmIcon('arrow-drop-down'); }, 210);
         }}
         activeOpacity={1}

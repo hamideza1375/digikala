@@ -7,8 +7,8 @@ const FlatlistChild = (p) => {
   p._client.getChildItems()
   return (
     <FlatList
-      colomn={1} colomn1={2} colomn2={2} colomn3={3}
-      colomn4={3} colomn5={3} colomn6={4}
+     column1={1} column2={2} column3={2} column4={3}
+      column5={4} column6={5}
       data={p.childItem}
       renderItem={({ item, index }) => (
         <Span /* mh='auto' */ mh={6} minw={165} fg={1} h={260} col2={{ marginHorizontal: 2 }} col1={{ marginHorizontal: 1 }}>

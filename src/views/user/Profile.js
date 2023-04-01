@@ -1,30 +1,46 @@
 import React from 'react'
-import { Container, Scroll, Span, P, Row, Card2, Column } from '../../other/Components/Html'
+import { Container, Scroll, Span, P, Row, Card2, Column, Icon, M_icon, A_icon, Py } from '../../other/Components/Html'
+import { localhost } from '../../other/utils/axios/axios'
 const Profile = (p) => {
   p._user.getTicketSeen()
+  p._user.getImageProfile()
+  p._user.getUserSpecification()
+  const sendImageProfile = () => p._user.sendImageProfile()
 
   return (
     <Container ai='center'>
-        <Column w='100%' maxw={700}>
-        <Span p={11} mt={10} ><P>مشخصات حساب کاربری شما</P></Span>
-          <Card2
-          // imageWidth={285}
-          w='90%'
-          h={340}
-            src={require('../../other/assets/images/logo.png')}
-            coulumn1={
-              <Row f={1} w='100%' ai='center' jc='space-between'>
-                <Span jc='center' f={1} fd='row' ph={8}><P>نام: </P><P>احمیم رضا عطار</P></Span>
-                <Span jc='center' f={1} fd='row' ph={8}><P>موبایل: </P><P>09353545665</P></Span>
+      <Column w={290} h={300}>
+        <Span pv={11} mt={10} ><Py>مشخصات حساب کاربری شما</Py></Span>
+        <Card2 onClick={sendImageProfile} src={p.imageProfile ? `${localhost}/upload/profile/${p.imageProfile}` : require('../../other/assets/images/logo.png')}
+          coulumn1={
+            <Column f={1} w='100%'>
+              <Row mt={7} pr={12} f={1} ai='center'>
+                <Icon name='user-alt' size={13} />
+                <P> :</P>
+                <Py mt={3} maxw='85%' >{p.fullname}</Py>
               </Row>
-            }
-            coulumn2={
-              <Column f={1} ai='center' jc='center' w='100%'>
-                <Span f={1} fd='row'><P>ایمیل: </P><P>reza.1375@gmail.com</P></Span>
-              </Column>
-            }
-          />
-        </Column>
+            </Column>
+          }
+          coulumn2={
+            <Column f={1} w='100%'>
+              {
+                p.phoneOrEmail.includes('@') ?
+                  <Row pr={12} mt={-7} f={1} ai='center'>
+                    <M_icon name='email' size={14} />
+                    <P> :</P>
+                    <Py mt={3} maxw='85%'>{p.phoneOrEmail}</Py>
+                  </Row>
+                  :
+                  <Row pr={12} mt={-7} f={1} ai='center'>
+                    <Icon name='phone' size={13} />
+                    <P> :</P>
+                    <Py mt={3} maxw='85%'>{p.phoneOrEmail}</Py>
+                  </Row>
+              }
+            </Column>
+          }
+        />
+      </Column>
     </Container >
   )
 }

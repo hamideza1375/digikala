@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
 import { Div, Py } from '../Html';
 
-const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#ddd", activeColor = "#aad" }) => {
+const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#aaa", activeColor = "#7aeb" }) => {
   const navigation = useNavigation()
 
   return (
@@ -15,9 +15,9 @@ const TopTab = ({ group, children, name, style, bgcolor = '#fff', color = "#ddd"
               onPress={() => navigation.navigate(item.name)}
               style={[styles.pressableActive,]} >
               <Py style={[styles.textActive,
-              { color: name === item.name ? activeColor : color }]}>{item.title}</Py>
-              <View 
-              style={[styles.borderActive, { borderBottomColor: name === item.name ? "#9af" : "#f5f5f5", borderBottomWidth: name === item.name ? 3 : 0 }]} ></View>
+              { color: name === item.name ? activeColor : color, paddingTop: name === item.name ? 2 : 5 }]}>{item.title}</Py>
+              <View
+                style={[styles.borderActive, { borderBottomColor: name === item.name ? "#5aea" : "#f5f5f5", borderBottomWidth: name === item.name ? 3 : 0 }]} ></View>
             </Pressable>
           </View>
         ))}
@@ -72,15 +72,15 @@ const styles = StyleSheet.create({
   },
   textActive: {
     fontSize: 17,
-    paddingTop:2,
-    fontWeight:'100',
+    paddingTop: 5,
+    fontWeight: '100',
     color: '#777',
     textAlign: 'center',
   },
   borderActive: {
     minHeight: '30%',
-    width:'95%',
-    marginHorizontal:'auto',
+    width: '95%',
+    marginHorizontal: 'auto',
   }
 })
 

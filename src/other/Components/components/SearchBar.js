@@ -84,7 +84,7 @@ function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_i
             <Py fs={17} mt={5} color='#000a' >{title}</Py>
           </Column>
         }
-        {sort && <Span style={styles.containAscDesc}>
+        {sort && <Span style={[styles.containAscDesc,{width:60}]}>
           <Icon onPress={foodAsc} size={21} style={{ padding: 4 }} name="arrow-down" color='#555' />
           <Span ph={6}></Span>
           <Icon onPress={foodDesc} size={21} style={{ padding: 4 }} name="arrow-up" color='#555' />

@@ -18,6 +18,7 @@ import ChildPopulars from "./views/client/ChildPopulars";
 import SingleItem from './views/client/SingleItem'
 import BeforePayment from './views/client/BeforePayment'
 import Location from "./views/client/Location";
+import Map from "./views/client/Map";
 import SetAddressInTehran from "./views/client/SetAddressInTehran";
 import Payment from "./views/client/Payment";
 import CreateComment from "./views/client/CreateComment";
@@ -39,7 +40,6 @@ import TicketBox from "./views/user/TicketBox";
 import ShowActiveOrder from "./views/user/ShowActiveOrder";
 import ShowLastOrder from "./views/user/ShowLastOrder";
 import SavedItems from "./views/user/SavedItems";
-import CommentsPosted from "./views/user/CommentsPosted";
 import Rules from "./views/user/Rules";
 import FramePayment from "./views/user/FramePayment";
 
@@ -108,6 +108,7 @@ const Mobile = () => {
                   <Tab.Screen name="ChildPopulars" options={{ title: 'home' }} {..._children(ChildPopulars)} />
                   <Tab.Screen name="SingleItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleItem)} />
                   <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: 'route.params.title', headerStyle: { backgroundColor: '#ddd' } })} {..._children(BeforePayment)} />
+                  <Tab.Screen name="Map" initialParams={{ map: false }} options={{ title: 'نقشه', headerShown: Platform.OS !== 'ios' ? false : true }} {..._children(Map)} />
                   <Tab.Screen name="Location" initialParams={{ map: false }} options={{ title: 'نقشه', headerShown: Platform.OS !== 'ios' ? false : true }} {..._children(Location)} />
                   <Tab.Screen name="SetAddressInTehran" options={{ title: 'نقشه', headerShown: Platform.OS !== 'ios' ? false : true }} {..._children(SetAddressInTehran)} />
                   <Tab.Screen name="Payment" options={{ title: 'پرداخت' }} {..._children(Payment, '100')} />
@@ -121,7 +122,7 @@ const Mobile = () => {
                   <Tab.Screen name="GetCode" options={{ title: 'ثبت نام' }} {..._children(GetCode, '120')} />
                   <Tab.Screen name="Login" options={{ title: 'ورود' }} {..._children(Login, '120')} />
                   <Tab.Screen name="Profile" options={{ title: 'پروفایل' }} {..._children(Profile)} />
-                  <Tab.Screen name="ForgetPass" options={{ title: 'فراموشی رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ForgetPass)} />
+                  <Tab.Screen name="ForgetPass" options={{ title: 'فراموشی رمز عبور', headerShown: true, headerTitleStyle: { color: 'black', fontFamily:'IRANSansWeb', fontSize: 15 }, headerTitleAlign: 'center' }} {..._children(ForgetPass)} />
                   <Tab.Screen name="ResetPass" options={{ title: 'عوض کردن رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetPass)} />
                   <Tab.Screen name="ResetSpecification" options={{ title: 'عوض کردن رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetSpecification)} />
                   <Tab.Screen name="Logout" options={{ title: 'خروج' }} {..._children(Logout)} />
@@ -133,7 +134,6 @@ const Mobile = () => {
                   <Tab.Screen name="ShowActiveOrder" options={{ title: 'ارسال تیکت' }} {..._children(ShowActiveOrder)} />
                   <Tab.Screen name="ShowLastOrder" options={{ title: 'ارسال تیکت' }} {..._children(ShowLastOrder)} />
                   <Tab.Screen name="SavedItems" options={{ title: 'ارسال تیکت' }} {..._children(SavedItems)} />
-                  <Tab.Screen name="CommentsPosted" options={{ title: 'ارسال تیکت' }} {..._children(CommentsPosted)} />
                   <Tab.Screen name="Rules" options={{ title: 'ارسال تیکت', headerShown: true }} {..._children(Rules)} />
                   <Tab.Screen name="FramePayment" options={{ title: 'ارسال تیکت', headerShown: true }} {..._children(FramePayment)} />
                 </Tab.Group>
@@ -183,6 +183,13 @@ const Mobile = () => {
 // propTypes(SingleItem)
 // propTypes(BeforePayment)
 // propTypes(SocketIo)
+// propTypes(CreateComment)
+// propTypes(EditComment)
+// propTypes(LastPayment)
+// propTypes(FramePayment)
+// propTypes(Payment)
+// propTypes(Location)
+// propTypes(Map)
 
 // propTypes(Register)
 // propTypes(GetCode)
@@ -192,22 +199,15 @@ const Mobile = () => {
 // propTypes(ResetSpecification)
 // propTypes(Logout)
 // propTypes(SendProposal)
-// propTypes(LastPayment)
 // propTypes(Profile)
-// propTypes(Payment)
-// propTypes(Location)
 // propTypes(setAddressInTehran)
-// propTypes(CreateComment)
-// propTypes(EditComment)
 // propTypes(SendTicket)
 // propTypes(GetTicket)
 // propTypes(TicketBox)
 // propTypes(ShowActiveOrder)
 // propTypes(ShowLastOrder)
 // propTypes(SavedItems)
-// propTypes(CommentsPosted)
 // propTypes(Rules)
-// propTypes(FramePayment)
 
 // propTypes(TableCategory)
 // propTypes(TableChildItems)
@@ -242,7 +242,13 @@ const linking = {
       ChildPopulars: '/childpopulars',
       SingleItem: '/singleitem/:id',
       BeforePayment: '/beforepayment',
+      Location: '/location',
+      Map: '/map',
       SocketIo: '/socketio',
+      SetAddressInTehran: '/setaddressintehran',
+      Payment: '/payment',
+      CreateComment: '/createcomment',
+      EditComment: '/editcomment',
 
       Register: '/register',
       GetCode: '/getCode',
@@ -254,18 +260,12 @@ const linking = {
       SendProposal: '/sendproposal',
       LastPayment: '/lastpayment',
       Profile: '/profile',
-      Location: '/location',
-      SetAddressInTehran: '/setaddressintehran',
-      Payment: '/payment',
-      CreateComment: '/createcomment',
-      EditComment: '/editcomment',
       SendTicket: '/sendTicket',
       GetTicket: '/getTicket',
       TicketBox: '/ticketBox',
       ShowActiveOrder: '/showActiveOrder',
       ShowLastOrder: '/showLastOrder',
       SavedItems: '/savedItems',
-      CommentsPosted: '/commentsPosted',
       Rules: '/rules',
       FramePayment: '/framepayment',
 

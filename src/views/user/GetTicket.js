@@ -18,7 +18,7 @@ const PvTicket = (p) => {
     if (p.imageUrl.name || p.message) p._user.sendTicketAnswer(() => { setTimeout(() => { ref.current?.scrollToEnd() }, 1000); });
     else p.toast.error('خطا', 'هنوز چیزی تایپ نکردین')
   }
-  const deleteAnswer = (ticketId) => _Alert.alert("مطمئنید حذف شود؟", "", [{ text: "Cancel", onPress: () => { } }, { text: "OK", onPress: () => { p._user.deleteAnswerTicket(ticketId) } },])
+  const deleteAnswer = (ticketId) => p._user.deleteAnswerTicket(ticketId)
   const editAnswer = (ticketId) => { p._user.editAnswerTicket(ticketId, () => setshowModalEditTicket(false)) }
   const _imagePicker = () => imagePicker().then(async (res) => { p.setimageUrl(res) })
   const ref = useRef()

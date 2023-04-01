@@ -13,6 +13,24 @@ const Description = (p) => {
     price = parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue))
   else price = p.singleItem.price
 
+
+  const convertColor = (item) => {
+    let color
+    if (item === 'red') color = 'قرمز'
+    if (item === 'blue') color = 'آبی'
+    if (item === 'green') color = 'سبز'
+    if (item === 'yellow') color = 'زرد'
+    if (item === 'silver') color = 'نقره ای'
+    if (item === 'gold') color = 'طلایی'
+    if (item === 'purple') color = 'بنفش'
+    if (item === 'brown') color = 'قهوه ای'
+    if (item === 'black') color = 'سیاه'
+    if (item === 'white') color = 'سفید'
+    if (item === 'orange') color = 'نارنجی'
+    return color
+  }
+
+
   return (
 
     <Span minw={290} w={'100%'} ai='center' jc='center'>
@@ -52,7 +70,7 @@ const Description = (p) => {
 
             <Span fg={1} fd='row' pr={12} ai='center' >
               <P mb={-6}>موجود در انبار: </P>
-              <P fs={10} color={p.singleItem.availableCount > 10 ? '#0ce' : '#f44c'} mb={-6}>{p.singleItem.availableCount < 10 ? `تنها ${p.singleItem.availableCount} عدد در انبار موجود هست` : 'موجود هست'}</P>
+              <P fs={10} color={p.singleItem.availableCount < 10 ? '#f44c' : '#0ce'} mb={-6}>{p.singleItem.availableCount < 10 ? `تنها ${p.singleItem.availableCount} عدد در انبار موجود هست` : 'موجود هست'}</P>
             </Span >
 
             <Span fg={1} pr={12}>
@@ -77,8 +95,8 @@ const Description = (p) => {
                         return c
                       })
                     }} ai='center' h={30} mt={6}>
-                      <Badge bgcolor={p.color[p.route.params.id] !== item ? '#fff' : item} border={[2, item]} w={30} h={30} /></Press>
-                    <Span><P fs={10} >{item}</P></Span>
+                      <Badge bgcolor={p.color[p.route.params.id] !== item ? '#fff' : (item === 'white'?'#efefef':item)} border={item === 'white' ? [2, '#efefef'] : [2, item]} w={30} h={30} /></Press>
+                    <Span><P fs={10} >{convertColor(item)}</P></Span>
                   </Span>
                 ))}
 
@@ -94,7 +112,7 @@ const Description = (p) => {
 
                   p.setproductBasket(addNumber => {
                     const obj = { ...addNumber }
-                    obj[p.route.params.id] = { number: 1, ...p.singleItem, price:price, color: p.color[p.route.params.id] }
+                    obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }
                     return obj
                   })
 

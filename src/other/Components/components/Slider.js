@@ -39,7 +39,7 @@ function Slider({ width, style, onClick, data }) {
   };
 
 
-  
+
   // if (_width !== width) {
   //   ref.current && ref.current.scrollTo({ x: 0, y: 0, animated: true });
   //   count = 1
@@ -68,16 +68,23 @@ function Slider({ width, style, onClick, data }) {
   return (
 
     <Span style={style} >
-      <ScrollView dir='ltr' horizontal ref={ref} 
+
+      <Press w='80%' h='100%' pos='absolute' as='center' z={100000} bgcolor='transparent' onClick={onClick} />
+
+      <ScrollView dir='ltr' horizontal ref={ref}
         contentContainerStyle={{ overflow: 'hidden', }}
         style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
         {data.map((image, index) => (
-          ((image) && (badgeActive === index)) && <View key={index} style={{ width }} ><AnimationImage image={image} width={width} onClick={onClick} /></View>
+          ((image) && (badgeActive === index)) && <View key={index} style={{ width }} ><AnimationImage image={image} width={width} /></View>
         ))
         }
       </ScrollView>
-      <M_icon onClick={right} size={30} name="arrow-back-ios" style={{ paddingVertical: 5, position: 'absolute', zIndex: 10, left: 10, top: 130, color: '#222' }} />
-      <M_icon onClick={left} size={30} name="arrow-forward-ios" style={{ paddingVertical: 5, position: 'absolute', zIndex: 10, right: 10, top: 130, color: '#222' }} />
+      <Press pl={6} pb={1} opc={.7} style={{backgroundColor: '#fafafa', borderRadius: 50, justifyContent: 'center' , width: 35, height: 35, position: 'absolute', zIndex: 10, alignItems: 'center', left: 10, top: 130,}} >
+        <M_icon onClick={right} size={20} name="arrow-back-ios" style={{ color: '#222' }} />
+      </Press>
+      <Press pl={2} pb={1} opc={.7} style={{backgroundColor: '#fafafa', borderRadius: 50, justifyContent: 'center' , width: 35, height: 35, position: 'absolute', zIndex: 10, alignItems: 'center', right: 10, top: 130,}} >
+        <M_icon onClick={left} size={20} name="arrow-forward-ios" style={{ color: '#222' }} />
+      </Press>
 
       <Row fd='row-reverse' pos='absolute' b={15} w='100%' jc='center' >
         {data.map((image, index) => (
@@ -92,7 +99,7 @@ function Slider({ width, style, onClick, data }) {
 
 
 
-function AnimationImage({ image, width, onClick }) {
+function AnimationImage({ image, width }) {
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -111,7 +118,7 @@ function AnimationImage({ image, width, onClick }) {
   };
 
   return (
-    <Animated.View onLayout={() => setOpacity()} style={{ width, opacity: fadeAnim }}  ><TouchableHighlight onPress={onClick} style={{ cursor: onClick ? 'pointer' : '', width }} ><Img w='100%' style={{resizeMode: 'stretch'}} h={300} src={`${localhost}/upload/slider/${image}`} /></TouchableHighlight></Animated.View>
+    <Animated.View onLayout={() => setOpacity()} style={{ width, opacity: fadeAnim }}  ><View style={{ width }} ><Img w='100%' style={{ resizeMode: 'stretch' }} h={300} src={`${localhost}/upload/slider/${image}`} /></View></Animated.View>
   )
 }
 

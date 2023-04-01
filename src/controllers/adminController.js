@@ -2,6 +2,7 @@ import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCate
 import { getSingleItem } from "../services/clientService"
 import _useEffect from "./_initial"
 import seconder from '../other/utils/seconder'
+import _Alert from "../other/utils/alert"
 
 
 export function adminController(p) {
@@ -20,17 +21,39 @@ export function adminController(p) {
   }
 
   this.deleteSeller = async (id) => {
-    await deleteSeller(id)
-    p.setcurrentSellerTable((curentSeller) => curentSeller.filter(s => s._id !== id))
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteSeller(id)
+            p.setcurrentSellerTable((curentSeller) => curentSeller.filter(s => s._id !== id))
+          }
+        }
+      ]
+    )
   }
 
   this.setSellerAvailable = async (id) => {
-    const { data } = await setSellerAvailable(id)
-    p.setcurrentSellerTable((curentSeller) => {
-      const findIndex = curentSeller.findIndex(s => s._id === id)
-      curentSeller[findIndex].available = data
-      return curentSeller
-    })
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            const { data } = await setSellerAvailable(id)
+            p.setcurrentSellerTable((curentSeller) => {
+              const findIndex = curentSeller.findIndex(s => s._id === id)
+              curentSeller[findIndex].available = data
+              return curentSeller
+            })
+          }
+        }
+      ]
+    )
   }
 
   this.getCategory = () => {
@@ -64,8 +87,19 @@ export function adminController(p) {
 
 
   this.deleteCategory = async (id) => {
-    await deleteCategory(id)
-    p.setcategory(category => category.filter(c => c._id !== id))
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteCategory(id)
+            p.setcategory(category => category.filter(c => c._id !== id))
+          }
+        }
+      ]
+    )
   }
 
 
@@ -86,7 +120,7 @@ export function adminController(p) {
       image4: p.image4,
       offerTime: p.offerTime ? p.offerTime : 0,
       offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8.split("-")), display: p.input9, availableCount: p.input10
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9, availableCount: p.input10
     })
   }
 
@@ -95,6 +129,7 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
+        console.log(data.singleItem.color);
         p.settitle(data.singleItem.title)
         p.setprice(data.singleItem.price)
         p.setimage1({ name: data.singleItem.imageUrl1 })
@@ -107,7 +142,7 @@ export function adminController(p) {
         p.setinput5(data.singleItem.camera)
         p.setinput6(data.singleItem.storage)
         p.setinput7(data.singleItem.warranty)
-        p.setinput8(data.singleItem.color.toString().replace(/,/gi, "-"))
+        p.setinput8(data.singleItem.color)
         p.setinput9(data.singleItem.display)
         p.setinput10(data.singleItem.availableCount)
       })()
@@ -115,7 +150,7 @@ export function adminController(p) {
   }
 
 
-  
+
 
 
   this.editChildItem = async () => {
@@ -126,7 +161,7 @@ export function adminController(p) {
       image4: p.image4,
       offerTime: p.offerTime ? p.offerTime : 0,
       offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8.split("-")), display: p.input9, availableCount: p.input10
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9, availableCount: p.input10
     })
   }
 
@@ -138,22 +173,43 @@ export function adminController(p) {
 
 
   this.deleteChildItem = async (id) => {
-    await deleteChildItem(id)
-    p.setchildItem((childItem) => childItem.filter(c => c._id !== id))
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteChildItem(id)
+            p.setchildItem((childItem) => childItem.filter(c => c._id !== id))
+          }
+        }
+      ]
+    )
   }
 
 
 
   this.changeAvailable = async (id) => {
-    const { data } = await changeAvailable(id)
-    p.setchildItem((childItem) => {
-      const findIndex = childItem.findIndex(s => s._id === id)
-      if (findIndex !== -1)
-        childItem[findIndex].available = data
-      return childItem
-    })
-
-    p.setlistUnAvailabe((listUnAvailabe) => listUnAvailabe.filter(s => s._id !== id))
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            const { data } = await changeAvailable(id)
+            p.setchildItem((childItem) => {
+              const findIndex = childItem.findIndex(s => s._id === id)
+              if (findIndex !== -1)
+                childItem[findIndex].available = data
+              return childItem
+            })
+            p.setlistUnAvailabe((listUnAvailabe) => listUnAvailabe.filter(s => s._id !== id))
+          }
+        }
+      ]
+    )
   }
 
 
@@ -175,7 +231,18 @@ export function adminController(p) {
 
 
   this.deleteNotification = async () => {
-    await deleteNotification()
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteNotification()
+          }
+        }
+      ]
+    )
   }
 
 
@@ -185,9 +252,20 @@ export function adminController(p) {
 
 
   this.deleteAdmin = async () => {
-    await deleteAdmin(p.phoneOrEmail)
-    p.setallAdmin(admin =>
-      admin.filter(a => a.phoneOrEmail !== p.phoneOrEmail)
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteAdmin(p.phoneOrEmail)
+            p.setallAdmin(admin =>
+              admin.filter(a => a.phoneOrEmail !== p.phoneOrEmail)
+            )
+          }
+        }
+      ]
     )
   }
 
@@ -203,7 +281,18 @@ export function adminController(p) {
 
 
   this.changeMainAdmin = async () => {
-    await changeMainAdmin({ adminPhone: p.adminPhone, newAdminPhone: p.newAdminPhone })
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await changeMainAdmin({ adminPhone: p.adminPhone, newAdminPhone: p.newAdminPhone })
+          }
+        }
+      ]
+    )
   }
 
 
@@ -217,7 +306,18 @@ export function adminController(p) {
 
 
   this.deleteMultiProposal = async () => {
-    await deleteMultiProposal({ proposalId: p.proposalId })
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteMultiProposal({ proposalId: p.proposalId })
+          }
+        }
+      ]
+    )
   }
 
 
@@ -245,24 +345,45 @@ export function adminController(p) {
 
 
   this.postedOrder = async (id) => {
-    await postedOrder(id)
-    p.setallAddress(addres => addres.filter(a => a._id !== id))
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await postedOrder(id)
+            p.setallAddress(addres => addres.filter(a => a._id !== id))
+          }
+        }
+      ]
+    )
+
   }
 
 
   this.postQueue = async (id) => {
-    const { data } = await postQueue(id)
-    p.setallAddress(allAddres => {
-      const index = allAddres.findIndex(a => a._id === id)
-      allAddres[index].queueSend = data
-      return allAddres
-    })
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            const { data } = await postQueue(id)
+            p.setallAddress(allAddres => {
+              const index = allAddres.findIndex(a => a._id === id)
+              allAddres[index].queueSend = data
+              return allAddres
+            })
+          }
+        }
+      ]
+    )
   }
 
 
-  this.deleteAllAddress = async () => {
-    await deleteAllAddress()
-  }
+
 
 
   this.getAllPaymentSuccessFalseAndTrue = async () => {
@@ -276,9 +397,9 @@ export function adminController(p) {
 
 
 
-  this.sendDisablePost = async () => {
-    await sendDisablePost(p.route.params.id)
-  }
+  // this.sendDisablePost = async () => {
+  //   await sendDisablePost(p.route.params.id)
+  // }
 
 
   this.sendPostPrice = () => {

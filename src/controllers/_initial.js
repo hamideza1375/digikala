@@ -34,7 +34,7 @@ export const _initController = (p) => {
       Axios.interceptors.response.use(function (response) {
         p.setshowActivity(false)
         if (_show == false) { _show = true; setshow(true) }
-        if (response.config.method !== 'get' && response.data !== '' && (response.status === 200 || response.status === 201)) toastOK(response.data)
+        if (response.config.method !== 'get' && response.data && (response.status === 200 || response.status === 201)) toastOK(response.data)
         return response
       }, function (error) {
         if (_show == false) { _show = true; setshow(true) }
@@ -45,7 +45,7 @@ export const _initController = (p) => {
         else if (error?.response?.status) {
           p.setshowActivity(false)
           if (error.response.status > 400 && error.response.status <= 500) { toast500(); p.setshowActivity(false) };
-          if (error.response.status === 400) { toast400(error.response.data) };
+          if (error.response.status === 400 && error.response.data ) { toast400(error.response.data) };
         } return Promise.reject(error);
       });
 

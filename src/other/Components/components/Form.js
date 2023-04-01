@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
-import { KeyboardAvoidingView, Pressable, View, Text, TextInput, Image, StyleSheet, ScrollView, Dimensions, Animated, Platform, FlatList } from 'react-native'
-import { Input, Button, CheckBox, Swiper, CheckBoxRadius, List, Column, Row, Py, Br, P } from '../Html'
+import { KeyboardAvoidingView, Pressable, View,  TextInput, Image, StyleSheet, ScrollView, Dimensions, Animated, Platform, FlatList } from 'react-native'
+import { Input, Button, CheckBox, Swiper, CheckBoxRadius, List, Column, Row, Py, Br, P, Scroll } from '../Html'
 import yub from '../../utils/yub'
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
@@ -368,6 +368,53 @@ const Form = ({
   var inpt10 = in10 ? newObj.input10 === input10 : true
 
 
+
+
+
+  const [red, setred] = useState(false)
+  const [blue, setblue] = useState(false)
+  const [green, setgreen] = useState(false)
+  const [yellow, setyellow] = useState(false)
+  const [silver, setsilver] = useState(false)
+  const [gold, setgold] = useState(false)
+  const [purple, setpurple] = useState(false)
+  const [brown, setbrown] = useState(false)
+  const [black, setblack] = useState(false)
+  const [white, setwhite] = useState(false)
+  const [orange, setorange] = useState(false)
+
+
+  useFocusEffect(useCallback(() => {
+    input8.includes('red') && setred(true)
+    input8.includes('blue') && setblue(true)
+    input8.includes('green') && setgreen(true)
+    input8.includes('yellow') && setyellow(true)
+    input8.includes('silver') && setsilver(true)
+    input8.includes('gold') && setgold(true)
+    input8.includes('purple') && setpurple(true)
+    input8.includes('brown') && setbrown(true)
+    input8.includes('black') && setblack(true)
+    input8.includes('white') && setwhite(true)
+    input8.includes('orange') && setorange(true)
+    
+    return()=>{ 
+      setred(false)
+      setblue(false)
+      setgreen(false)
+      setyellow(false)
+      setsilver(false)
+      setgold(false)
+      setpurple(false)
+      setbrown(false)
+      setblack(false)
+      setwhite(false)
+      setorange(false)
+    }
+  }, [input8]))
+
+
+
+
   return (
     <ScrollView contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]} style={[{ backgroundColor: bgcolor, borderRadius: 3, marginTop: mt }, Platform.OS === 'web' ? webStyle : nativeStyle]} >
 
@@ -400,14 +447,14 @@ const Form = ({
                 <Py ml={8} ph={8} ta='center' >انتخاب استان و شهر:</Py>
 
                 <FlatList
-                  // style={{width:'90%'}}
                   ref={flatlistRef}
                   data={selectStatesValues}
                   renderItem={({ item, index }) => (
                     <Column m={3} >
-                      <List onClick={() => { setstate(item); setTimeout(() => { flatlistRef.current.scrollToIndex({ index: index, animate: true }) }, 330) }} h={42} fontSize={12} header={item} header2={item === state ? City : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
+                      <List onClick={() => { setstate(item); setTimeout(() => { flatlistRef.current?.scrollToIndex({ index: index, animate: true }) }, 330) }} h={42} fontSize={12} header={item} header2={item === state ? City : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
                         bodyRow={
-                          loadCity.length && loadCity.map((item2, index) =>
+                          ((loadCity.length) && (state === item)) &&
+                          loadCity.map((item2, index) =>
                             <Row key={index} maxw={400} jc='space-between' w='100%' mv={2} bbw={1} ai='center' border={[0, 'silver']} >
                               <P fw='100' fs={11} >{item2}</P>
                               <CheckBoxRadius onPressIn={() => { setCity(item2); }} item={{ value: item + ',' + item2 }} index={index}
@@ -427,7 +474,7 @@ const Form = ({
 
           {(!stct && _stateCity) ? <Py pr={5} style={[styles.textinput, { color: 'red', fontSize: 10, fontWeight: '100' }]} >کادر بالا را تکمیل کنید</Py> : <></>}
 
-
+          <Br style={{ height: 0, padding: 0, margin: 0 }} />
 
 
 
@@ -840,7 +887,7 @@ const Form = ({
             />
           }
 
-
+          {/* 
           {in8 &&
             <Frm
               autoComplete="off"
@@ -856,7 +903,7 @@ const Form = ({
               yub={inpt8}
               styles={styles}
             />
-          }
+          } */}
 
 
           {in9 &&
@@ -891,6 +938,8 @@ const Form = ({
               styles={styles}
             />
           }
+
+
 
           {im && <InputImage
             plackTextTop={plackTextTop}
@@ -977,6 +1026,124 @@ const Form = ({
             </>
           }
 
+
+
+        { in8 &&
+         <Scroll ccStyle={{ flexDirection: 'row', flexWrap: 'wrap' }} w='100%' maxw='100%'  bgcolor='#fff' border={[1, '#333']} mh={10} mt={35} mb={-10} br={4} p={10} >
+
+            <View style={{width:50, alignSelf:'center'}}>
+              <CheckBox
+                br={50}
+                bgcolor='red'
+                border={[1, 'red']} ml={4} mb={3}
+                show={red} setshow={setred}
+              />
+              <Py fs={9} fw='100' >قرمز</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='blue'
+                border={[1, 'blue']} ml={4} mb={3}
+                show={blue} setshow={setblue}
+              />
+              <Py fs={9} fw='100' >آبی</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='green'
+                border={[1, 'green']} ml={4} mb={3}
+                show={green} setshow={setgreen}
+              />
+              <Py fs={9} fw='100' >سبز</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='yellow'
+                border={[1, 'yellow']} ml={4} mb={3}
+                show={yellow} setshow={setyellow}
+              />
+              <Py fs={9} fw='100' >زرد</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='silver'
+                border={[1, 'silver']} ml={4} mb={3}
+                show={silver} setshow={setsilver}
+              />
+              <Py fs={9} fw='100' >نقره ای</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='gold'
+                border={[1, 'gold']} ml={4} mb={3}
+                show={gold} setshow={setgold}
+              />
+              <Py fs={9} fw='100' >طلایی</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='purple'
+                border={[1, 'purple']} ml={4} mb={3}
+                show={purple} setshow={setpurple}
+              />
+              <Py fs={9} fw='100' >بنفش</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='brown'
+                border={[1, 'brown']} ml={4} mb={3}
+                show={brown} setshow={setbrown}
+              />
+              <Py fs={9} fw='100' >قهوه ای</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='black'
+                border={[1, 'black']} ml={4} mb={3}
+                show={black} setshow={setblack}
+              />
+              <Py fs={9} fw='100' >سیاه</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='#eaeaea'
+                border={[1, '#eaeaea']} ml={4} mb={3}
+                show={white} setshow={setwhite}
+              />
+              <Py fs={9} fw='100' >سفید</Py>
+            </View>
+
+            <View style={{width:50, alignSelf:'center'}} >
+              <CheckBox
+                br={50}
+                bgcolor='orange'
+                border={[1, 'orange']} ml={4} mb={3}
+                show={orange} setshow={setorange}
+              />
+              <Py fs={9} fw='100' >نارنجی</Py>
+            </View>
+
+          </Scroll>
+
+}
 
 
 
@@ -1133,9 +1300,9 @@ const Form = ({
               <View style={{ marginVertical: 10 }} >
                 <View style={[styles.viewCheckbox, { flexGrow: .4, maxHeight: 20 }]}>
                   <CheckBox show={!checkText ? show : changeremember} setshow={!checkText ? setshow : setchangeremember} />
-                  <Text onPress={!checkText ? () => { navigation.navigate('Rules') } : () => { setchangeremember(!changeremember) }} style={{ marginLeft: 11 }} >{checkText ? " " + checkText : " موافقت با قوانین "}</Text>
+                  <Py onPress={!checkText ? () => { navigation.navigate('Rules') } : () => { setchangeremember(!changeremember) }} style={{ marginLeft: 11, paddingRight:7, marginTop:2 }} >{checkText ? " " + checkText : " موافقت با قوانین "}</Py>
                 </View>
-                {_checkbox && show == false && <Text style={{ color: 'red', alignSelf: 'flex-start' }} >پرکردن فیلد الزامی هست</Text>}
+                {_checkbox && show == false && <Py fs={11} style={{ color: 'red', alignSelf: 'flex-start' }} >پرکردن فیلد الزامی هست</Py>}
               </View>
             </View>
           }
@@ -1144,6 +1311,9 @@ const Form = ({
             <>
               <KeyboardAvoidingView behavior={"height"} style={{ height: 50, minHeight: 50, marginVertical: 8, marginHorizontal: 10 }}>
                 <View style={[styles.viewCaptcha, { height: 28, alignItems: 'center' }]}>
+
+<View style={{width:115, height:2, backgroundColor:'#900', position:'absolute', zIndex:1000, transform:[{rotate:'-8deg'}]}} />
+<View style={{width:111, height:2, backgroundColor:'#009', position:'absolute', zIndex:1000, transform:[{rotate:'22deg'}]}} />
 
                   <Image source={{ uri: `${host}/captcha.png/${rand}` }} style={styles.imageCaptcha} />
                   <M_icon name="refresh" color="#66bbff" size={22}
@@ -1158,7 +1328,8 @@ const Form = ({
                     keyboardType="numeric"
                     maxLength={4}
                     value={captcha}
-                    placeholder="کد امنیتی" style={[styles.TextInput, { borderColor: '#666' }, rand != captcha && _captcha && { borderColor: '#a22' }]}
+                    placeholder="کد امنیتی" style={[styles.TextInput, { borderColor: '#666', fontFamily:'IRANSansWeb', fontSize:12 }, rand != captcha && _captcha && { borderColor: '#a22' }]}
+                    placeholderTextColor='silver'
                     onChangeText={text => setcaptcha(text)} />
                 </View>
                 {((_captcha) && (!captcha) ? <Py fs={11} style={{ color: 'red', width: captcha ? 280 : 260 }}>لطفا کادر را پر کنید</Py> : <></>)}
@@ -1242,9 +1413,9 @@ const Form = ({
 
                 {_fiveStar && newObj.fiveStar != fiveStar &&
                   <View style={{ width: '100%', alignItems: 'center', height: 'auto', marginTop: 5 }} >
-                    <Text style={[{ color: 'red' }]} >
+                    <Py fs={11} style={[{ color: 'red' }]} >
                       {newObj.fiveStar}
-                    </Text>
+                    </Py>
                   </View>
                 }
 
@@ -1257,6 +1428,23 @@ const Form = ({
               {btn && <Button
                 disable={disableClick}
                 onPressIn={() => {
+
+                  setinput8(() => {
+                    let color = []
+                    red && color.push('red')
+                    blue && color.push('blue')
+                    green && color.push('green')
+                    yellow && color.push('yellow')
+                    silver && color.push('silver')
+                    gold && color.push('gold')
+                    purple && color.push('purple')
+                    brown && color.push('brown')
+                    black && color.push('black')
+                    white && color.push('white')
+                    orange && color.push('orange')
+                    return color
+                  })
+
                   setremember && setremember(changeremember ? (60 * 1000 * 60 * 24 * 365) : ('24h'))
                   set_Fullname(true);
                   set_Email(true);
@@ -1296,7 +1484,8 @@ const Form = ({
 
                 }}
                 onPress={async () => {
-                  if (stct && flm && eml && opsd, psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt8 && inpt9 && inpt10) {
+                  if(in8 && !input8.length) return toast.error('','یک رنگ انتخاب کنید')
+                  if ((stct) && (flm && eml && opsd, psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && /* inpt8 && */ inpt9 && inpt10)) {
 
                     setdisableClick(true)
 
@@ -1488,8 +1677,8 @@ const styles = StyleSheet.create({
   TextInput: {
     borderRadius: 2,
     textAlign: 'right',
-    padding: 7,
-    width: 85,
+    padding: 6,
+    width: 61,
     height: 35,
     borderWidth: 1,
     backgroundColor: '#eee'
@@ -1498,7 +1687,7 @@ const styles = StyleSheet.create({
   imageCaptcha: {
     borderRadius: 2,
     padding: 5,
-    backgroundColor: "#412",
+    // backgroundColor: "#412",
     width: 105,
     height: 38,
 
@@ -1509,7 +1698,7 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
     alignContent: 'center',
     justifyContent: "space-between",
-    width: 250,
+    width: 210,
     marginTop: 25,
     marginBottom: 10,
 
@@ -1547,6 +1736,7 @@ const styles = StyleSheet.create({
     fontSize: 11
   },
   input: {
+    fontFamily:'IRANSansWeb',
     marginBottom: 5,
     minHeight: 50,
     minWidth: '90%',

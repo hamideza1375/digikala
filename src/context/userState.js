@@ -9,6 +9,7 @@ export function user() {
   const [savedItems, setsavedItems] = useState([])
 
 
+  const [imageProfile,setimageProfile] = useState('')
   const [phone, setphone] = useState('')
   const [code, setcode] = useState('')
   const [fullname, setfullname] = useState('')
@@ -45,6 +46,7 @@ export function user() {
     confirmPassword, setconfirmPassword,
     imageUrl, setimageUrl,
     message, setmessage,
+    imageProfile,setimageProfile,
     oldPassword, setoldPassword,
     password, setpassword,
     phoneOrEmail, setphoneOrEmail,

@@ -11,7 +11,7 @@ const Location = (p) => {
   useEffect(() => {
 
     //! map
-    let latlng = { lat: p.latlng.lat, lng: p.latlng.lng },
+    let latlng = { lat: 35.6892523, lng: 51.3896004 },
       map = L.map('map', { center: latlng, zoom: 17, })
     var myIcon = L.icon({ iconUrl: `${localhost}/images/mark.png`, iconSize: [38, 95], iconAnchor: [22, 94], popupAnchor: [-3, -76], shadowSize: [68, 95], shadowAnchor: [22, 94], });
     let markerOption = { draggable: true, icon: myIcon }

@@ -18,7 +18,7 @@ function ScrollSlider(p) {
 
   const open = () => {
     if (scroll2) {
-      { ref.current && ref.current.scrollToIndex({ index: count.current.count }); }
+      { ref.current?.scrollToIndex({ index: count.current.count }); }
       count.current.count = count.current.count + 2
     }
   };
@@ -47,7 +47,7 @@ function ScrollSlider(p) {
     <Span
       style={{ cursor: 'grab' }}
       class={s.selectNone}
-      // <Span onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current.setNativeProps({ style: { overflow: 'hidden' } }); }}
+      // <Span onMouseLeave={() => { if (Platform.OS === 'web') if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') ref.current?.setNativeProps({ style: { overflow: 'hidden' } }); }}
       onMouseUp={() => { setscroll2(false); setTimeout(() => { das = [] }, 10); }}
       onMoveShouldSetResponder={() => { setscroll2(false); }}
       onTouchMove={() => { setscroll2(false); }} >
@@ -56,9 +56,9 @@ function ScrollSlider(p) {
           setscroll2(!scroll2)
           if (Platform.OS === 'web') {
             if (navigator.userAgent?.split('(')[1]?.slice(0, 7) === 'Windows') {
-              ref.current.setNativeProps({ style: { overflowX: 'auto' } });
+              ref.current?.setNativeProps({ style: { overflowX: 'auto' } });
               das.push(e.nativeEvent.pageX)
-              ref.current.scrollToOffset({ animated: true, offset: (scroll) + ((das[0] - das[das.length - 1]) * 1) })
+              ref.current?.scrollToOffset({ animated: true, offset: (scroll) + ((das[0] - das[das.length - 1]) * 1) })
             }
           }
           setscroll2(false)

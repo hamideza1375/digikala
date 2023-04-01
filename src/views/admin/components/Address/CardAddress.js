@@ -27,7 +27,7 @@ const CardAddress = (p) => {
       <View style={containerColumn} >
         <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >پلاک: </Text>{p.item.plaque}</Text>
         <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >طبقه: </Text>{p.item.unit}</Text>
-        <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >کد پستی: </Text>{p.item.postalCode}</Text>
+        {p.item.postalCode?<Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >کد پستی: </Text>{p.item.postalCode}</Text>:<></>}
         {/* <Text style={lineStyle} ><Text style={{ fontWeight: 'bold' }} >شماره: </Text>{p.item.id}</Text> */}
       </View>
 

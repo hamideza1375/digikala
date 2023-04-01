@@ -6,6 +6,8 @@ import _Alert from '../other/utils/alert';
 import seconder from '../other/utils/seconder';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
+import { imagePicker } from '../other/utils/imagePicer';
+import { localhost } from '../other/utils/axios/axios';
 
 
 export function userController(p) {
@@ -33,7 +35,7 @@ export function userController(p) {
 
   this.getNewCode = async () => {
     p.setshowActivity(true)
-    await getNewCode(p.route.params.newCode)
+    await getNewCode(p.route.params?.newCode)
     this.deleteTimerThreeMinut()
     this.timerThreeMinut(() => { })
   }
@@ -48,7 +50,7 @@ export function userController(p) {
           this.timerThreeMinut((interval) => timerInterwal = interval)
         } else p.settwoMinut(0)
       })()
-      return () => { timerInterwal && clearInterval(timerInterwal) }
+      return () => { p.setcode(''); timerInterwal && clearInterval(timerInterwal) }
     }, [])
   }
 
@@ -63,7 +65,7 @@ export function userController(p) {
   this.verifycodeRegister = async () => {
     await verifycodeRegister({ code: p.code })
     this.deleteTimerThreeMinut()
-    p.navigation.navigate('Login')
+    p.navigation.replace('Login')
   }
 
 
@@ -99,17 +101,17 @@ export function userController(p) {
 
 
   this.getCodeForgetPass = async () => {
-    await getCodeForgetPass({ phoneOrEmail: p.phoneOrEmail })
+    await getCodeForgetPass(p.route.params?.newCode, { phoneOrEmail: p.phoneOrEmail })
     this.deleteTimerThreeMinut()
     this.timerThreeMinut(() => { })
-    p.navigation.navigate('GetCode', { forgetPass: true, newCode: true })
+    p.navigation.navigate('GetCode', { forgetPass: true, newCode: 'true' })
   }
 
 
   this.verifycodeForgetPass = async () => {
     await verifycodeForgetPass({ code: p.code })
     this.deleteTimerThreeMinut()
-    p.navigation.navigate('ResetPass')
+    p.navigation.replace('ResetPass')
   }
 
 
@@ -150,7 +152,7 @@ export function userController(p) {
     await resetSpecification({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, oldPassword: p.oldPassword, password: p.password })
     this.deleteTimerThreeMinut()
     this.timerThreeMinut(() => { })
-    p.navigation.navigate('GetCode', { resetSpecification: true, newCode: true })
+    p.navigation.navigate('GetCode', { resetSpecification: true, newCode: 'true' })
   }
 
 
@@ -162,13 +164,18 @@ export function userController(p) {
     const user = jwtDecode(data.token);
     p.settokenValue(user);
     this.deleteTimerThreeMinut()
-    p.navigation.navigate('Profile')
+    p.navigation.replace('Profile')
   }
 
 
 
   this.sendImageProfile = async () => {
-    const { data } = await sendImageProfile({ imageUrl: p.imageUrl })
+    imagePicker().then(async (res) => {
+      const { data } = await sendImageProfile({ imageUrl: res })
+      setTimeout(() => {
+        p.$.id('card2Image').$({ src: `${localhost}/upload/profile/${data.imageUrl}` })
+      }, 3000);
+    })
   }
 
 
@@ -176,6 +183,7 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getImageProfile()
+        p.setimageProfile(data.imageUrl)
       })()
     }, [])
   }
@@ -231,11 +239,22 @@ export function userController(p) {
 
 
   this.deleteAnswerTicket = async (ticketId) => {
-    await deleteAnswerTicket(p.route.params.id, ticketId)
-    p.setanswersTicket(singleTicket => {
-      const filter = singleTicket.filter(a => a._id !== ticketId)
-      return filter
-    })
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteAnswerTicket(p.route.params.id, ticketId)
+            p.setanswersTicket(singleTicket => {
+              const filter = singleTicket.filter(a => a._id !== ticketId)
+              return filter
+            })
+          }
+        }
+      ]
+    )
   }
 
 
@@ -315,8 +334,19 @@ export function userController(p) {
 
 
   this.removeSavedItem = async (itemId) => {
-    await removeSavedItem(itemId)
-    p.setbookmark(false)
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await removeSavedItem(itemId)
+            p.setbookmark(false)
+          }
+        }
+      ]
+    )
   }
 
 

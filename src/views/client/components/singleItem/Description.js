@@ -32,7 +32,6 @@ const Description = (p) => {
 
 
   return (
-
     <Span minw={290} w={'100%'} ai='center' jc='center'>
       {p.singleItem?.price ? <Card2 h={400} w={'100%'} style={{ borderColor: 'silver', backgroundColor: 'white' }}
         coulumn1={
@@ -44,18 +43,16 @@ const Description = (p) => {
               <Span bbw={2} w='20%' fg={1} mh={7} t={7} />
             </Span>
 
-
             <Span f={2} ph={12} jc='space-between' fd='row' ai='center'>
               <P fs={12} >قیمت: </P>
 
-
               {p.singleItem.offerTime?.exp > new Date().getTime() ?
                 <Row >
-                  <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue)))} تومان </Pfa>
-                  <Pfa color='#e33' fs={12} mt={-1} style={{ textDecorationLine: 'line-through' }} >{spacePrice(p.singleItem.price)} ت </Pfa>
+                  <Pfa color='#0be' fs={16} mt={-1}>{spacePrice(parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue)))} تومان </Pfa>
+                  <Pfa color='#e33' fs={14} mt={-1} style={{ textDecorationLine: 'line-through' }} >{spacePrice(p.singleItem.price)} ت </Pfa>
                 </Row>
                 :
-                <Pfa color='#0be' fs={15} mt={-1}>{spacePrice(p.singleItem.price)} تومان </Pfa>}
+                <Pfa color='#0be' fs={16} mt={-1}>{spacePrice(p.singleItem.price)} تومان </Pfa>}
             </Span >
 
           </Span>
@@ -95,7 +92,7 @@ const Description = (p) => {
                         return c
                       })
                     }} ai='center' h={30} mt={6}>
-                      <Badge bgcolor={p.color[p.route.params.id] !== item ? '#fff' : (item === 'white'?'#efefef':item)} border={item === 'white' ? [2, '#efefef'] : [2, item]} w={30} h={30} /></Press>
+                      <Badge bgcolor={p.color[p.route.params.id] !== item ? '#fff' : (item === 'white' ? '#efefef' : item)} border={item === 'white' ? [2, '#efefef'] : [2, item]} w={30} h={30} /></Press>
                     <Span><P fs={10} >{convertColor(item)}</P></Span>
                   </Span>
                 ))}
@@ -140,7 +137,7 @@ const Description = (p) => {
                 </Column>
 
 
-                <P onClick={() => p.navigation.navigate('BeforePayment')} >click</P>
+                <P onClick={() => { p.tokenValue.fullname ? p.navigation.navigate('BeforePayment') : p.navigation.navigate('Login',{payment:'true'}) }} >click</P>
 
                 <Column style={{ height: 20, width: 20 }} >
                   <Icon name='minus' color='#e11' size={20} onClick={() =>

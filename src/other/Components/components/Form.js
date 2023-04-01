@@ -726,6 +726,7 @@ const Form = ({
               plackTextTop={plackTextTop}
               icon="dollar-sign"
               p=" قیمت "
+              p2=" قیمت ( به تومان) "
               iconLeft={prIconLeft}
               iconRight={prIconRight}
               state={price}

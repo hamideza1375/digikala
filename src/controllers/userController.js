@@ -84,7 +84,9 @@ export function userController(p) {
       axios.defaults.headers.common["Authorization"] = data.token
       const user = jwtDecode(data.token)
       p.settokenValue(user)
-      p.navigation.replace('Profile')
+
+      if (p.route.params?.payment) p.navigation.replace('BeforePayment')
+      else p.navigation.replace('Profile')
     }
   }
 
@@ -96,7 +98,8 @@ export function userController(p) {
     const user = jwtDecode(data.token)
     p.settokenValue(user)
     this.deleteTimerThreeMinut()
-    p.navigation.replace('PanelAdmin')
+    if (p.route.params?.payment) p.navigation.replace('BeforePayment')
+    else p.navigation.replace('PanelAdmin')
   }
 
 
@@ -321,7 +324,7 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getTicketSeen()
-        p.setticketSeen(data)
+        p.setticketSeen(data.seen)
       })()
     }, [])
   }

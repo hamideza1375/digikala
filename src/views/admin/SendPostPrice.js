@@ -1,9 +1,16 @@
 import React from 'react'
-import { Form } from '../../other/Components/Html'
+import { Column, ContainerNavigation, Form } from '../../other/Components/Html'
 
 const SendPostPrice = (p) => {
+
+  p._admin.getPostPrice() 
+
   return (
-    <Form pr {...p} onClick={()=>{p._food.SendPrice()}} />
+    <ContainerNavigation>
+      <Column fg={1} >
+        <Form pr {...p} onClick={() => { p._admin.sendPostPrice() }} />
+      </Column>
+    </ContainerNavigation>
   )
 }
 

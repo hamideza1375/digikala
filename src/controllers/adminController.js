@@ -1,4 +1,4 @@
-import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable } from "../services/adminService"
+import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable, getPostPrice, sendPostPrice } from "../services/adminService"
 import { getSingleItem } from "../services/clientService"
 import _useEffect from "./_initial"
 import seconder from '../other/utils/seconder'
@@ -15,7 +15,7 @@ export function adminController(p) {
   this.getAllSellers = async () => {
     _useEffect(() => {
       getAllSellers().then(({ data }) => {
-        p.setcurrentSellerTable(data)
+        p.setsellerTable(data)
       })
     }, [])
   }
@@ -29,7 +29,7 @@ export function adminController(p) {
         {
           text: "OK", onPress: async () => {
             await deleteSeller(id)
-            p.setcurrentSellerTable((curentSeller) => curentSeller.filter(s => s._id !== id))
+            p.setsellerTable((curentSeller) => curentSeller.filter(s => s._id !== id))
           }
         }
       ]
@@ -45,7 +45,7 @@ export function adminController(p) {
         {
           text: "OK", onPress: async () => {
             const { data } = await setSellerAvailable(id)
-            p.setcurrentSellerTable((curentSeller) => {
+            p.setsellerTable((curentSeller) => {
               const findIndex = curentSeller.findIndex(s => s._id === id)
               curentSeller[findIndex].available = data
               return curentSeller
@@ -403,13 +403,14 @@ export function adminController(p) {
 
 
   this.sendPostPrice = () => {
-    sendPostPrice({ phoneOrEmail: p.phoneOrEmail }).then(() => { })
+    sendPostPrice({ price: p.price }).then(() => { })
   }
 
 
   this.getPostPrice = async () => {
     _useEffect(() => {
       getPostPrice().then(({ data }) => {
+        p.setprice(data.price)
       })
     }, [])
   }

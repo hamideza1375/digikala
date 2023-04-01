@@ -59,6 +59,7 @@ import SetOffer from "./views/admin/SetOffer";
 import CreateCategory from "./views/admin/CreateCategory";
 import CreateChildItem from "./views/admin/CreateChildItem";
 import ShowLatLngOnMap from "./views/admin/ShowLatLngOnMap";
+import SendPostPrice from "./views/admin/SendPostPrice";
 import PanelAdmin from "./views/admin/PanelAdmin";
 import Sellers from "./views/admin/Sellers";
 import AddSeller from "./views/admin/AddSeller";
@@ -140,7 +141,7 @@ const Mobile = () => {
 
                 <Tab.Group>
                   <Tab.Screen initialParams={{ key: 'admin' }} name="TableCategory" options={{ title: 'پنل ادمین', headerShown: false }} {..._children(TableCategory)} />
-                  <Tab.Screen initialParams={{ key: 'admin' }} name="TableChildItems" options={({ route }) => ({ title: 'route.params.title' })} {..._children(TableChildItems)} />
+                  <Tab.Screen initialParams={{ key: 'admin' }} name="TableChildItems" options={({ route }) => ({ title: 'route.params.title', headerShown:false })} {..._children(TableChildItems)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="EditCategory" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditCategory)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="EditChildItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(EditChildItem)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="SetOffer" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SetOffer)} />
@@ -155,11 +156,12 @@ const Mobile = () => {
                   <Tab.Screen initialParams={{ key: 'admin' }} name="ListUnAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin', headerShown: false }} {..._children(PanelAdmin)} />
-                  <Tab.Screen initialParams={{ key: 'admin' }} name="Sellers" options={{ title: 'Sellers' }} {..._children(Sellers)} />
+                  <Tab.Screen initialParams={{ key: 'admin' }} name="Sellers" options={{ title: 'Sellers', headerShown:false }} {..._children(Sellers)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="AddSeller" options={{ title: 'AddSeller' }} {..._children(AddSeller)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="CreateSlider" options={{ title: 'CreateSlider' }} {..._children(CreateSlider)} />
                   <Tab.Screen name="AdminTicketBox" options={{ title: 'ارسال تیکت' }} {..._children(AdminTicketBox)} />
                   <Tab.Screen name="ShowLatLngOnMap" options={{ title: 'پروفایل', headerShown: false }} {..._children(ShowLatLngOnMap)} />
+                  <Tab.Screen name="SendPostPrice" options={{ title: 'پروفایل', headerShown: false }} {..._children(SendPostPrice)} />
                 </Tab.Group>
 
                 <Tab.Screen name="NotFound" options={{ title: '404', headerShown: false }} {..._children(_404)} />
@@ -230,6 +232,7 @@ const Mobile = () => {
 // propTypes(CreateSlider)
 // propTypes(AdminTicketBox)
 // propTypes(ShowLatLngOnMap)
+// propTypes(SendPostPrice)
 
 
 const linking = {
@@ -260,12 +263,12 @@ const linking = {
       SendProposal: '/sendproposal',
       LastPayment: '/lastpayment',
       Profile: '/profile',
-      SendTicket: '/sendTicket',
-      GetTicket: '/getTicket',
-      TicketBox: '/ticketBox',
-      ShowActiveOrder: '/showActiveOrder',
-      ShowLastOrder: '/showLastOrder',
-      SavedItems: '/savedItems',
+      SendTicket: '/sendticket',
+      GetTicket: '/getticket',
+      TicketBox: '/ticketbox',
+      ShowActiveOrder: '/showactiveorder',
+      ShowLastOrder: '/showlastorder',
+      SavedItems: '/saveditems',
       Rules: '/rules',
       FramePayment: '/framepayment',
 
@@ -278,18 +281,19 @@ const linking = {
       Notifee: '/notifee',
       ChangeAdmin: '/changeadmin',
       DeleteAdmin: '/deleteadmin',
-      AllPayment: '/allPayment',
-      ListUnAvailable: '/listunAvailable',
+      AllPayment: '/allpayment',
+      ListUnAvailable: '/listunavailable',
       GetProposal: '/getproposal',
       Address: '/address',
-      TableCategory: '/tableCategory',
-      CreateCategory: '/createCategory',
-      TableChildItems: '/tableChildItems',
-      EditCategory: '/editCategory',
+      TableCategory: '/tablecategory',
+      CreateCategory: '/createcategory',
+      TableChildItems: '/tablechildItems',
+      EditCategory: '/editcategory',
       EditChildItem: '/editchilditem',
-      SetOffer: '/setOffer',
+      SetOffer: '/setoffer',
       CreateChildItem: '/createchilditem/:id',
       ShowLatLngOnMap: '/showlatlngonmap',
+      SendPostPrice: '/sendpostprice',
       NotFound: '*'
     },
   },

@@ -285,10 +285,7 @@ const yub = {
 
 
     if (propName === 'input2') {
-      if (Number(target[propName])) {
-        return ('برند نباید عدد باشد')
-      }
-      else if (target[propName].length < 3) {
+       if (target[propName].length < 3) {
         return ('برند نباید کوچک تر از ۳ کلمه باشد')
       }
       else {

@@ -7,6 +7,7 @@ const ChildItemPage = (p) => {
 
   return (
     <Drawer
+    drawer={false}
       drawer2={<FilterList {...p}/>}
       Header={({ show, setshow }) => (
         <SearchBar sort show={show} setshow={setshow} bgcolor='#f9f' icon={'filter'} src={p.logoUrl}

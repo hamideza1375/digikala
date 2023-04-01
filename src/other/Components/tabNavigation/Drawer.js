@@ -68,7 +68,7 @@ const Drawer = ({ color = '#222', group, children, name, title, bgcolor = '#fff'
       { transform: [{ translateX: fadeAnim }], opacity: hidden }]} >
         <Animated.View ref={shadowRef} onStartShouldSetResponder={close} style={[styles.pressable, { backgroundColor: 'black' }]} />
         <ScrollView style={styles.viewDriver} contentContainerStyle={{ paddingBottom: 130 }} >
-          {group.map((item, key) => (
+          {group?.map((item, key) => (
             <View key={key} style={styles.routeView} >
               <Pressable
                 onPress={() => { navigation.navigate(item.name); close() }}

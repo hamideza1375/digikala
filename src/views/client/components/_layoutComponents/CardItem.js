@@ -2,7 +2,7 @@ import { useFocusEffect } from '@react-navigation/native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { Text } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5'
-import { A_icon, Card2, M_icon, P, Row, Span } from '../../../../other/Components/Html'
+import { A_icon, Card2, M_icon, P, Pfa, Row, Span } from '../../../../other/Components/Html'
 import { localhost } from '../../../../other/utils/axios/axios'
 import seconder from '../../../../other/utils/seconder'
 
@@ -49,13 +49,13 @@ const CardItem = ({ onClick, item, spacePrice, h = 240, w , style, sh = { r: 6, 
       coulumn3={<Span mt={8} fd='row' jc='space-evenly' w={'100%'}>
         {item.offerTime?.exp > new Date().getTime() ?
           <Row>
-            <P fs={11.5} >{spacePrice(parseInt(item.price - ((item.price / 100) * item.offerValue)))} تومان</P>
-            <P style={{ textDecorationLine: 'line-through', color: 'red', fontSize: 9.5 }} >{spacePrice(item.price)} ت </P>
+            <Pfa fs={15} >{spacePrice(parseInt(item.price - ((item.price / 100) * item.offerValue)))} تومان</Pfa>
+            <Pfa fs={13} style={{ textDecorationLine: 'line-through', color: 'red' }} >{spacePrice(item.price)} ت </Pfa>
 
           </Row>
           :
           <Span>
-            <P fs={11.5}>{spacePrice(item.price)} تومان</P>
+            <Pfa fs={15}>{spacePrice(item.price)} تومان</Pfa>
           </Span>}
 
       </Span>}

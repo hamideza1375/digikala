@@ -26,6 +26,7 @@ const PanelAdminDrawer = (p) => {
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
             <Press onClick={() => p.navigation.navigate('Notifee')} ><Py>ارسال نوتیفیکیشن</Py></Press>
             <Press mt={10} onClick={() => p.navigation.navigate('CreateSlider')} ><Py>ساخت اسلایدر</Py></Press>
+            <Press mt={10} onClick={() => p.navigation.navigate('SendPostPrice')} ><Py>تایین قیمت پست</Py></Press>
           </Span>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
             <Press onClick={() => p.navigation.navigate('Profile')} ><Py>حساب کاربری</Py></Press>

@@ -12,9 +12,11 @@ import { Layout } from "../other/Layout/Layout";
 
 import backgroundTimer from '../other/utils/backgroundTimer';
 import { create } from '../other/utils/notification';
-import { getNotification, getSlider } from '../services/clientService';
+import { getNotification, getSlider, getSocketIoSeenUser } from '../services/clientService';
 import { Loading } from '../other/Components/Html';
 import online from '../other/utils/online';
+import { getTicketSeen } from '../services/userService';
+import { truncate } from '../other/utils/truncate';
 
 
 var _show = false
@@ -40,6 +42,7 @@ export const _initController = (p) => {
         if (_show == false) { _show = true; setshow(true) }
         if (error['request']?.statusText === '' && error['request']?.status === 0 && error['request']?.response === '' && error['isAxiosError'] === true) {
           toastServerError()
+          _show = false; setshow(false)
           p.setshowActivity(false)
         }
         else if (error?.response?.status) {
@@ -105,6 +108,35 @@ export const _initController = (p) => {
       })();
     }, 20000)
   }, [])
+
+
+
+
+  useEffect(() => {
+    setTimeout(async () => {
+      const { data } = await getTicketSeen()
+      let newNotification = await AsyncStorage.getItem('ticketNotification')
+      if (data?.ticket)
+        if (data.ticket.message && !p.tokenValue.isAdmin && newNotification !== data.ticket.message) {
+          create('جواب تیکت جدید', truncate(data.ticket.message, 30, false), require('../other/assets/images/logo.png'))
+          await AsyncStorage.setItem('ticketNotification', data.ticket.message)
+        }
+    },2000)
+  }, [])
+useEffect(() => {
+  setTimeout(async () => {
+    const socketTocken = await AsyncStorage.getItem('socketTocken')
+    const { data } = await getSocketIoSeenUser(socketTocken)
+    let newNotification = await AsyncStorage.getItem('msgNotification')
+    if (data)
+      if (data.message && !p.tokenValue.isAdmin && newNotification !== data.message) {
+        create('جواب پیام شما', truncate(data.message, 30, false), require('../other/assets/images/logo.png'))
+        await AsyncStorage.setItem('msgNotification', data.message)
+      }
+  },2000)
+}, [])
+
+
 
 
   _useEffect(() => {

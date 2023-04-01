@@ -56,6 +56,7 @@ const SocketIo = (p) => {
 
 
   useFocusEffect(useCallback(() => {
+    if(!tokenValue.current.isAdmin) p.setsocketIoSeen(false)
 
     socket.current.on("online", (users) => {
       const user = users.find((user) => (user.user.isAdmin === 1))
@@ -87,6 +88,9 @@ const SocketIo = (p) => {
               })
             }
           }
+        }
+        else {
+          AsyncStorage.setItem('socketDate', JSON.stringify(new Date().getTime())).then(() => { })
         }
       }
     })
@@ -124,12 +128,16 @@ const SocketIo = (p) => {
             })
           }
         }
+      } else {
+        const socketTocken = await AsyncStorage.getItem('socketTocken')
+        if (socketTocken === messages[0].to) { p.setsocketIoSeen(true) }
+        AsyncStorage.setItem('socketDate', JSON.stringify(new Date().getTime())).then(() => { })
       }
     });
 
 
 
-    socket.current.on("delRemove", (users) => { setallUsers(users) })
+    // socket.current.on("delRemove", (users) => { console.log(users); socket.current = null })
     return () => {
       setPvChatMessage([])
       settitleMessage([])
@@ -199,20 +207,20 @@ const SocketIo = (p) => {
                 data={titleMessage}
                 renderItem={({ item, index }) => (
                   (item.userId !== tokenSocket.current) &&
-                  <Press fd='row' 
-                  onClick={() => {
-                    if ((tokenValue.current.isAdmin) && (item.to === '1')) {
-                      setto(item.userId); setuserId(item.userId);
-                      AsyncStorage.setItem(item.userId, JSON.stringify(item)).then(() => {
-                        settitleMessage(titleMsg => {
-                          let filter = titleMsg.filter((m) => (m.userId !== item.userId))
-                          filter.push({ ...item, badgeActive: false })
-                          return filter
+                  <Press fd='row'
+                    onClick={() => {
+                      if ((tokenValue.current.isAdmin) && (item.to === '1')) {
+                        setto(item.userId); setuserId(item.userId);
+                        AsyncStorage.setItem(item.userId, JSON.stringify(item)).then(() => {
+                          settitleMessage(titleMsg => {
+                            let filter = titleMsg.filter((m) => (m.userId !== item.userId))
+                            filter.push({ ...item, badgeActive: false })
+                            return filter
+                          })
                         })
-                      })
-                    }
-                  }}
-                  key={index}
+                      }
+                    }}
+                    key={index}
                     style={{ marginVertical: 10, marginRight: 'auto', marginLeft: 'auto', width: '70%', height: 40, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 8, backgroundColor: 'white', borderWidth: 1, borderColor: 'silver', borderRadius: 4 }} >
                     <P>کاربر:  </P>
                     <P mt={2}

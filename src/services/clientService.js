@@ -27,4 +27,6 @@ export const likeAnswer = async (id, commentId) => axios.post(`${localhost}/like
 export const disLikeAnswer = async (id, commentId) => axios.post(`${localhost}/disLikeAnswer/${id}?commentId=${commentId}`)
 export const addBuyBasket = async (id, body) => axios.post(`${localhost}/addBuyBasket/${id}`, body)
 export const getAddress = async () => axios.get(`${localhost}/getAddress`)
+export const getSocketIoSeenUser = (id) => axios.get(`${localhost}/getSocketIoSeenUser?id=${id}`)
+
 

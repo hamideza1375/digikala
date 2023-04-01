@@ -12,7 +12,7 @@ const HomePage = (p) => {
       Header={({ show, setshow }) =>
         <SearchBar
           bgcolor='#f9f' login={(!p.tokenValue.userId) ? (p.width > 470 ? true : false) : (false)} profile={p.tokenValue.userId ? true : false} a_icon={'bars'} src={p.logoUrl}
-          iconPress={() => { setshow(!show) }} array={p.array} setarray={p.setarray} />}
+          iconPress={() => { setshow(!show) }} array={p.childItem} setarray={p.setchildItem} />}
       name={'Home'} group={p.bottom} bgcolor='#f9f' color='#000' activeColor='#3bf' style={{ boxShadow: '1px 1px 8px #a80' }} >
       {p.children}
     </Drawer>

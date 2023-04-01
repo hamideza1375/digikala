@@ -3,7 +3,7 @@ import { Button, Column, Container2, Table } from '../../other/Components/Html'
 
 const Sellers = (p) => {
 
-  const [sellerTable, setsellerTable] = useState([])
+  const [_sellerTable, _setsellerTable] = useState([])
   p._admin.getAllSellers()
   const deleteSeller = (id) => p._admin.deleteSeller(id)
   const setSellerAvailable = (id) => p._admin.setSellerAvailable(id)
@@ -18,14 +18,14 @@ const Sellers = (p) => {
           header={['حدف', 'موجودیت', ' نمایش محصولات', 'تلفن', 'نام تجاری']}
           body={['حدف', 'فعال', 'نمایش', 'phone', 'brand']}
           btn1={'#f55'}
-          btn1onClick={() => { deleteSeller(sellerTable[0]._id) }}
+          btn1onClick={() => { deleteSeller(_sellerTable[0]._id) }}
           btn2={'#1e1'}
-          btn2onClick={() => { setSellerAvailable(sellerTable[0]._id) }}
+          btn2onClick={() => { setSellerAvailable(_sellerTable[0]._id) }}
           btn3={'#09f'}
-          btn3onClick={() => { p.navigation.navigate('TableChildItems', { title: sellerTable[0].title, id:p.route.params.id ,sellerId: sellerTable[0]._id }) }}
+          btn3onClick={() => { p.navigation.navigate('TableChildItems', { title: _sellerTable[0].title, id:p.route.params.id ,sellerId: _sellerTable[0]._id }) }}
           btn2Opacity
-          object={p.currentSellerTable}
-          setobject={setsellerTable}
+          object={p.sellerTable}
+          setobject={_setsellerTable}
         />
       </Column>
     </Container2>

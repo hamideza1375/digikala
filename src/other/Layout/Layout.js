@@ -8,8 +8,10 @@ import { Icon, SearchBar, Span } from '../Components/Html';
 
 import HomePage from './page/HomePage';
 import ChildItemPage from './page/ChildItemPage';
+import TableChildItemsPage from './page/TableChildItemsPage';
 import ProfilePage from './page/ProfilePage';
 import PanelAdminPage from './page/PanelAdminPage';
+import SellerPage from './page/SellersPage';
 
 
 export const Layout = (p) => {
@@ -61,11 +63,17 @@ export const Layout = (p) => {
           p.route.name === 'ChildItems' &&
           <ChildItemPage {...p} bottom={bottom} />
           ||
+          p.route.name === 'TableChildItems' &&
+          <TableChildItemsPage {...p} bottom={bottom} />
+          ||
           p.route.name === 'Profile' &&
           <ProfilePage {...p} bottom={bottom} />
           ||
           p.route.name === 'PanelAdmin' &&
           <PanelAdminPage {...p} bottom={bottom} />
+          ||
+          p.route.name === 'Sellers' &&
+          <SellerPage {...p} bottom={bottom} />
           ||
           <View flex={1} >{p.children}</View>
         }

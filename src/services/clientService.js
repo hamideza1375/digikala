@@ -28,5 +28,8 @@ export const disLikeAnswer = async (id, commentId) => axios.post(`${localhost}/d
 export const addBuyBasket = async (id, body) => axios.post(`${localhost}/addBuyBasket/${id}`, body)
 export const getAddress = async () => axios.get(`${localhost}/getAddress`)
 export const getSocketIoSeenUser = (id) => axios.get(`${localhost}/getSocketIoSeenUser?id=${id}`)
+export const getSingleSeller = (id) => axios.get(`${localhost}/getSingleSeller?id=${id}`)
+export const getSendStatus = () => axios.get(`${localhost}/getSendStatus`)
+
 
 

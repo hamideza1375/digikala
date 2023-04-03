@@ -8,7 +8,7 @@ import { getAddress } from '../../services/clientService';
 function SetAddressInTehran(p) {
   const confirmPayment = () => {
     if (p.latlng.lat < 35.5578099 || p.latlng.lat > 35.7767168 || p.latlng.lng < 51.1029017 || p.latlng.lng > 51.6488662) {
-      p.toast.warning('', 'ارسال سفارش فقط در تهران با نقشه پشتیبانی میشود')
+      p.toast.warning('خطا', 'ارسال سفارش فقط در تهران با نقشه پشتیبانی میشود')
       p.setshowActivity(false)
     }
     else {

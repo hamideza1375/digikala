@@ -201,6 +201,7 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getLastPayment()
+        p.setlastPayment(data.lastPayment);
       })()
     }, [])
   }

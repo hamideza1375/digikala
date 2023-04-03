@@ -359,20 +359,20 @@ const yub = {
     }
 
 
-    if (propName === 'input8') { // color
-      if (parseInt(target[propName])) {
-        return ('نباید در این کادر از اعداد استفاده کرد')
-      }
-      else if (target[propName].length < 2) {
-        return ('رنگ نباید کوچک تر از ۲ کلمه باشد')
-      }
-      else if (target[propName].includes('_')) {
-        return ("برای جدا کردن رنگ ها به جای کارکتر ( _ ) از این کارکتر ( - ) استفاده کنید")
-      }
-      else {
-        return target[propName]
-      }
-    }
+    // if (propName === 'input8') { // color
+    //   if (parseInt(target[propName])) {
+    //     return ('نباید در این کادر از اعداد استفاده کرد')
+    //   }
+    //   else if (target[propName].length < 2) {
+    //     return ('رنگ نباید کوچک تر از ۲ کلمه باشد')
+    //   }
+    //   else if (target[propName].includes('_')) {
+    //     return ("برای جدا کردن رنگ ها به جای کارکتر ( _ ) از این کارکتر ( - ) استفاده کنید")
+    //   }
+    //   else {
+    //     return target[propName]
+    //   }
+    // }
 
 
     if (propName === 'input9') { // display

@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { lazy, Suspense, useState } from 'react'
 import { Platform } from 'react-native'
 import _useEffect from '../../controllers/_initial';
-import { Br, Button, Container2, Div, Icon, Loading, M_icon, P, Row, Scroll, Span } from '../../other/Components/Html'
+import { Br, Button, Container2, ContainerTab, Div, Icon, Loading, M_icon, P, Row, Scroll, Span } from '../../other/Components/Html'
 import share from '../../other/utils/share';
 import { getSingleSavedItems } from '../../services/userService';
 import Chat from './components/home/Chat'
@@ -25,7 +25,7 @@ const SingleItem = (p) => {
   const savedItem = () => p._user.savedItem()
 
   return (
-    <Container2>
+    <ContainerTab>
       <Scroll >
         <Row bgcolor='#fff' w='100%' h={50} jc='space-between' >
           <P pr={10} mt={14} fw='bold'>{p.singleItem.title}</P>
@@ -36,6 +36,7 @@ const SingleItem = (p) => {
               <M_icon color='#ccc' size={17} name='bookmark-border' onClick={() => savedItem()} />
             }
             <Icon color='#ccc' name='share-alt' size={17} onClick={async () => { share(`http://localhost:3000/singleitem/${p.route.params.id}`, 'دیجیکالا') }} />
+            {p.navigation.canGoBack()?<Icon color='#ccc' name='arrow-left' size={17} onClick={ () => { p.navigation.goBack() }} />:<></>}
           </Row>
         </Row>
         <Br />
@@ -64,7 +65,7 @@ const SingleItem = (p) => {
                   <Specifications {...p} />
                 </Suspense>
 
-                <Suspense style={{backgroundColor: 'red'}} fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+                <Suspense style={{ backgroundColor: 'red' }} fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
                   <Obligations mt={15} {...p} />
                 </Suspense>
               </Span>
@@ -79,8 +80,6 @@ const SingleItem = (p) => {
           </Suspense>
         </Span>
         <Div>
-
-
           <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
             <ShowComment {...p} />
           </Suspense>
@@ -91,8 +90,8 @@ const SingleItem = (p) => {
           </Suspense>
         </Span>
       </Scroll>
-      <Chat {...p} />
-    </Container2>
+      {/* <Chat {...p} /> */}
+    </ContainerTab>
   )
 }
 

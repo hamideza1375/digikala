@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { Span, Slider, Scroll, Div, ContainerTab, Loading } from '../../other/Components/Html'
+import { Span, Slider, Scroll, Div, ContainerTab, Loading, Column } from '../../other/Components/Html'
 import Chat from './components/home/Chat'
 import Category from './components/home/Category';
 import _useEffect from '../../controllers/_initial';
@@ -21,7 +21,7 @@ function Home(p) {
 
 
   return (
-    <ContainerTab >
+    <Column h='100%' >
 
       <Scroll>
         <Div>
@@ -57,8 +57,8 @@ function Home(p) {
         </Span>
 
       </Scroll>
-      <Chat {...p} />
-    </ContainerTab>
+      {/* <Chat {...p} /> */}
+    </Column>
   )
 }
 

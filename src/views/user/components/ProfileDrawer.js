@@ -1,11 +1,17 @@
 import React from 'react'
-import { Scroll, Span, Drawer2, P, Press, Py, Badge } from '../../../other/Components/Html'
+import { Scroll, Span, Press, Py, Badge } from '../../../other/Components/Html'
 
 const ProfileDrawer = (p) => {
   return (
     <Scroll ccStyle={{ flexGrow: 1 }} >
+      {p.tokenValue.isAdmin ? <Span as='center' pv={15} ph={10} w='95%' border={[1, '#047']}>
+        <Press mt={5} onClick={() => p.navigation.navigate('PanelAdmin')} ><Py>پنل ادمین</Py></Press>
+      </Span>
+        :
+        <></>
+      }
       <Span as='center' pv={15} ph={10} w='95%' border={[1, '#047']}>
-        <Press mt={10} onClick={() => p.navigation.navigate('ResetSpecification')} ><Py>تغییر رمز عبور و مشخصات</Py></Press>
+        <Press mt={5} onClick={() => p.navigation.navigate('ResetSpecification')} ><Py>تغییر رمز عبور و مشخصات</Py></Press>
       </Span>
       <Span as='center' pv={15} ph={10} w='95%' border={[1, '#047']}>
         <Press onClick={() => p.navigation.navigate('SendTicket')} ><Py>ارسال تیکت</Py></Press>

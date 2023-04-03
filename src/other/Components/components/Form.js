@@ -294,7 +294,7 @@ const Form = ({
   const [_input7, set_Input7] = useState()
   const [_input8, set_Input8] = useState()
   const [_input9, set_Input9] = useState()
-  const [_input10, set_Input10] = useState()
+  // const [_input10, set_Input10] = useState()
 
 
   newObj.phone = phone;
@@ -326,9 +326,9 @@ const Form = ({
   newObj.input5 = input5;
   newObj.input6 = input6;
   newObj.input7 = input7;
-  newObj.input8 = input8;
+  // newObj.input8 = input8;
   newObj.input9 = input9;
-  newObj.input10 = input10;
+  // newObj.input10 = input10;
 
 
 
@@ -363,10 +363,9 @@ const Form = ({
   var inpt5 = in5 ? newObj.input5 === input5 : true
   var inpt6 = in6 ? newObj.input6 === input6 : true
   var inpt7 = in7 ? newObj.input7 === input7 : true
-  var inpt8 = in8 ? newObj.input8 === input8 : true
+  // var inpt8 = in8 ? newObj.input8 === input8 : true
   var inpt9 = in9 ? newObj.input9 === input9 : true
-  var inpt10 = in10 ? newObj.input10 === input10 : true
-
+  // var inpt10 = in10 ? newObj.input10 === input10 : true
 
 
 
@@ -384,18 +383,34 @@ const Form = ({
   const [orange, setorange] = useState(false)
 
 
+  const [redNumber, setredNumber] = useState('')
+  const [blueNumber, setblueNumber] = useState('')
+  const [greenNumber, setgreenNumber] = useState('')
+  const [yellowNumber, setyellowNumber] = useState('')
+  const [silverNumber, setsilverNumber] = useState('')
+  const [goldNumber, setgoldNumber] = useState('')
+  const [purpleNumber, setpurpleNumber] = useState('')
+  const [brownNumber, setbrownNumber] = useState('')
+  const [blackNumber, setblackNumber] = useState('')
+  const [whiteNumber, setwhiteNumber] = useState('')
+  const [orangeNumber, setorangeNumber] = useState('')
+
+
   useFocusEffect(useCallback(() => {
-    input8.includes('red') && setred(true)
-    input8.includes('blue') && setblue(true)
-    input8.includes('green') && setgreen(true)
-    input8.includes('yellow') && setyellow(true)
-    input8.includes('silver') && setsilver(true)
-    input8.includes('gold') && setgold(true)
-    input8.includes('purple') && setpurple(true)
-    input8.includes('brown') && setbrown(true)
-    input8.includes('black') && setblack(true)
-    input8.includes('white') && setwhite(true)
-    input8.includes('orange') && setorange(true)
+    for(let i in input8 ){
+      if(input8[i]?.value > 0 && input8[i]?.color === 'red' )  {setredNumber(input8[i]?.value); setred(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'blue' )  {setblueNumber(input8[i]?.value); setblue(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'green' )  {setgreenNumber(input8[i]?.value); setgreen(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'yellow' )  {setyellowNumber(input8[i]?.value); setyellow(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'silver' )  {setsilverNumber(input8[i]?.value); setsilver(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'gold' )  {setgoldNumber(input8[i]?.value); setgold(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'purple' )  {setpurpleNumber(input8[i]?.value); setpurple(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'brown' )  {setbrownNumber(input8[i]?.value); setbrown(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'black' )  {setblackNumber(input8[i]?.value); setblack(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'white' )  {setwhiteNumber(input8[i]?.value); setwhite(true) }
+      if(input8[i]?.value > 0 && input8[i]?.color === 'orange' )  {setorangeNumber(input8[i]?.value); setorange(true) }
+      }
+
     
     return()=>{ 
       setred(false)
@@ -409,6 +424,18 @@ const Form = ({
       setblack(false)
       setwhite(false)
       setorange(false)
+
+      setredNumber('')
+      setblueNumber('')
+      setgreenNumber('')
+      setyellowNumber('')
+      setsilverNumber('')
+      setgoldNumber('')
+      setpurpleNumber('')
+      setbrownNumber('')
+      setblackNumber('')
+      setwhiteNumber('')
+      setorangeNumber('')
     }
   }, [input8]))
 
@@ -748,7 +775,8 @@ const Form = ({
               textContentType="oneTimeCode"
               autoComplete={'on-time-code'}
               autoFocus={$codeAutoFocus}
-              m_icon="textsms"
+              m_icon="perm-phone-msg"
+              iconSize={25}
               p="کد ورود"
               iconLeft={codeIconLeft}
               iconRight={codeIconRight}
@@ -924,7 +952,7 @@ const Form = ({
           }
 
 
-          {in10 &&
+          {/* {in10 &&
             <Frm
               autoComplete="off"
               icon="sort-numeric-up-alt"
@@ -938,7 +966,7 @@ const Form = ({
               yub={inpt10}
               styles={styles}
             />
-          }
+          } */}
 
 
 
@@ -1032,113 +1060,124 @@ const Form = ({
         { in8 &&
          <Scroll ccStyle={{ flexDirection: 'row', flexWrap: 'wrap' }} w='100%' maxw='100%'  bgcolor='#fff' border={[1, '#333']} mh={10} mt={35} mb={-10} br={4} p={10} >
 
-            <View style={{width:50, alignSelf:'center'}}>
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}}>
               <CheckBox
                 br={50}
                 bgcolor='red'
                 border={[1, 'red']} ml={4} mb={3}
                 show={red} setshow={setred}
               />
+             <TextInput keyboardType='numeric' value={redNumber} onChangeText={(text)=>{setredNumber(text); setred(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >قرمز</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='blue'
                 border={[1, 'blue']} ml={4} mb={3}
                 show={blue} setshow={setblue}
               />
+             <TextInput keyboardType='numeric' value={blueNumber} onChangeText={(text)=>{setblueNumber(text); setblue(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >آبی</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='green'
                 border={[1, 'green']} ml={4} mb={3}
                 show={green} setshow={setgreen}
               />
+             <TextInput keyboardType='numeric' value={greenNumber} onChangeText={(text)=>{setgreenNumber(text); setgreen(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >سبز</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='yellow'
                 border={[1, 'yellow']} ml={4} mb={3}
                 show={yellow} setshow={setyellow}
               />
+             <TextInput keyboardType='numeric' value={yellowNumber} onChangeText={(text)=>{setyellowNumber(text); setyellow(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >زرد</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='silver'
                 border={[1, 'silver']} ml={4} mb={3}
                 show={silver} setshow={setsilver}
               />
+             <TextInput keyboardType='numeric' value={silverNumber} onChangeText={(text)=>{setsilverNumber(text); setsilver(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >نقره ای</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='gold'
                 border={[1, 'gold']} ml={4} mb={3}
                 show={gold} setshow={setgold}
               />
+             <TextInput keyboardType='numeric' value={goldNumber} onChangeText={(text)=>{setgoldNumber(text); setgold(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >طلایی</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='purple'
                 border={[1, 'purple']} ml={4} mb={3}
                 show={purple} setshow={setpurple}
               />
+             <TextInput keyboardType='numeric' value={purpleNumber} onChangeText={(text)=>{setpurpleNumber(text); setpurple(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >بنفش</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='brown'
                 border={[1, 'brown']} ml={4} mb={3}
                 show={brown} setshow={setbrown}
               />
+             <TextInput keyboardType='numeric' value={brownNumber} onChangeText={(text)=>{setbrownNumber(text); setbrown(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >قهوه ای</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='black'
                 border={[1, 'black']} ml={4} mb={3}
                 show={black} setshow={setblack}
               />
+             <TextInput keyboardType='numeric' value={blackNumber} onChangeText={(text)=>{setblackNumber(text); setblack(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >سیاه</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='#eaeaea'
                 border={[1, '#eaeaea']} ml={4} mb={3}
                 show={white} setshow={setwhite}
               />
+             <TextInput keyboardType='numeric' value={whiteNumber} onChangeText={(text)=>{setwhiteNumber(text); setwhite(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >سفید</Py>
             </View>
 
-            <View style={{width:50, alignSelf:'center'}} >
+            <View style={{width:50, alignSelf:'center', alignItems:'center'}} >
               <CheckBox
                 br={50}
                 bgcolor='orange'
                 border={[1, 'orange']} ml={4} mb={3}
                 show={orange} setshow={setorange}
               />
+             <TextInput keyboardType='numeric' value={orangeNumber} onChangeText={(text)=>{setorangeNumber(text); setorange(true)}} style={{borderWidth:1, width: 30, marginVertical:3, borderRadius:2, fontSize:13, textAlign:'center'}} />
               <Py fs={9} fw='100' >نارنجی</Py>
             </View>
 
@@ -1431,20 +1470,36 @@ const Form = ({
                 onPressIn={() => {
 
                   setinput8(() => {
-                    let color = []
-                    red && color.push('red')
-                    blue && color.push('blue')
-                    green && color.push('green')
-                    yellow && color.push('yellow')
-                    silver && color.push('silver')
-                    gold && color.push('gold')
-                    purple && color.push('purple')
-                    brown && color.push('brown')
-                    black && color.push('black')
-                    white && color.push('white')
-                    orange && color.push('orange')
-                    return color
+                    let colorArray = []
+                      if(red && redNumber > 0) {colorArray.push({color:'red', value:redNumber}) }
+                      if(blue && blueNumber > 0) {colorArray.push({color:'blue', value:blueNumber})}
+                      if(green && greenNumber > 0) {colorArray.push({color:'green', value:greenNumber})}
+                      if(yellow && yellowNumber > 0) {colorArray.push({color:'yellow', value:yellowNumber})}
+                      if(silver && silverNumber > 0) {colorArray.push({color:'silver', value:silverNumber})}
+                      if(gold && goldNumber > 0) {colorArray.push({color:'gold', value:goldNumber})}
+                      if(purple && purpleNumber > 0) {colorArray.push({color:'purple', value:purpleNumber})}
+                      if(brown && brownNumber > 0) {colorArray.push({color:'brown', value:brownNumber})}
+                      if(black && blackNumber > 0) {colorArray.push({color:'black', value:blackNumber})}
+                      if(white && whiteNumber > 0) {colorArray.push({color:'white', value:whiteNumber})}
+                      if(orange && orangeNumber > 0) {colorArray.push({color:'orange', value:orangeNumber})}
+                    return colorArray
                   })
+
+
+                  //   let color = {}
+                  //   if(red && redNumber > 0) color.red = {color:'red', value:redNumber}
+                  //   if(blue && blueNumber > 0) color.blue = 
+                  //   if(green && greenNumber > 0) color.green = 
+                  //   if(yellow && yellowNumber > 0) color.yellow = 
+                  //   if(silver && silverNumber > 0) color.silver = 
+                  //   if(gold && goldNumber > 0) color.gold = 
+                  //   if(purple && purpleNumber > 0) color.purple = 
+                  //   if(brown && brownNumber > 0) color.brown = 
+                  //   if(black && blackNumber > 0) color.black = 
+                  //   if(white && whiteNumber > 0) color.white = 
+                  //   if(orange && orangeNumber > 0) color.orange = 
+                  //   return color
+                  // })
 
                   setremember && setremember(changeremember ? (60 * 1000 * 60 * 24 * 365) : ('24h'))
                   set_Fullname(true);
@@ -1479,14 +1534,14 @@ const Form = ({
                   set_Input5(true)
                   set_Input6(true)
                   set_Input7(true)
-                  set_Input8(true)
+                  // set_Input8(true)
                   set_Input9(true)
-                  set_Input10(true)
+                  // set_Input10(true)
 
                 }}
                 onPress={async () => {
-                  if(in8 && !input8.length) return toast.error('','یک رنگ انتخاب کنید')
-                  if ((stct) && (flm && eml && opsd, psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && /* inpt8 && */ inpt9 && inpt10)) {
+                  if(in8 && !Object.values(input8).length) return toast.error('','یک رنگ انتخاب کنید')
+                  if ((stct) && (flm && eml && opsd, psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt9 /* && inpt8  && inpt10 */)) {
 
                     setdisableClick(true)
 

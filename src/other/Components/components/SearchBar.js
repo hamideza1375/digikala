@@ -5,13 +5,16 @@ import { context } from '../../../context/_context'
 import { useNavigation } from '@react-navigation/native';
 import { localhost } from '../../utils/axios/axios';
 
-function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_icon, src, iconPress, sort, bgcolor, profile, title, brand }) {
+function SearchInput({ row, array, setarray, login, icon, m_icon, a_icon, src, iconPress, sort, bgcolor, profile, title, brand }) {
 
   const navigation = useNavigation()
 
   const p = context()
   const [getValueSearch, setgetValueSearch] = useState([])
   const [textSearch, settextSearch] = useState('')
+
+
+
 
 
   const foodAsc = () => {
@@ -24,7 +27,6 @@ function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_i
   const foodDesc = () => {
     setarray(array => array.sort((a, b) => b['price'] - a['price']))
     // console.log('foodDesc', array);
-
   }
 
 
@@ -34,11 +36,11 @@ function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_i
       fd1,
       fd2
 
-    if (!brand) fd1 = array.filter((f) => f.title.toLowerCase().includes(textSearch) || (f.phone?.includes(textSearch)) )
-    else fd1 = array.filter((f) => f.brand.toLowerCase().includes(textSearch) || (f.phone?.includes(textSearch)) )
+    if (!brand) fd1 = array.filter((f) => f.title.toLowerCase().includes(textSearch) || (f.phone?.includes(textSearch)))
+    else fd1 = array.filter((f) => f.brand.toLowerCase().includes(textSearch) || (f.phone?.includes(textSearch)))
     f.push(...fd1)
-    if (!brand) fd2 = array.filter((f) => (f.title.toLowerCase().match(textSearch)) || (f.phone?.match(textSearch)) )
-    else fd2 = array.filter((f) => (f.brand.toLowerCase().match(textSearch)) || (f.phone?.match(textSearch)) )
+    if (!brand) fd2 = array.filter((f) => (f.title.toLowerCase().match(textSearch)) || (f.phone?.match(textSearch)))
+    else fd2 = array.filter((f) => (f.brand.toLowerCase().match(textSearch)) || (f.phone?.match(textSearch)))
     for (let i in fd1) {
       for (let n in fd2) {
         if (fd1[i]._id !== fd2[n]._id) {
@@ -63,7 +65,7 @@ function SearchInput({ logoPress, row, array, setarray, login, icon, m_icon, a_i
   return (
     <Span h={57} pt={2} w={'100%'} as='center' z={10000000}>
       <Span bgcolor={bgcolor} style={[styles.containHead]}>
-        {src && <Press onClick={logoPress} /* mr={10} ml={5} */ ><Img bgcolor='transport' w={55} h={55} br={4} src={src} /></Press>}
+        {(src) && (navigation.canGoBack()) && <Press onClick={() => navigation.goBack()} /* mr={10} ml={5} */ ><Img bgcolor='transport' w={55} h={55} br={4} src={src} /></Press>}
         {icon && <Icon size={24} style={[styles.iconHome, { marginTop: 3 }]} name={icon} onPress={() => { iconPress() }} />}
         {m_icon && <M_icon size={24} style={[styles.iconHome, { marginTop: 3 }]} name={m_icon} onPress={() => { iconPress() }} />}
         {a_icon && <A_icon size={24} style={[styles.iconHome, { marginTop: 4 }]} name={a_icon} onPress={() => { iconPress() }} />}

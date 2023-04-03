@@ -119,7 +119,7 @@ const ToastProvider = (p) => {
             <P style={{ padding: 6, color: 'white', position: 'absolute', top: 1, alignSelf: 'flex-end' }}
               onClick={() => { let filter = p._list.filter((l) => l.id !== toast.id); p.set_list(filter); }}>X</P>
             <P style={{ width: '95%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', paddingTop: 2 }} >{toast.title}</P>
-            <P style={{ width: '95%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', fontSize: toast.description === '✅'?25: 14, fontWeight: '200', paddingTop: 8, paddingBottom: 5, }} >{toast.description}</P>
+            <P style={{ width: '95%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', fontSize: toast.description === '√'?25: 14, fontWeight: '200', paddingTop: 8, paddingBottom: 5, paddingRight: toast.description === '√'?5: 1 }} >{toast.description}</P>
           </Span>
         </Animated.View>
       ))

@@ -2,9 +2,8 @@ import React, { useCallback, useState } from 'react'
 import { View, StyleSheet, Keyboard, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Badge } from '../Html';
 
-const BottomTab = ({productBasket, group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" , socketIoSeen}) => {
+const BottomTab = ({ group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f" }) => {
   const navigation = useNavigation()
   const [show, setshow] = useState(true)
 
@@ -29,12 +28,10 @@ const BottomTab = ({productBasket, group, children, name, style, bgcolor = '#fff
       {show && <View opacity={1} style={[styles.sidebar, { backgroundColor: bgcolor }, style]} >
         {group?.map((r, key) => (
           <View key={key} style={[styles.routeView, { backgroundColor: 'transparent', }]} >
-            <View style={[styles.pressableActive, { alignItems: 'center' }, { backgroundColor: 'transparent' }]} >
+            <View style={[styles.pressableActive, { backgroundColor: 'transparent' }]} >
               <Icon
-                onPress={() => { navigation.navigate(!r.navigate ? (r.mainTitle ? r.mainTitle : r.title) : r.navigate, { ...r.params }) }}
-                name={r.icon} size={r.icon === 'comments' ? 27 : 24} style={{ color: name == r.title ? activeColor : color }} />
-              {(r.icon === 'comments') && socketIoSeen ? <Badge bgcolor='#0e5' top={5} scale={.8} mr={25} /> : <></>}
-              {(r.icon === 'shopping-cart') && (productBasket && Object.values(productBasket).length) ? <Badge bgcolor='#0e5' top={5} scale={.8} mr={-25} /> : <></>}
+                onPress={() => { navigation.navigate(r.mainTitle ? r.mainTitle : r.title, { ...r.params }) }}
+                name={r.icon} size={r.icon === 'comments' ? 29 : 26} style={{ color: name == r.title ? activeColor : color }} />
             </View>
           </View>
         ))}

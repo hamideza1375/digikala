@@ -8,7 +8,7 @@ const Specifications = (p) => {
         coulumn1={
           <Span mt={5} fg={1} jc='center'>
             <Span mr={12} fd='row' ai='center'>
-              <P>تعداد هسته ی پردازشگر(cpu): </P>
+              <P>تعداد هسته ی پردازشگر: </P>
               <P fs={10.5} color='#333'>{p.singleItem.cpuCore} هسته</P>
             </Span>
           </Span>

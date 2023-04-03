@@ -35,7 +35,7 @@ function Table({ titleClick, children, fontSize, mt = 0, border = [], object, se
     let dt = 0
     if (item.offerTime?.exp > new Date().getTime()) {
       seconder(item.offerTime?.exp, ({ days, hours, minutes, seconds }) => (
-        dt = hours + ':' + minutes
+        dt =days + '/' + hours + ':' + minutes
       ))
     }
     return dt

@@ -74,8 +74,6 @@ export const header = () => {
       <Icon
         name='arrow-right'
         style={{ fontSize: 29, marginTop: -5, paddingVertical: 2.5, flexGrow: 1, color: '#222', fontWeight: '1000' }} />
-
-
     </Pressable>
   );
 };

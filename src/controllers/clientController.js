@@ -259,10 +259,11 @@ export function clientController(p) {
 
 
   this.setColor = () => {
+
     _useEffect(() => {
       p.singleItem.title && p.setcolor((color) => {
         const c = { ...color }
-        c[p.route.params.id] = color[p.route.params.id] ? color[p.route.params.id] : p.singleItem.color[0]
+        c[p.route.params.id] = color[p.route.params.id] ? color[p.route.params.id] : p.singleItem.color.find(c => c.value > 0).color
         return c
       })
     }, [p.singleItem])
@@ -281,29 +282,29 @@ export function clientController(p) {
       description: p.description
     })
 
-   const address = await AsyncStorage.getItem('address')
+    const address = await AsyncStorage.getItem('address')
 
 
-    if(address !== p.address){
-    if (p.route.name === 'Location') {
-      _Alert.alert(
-        "آدرس جدید در مرورگر ذخیره شود؟",
-        "",
-        [
-          { text: 'cancel', onPress: () => { } },
-          {
-            text: 'OK', onPress: () => {
-              AsyncStorage.setItem('postalCode', p.postalCode).then(() => { })
-              AsyncStorage.setItem('address', p.address).then(() => { })
-              AsyncStorage.setItem('state', p.state).then(() => { })
-              AsyncStorage.setItem('City', p.City).then(() => { })
+    if (address !== p.address) {
+      if (p.route.name === 'Location') {
+        _Alert.alert(
+          "آدرس جدید در مرورگر ذخیره شود؟",
+          "",
+          [
+            { text: 'cancel', onPress: () => { } },
+            {
+              text: 'OK', onPress: () => {
+                AsyncStorage.setItem('postalCode', p.postalCode).then(() => { })
+                AsyncStorage.setItem('address', p.address).then(() => { })
+                AsyncStorage.setItem('state', p.state).then(() => { })
+                AsyncStorage.setItem('City', p.City).then(() => { })
 
+              }
             }
-          }
-        ]
-      )
+          ]
+        )
+      }
     }
-}
     p.navigation.replace('FramePayment', { url: data })
   }
 

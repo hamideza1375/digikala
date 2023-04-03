@@ -225,7 +225,7 @@ export const Scroll = (props) => <Component {...props} Component={ScrollView} />
 
 export const ScrollHorizontal = (props) => <Component {...props} horizontal={true} Component={ScrollView} />
 
-export const FlatList = ({ loading=true, column1, column2, column3, column4, column5, column6, renderItem, numColumns, data, ...props }) => {
+export const FlatList = ({ loading=true, column1, column2, column3, column4, column5, column6, renderItem, numColumns, data, keyExtractor, ...props }) => {
 
   const width = Dimensions.get('window').width
   const [index, setindex] = useState(0)
@@ -248,7 +248,7 @@ export const FlatList = ({ loading=true, column1, column2, column3, column4, col
           <View style={{ position: 'absolute', height: 0, width: 0 }} ref={() => setindex(index)} ></View>
           <>{renderItem({ item, index })}</> </>}
         flatlist={true}
-        keyExtractor={(item, index) => item._id}
+        keyExtractor={keyExtractor?keyExtractor:(item, index) => item._id}
         numColumns={numColumns ? numColumns : column}
         key={numColumns ? numColumns : column}
         Component={_FlatList}

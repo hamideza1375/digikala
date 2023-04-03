@@ -12,7 +12,8 @@ import { Layout } from "../other/Layout/Layout";
 
 import backgroundTimer from '../other/utils/backgroundTimer';
 import { create } from '../other/utils/notification';
-import { getNotification, getSlider, getSocketIoSeenUser } from '../services/clientService';
+import { getNotification, getSendStatus, getSlider, getSocketIoSeenUser } from '../services/clientService';
+import { getPostPrice } from '../services/adminService';
 import { Loading } from '../other/Components/Html';
 import online from '../other/utils/online';
 import { getTicketSeen } from '../services/userService';
@@ -24,7 +25,7 @@ export const _initController = (p) => {
   const [show, setshow] = useState(false)
 
   useEffect(() => {
-    var toastOK = (data) => { typeof data !== 'string' ? p.toast.success('موفق آمیز', '✅', 2500) : p.toast.success('موفق آمیز', data, 3500) }
+    var toastOK = (data) => { typeof data !== 'string' ? p.toast.success('موفق آمیز', '√', 2500) : p.toast.success('موفق آمیز', data, 3500) }
     var toast500 = () => { p.toast.error('خطا ی سرور', 'مشکلی از سمت سرور پیش آمده'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     var toast400 = (error) => { p.toast.error('خطا', typeof error === 'string' ? error : 'خطایی غیر منتظره رخ داد'); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
     var toastNetworkError = () => { p.toast.error('خطا ی شبکه', 'اتصال اینترنتتان را برسی کنید') }
@@ -48,7 +49,7 @@ export const _initController = (p) => {
         else if (error?.response?.status) {
           p.setshowActivity(false)
           if (error.response.status > 400 && error.response.status <= 500) { toast500(); p.setshowActivity(false) };
-          if (error.response.status === 400 && error.response.data ) { toast400(error.response.data) };
+          if (error.response.status === 400 && error.response.data) { toast400(error.response.data) };
         } return Promise.reject(error);
       });
 
@@ -121,22 +122,31 @@ export const _initController = (p) => {
           create('جواب تیکت جدید', truncate(data.ticket.message, 30, false), require('../other/assets/images/logo.png'))
           await AsyncStorage.setItem('ticketNotification', data.ticket.message)
         }
-    },2000)
+    }, 2000)
   }, [])
-useEffect(() => {
-  setTimeout(async () => {
-    const socketTocken = await AsyncStorage.getItem('socketTocken')
-    const { data } = await getSocketIoSeenUser(socketTocken)
-    let newNotification = await AsyncStorage.getItem('msgNotification')
-    if (data)
-      if (data.message && !p.tokenValue.isAdmin && newNotification !== data.message) {
-        create('جواب پیام شما', truncate(data.message, 30, false), require('../other/assets/images/logo.png'))
-        await AsyncStorage.setItem('msgNotification', data.message)
-      }
-  },2000)
-}, [])
+  useEffect(() => {
+    setTimeout(async () => {
+      const socketTocken = await AsyncStorage.getItem('socketTocken')
+      const { data } = await getSocketIoSeenUser(socketTocken)
+      let newNotification = await AsyncStorage.getItem('msgNotification')
+      if (data)
+        if (data.message && !p.tokenValue.isAdmin && newNotification !== data.message) {
+          create('جواب پیام شما', truncate(data.message, 30, false), require('../other/assets/images/logo.png'))
+          await AsyncStorage.setItem('msgNotification', data.message)
+        }
 
+      AsyncStorage.getItem("token").then(async (token) => {
+        if (token) {
+          const user = jwtDecode(token);
+          const socketTocken = await AsyncStorage.getItem('socketTocken')
+          const { data } = await getSocketIoSeenUser(socketTocken)
+          const getTime = await AsyncStorage.getItem('socketDate')
+          if (data && !user.isAdmin && data.getTime > JSON.parse(getTime)) p.setsocketIoSeen(true)
+        }
+      })
 
+    }, 2000)
+  }, [])
 
 
   _useEffect(() => {
@@ -144,6 +154,20 @@ useEffect(() => {
       data && p.setslider(Object.values(data))
     })
   }, [])
+
+
+
+
+  _useEffect(() => {
+    setTimeout(() => {
+      getSendStatus().then(({ data }) => {
+       if(data.checkSend === 1 ) p.toast.show('','سفارش شما ثبت شده و در حال برسی برای ارسال هست',10000)
+       else if(data.queueSend === 1 ) p.toast.success(data.queueSend,'سفارش شما در صف ارسال قرار گرفت', 10000)
+      })
+    }, 400);
+  }, [])
+
+
 
 }
 

@@ -216,9 +216,13 @@ export function client() {
   const countMap = useRef(new Map())
   const [productBasket, setproductBasket] = useState({})
   const [color, setcolor] = useState({})
+  const [sendStatus, setsendStatus] = useState({})
+  const [postPrice, setpostPrice] = useState('')
 
 
   this.client = {
+    postPrice, setpostPrice,
+    sendStatus, setsendStatus,
     color, setcolor,
     productBasket, setproductBasket,
     countMap,

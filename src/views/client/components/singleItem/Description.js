@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Badge, Button, Card2, Column, Div, Icon, P, Pfa, Press, Py, Row, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 import _useEffect from '../../../../controllers/_initial';
+import convertColor from '../../../../other/utils/convertColor'
+import { getSingleSeller } from '../../../../services/clientService';
 
 
 const Description = (p) => {
+
+  const [availableSeller, setavailableSeller] = useState(1)
 
   p._client.setColor()
 
@@ -14,21 +18,13 @@ const Description = (p) => {
   else price = p.singleItem.price
 
 
-  const convertColor = (item) => {
-    let color
-    if (item === 'red') color = 'قرمز'
-    if (item === 'blue') color = 'آبی'
-    if (item === 'green') color = 'سبز'
-    if (item === 'yellow') color = 'زرد'
-    if (item === 'silver') color = 'نقره ای'
-    if (item === 'gold') color = 'طلایی'
-    if (item === 'purple') color = 'بنفش'
-    if (item === 'brown') color = 'قهوه ای'
-    if (item === 'black') color = 'سیاه'
-    if (item === 'white') color = 'سفید'
-    if (item === 'orange') color = 'نارنجی'
-    return color
-  }
+  _useEffect(() => {
+    p.singleItem.sellerId &&
+      getSingleSeller(p.singleItem.sellerId).then(({ data }) => {
+        setavailableSeller(data.available);
+      })
+  }, [p.singleItem.sellerId])
+
 
 
   return (
@@ -67,7 +63,11 @@ const Description = (p) => {
 
             <Span fg={1} fd='row' pr={12} ai='center' >
               <P mb={-6}>موجود در انبار: </P>
-              <P fs={10} color={p.singleItem.availableCount < 10 ? '#f44c' : '#0ce'} mb={-6}>{p.singleItem.availableCount < 10 ? `تنها ${p.singleItem.availableCount} عدد در انبار موجود هست` : 'موجود هست'}</P>
+              {((p.singleItem.available) && (availableSeller) && (p.singleItem.availableCount > 0)) ?
+                <P fs={10} color={p.singleItem.availableCount < 10 ? '#f44c' : '#0ce'} mb={-6}>{p.singleItem.availableCount < 10 ? `تنها ${p.singleItem.availableCount} عدد در انبار موجود هست` : 'موجود هست'}</P>
+                :
+                <P fs={10} color={'#f44c'} mb={-6}>ناموجود</P>
+              }
             </Span >
 
             <Span fg={1} pr={12}>
@@ -75,25 +75,24 @@ const Description = (p) => {
                 <P >انتخاب رنگ: </P>
               </Span>
               <Div fg={1} fd='row' pr={12} pb={0} ai='center'>
-
+                
                 {p.singleItem.color?.map((item, index) => (
-                  <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
+                 item.value > 0 && <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
                     <Press onClick={() => {
                       p.setcolor((color) => {
                         const c = { ...color }
-                        c[p.route.params.id] = item
+                        c[p.route.params.id] = item.color
 
                         p.productBasket[p.route.params.id] && p.setproductBasket(addNumber => {
                           const obj = { ...addNumber }
-                          obj[p.route.params.id].color = item
+                          obj[p.route.params.id].color = item.color
                           return obj
                         })
-
                         return c
                       })
                     }} ai='center' h={30} mt={6}>
-                      <Badge bgcolor={p.color[p.route.params.id] !== item ? '#fff' : (item === 'white' ? '#efefef' : item)} border={item === 'white' ? [2, '#efefef'] : [2, item]} w={30} h={30} /></Press>
-                    <Span><P fs={10} >{convertColor(item)}</P></Span>
+                      <Badge bgcolor={p.color[p.route.params.id] !== item.color ? '#fff' : (item.color === 'white' ? '#f5f5f5' : item.color)} border={item.color === 'white' ? [2, '#f5f5f5'] : [2, item.color]} w={30} h={30} /></Press>
+                    <Span><P fs={10} >{convertColor(item.color)}</P></Span>
                   </Span>
                 ))}
 
@@ -106,12 +105,14 @@ const Description = (p) => {
               <Column w='70%' h={'100%'} jc='center' >
                 <Button disable={p.productBasket[p.route.params.id]?.number} onClick={() =>
 
-
-                  p.setproductBasket(addNumber => {
-                    const obj = { ...addNumber }
-                    obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }
-                    return obj
-                  })
+                  ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (availableSeller === 1 )) ?
+                    p.setproductBasket(addNumber => {
+                      const obj = { ...addNumber }
+                      obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }
+                      return obj
+                    })
+                    :
+                    p.toast.warning('خطا', 'محصول مورد نظر موجود نمیباشد')
 
 
                 } w='100%' bgcolor='#909' style={{ alignSelf: 'center' }} >افزودن به سبد خرید</Button>
@@ -121,7 +122,7 @@ const Description = (p) => {
                 <Column style={{ height: 20, width: 20 }} >
                   <Icon name='plus' color='#0ad' size={20} onClick={() =>
 
-
+                    (p.singleItem.availableCount && p.productBasket[p.route.params.id].number < p.singleItem.availableCount) &&
                     p.setproductBasket(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id].number = obj[p.route.params.id].number + 1
@@ -137,22 +138,18 @@ const Description = (p) => {
                 </Column>
 
 
-                <P onClick={() => { p.tokenValue.fullname ? p.navigation.navigate('BeforePayment') : p.navigation.navigate('Login',{payment:'true'}) }} >click</P>
-
                 <Column style={{ height: 20, width: 20 }} >
-                  <Icon name='minus' color='#e11' size={20} onClick={() =>
-
-
+                  <Icon name='minus' color='#e11' size={20} onClick={() => {
 
                     p.productBasket[p.route.params.id]?.number &&
-                    p.setproductBasket(addNumber => {
-                      const obj = { ...addNumber }
-                      obj[p.route.params.id].number = obj[p.route.params.id].number - 1
-                      return obj
-                    })
+                      p.setproductBasket(addNumber => {
+                        const obj = { ...addNumber }
+                        obj[p.route.params.id].number = obj[p.route.params.id].number - 1
+                        if (obj[p.route.params.id].number === 0) delete obj[p.route.params.id]
+                        return obj
+                      })
 
-
-                  } />
+                  }} />
                 </Column>
               </Column>
                 :

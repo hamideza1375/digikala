@@ -36,7 +36,7 @@ const Cat = (p) => {
   ).current;
 
   return (
-    <Animated.View style={[{ height: 50, width: 50, position: 'absolute', bottom: 30, left: 40, position: Platform.OS === 'web' ? 'fixed' : 'absolute' }, { transform: [{ translateX: pan.x }, { translateY: pan.y }] }]} {...panResponder.panHandlers}>
+    <Animated.View style={[{ height: 50, width: 50, position: 'absolute', bottom: p.width > 437 ? 30 : 60, left: 40, position: Platform.OS === 'web' ? 'fixed' : 'absolute' }, { transform: [{ translateX: pan.x }, { translateY: pan.y }] }]} {...panResponder.panHandlers}>
       <Press onClick={() => p.navigation.navigate('SocketIo')} sh={{ r: 6, o: .5 }} el={2} jc='center' ai='center' br={70} bgcolor='#909' f={1} >
         <M_icon color='#fff' name='chat' size={30} />
         {p.socketIoSeen ? <Badge right={0} top={-2} bgcolor='#0f5' /> : <></>}

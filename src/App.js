@@ -67,6 +67,7 @@ import CreateSlider from "./views/admin/CreateSlider";
 import AdminTicketBox from "./views/admin/AdminTicketBox";
 import SocketIo from "./socketIo/socketIo";
 import reload from "./other/utils/reload";
+import { getPostPrice } from "./services/adminService";
 
 rtl()
 LogBox.ignoreAllLogs();
@@ -83,6 +84,8 @@ const Mobile = () => {
   const { _children } = new allController(p)
 
   const height = Platform.OS === 'web' ? '100vh' : '100%'
+
+  useEffect(() => {setTimeout(() => { getPostPrice().then(({ data }) => {p.setpostPrice(data.price)})}, 200);}, [])
 
 
   try {
@@ -103,12 +106,12 @@ const Mobile = () => {
               <Init ref={(e) => allState.set$(e)} id={'s'} />
               <Tab.Navigator screenOptions={() => { return { headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center', ...icon } }} >
                 <Tab.Group>
-                  <Tab.Screen name="Home" options={{ title: 'home', headerShown: false }} {..._children(Home)} />
-                  <Tab.Screen name="ChildItems" options={{ title: 'home', headerShown: false }} {..._children(ChildItems)} />
-                  <Tab.Screen name="ChildOffers" options={{ title: 'home' }} {..._children(ChildOffers)} />
-                  <Tab.Screen name="ChildPopulars" options={{ title: 'home' }} {..._children(ChildPopulars)} />
-                  <Tab.Screen name="SingleItem" options={({ route }) => ({ title: 'route.params.title' })} {..._children(SingleItem)} />
-                  <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: 'route.params.title', headerStyle: { backgroundColor: '#ddd' } })} {..._children(BeforePayment)} />
+                  <Tab.Screen name="Home" options={{ title: 'home', headerShown: false }} {..._children(Home,'1')} />
+                  <Tab.Screen name="ChildItems" options={{ title: 'home', headerShown: false }} {..._children(ChildItems,'1')} />
+                  <Tab.Screen name="ChildOffers" options={{ title: 'home' }} {..._children(ChildOffers,'1')} />
+                  <Tab.Screen name="ChildPopulars" options={{ title: 'home' }} {..._children(ChildPopulars,'1')} />
+                  <Tab.Screen name="SingleItem" options={({ route }) => ({ title: 'route.params.title', headerShown:false })} {..._children(SingleItem,'1')} />
+                  <Tab.Screen name="BeforePayment" options={({ route }) => ({ title: `هزینه ی ارسال به سراسر ایران فقط ${p.postPrice} تومان`, headerStyle: { backgroundColor: '#ddd' } })} {..._children(BeforePayment)} />
                   <Tab.Screen name="Map" initialParams={{ map: false }} options={{ title: 'نقشه', headerShown: Platform.OS !== 'ios' ? false : true }} {..._children(Map)} />
                   <Tab.Screen name="Location" initialParams={{ map: false }} options={{ title: 'نقشه', headerShown: Platform.OS !== 'ios' ? false : true }} {..._children(Location)} />
                   <Tab.Screen name="SetAddressInTehran" options={{ title: 'نقشه', headerShown: Platform.OS !== 'ios' ? false : true }} {..._children(SetAddressInTehran)} />
@@ -118,25 +121,25 @@ const Mobile = () => {
                   <Tab.Screen name="SocketIo" options={{ title: 'پروفایل', headerShown: true }} {..._children(SocketIo)} />
                 </Tab.Group>
 
-                <Tab.Group screenOptions={{ headerShown: false }} >
-                  <Tab.Screen name="Register" options={{ title: 'ثبت نام' }} {..._children(Register, '120')} />
-                  <Tab.Screen name="GetCode" options={{ title: 'ثبت نام' }} {..._children(GetCode, '120')} />
-                  <Tab.Screen name="Login" options={{ title: 'ورود' }} {..._children(Login, '120')} />
-                  <Tab.Screen name="Profile" options={{ title: 'پروفایل' }} {..._children(Profile)} />
-                  <Tab.Screen name="ForgetPass" options={{ title: 'فراموشی رمز عبور', headerShown: true, headerTitleStyle: { color: 'black', fontFamily:'IRANSansWeb', fontSize: 15 }, headerTitleAlign: 'center' }} {..._children(ForgetPass)} />
-                  <Tab.Screen name="ResetPass" options={{ title: 'عوض کردن رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetPass)} />
-                  <Tab.Screen name="ResetSpecification" options={{ title: 'عوض کردن رمز عبور', headerShown: true, headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetSpecification)} />
+                <Tab.Group >
+                  <Tab.Screen name="Register" options={{ title: 'ثبت نام' }} {..._children(Register)} />
+                  <Tab.Screen name="GetCode" options={{ title: 'ثبت نام' }} {..._children(GetCode)} />
+                  <Tab.Screen name="Login" options={{ title: 'ورود' }} {..._children(Login)} />
+                  <Tab.Screen name="Profile" options={{ title: 'پروفایل', headerShown:false }} {..._children(Profile)} />
+                  <Tab.Screen name="ForgetPass" options={{ title: 'فراموشی رمز عبور', headerTitleStyle: { color: 'black', fontFamily:'IRANSansWeb', fontSize: 15 }, headerTitleAlign: 'center' }} {..._children(ForgetPass)} />
+                  <Tab.Screen name="ResetPass" options={{ title: 'عوض کردن رمز عبور', headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetPass)} />
+                  <Tab.Screen name="ResetSpecification" options={{ title: 'عوض کردن رمز عبور', headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center' }} {..._children(ResetSpecification)} />
                   <Tab.Screen name="Logout" options={{ title: 'خروج' }} {..._children(Logout)} />
-                  <Tab.Screen name="SendProposal" options={{ headerShown: true, headerTitleStyle: { color: '#222', fontFamily: 'IRANSansWeb', fontSize: 15 }, title: 'ارسال نظرات و پیشنهادات' }} {..._children(SendProposal)} />
-                  <Tab.Screen name="LastPayment" options={{ title: 'آخرین خرید' }} {..._children(LastPayment, '100')} />
+                  <Tab.Screen name="SendProposal" options={{ headerTitleStyle: { color: '#222', fontFamily: 'IRANSansWeb', fontSize: 15 }, title: 'ارسال نظرات و پیشنهادات' }} {..._children(SendProposal)} />
+                  <Tab.Screen name="LastPayment" options={{ title: 'آخرین خرید' }} {..._children(LastPayment)} />
                   <Tab.Screen name="SendTicket" options={{ title: 'ارسال تیکت' }} {..._children(SendTicket)} />
                   <Tab.Screen name="GetTicket" options={{ title: 'ارسال تیکت' }} {..._children(GetTicket)} />
                   <Tab.Screen name="TicketBox" options={{ title: 'ارسال تیکت' }} {..._children(TicketBox)} />
                   <Tab.Screen name="ShowActiveOrder" options={{ title: 'ارسال تیکت' }} {..._children(ShowActiveOrder)} />
                   <Tab.Screen name="ShowLastOrder" options={{ title: 'ارسال تیکت' }} {..._children(ShowLastOrder)} />
                   <Tab.Screen name="SavedItems" options={{ title: 'ارسال تیکت' }} {..._children(SavedItems)} />
-                  <Tab.Screen name="Rules" options={{ title: 'ارسال تیکت', headerShown: true }} {..._children(Rules)} />
-                  <Tab.Screen name="FramePayment" options={{ title: 'ارسال تیکت', headerShown: true }} {..._children(FramePayment)} />
+                  <Tab.Screen name="Rules" options={{ title: 'ارسال تیکت',}} {..._children(Rules)} />
+                  <Tab.Screen name="FramePayment" options={{ title: 'ارسال تیکت',}} {..._children(FramePayment)} />
                 </Tab.Group>
 
                 <Tab.Group>

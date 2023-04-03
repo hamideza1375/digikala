@@ -1,7 +1,6 @@
 import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable, getPostPrice, sendPostPrice } from "../services/adminService"
 import { getSingleItem } from "../services/clientService"
 import _useEffect from "./_initial"
-import seconder from '../other/utils/seconder'
 import _Alert from "../other/utils/alert"
 
 
@@ -47,7 +46,7 @@ export function adminController(p) {
             const { data } = await setSellerAvailable(id)
             p.setsellerTable((curentSeller) => {
               const findIndex = curentSeller.findIndex(s => s._id === id)
-              curentSeller[findIndex].available = data
+              curentSeller[findIndex].available = data.available
               return curentSeller
             })
           }
@@ -120,7 +119,7 @@ export function adminController(p) {
       image4: p.image4,
       offerTime: p.offerTime ? p.offerTime : 0,
       offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9, availableCount: p.input10
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9
     })
   }
 
@@ -129,7 +128,6 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
-        console.log(data.singleItem.color);
         p.settitle(data.singleItem.title)
         p.setprice(data.singleItem.price)
         p.setimage1({ name: data.singleItem.imageUrl1 })
@@ -144,7 +142,6 @@ export function adminController(p) {
         p.setinput7(data.singleItem.warranty)
         p.setinput8(data.singleItem.color)
         p.setinput9(data.singleItem.display)
-        p.setinput10(data.singleItem.availableCount)
       })()
     }, [])
   }
@@ -161,7 +158,7 @@ export function adminController(p) {
       image4: p.image4,
       offerTime: p.offerTime ? p.offerTime : 0,
       offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9, availableCount: p.input10
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9
     })
   }
 
@@ -407,13 +404,7 @@ export function adminController(p) {
   }
 
 
-  this.getPostPrice = async () => {
-    _useEffect(() => {
-      getPostPrice().then(({ data }) => {
-        p.setprice(data.price)
-      })
-    }, [])
-  }
+
 
 
 

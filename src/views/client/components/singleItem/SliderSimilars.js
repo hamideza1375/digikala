@@ -21,7 +21,7 @@ const SliderSimilars = (p) => {
   
 
         <Span fd='row' ai='center' mt={8}>
-          <P mr={15} fs={15} color='#444' >محبوب ترین ها</P>
+          <P mr={15} fs={15} color='#444' >محصولات مشابه</P>
           <LinearGradient nativeStart={{ x: 1.5, y: 1.5 }} webStart={{ x: 7 }} colors={['#f5f', '#505']} style={{ width: '50%', height: 1, flexGrow: 1, marginHorizontal: 25 }} ></LinearGradient>
         </Span>
         <Div class={s.p_offerGlass2} t={0}></Div>

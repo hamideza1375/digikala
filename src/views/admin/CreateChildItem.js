@@ -5,7 +5,7 @@ const CreateChildItem = (p) => {
   const createChildItem = () => p._admin.createChildItem()
   return (
     <Container2>
-      <Form flexDirection={'row'} fourImage t pr i in3 in4 in5 in6 in7 in8 in9 in10 onClick={createChildItem} />
+      <Form flexDirection={'row'} fourImage t pr i in3 in4 in5 in6 in7 in8 in9 onClick={createChildItem} />
     </Container2>
   )
 }

@@ -27,7 +27,7 @@ const ChildPopulars = (p) => {
 
         <FilterList {...p} />
 
-        <Chat {...p} />
+        {/* <Chat {...p} /> */}
       </Span>
 
     </Container2>

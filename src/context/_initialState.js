@@ -110,10 +110,18 @@ export function initial() {
   
   const [City, setCity] = useState('')
   const [state, setstate] = useState('')
+
+  const [navigate1, setnavigate1] = useState('')
+  const [navigate2, setnavigate2] = useState('')
+  const [navigate3, setnavigate3] = useState('')
   
   const [latlng, setlatlng] = useState({ lat: 0, lng: 0 })
 
   this.all = { 
+    navigate1, setnavigate1,
+    navigate2, setnavigate2,
+    navigate3, setnavigate3,
+
     latlng, setlatlng,
     state, setstate, City, setCity,
     image1, setimage1,

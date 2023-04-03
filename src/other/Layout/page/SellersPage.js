@@ -7,10 +7,10 @@ const SellerPage = (p) => {
     <Drawer
       drawer={false}
       Header={({ show, setshow }) => (
-        <SearchBar brand show={show} setshow={setshow} bgcolor='#aaa' icon={'arrow-left'} src={p.logoUrl}
+        <SearchBar brand show={show} setshow={setshow} bgcolor='#aaa' icon={p.navigation.canGoBack() ? 'arrow-left' : false}
           iconPress={() => { p.navigation.goBack() }} array={p.sellerTable} setarray={p.setsellerTable} />)
       }
-       bgcolor='#aaa' color='#000' activeColor='#3bf' style={{ boxShadow: '1px 1px 8px #a80' }} >
+      bgcolor='#aaa' color='#000' activeColor='#3bf' style={{ boxShadow: '1px 1px 8px #a80' }} >
       {p.children}
     </Drawer>
   )

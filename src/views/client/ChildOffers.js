@@ -26,7 +26,7 @@ const ChildOffers = (p) => {
         </Span>
 
             <FilterList {...p} />
-        <Chat {...p} />
+        {/* <Chat {...p} /> */}
       </Span>
 
     </Container2>

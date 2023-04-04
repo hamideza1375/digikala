@@ -22,7 +22,7 @@ const BottomTabBeforePayment = (p) => {
     <Row style={{ position: 'absolute' }} b={0} w='100%' h={70} border={[1]} bgcolor='#ccc' z={3} ph={8} jc='space-between' fg={1} >
       <Span jc='center' ai='flex-start' >
         <P fs={13} mt={3} mr={3} color='#222'>قیمت کل: </P>
-        <P fs={13} mt={3} mr={8} color='#0ac'>{spacePrice(totalPrice)} تومان</P>
+        <P fs={13} mt={3} mr={8} color='#0ac'>{spacePrice(totalPrice + p.postPrice )} تومان</P>
       </Span>
       <Column h='100%' fg={1} maxw={'50%'} mh={7} jc='center' >
         <Button onClick={() => Object.values(p.productBasket).length ? p.navigation.navigate('Location') : p.toast.warning('خطا', 'هنوز محصولی انتخاب نکرده اید')} >پرداخت</Button>

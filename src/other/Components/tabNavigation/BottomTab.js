@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     height: '6%',
     minHeight: 38,
     bottom: 0,
-    position: Platform.OS === 'web' ? 'fixed' : 'relative',
+    // position: Platform.OS === 'web' ? 'fixed' : 'relative',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

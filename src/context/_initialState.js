@@ -116,8 +116,17 @@ export function initial() {
   const [navigate3, setnavigate3] = useState('')
   
   const [latlng, setlatlng] = useState({ lat: 0, lng: 0 })
+  const [newSearchArray, setnewSearchArray] = useState([])
+  const [newSearchSellerArray, setnewSearchSellerArray] = useState([])
+  const [newSearchHomeArray, setnewSearchHomeArray] = useState([])
+  const [newSearchAddressArray, setnewSearchAddressArray] = useState([])
 
   this.all = { 
+    newSearchAddressArray, setnewSearchAddressArray,
+    newSearchHomeArray, setnewSearchHomeArray,
+    newSearchSellerArray, setnewSearchSellerArray,
+    newSearchArray, setnewSearchArray,
+    
     navigate1, setnavigate1,
     navigate2, setnavigate2,
     navigate3, setnavigate3,

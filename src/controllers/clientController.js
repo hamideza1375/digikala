@@ -1,5 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useEffect } from "react";
+import { BackHandler, Platform, ToastAndroid } from "react-native";
 import _Alert from "../other/utils/alert";
 import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, createCommentAnswer, deleteComment, deleteCommentAnswer, disLikeAnswer, editComment, editCommentAnswer, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleCommentAnswer, getSingleItem, getSlider, likeAnswer, offers, reverse } from "../services/clientService";
 import { getSingleSavedItems } from "../services/userService";
@@ -11,7 +12,7 @@ export function clientController(p) {
   this.getSlider = () => {
     // _useEffect(() => {
     //   getSlider().then(({ data }) => {
-    //     data && p.setslider(Object.values(data))
+    //     data && p.setslider(Object.values(data.value))
     //   })
     // }, [])
   }
@@ -20,22 +21,20 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getCategory()
-        p.setcategory(data.category)
+        p.setcategory(data.value)
       })()
     }, [])
   }
 
 
-
-
-
   this.getChildItems = () => {
-    _useEffect(() => {
+    useEffect(() => {
       (async () => {
         const { data } = await getChildItems(p.route.params.id)
-        p.setchildItem(data.childItems.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setchildItem(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setnewSearchArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
       })()
-    }, [])
+    }, [p.route.params.id])
   }
 
 
@@ -43,7 +42,7 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
-        p.setsingleItem(data.singleItem)
+        p.setsingleItem(data.value)
       })()
       return () => p.setsingleItem({})
     }, [p.route.params])
@@ -54,7 +53,7 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getOffers()
-        p.setoffers(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setoffers(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
       })()
     }, [])
   }
@@ -64,7 +63,7 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSimilars(p.route.params.id)
-        p.setsimilar(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setsimilar(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
       })()
     }, [p.route.params])
   }
@@ -74,7 +73,7 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getPopulars()
-        p.setpopulars(data.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setpopulars(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
       })()
     }, [])
   }
@@ -84,7 +83,7 @@ export function clientController(p) {
     const { data } = await createComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
     p.setchildItemComment(comment => {
       const _comment = [...comment]
-      _comment.push(data.comment);
+      _comment.push(data.value);
       return _comment
     })
   }
@@ -95,7 +94,7 @@ export function clientController(p) {
     p.childItemComment.length && p.setchildItemComment(comment => {
       const _comment = [...comment]
       const index = _comment.findIndex((c) => c._id === p.route.params.commentId)
-      _comment[index].answer.push(data)
+      _comment[index].answer.push(data.value)
       return _comment
     })
   }
@@ -103,7 +102,7 @@ export function clientController(p) {
   this.getChildItemComments = async () => {
     useEffect(() => {
       getChildItemComments(p.route.params.id).then(({ data }) => {
-        p.setchildItemComment(data.comment)
+        p.setchildItemComment(data.value)
       })
     }, [p.route.params])
   }
@@ -113,13 +112,13 @@ export function clientController(p) {
     _useEffect(() => {
       if (!p.route.params.commentId) {
         getSingleComment(p.route.params.id).then(({ data }) => {
-          p.setmessage(data.comment.message);
-          p.setfiveStar(data.comment.fiveStar);
+          p.setmessage(data.value.message);
+          p.setfiveStar(data.value.fiveStar);
         })
       } else {
         getSingleCommentAnswer(p.route.params.id, p.route.params.commentId).then(({ data }) => {
-          p.setmessage(data.comment.message);
-          p.setfiveStar(data.comment.fiveStar);
+          p.setmessage(data.value.message);
+          p.setfiveStar(data.value.fiveStar);
         })
       }
     }, [])
@@ -127,14 +126,15 @@ export function clientController(p) {
 
 
   this.editComment = async () => {
-    await editComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
+    const { data } = await editComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
     p.childItemComment.length && p.setchildItemComment(comment => {
-      const findIndex = comment.findIndex(c => c._id === p.route.params.id)
-      if (findIndex) {
-        comment[findIndex].message = p.message
-        comment[findIndex].fiveStar = p.fiveStar
-      }
-      return comment
+      try {
+        const _comment = [...comment]
+        const findIndex = _comment.findIndex(c => c._id === p.route.params.id)
+        _comment[findIndex].message = data.value.message
+        _comment[findIndex].fiveStar = data.value.fiveStar
+        return _comment
+      } catch (err) { console.error('catch',err);}
     })
   }
 
@@ -197,7 +197,7 @@ export function clientController(p) {
     const { data } = await commentLike(commentid)
     p.setchildItemComment(comment => {
       let findIndex = comment.findIndex(c => c._id === commentid)
-      comment[findIndex].likeCount = data
+      comment[findIndex].likeCount = data.value
       return comment
     })
   }
@@ -208,7 +208,7 @@ export function clientController(p) {
     const { data } = await commentDisLike(commentid)
     p.setchildItemComment(comment => {
       let findIndex = comment.findIndex(c => c._id === commentid)
-      comment[findIndex].disLikeCount = data
+      comment[findIndex].disLikeCount = data.value
       return comment
     })
   }
@@ -221,7 +221,7 @@ export function clientController(p) {
       const findIndex = _comment.findIndex(c => c._id === id)
       const answer = _comment[findIndex].answer
       const answerIndex = answer.findIndex((a) => a._id === commentId)
-      _comment[findIndex].answer[answerIndex].likeCount = data
+      _comment[findIndex].answer[answerIndex].likeCount = data.value
       return _comment
     })
   }
@@ -234,7 +234,7 @@ export function clientController(p) {
       const findIndex = _comment.findIndex(c => c._id === id)
       const answer = _comment[findIndex].answer
       const answerIndex = answer.findIndex((a) => a._id === commentId)
-      _comment[findIndex].answer[answerIndex].disLikeCount = data
+      _comment[findIndex].answer[answerIndex].disLikeCount = data.value
       return _comment
     })
   }
@@ -252,7 +252,7 @@ export function clientController(p) {
 
   this.getSingleSavedItems = () => {
     _useEffect(() => {
-      getSingleSavedItems(p.route.params.id).then(({ data }) => { p.setbookmark(data) })
+      getSingleSavedItems(p.route.params.id).then(({ data }) => { p.setbookmark(data.value) })
       return () => p.setbookmark(false)
     }, [p.route.params])
   }
@@ -305,9 +305,32 @@ export function clientController(p) {
         )
       }
     }
-    p.navigation.replace('FramePayment', { url: data })
+    p.navigation.replace('FramePayment', { url: data.value })
   }
 
+
+
+
+  this.backHandler = () => {
+    if (Platform.OS === 'android') {
+      p.useEffect(() => {
+        let current = 0
+        BackHandler.addEventListener("hardwareBackPress", () => {
+          if (p.route.name === 'Home' && p.navigation?.getState()?.index === 0) {
+            current += 1
+            if (current === 2) { BackHandler.exitApp(); return true }
+            ToastAndroid.show("برای خروج دوبار لمس کنید", ToastAndroid.SHORT)
+            setTimeout(() => {
+              current = 0
+            }, 1000);
+            return true
+          }
+        })
+      }, [])
+    }
+    else return null
+    return () => Platform.OS === 'android' && BackHandler.removeEventListener('hardwareBackPress')
+  }
 
 
 

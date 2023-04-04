@@ -11,6 +11,7 @@ import TableChildItemsPage from './page/TableChildItemsPage';
 import ProfilePage from './page/ProfilePage';
 import PanelAdminPage from './page/PanelAdminPage';
 import SellerPage from './page/SellersPage';
+import AddressPage from './page/AddressPage';
 
 
 export const Layout = (p) => {
@@ -70,6 +71,9 @@ export const Layout = (p) => {
           ||
           p.route.name === 'Sellers' &&
           <SellerPage {...p} bottom={bottom} />
+          ||
+          p.route.name === 'Address' &&
+          <AddressPage {...p} bottom={bottom} />
           ||
           <View flex={1} >{p.children}</View>
         }

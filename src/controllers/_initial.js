@@ -37,7 +37,7 @@ export const _initController = (p) => {
       Axios.interceptors.response.use(function (response) {
         p.setshowActivity(false)
         if (_show == false) { _show = true; setshow(true) }
-        if (response.config.method !== 'get' && response.data && (response.status === 200 || response.status === 201)) toastOK(response.data)
+        if (response.config.method !== 'get' && response.data?.message && (response.status === 200 || response.status === 201)) toastOK(response.data.message)
         return response
       }, function (error) {
         if (_show == false) { _show = true; setshow(true) }
@@ -151,7 +151,7 @@ export const _initController = (p) => {
 
   _useEffect(() => {
     getSlider().then(({ data }) => {
-      data && p.setslider(Object.values(data))
+      data && p.setslider(Object.values(data.value))
     })
   }, [])
 

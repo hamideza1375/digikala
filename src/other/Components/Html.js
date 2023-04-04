@@ -17,7 +17,8 @@ export { default as List } from './components/List'
 import _Loading from './components/Loading'
 export const Loading = _Loading;
 export { default as Modal } from './components/Modal'
-export { default as Pagination } from './components/Pagination'
+import _Pagination from './components/Pagination'
+export const Pagination = _Pagination;
 export { default as Swiper } from './components/Swiper'
 export { default as Switch } from './components/Switch'
 export { default as Table } from './components/Table'
@@ -48,7 +49,7 @@ export const Component = React.forwardRef((props, ref) => {
   const height = Dimensions.get('window').height
 
 
-  
+
   if (width <= 320) _col = props._col1
   else if (width > 320 && width <= 480) _col = props._col2
   else if (width > 480 && width <= 768) _col = props._col3
@@ -117,7 +118,7 @@ export const _text = React.forwardRef((props, ref) => {
   const height = Dimensions.get('window').height
 
 
-  
+
   if (width <= 320) _col = props._col1
   else if (width > 320 && width <= 480) _col = props._col2
   else if (width > 480 && width <= 768) _col = props._col3
@@ -130,7 +131,7 @@ export const _text = React.forwardRef((props, ref) => {
   if (Platform.OS === 'web') stl = [props.webStyle, props.style]
   else stl = [props.nativeStyle, props.nativeClass, props.initalClass, props.class, props.style, _col, _orientation]
 
-  
+
   if (width <= 320) col = col1
   else if (width > 320 && width <= 480) col = col2
   else if (width > 480 && width <= 768) col = col3
@@ -225,7 +226,7 @@ export const Scroll = (props) => <Component {...props} Component={ScrollView} />
 
 export const ScrollHorizontal = (props) => <Component {...props} horizontal={true} Component={ScrollView} />
 
-export const FlatList = ({ loading=true, column1, column2, column3, column4, column5, column6, renderItem, numColumns, data, keyExtractor, ...props }) => {
+export const FlatList = ({ pageLimit, current, setcurrent, loading = true, column1, column2, column3, column4, column5, column6, renderItem, numColumns, data, keyExtractor, ...props }) => {
 
   const width = Dimensions.get('window').width
   const [index, setindex] = useState(0)
@@ -238,25 +239,72 @@ export const FlatList = ({ loading=true, column1, column2, column3, column4, col
   else if (width > 1024 && width <= 1440) column = column5
   else if (width > 1440) column = column6
 
-  return (
-    data.length
-      ?
-      <Component
-        {...props}
-        data={data}
-        renderItem={({ item, index }) => <>
-          <View style={{ position: 'absolute', height: 0, width: 0 }} ref={() => setindex(index)} ></View>
-          <>{renderItem({ item, index })}</> </>}
-        flatlist={true}
-        keyExtractor={keyExtractor?keyExtractor:(item, index) => item._id}
-        numColumns={numColumns ? numColumns : column}
-        key={numColumns ? numColumns : column}
-        Component={_FlatList}
-        ListFooterComponent={() => data[data.length - 1]?._id !== data[index]?._id ? <_Loading scale={1.5} time={99999} /> : <></>}
-      />
-      :
-      loading? <_Loading /> : <View/>
-  )
+
+  const [ass, setass] = useState(true)
+  const [page, setpage] = useState(1)
+  const [currentPage, setcurrentPage] = useState(1)
+
+
+  if (!current && !pageLimit) {
+    return (
+      data?.length
+        ?
+        <>
+          <Component
+            {...props}
+            data={data}
+            renderItem={({ item, index }) => <>
+              <View style={{ position: 'absolute', height: 0, width: 0 }} ref={() => setindex(index)} ></View>
+              <>{renderItem({ item, index })}</> </>}
+            flatlist={true}
+            keyExtractor={keyExtractor ? keyExtractor : (item, index) => item._id}
+            numColumns={numColumns ? numColumns : column}
+            key={numColumns ? numColumns : column}
+            Component={_FlatList}
+            ListFooterComponent={() => data[data.length - 1]?._id !== data[index]?._id ? <_Loading scale={1.5} time={99999} /> : <></>}
+          />
+        </>
+        :
+        loading ? <_Loading /> : <View />
+    )
+  }
+  else {
+
+    return (
+      data?.length
+        ?
+        <>
+          <Component
+          style={{paddingBottom:50}}
+            {...props}
+            data={current}
+            renderItem={({ item, index }) => <>
+              <View style={{ position: 'absolute', height: 0, width: 0 }} ref={() => setindex(index)} ></View>
+              <>{renderItem({ item, index })}</> </>}
+            flatlist={true}
+            keyExtractor={keyExtractor ? keyExtractor : (item, index) => item._id}
+            numColumns={numColumns ? numColumns : column}
+            key={numColumns ? numColumns : column}
+            Component={_FlatList}
+            ListFooterComponent={() => current[current.length - 1]?._id !== current[index]?._id ? <_Loading scale={1.5} time={99999} /> : <></>}
+          />
+
+          <Column w='100%' pos='absolute' b={2} ai='center' >
+            <_Pagination
+              item={data}
+              current={current}
+              setcurrent={setcurrent}
+              pageLimit={pageLimit}
+              ass={ass} setass={setass}
+              page={page} setpage={setpage}
+              currentPage={currentPage}
+              setcurrentPage={setcurrentPage} />
+          </Column>
+        </>
+        :
+        loading ? <_Loading /> : <View />
+    )
+  }
 }
 
 export const FlatListHorizontal = (props) => <Component flatlist={true} {...props} horizontal={true} Component={_FlatList} />

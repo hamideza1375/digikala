@@ -1,5 +1,5 @@
 import moment from 'moment-jalaali'
-import React from 'react'
+import React, { useState } from 'react'
 import { A_icon, Badge, Button, Card, Column, FlatList, Icon, M_icon, P, Press, Py, Row, Scroll, Span } from '../../../../other/Components/Html'
 
 
@@ -70,6 +70,9 @@ const ShowComment = (p) => {
   const like = (commentid) => p._client.like(commentid)
   const disLike = (commentid) => p._client.disLike(commentid)
 
+  const [current, setcurrent] = useState([])
+  const [pageLimit] = useState(7)
+
   return (
     // '#f1f'
     < >
@@ -88,6 +91,8 @@ const ShowComment = (p) => {
 
 
         <FlatList
+          pageLimit={pageLimit} current={current} setcurrent={setcurrent}
+
           data={p.childItemComment}
           renderItem={({ item, index }) => (
 

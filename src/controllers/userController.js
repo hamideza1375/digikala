@@ -80,9 +80,9 @@ export function userController(p) {
       p.navigation.navigate('GetCode', { login: true })
     }
     else {
-      await AsyncStorage.setItem('token', data.token)
-      axios.defaults.headers.common["Authorization"] = data.token
-      const user = jwtDecode(data.token)
+      await AsyncStorage.setItem('token', data.value.token)
+      axios.defaults.headers.common["Authorization"] = data.value.token
+      const user = jwtDecode(data.value.token)
       p.settokenValue(user)
 
       if (p.route.params?.payment) p.navigation.replace('BeforePayment')
@@ -93,9 +93,9 @@ export function userController(p) {
 
   this.verifyCodeLoginForAdmin = async () => {
     const { data } = await verifyCodeLoginForAdmin({ code: p.code, phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember })
-    await AsyncStorage.setItem('token', data.token)
-    axios.defaults.headers.common["Authorization"] = data.token
-    const user = jwtDecode(data.token)
+    await AsyncStorage.setItem('token', data.value.token)
+    axios.defaults.headers.common["Authorization"] = data.value.token
+    const user = jwtDecode(data.value.token)
     p.settokenValue(user)
     this.deleteTimerThreeMinut()
     if (p.route.params?.payment) p.navigation.replace('BeforePayment')
@@ -162,9 +162,9 @@ export function userController(p) {
 
   this.verifycodeResetSpecification = async () => {
     const { data } = await verifycodeResetSpecification({ code: p.code })
-    await AsyncStorage.setItem("token", data.token)
-    axios.defaults.headers.common["Authorization"] = data.token;
-    const user = jwtDecode(data.token);
+    await AsyncStorage.setItem("token", data.value.token)
+    axios.defaults.headers.common["Authorization"] = data.value.token;
+    const user = jwtDecode(data.value.token);
     p.settokenValue(user);
     this.deleteTimerThreeMinut()
     p.navigation.replace('Profile')
@@ -201,7 +201,7 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getLastPayment()
-        p.setlastPayment(data.lastPayment);
+        p.setlastPayment(data.value);
       })()
     }, [])
   }
@@ -211,7 +211,7 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getAnswersTicket(p.route.params.id)
-        p.setanswersTicket(data)
+        p.setanswersTicket(data.value)
       })()
     }, [])
   }
@@ -221,7 +221,7 @@ export function userController(p) {
     const { data } = await sendNewTicket({ title: p.title, message: p.message, imageUrl: p.imageUrl })
     p.setuserTicketBox(ticketBox => {
       const ticket = [...ticketBox]
-      ticket.unshift(data)
+      ticket.unshift(data.value)
       return ticket
     })
     p.navigation.navigate('Profile')
@@ -232,7 +232,7 @@ export function userController(p) {
     const { data } = await sendTicketAnswer({ message: p.message, imageUrl: p.imageUrl }, p.route.params.id)
     p.setanswersTicket(singleTicket => {
       const answer = [...singleTicket]
-      answer.unshift(data)
+      answer.unshift(data.value)
       return answer
     })
     call()
@@ -268,8 +268,8 @@ export function userController(p) {
     p.setanswersTicket(singleTicket => {
       let ticket = [...singleTicket]
       const findIndex = ticket.findIndex(a => a._id === ticketId)
-      ticket[findIndex].message = data.message
-      ticket[findIndex].imageUrl = data.imageUrl
+      ticket[findIndex].message = data.value.message
+      ticket[findIndex].imageUrl = data.value.imageUrl
       return ticket
     })
     call()
@@ -280,7 +280,7 @@ export function userController(p) {
 
   this.getSingleAnswerTicket = async (itemId) => {
     const { data } = await getSingleAnswerTicket(p.route.params.id, itemId)
-    p.setmessage(data.message)
+    p.setmessage(data.value.message)
   }
 
 
@@ -315,7 +315,7 @@ export function userController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await ticketBox()
-        p.setuserTicketBox(data)
+        p.setuserTicketBox(data.value)
       })()
     }, [])
   }
@@ -333,7 +333,7 @@ export function userController(p) {
 
   this.savedItem = async () => {
     const { data } = await savedItem(p.route.params.id)
-    p.setbookmark(data)
+    p.setbookmark(data.value)
   }
 
 
@@ -357,7 +357,7 @@ export function userController(p) {
   this.getSavedItem = async () => {
     _useEffect(() => {
       getSavedItems().then(({ data }) => {
-        p.setsavedItems(data)
+        p.setsavedItems(data.value)
       })
     }, [])
   }

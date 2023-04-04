@@ -17,8 +17,7 @@ function Home(p) {
   p._client.getCategory()
   p._client.getOffers()
   p._client.getPopulars()
-
-
+  p._client.backHandler()
 
   return (
     <Column h='100%' >

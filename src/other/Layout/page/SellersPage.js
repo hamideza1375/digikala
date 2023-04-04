@@ -1,18 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
+import _useEffect from '../../../controllers/_initial'
 import { SearchBar } from '../../Components/Html'
-import Drawer from '../../Components/tabNavigation/Drawer'
 
 const SellerPage = (p) => {
+
+  const [show, setshow] = useState(false)
+
+
   return (
-    <Drawer
-      drawer={false}
-      Header={({ show, setshow }) => (
-        <SearchBar brand show={show} setshow={setshow} bgcolor='#aaa' icon={p.navigation.canGoBack() ? 'arrow-left' : false}
-          iconPress={() => { p.navigation.goBack() }} array={p.sellerTable} setarray={p.setsellerTable} />)
-      }
-      bgcolor='#aaa' color='#000' activeColor='#3bf' style={{ boxShadow: '1px 1px 8px #a80' }} >
+    <>
+      <SearchBar newSearchArray={p.newSearchSellerArray} brand show={show} setshow={setshow} bgcolor='#aaa' icon={p.navigation.canGoBack() ? 'arrow-left' : false}
+        iconPress={() => { p.navigation.goBack() }} array={p.sellerTable} setarray={p.setsellerTable} />
       {p.children}
-    </Drawer>
+    </>
   )
 }
 

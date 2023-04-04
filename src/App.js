@@ -85,7 +85,7 @@ const Mobile = () => {
 
   const height = Platform.OS === 'web' ? '100vh' : '100%'
 
-  useEffect(() => {setTimeout(() => { getPostPrice().then(({ data }) => {p.setpostPrice(data.price)})}, 200);}, [])
+  useEffect(() => {setTimeout(() => { getPostPrice().then(({ data }) => {p.setpostPrice(data.value)})}, 200);}, [])
 
 
   try {
@@ -155,7 +155,7 @@ const Mobile = () => {
                   <Tab.Screen initialParams={{ key: 'admin' }} name="ChangeAdmin" options={{ title: 'تعویض ادمین' }} {..._children(ChangeAdmin)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="DeleteAdmin" options={{ title: 'حذف ادمین' }} {..._children(DeleteAdmin)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="AllPayment" options={{ title: 'حذف آدرس ها' }} {..._children(AllPayment)} />
-                  <Tab.Screen initialParams={{ key: 'admin' }} name="Address" options={{ title: 'اضافه کردن ادمین' }} {..._children(Address)} />
+                  <Tab.Screen initialParams={{ key: 'admin' }} name="Address" options={{ title: 'اضافه کردن ادمین', headerShown:false }} {..._children(Address)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="ListUnAvailable" options={{ title: 'لیست غذا ناموجود' }} {..._children(ListUnAvailable)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="GetProposal" options={{ title: 'ارسال نظرات و پیشنهادات' }} {..._children(GetProposal)} />
                   <Tab.Screen initialParams={{ key: 'admin' }} name="PanelAdmin" options={{ title: 'PanelAdmin', headerShown: false }} {..._children(PanelAdmin)} />

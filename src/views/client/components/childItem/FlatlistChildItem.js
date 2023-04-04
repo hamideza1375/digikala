@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FlatList, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistChild = (p) => {
   p._client.getChildItems()
+
+  const [current, setcurrent] = useState([])
+  const [pageLimit] = useState(5)
+
+
   return (
     <FlatList
      column1={1} column2={2} column3={2} column4={3}

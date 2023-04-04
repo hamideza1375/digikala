@@ -2,6 +2,7 @@ import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCate
 import { getSingleItem } from "../services/clientService"
 import _useEffect from "./_initial"
 import _Alert from "../other/utils/alert"
+import { useEffect } from "react"
 
 
 export function adminController(p) {
@@ -12,9 +13,10 @@ export function adminController(p) {
 
 
   this.getAllSellers = async () => {
-    _useEffect(() => {
+    useEffect(() => {
       getAllSellers().then(({ data }) => {
-        p.setsellerTable(data)
+        p.setsellerTable(data.value)
+        p.setnewSearchSellerArray(data.value);
       })
     }, [])
   }
@@ -46,7 +48,7 @@ export function adminController(p) {
             const { data } = await setSellerAvailable(id)
             p.setsellerTable((curentSeller) => {
               const findIndex = curentSeller.findIndex(s => s._id === id)
-              curentSeller[findIndex].available = data.available
+              curentSeller[findIndex].available = data.value
               return curentSeller
             })
           }
@@ -59,13 +61,13 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getCategory(p.route.params.id)
-        p.setcategory(data.category)
+        p.setcategory(data.value)
       })()
     }, [])
   }
 
   this.createCategory = async () => {
-    await createCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
+   const {data} = await createCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
   }
 
 
@@ -73,15 +75,15 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSinleCategory(p.route.params.id)
-        p.settitle(data.title)
-        p.setimageUrl({ name: data.imageUrl })
+        p.settitle(data.value.title)
+        p.setimageUrl({ name: data.value.imageUrl })
       })()
     }, [])
   }
 
 
   this.editCategory = async () => {
-    await editCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
+   const {data} = await editCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
   }
 
 
@@ -103,16 +105,17 @@ export function adminController(p) {
 
 
   this.getChildItemsTable = () => {
-    _useEffect(() => {
+    useEffect(() => {
       (async () => {
         const { data } = await getChildItemsTable(p.route.params.id, p.route.params.sellerId)
-        p.setchildItem(data.childItems.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setchildItem(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setnewSearchArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
       })()
     }, [])
   }
 
   this.createChildItem = async () => {
-    await createChildItem(p.route.params.id, p.route.params.sellerId, {
+  const {data} =  await createChildItem(p.route.params.id, p.route.params.sellerId, {
       image1: p.image1,
       image2: p.image2,
       image3: p.image3,
@@ -128,20 +131,20 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
-        p.settitle(data.singleItem.title)
-        p.setprice(data.singleItem.price)
-        p.setimage1({ name: data.singleItem.imageUrl1 })
-        p.setimage2({ name: data.singleItem.imageUrl2 })
-        p.setimage3({ name: data.singleItem.imageUrl3 })
-        p.setimage4({ name: data.singleItem.imageUrl4 })
-        p.setinfo(data.singleItem.info)
-        p.setinput3(data.singleItem.ram)
-        p.setinput4(data.singleItem.cpuCore)
-        p.setinput5(data.singleItem.camera)
-        p.setinput6(data.singleItem.storage)
-        p.setinput7(data.singleItem.warranty)
-        p.setinput8(data.singleItem.color)
-        p.setinput9(data.singleItem.display)
+        p.settitle(data.value.title)
+        p.setprice(data.value.price)
+        p.setimage1({ name: data.value.imageUrl1 })
+        p.setimage2({ name: data.value.imageUrl2 })
+        p.setimage3({ name: data.value.imageUrl3 })
+        p.setimage4({ name: data.value.imageUrl4 })
+        p.setinfo(data.value.info)
+        p.setinput3(data.value.ram)
+        p.setinput4(data.value.cpuCore)
+        p.setinput5(data.value.camera)
+        p.setinput6(data.value.storage)
+        p.setinput7(data.value.warranty)
+        p.setinput8(data.value.color)
+        p.setinput9(data.value.display)
       })()
     }, [])
   }
@@ -164,7 +167,7 @@ export function adminController(p) {
 
 
   this.setOffer = async () => {
-    await setOffer(p.route.params.id, { offerTime: p.offerTime ? p.offerTime : 0, offerValue: p.offerValue ? p.offerValue : 0 })
+   const {data} = await setOffer(p.route.params.id, { offerTime: p.offerTime ? p.offerTime : 0, offerValue: p.offerValue ? p.offerValue : 0 })
   }
 
 
@@ -199,7 +202,7 @@ export function adminController(p) {
             p.setchildItem((childItem) => {
               const findIndex = childItem.findIndex(s => s._id === id)
               if (findIndex !== -1)
-                childItem[findIndex].available = data
+                childItem[findIndex].available = data.value
               return childItem
             })
             p.setlistUnAvailabe((listUnAvailabe) => listUnAvailabe.filter(s => s._id !== id))
@@ -214,7 +217,7 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await listUnAvailable()
-        p.setlistUnAvailabe(data)
+        p.setlistUnAvailabe(data.value)
       })()
     }, [])
   }
@@ -244,7 +247,7 @@ export function adminController(p) {
 
 
   this.setAdmin = async () => {
-    await setAdmin({ phoneOrEmail: p.phoneOrEmail })
+   await setAdmin({ phoneOrEmail: p.phoneOrEmail })
   }
 
 
@@ -271,7 +274,7 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getAllAdmin()
-        p.setallAdmin(data)
+        p.setallAdmin(data.value)
       })()
     }, [])
   }
@@ -296,7 +299,7 @@ export function adminController(p) {
   this.getProposal = async () => {
     _useEffect(() => {
       getProposal().then(({ data }) => {
-        p.setproposal(data)
+        p.setproposal(data.value)
       })
     }, [])
   }
@@ -319,10 +322,11 @@ export function adminController(p) {
 
 
   this.getAllAddress = async () => {
-    _useEffect(() => {
+    useEffect(() => {
       (async () => {
         const { data } = await getAllAddress()
-        p.setallAddress(data.payments)
+        p.setallAddress(data.value)
+        p.setnewSearchAddressArray(data.value)
       })()
     }, [])
   }
@@ -370,7 +374,7 @@ export function adminController(p) {
             const { data } = await postQueue(id)
             p.setallAddress(allAddres => {
               const index = allAddres.findIndex(a => a._id === id)
-              allAddres[index].queueSend = data
+              allAddres[index].queueSend = data.value
               return allAddres
             })
           }
@@ -387,7 +391,7 @@ export function adminController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getAllPaymentSuccessFalseAndTrue()
-        p.setallPaymentSuccessFalseAndTrue(data.payments)
+        p.setallPaymentSuccessFalseAndTrue(data.value)
       })()
     }, [])
   }
@@ -411,7 +415,7 @@ export function adminController(p) {
   this.adminTicketBox = async () => {
     _useEffect(() => {
       adminTicketBox().then(({ data }) => {
-        p.setadminTicketBox(data.tickets)
+        p.setadminTicketBox(data.value)
       })
     }, [])
   }

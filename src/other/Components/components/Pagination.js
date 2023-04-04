@@ -9,10 +9,10 @@ const range = (from, to) => {
   return range;
 }
 
-function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, food, ass }) {
+function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, item, ass, setass }) {
 
   const fetchPageNumbers = () => {
-    const totalPages = Math.ceil(food.length / pageLimit);
+    const totalPages = Math.ceil(item.length / pageLimit);
     if (totalPages > ((pageNeighbours * 2) + 3) + 2) {
       const startPage = Math.max(2, currentPage - pageNeighbours);
       const endPage = currentPage + pageNeighbours
@@ -36,7 +36,7 @@ function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimi
 
   const gotoPage = (page) => {
   setcurrentPage(page);
-  setcurrent( food.filter((f,i)=> (
+  setcurrent( item.filter((f,i)=> (
     i >= (page - 1) * pageLimit) && 
     (i < (page - 1) * pageLimit + pageLimit))
    )
@@ -48,11 +48,13 @@ function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimi
 
   const handleMoveRight = () => gotoPage(currentPage + (pageNeighbours * 2) + 1);
 
+  useEffect(() => {setass(!ass)}, [item])
+
   useEffect(() => { gotoPage(page) }, [ass])
   // useFocusEffect(useCallback(() => { gotoPage(page) }, [ass]))
 
   const pages = fetchPageNumbers();
-  let total = (food.length / pageLimit)
+  let total = (item.length / pageLimit)
   if (total <= 1) return null;
 
   return (
@@ -92,6 +94,7 @@ export default Pagination
 const styles = StyleSheet.create({
   pagination: {
     flexDirection: 'row',
+    width:'100%',
     height: 45,
     justifyContent: 'center',
     alignItems: 'center',

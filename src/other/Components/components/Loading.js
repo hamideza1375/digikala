@@ -3,13 +3,15 @@ import { ActivityIndicator, View, Text, Animated, Easing, Platform } from "react
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { useFocusEffect } from '@react-navigation/native';
 
+let qq
 const Loading = ({ style, text, h, setshowActivity, time = 7100, scale, androidScale, left, right, top, bottom, pos, ...p }) => {
   const [showLoad, setshowLoad] = useState(true)
+
   useFocusEffect(useCallback(() => {
-    let qq = setTimeout(() => {
-      setshowLoad(false)
-    }, time);
-    return () => { clearInterval(qq); setshowActivity && setshowActivity(false) }
+      qq = setTimeout(() => {
+        setshowLoad(false)
+      }, time);
+    return () => { qq && clearInterval(qq); setshowActivity && setshowActivity(false) }
   }, []))
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -54,7 +56,7 @@ const Loading = ({ style, text, h, setshowActivity, time = 7100, scale, androidS
 
               //   </View>
               //   :
-                < ActivityIndicator {...p} style={{ transform: [{ scale: scale ? scale : 2 }] }} />
+              < ActivityIndicator {...p} style={{ transform: [{ scale: scale ? scale : 2 }] }} />
             }
           </>
 

@@ -38,23 +38,6 @@ const ShowLatLngOnMap = (p) => {
 
 
 
-    // // //! routing
-    // let routing = L.Routing.control({
-    //   waypoints: [
-    //     L.latLng(latlng),
-    //     L.latLng(latlng)
-    //   ],
-    //   createMarker: function () { return null; },
-    //   routeWhileDragging: false,
-    //   draggableWaypoints: false,
-    //   reverseWaypoints: false,
-    //   fitSelectedRoutes: true,
-    //   addWaypoints: false
-    // }).addTo(map);
-    // // //! routing
-
-
-
     //! onload
     (async () => {
       const { data, status } = await axios.post(`${localhost}/reverse`, latlng, { headers: { 'Content-Type': 'application/json' } })
@@ -85,10 +68,6 @@ const ShowLatLngOnMap = (p) => {
       function onLocationError(e) { alert('نتوانست موقعیت مکانیتان را پیدا کند'); }
       async function onLocationFound(e) {
         (async () => {
-          // routing.setWaypoints([
-          //   routing.options.waypoints[0],
-          //   L.latLng(e.latlng)
-          // ]);
           circle1.setLatLng(e.latlng)
           circle2.setLatLng(e.latlng)
           marker2.setLatLng(e.latlng)

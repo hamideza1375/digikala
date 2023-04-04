@@ -5,6 +5,7 @@ let setStyleRef
 let _ = new Map();
 if(Platform.OS !== 'web'){
    setStyleRef = (props, e, ref, setinnerHTML,flatlist, seturi) => {
+    try {
   if (e) {
     const styles = (style) => {
       if (style?.textDecorationLine) e.setNativeProps({ style: { textDecorationLine: style.textDecorationLine } });
@@ -77,14 +78,17 @@ if(Platform.OS !== 'web'){
 
     return ref && ref(_);
   }
+} catch (error) {
+  
+}
 };
-
 }
 
 
 else {
 
   setStyleRef = (props, e, ref, setinnerHTML, flatlist, seturi) => {
+    try{
     if (e) {
       const styles = (style) => {
         if (style?.textDecorationLine) e.style.textDecorationLine = style.textDecorationLine
@@ -176,6 +180,9 @@ else {
   
       return ref && ref(_)
     }
+  } catch (error) {
+      
+  }
   }
 
 }

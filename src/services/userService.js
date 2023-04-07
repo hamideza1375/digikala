@@ -30,3 +30,4 @@ export const removeSavedItem = async (id) => axios.delete(`${localhost}/removeSa
 export const savedItem = async (id) => axios.post(`${localhost}/savedItem/${id}`)
 export const getSavedItems = () => axios.get(`${localhost}/getSavedItems`)
 export const getSingleSavedItems = (id) => axios.get(`${localhost}/getSingleSavedItems/${id}`)
+export const getAllProductForSeller = () => axios.get(`${localhost}/getAllProductForSeller`)

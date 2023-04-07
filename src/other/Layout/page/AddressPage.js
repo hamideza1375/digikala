@@ -4,13 +4,15 @@ import { SearchBar } from '../../Components/Html'
 
 const AddressPage = (p) => {
 
-  const [show, setshow] = useState(false)
+  const [show, setshow] = useState(true)
 
   return (
     <>
-      <SearchBar address newSearchArray={p.newSearchAddressArray} show={show} setshow={setshow} bgcolor='#aaa' icon={p.navigation.canGoBack() ? 'arrow-left' : false}
-        iconPress={() => { p.navigation.goBack() }} array={p.allAddress} setarray={p.setallAddress} />
-      {p.children}
+      <SearchBar address iconBack src={p.logoUrl} newSearchArray={p.newSearchAddressArray} showDrawer={show} setshowDrawer={setshow}
+        bgcolor='#aaa'
+        iconPress={() => { p.navigation.goBack() }} array={p.allAddress} setarray={p.setallAddress} >
+        {p.children}
+      </SearchBar>
     </>
   )
 }

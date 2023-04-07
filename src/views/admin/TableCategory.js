@@ -1,7 +1,6 @@
 import React from 'react';
 import { Loading, Button, Scroll, Span, Container } from '../../other/Components/Html';
 import s from "./style/Admin.module.scss"
-import Modal from './Modal';
 import GroupItemsTableComponent from './components/tableGroupItems/GroupItemsTableComponent';
 
 
@@ -16,7 +15,6 @@ const TableCategory = function (p) {
 
       <Span class={s.containTable} >
           <GroupItemsTableComponent {...p} />
-        {/* <Modal showModal={p.showModal} setshowModal={p.setshowModal} id={p.id} message={'حذف شود؟ ' + " (" + p.foods[p.$food[1]]?.title + ')'} _admin={p._admin} /> */}
       </Span>
     </Container>
 

@@ -41,7 +41,7 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
           alignSelf: 'center'
         }, style]}>
         <View style={{ padding: 12, alignItems: 'flex-start', borderRadius: 3 }} >
-          {header &&
+          {header ?
             <View style={{ width: '100%', paddingVertical: 12, paddingHorizontal: 5, }}>
               <P
                 style={[{
@@ -63,9 +63,11 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                 {header}
               </P>
             </View>
+            :
+            <></>
           }
 
-          {headerRow &&
+          {headerRow ?
             <View style={[{
               paddingHorizontal: 5, paddingVertical: 12, width: '100%'
               //  !
@@ -93,10 +95,12 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                 {headerRow}
               </View>
             </View>
+            :
+            <></>
           }
 
 
-          {bodyRow &&
+          {bodyRow ?
             <View style={[{
               paddingHorizontal: 5, paddingVertical: 12, width: '100%'
               //  !
@@ -124,10 +128,12 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                 {bodyRow}
               </View>
             </View>
+            :
+            <></>
           }
 
 
-          {body &&
+          {body ?
             <View style={{ paddingVertical: 12, paddingHorizontal: 5, width: '100%' }}>
               <P style={[{
                 color:
@@ -146,8 +152,10 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                 {body}
               </P>
             </View>
+            :
+            <></>
           }
-          {footer &&
+          {footer ?
             <View style={[{ paddingBottom: 5, color, width: '100%' }]}><P style={{
               textAlign: 'center',
               color:
@@ -162,9 +170,13 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   :
                   color,
             }} >{footer}</P></View>
+            :
+            <></>
           }
-          {footerRow &&
+          {footerRow ?
             <View style={[{ paddingBottom: 5, color, width: '100%' }]}>{footerRow}</View>
+            :
+            <></>
           }
         </View>
       </View>
@@ -201,7 +213,7 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
             alignSelf: 'center'
           }, style]}>
           <View style={{ padding: 12, alignItems: 'flex-start', borderRadius: 3 }} >
-            {header &&
+            {header ?
               <View style={{ width: '100%', paddingVertical: 12, paddingHorizontal: 5 }}>
                 <P
                   style={[{
@@ -214,9 +226,11 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   {header}
                 </P>
               </View>
+              :
+              <></>
             }
 
-            {headerRow &&
+            {headerRow ?
               <View style={[{
                 paddingHorizontal: 5, paddingVertical: 12, width: '100%'
                 //  !
@@ -244,9 +258,11 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   {headerRow}
                 </View>
               </View>
+              :
+              <></>
             }
 
-            {bodyRow &&
+            {bodyRow ?
               <View style={[{
                 paddingHorizontal: 5, paddingVertical: 12, width: '100%'
                 //  !
@@ -274,9 +290,11 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   {bodyRow}
                 </View>
               </View>
+              :
+              <></>
             }
 
-            {body &&
+            {body ?
               <View style={{ paddingVertical: 12, paddingHorizontal: 5, width: '100%' }}>
                 <P style={[{
                   color:
@@ -285,8 +303,10 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   {body}
                 </P>
               </View>
+              :
+              <></>
             }
-            {footer &&
+            {footer ?
               <View style={[{ paddingBottom: 5, color, width: '100%' }]}><P style={{
                 textAlign: 'center',
                 color:
@@ -301,9 +321,13 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                     :
                     color,
               }} >{footer}</P></View>
+              :
+              <></>
             }
-            {footerRow &&
+            {footerRow ?
               <View style={[{ paddingBottom: 5, color, width: '100%' }]}>{footerRow}</View>
+              :
+              <></>
             }
           </View>
         </View>
@@ -353,7 +377,7 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
 
             }, style]}>
             <View style={[{ padding: 12, borderRadius: 3, height: '100%' }]} >
-              {header &&
+              {header ?
                 <View style={[{
                   paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   //  !
@@ -380,12 +404,14 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                     {header}
                   </P>
                 </View>
+                :
+                <></>
               }
 
 
 
 
-              {headerRow &&
+              {headerRow ?
                 <View style={[{
                   paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   //  !
@@ -413,6 +439,8 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                     {headerRow}
                   </View>
                 </View>
+                :
+                <></>
               }
 
 
@@ -433,7 +461,7 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   />
                 </Pressable>
 
-                {footer &&
+                {footer ?
                   <View style={[{
                     top: 58,
                     paddingRight: 2,
@@ -452,14 +480,20 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                         :
                         color,
                   }} >{footer}</P></View>
+                  :
+                  <></>
                 }
               </View>
 
-              {footerRow && <View style={[{ position: 'absolute', paddingRight: 2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+              {footerRow ?
+               <View style={[{ position: 'absolute', paddingRight: 2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
                 {footerRow}
-              </View>}
+              </View>
+            :
+            <></>  
+            }
 
-              {body &&
+              {body ?
                 <View style={[{
                   paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   //  !
@@ -482,8 +516,10 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                     {body}
                   </P>
                 </View>
+                :
+                <></>
               }
-              {bodyRow &&
+              {bodyRow ?
                 <View style={[{
                   paddingHorizontal: 5, paddingVertical: 12, width: '79%',
                 }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
@@ -499,6 +535,8 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                     {bodyRow}
                   </View>
                 </View>
+                :
+                <></>
               }
             </View>
           </View>
@@ -544,7 +582,7 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
               }, style]}>
 
               <View style={{ padding: 12, borderRadius: 3, height: '100%' }} >
-                {header &&
+                {header ?
                   <View style={[{
                     paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
@@ -560,11 +598,13 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                       {header}
                     </P>
                   </View>
+                  :
+                  <></>
                 }
 
 
 
-                {headerRow &&
+                {headerRow ?
                   <View style={[{
                     paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
@@ -580,6 +620,8 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                       {headerRow}
                     </View>
                   </View>
+                  :
+                  <></>
                 }
 
 
@@ -600,7 +642,7 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                     />
                   </Pressable>
 
-                  {footer &&
+                  {footer ?
 
                     <View style={[{ top: 63, paddingRight: 2, paddingVertical: 5, color, width: '100%' }, dr === 'rtl' ? { alignSelf: 'flex-start' } : { alignSelf: 'flex-end' }]}><P style={{
                       textAlign: 'center',
@@ -616,15 +658,21 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                           :
                           color,
                     }} >{footer}</P></View>
+                    :
+                    <></>
                   }
 
                 </View>
 
-                {footerRow && <View style={[{ position: 'absolute', paddingRight: 2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
+                {footerRow ?
+                 <View style={[{ position: 'absolute', paddingRight: 2, paddingVertical: 5, bottom: 0, width: 70, height: heightLayout - 100 }, dr === 'ltr' ? { left: 5 } : { right: 5 }]} >
                   {footerRow}
-                </View>}
+                </View>
+              :
+              <></>  
+              }
 
-                {body &&
+                {body ?
                   <View style={[{
                     paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
@@ -636,9 +684,11 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                       {body}
                     </P>
                   </View>
+                  :
+                  <></>
                 }
 
-                {bodyRow &&
+                {bodyRow ?
                   <View style={[{
                     paddingHorizontal: 5, paddingVertical: 12, width: '79%'
                   }, dr === 'rtl' ? { alignSelf: 'flex-end' } : { alignSelf: 'flex-start' }]}
@@ -654,6 +704,8 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                       {bodyRow}
                     </View>
                   </View>
+                  :
+                  <></>
                 }
 
               </View>

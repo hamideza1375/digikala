@@ -1,8 +1,5 @@
 import React from 'react'
-import FilterList from '../../../views/client/components/childItem/FilterList'
-import { SearchBar } from '../../Components/Html'
 import BottomTab from '../../Components/tabNavigation/BottomTab'
-import Drawer from '../../Components/tabNavigation/Drawer'
 
 const SingleItemPage = (p) => {
   return (

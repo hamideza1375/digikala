@@ -134,17 +134,18 @@ export function client() {
 
 
   const [colorFilterValue, setcolorFilterValue] = useState([
-    { _id: '1', value: 'همه', filterValue: '' },
-    { _id: '2', value: 'سفید', filterValue: 'white' },
-    { _id: '3', value: 'مشکی', filterValue: 'black' },
-    { _id: '4', value: 'خاکستری', filterValue: 'gray' },
-    { _id: '5', value: 'آبی', filterValue: 'blue' },
-    { _id: '6', value: 'قرمز', filterValue: 'red' },
-    { _id: '7', value: 'سبز', filterValue: 'green' },
-    { _id: '8', value: 'زرد', filterValue: 'yellow' },
-    { _id: '9', value: ' صورتی', filterValue: 'pink' },
-    { _id: '10', value: 'طلایی', filterValue: 'gold' },
-    { _id: '11', value: 'نقره ای', filterValue: 'silver' },
+    { _id: '1', value: '', filterValue: '' },
+    { _id: '2', value: 'قرمز', filterValue: 'red' },
+    { _id: '3', value: 'آبی', filterValue: 'blue' },
+    { _id: '4', value: 'سبز', filterValue: 'green' },
+    { _id: '5', value: 'زرد', filterValue: 'yellow' },
+    { _id: '6', value: 'نقره ای', filterValue: 'silver' },
+    { _id: '7', value: 'طلایی', filterValue: 'gold' },
+    { _id: '8', value: 'بنفش', filterValue: 'purple' },
+    { _id: '9', value: 'قهوه ای', filterValue: 'brown' },
+    { _id: '10', value: 'سیاه', filterValue: 'black' },
+    { _id: '11', value: 'سفید', filterValue: 'white' },
+    { _id: '12', value: 'نارنجی', filterValue: 'orange' },
   ])
 
   const [operatingSystemFilterValue, setoperatingSystemFilterValue] = useState([
@@ -153,6 +154,33 @@ export function client() {
     { _id: '3', value: 'ios', filterValue: 'ios' },
   ])
   //!
+
+  const [hidden, sethidden] = useState(false)
+  const [isEnabled, setIsEnabled] = useState(false);
+  const [showCheckboxBrandFilter, setshowCheckboxBrandFilter] = useState(false);
+  const [showCheckboxPriceFilter, setshowCheckboxPriceFilter] = useState(false);
+  const [showCheckboxRamFilter, setshowCheckboxRamFilter] = useState(false);
+  const [showCheckboxcpuCoreFilter, setshowCheckboxcpuCoreFilter] = useState(false);
+  const [showCheckboxNetworkFilter, setshowCheckboxNetworkFilter] = useState(false);
+  const [showCheckboxOperatingSystemFilter, setshowCheckboxOperatingSystemFilter] = useState(false);
+  const [showCheckboxDisplayFilter, setshowCheckboxDisplayFilter] = useState(false)
+  const [showCheckboxColorFilter, setshowCheckboxColorFilter] = useState(false)
+  const [showCheckboxBatryFilter, setshowCheckboxBatryFilter] = useState(false)
+  const [showCheckboxCameraFilter, setshowCheckboxCameraFilter] = useState(false)
+  const [showCheckboxMemoryFilter, setshowCheckboxMemoryFilter] = useState(false)
+
+
+  const [brandFilter, setbrandFilter] = useState('')
+  const [priceFilter, setpriceFilter] = useState('')
+  const [networkFilter, setnetworkFilter] = useState('')
+  const [storageFilter, setstorageFilter] = useState('')
+  const [ramFilter, setramFilter] = useState('')
+  const [cpuCoreFilter, setcpuCoreFilter] = useState('')
+  const [cameraFilter, setcameraFilter] = useState('')
+  const [displayFilter, setdisplayFilter] = useState('')
+  const [batteryFilter, setbatteryFilter] = useState('')
+  const [colorFilter, setcolorFilter] = useState('')
+  const [operatingSystemFilter, setoperatingSystemFilter] = useState('')
 
 
   //!
@@ -218,9 +246,12 @@ export function client() {
   const [color, setcolor] = useState({})
   const [sendStatus, setsendStatus] = useState({})
   const [postPrice, setpostPrice] = useState('')
+  const refMap = useRef(new Map())
+
 
 
   this.client = {
+    refMap,
     postPrice, setpostPrice,
     sendStatus, setsendStatus,
     color, setcolor,
@@ -254,6 +285,33 @@ export function client() {
     batteryFilterValue, setbatteryFilterValue,
     colorFilterValue, setcolorFilterValue,
     operatingSystemFilterValue, setoperatingSystemFilterValue,
+
+    isEnabled, setIsEnabled,
+    hidden, sethidden,
+    showCheckboxMemoryFilter, setshowCheckboxMemoryFilter,
+    showCheckboxCameraFilter, setshowCheckboxCameraFilter,
+    showCheckboxBatryFilter, setshowCheckboxBatryFilter,
+    showCheckboxDisplayFilter, setshowCheckboxDisplayFilter,
+    showCheckboxOperatingSystemFilter, setshowCheckboxOperatingSystemFilter,
+    showCheckboxColorFilter, setshowCheckboxColorFilter,
+    showCheckboxNetworkFilter, setshowCheckboxNetworkFilter,
+    showCheckboxcpuCoreFilter, setshowCheckboxcpuCoreFilter,
+    showCheckboxRamFilter, setshowCheckboxRamFilter,
+    showCheckboxPriceFilter, setshowCheckboxPriceFilter,
+    showCheckboxBrandFilter, setshowCheckboxBrandFilter,
+
+    operatingSystemFilter, setoperatingSystemFilter,
+    colorFilter, setcolorFilter,
+    batteryFilter, setbatteryFilter,
+    displayFilter, setdisplayFilter,
+    cameraFilter, setcameraFilter,
+    cpuCoreFilter, setcpuCoreFilter,
+    ramFilter, setramFilter,
+    storageFilter, setstorageFilter,
+    networkFilter, setnetworkFilter,
+    priceFilter, setpriceFilter,
+    brandFilter, setbrandFilter,
+
 
     showDropdownFilter, setshowDropdownFilter,
     showDropdownFilter2, setshowDropdownFilter2,

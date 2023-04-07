@@ -1,5 +1,5 @@
 import React from 'react';
-import { Column, Div, Form, P, Span } from '../../other/Components/Html'
+import { Column, ContainerNavigation, Div, Form, P, Span } from '../../other/Components/Html'
 import { ScrollView, Text, View } from 'react-native';
 
 export default function DeleteAdmin(p) {
@@ -8,7 +8,7 @@ export default function DeleteAdmin(p) {
 
 
   return (
-    <>
+    <ContainerNavigation>
       <Form phore onClick={() => sendDeleteAdmin()} />
       {p.allAdmin.length ?
         <Column style={{ alignItems: 'center', justifyContent: 'center', alignSelf: 'center', marginTop: 15, width: 220, height: 80, backgroundColor: 'silver', borderRadius: 4 }} >
@@ -21,6 +21,6 @@ export default function DeleteAdmin(p) {
         </Column>:
       <></>
         }
-    </>
+    </ContainerNavigation>
   )
 }

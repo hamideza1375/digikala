@@ -1,7 +1,11 @@
 import React from 'react';
-import {Form} from '../../other/Components/Html';
+import { ContainerNavigation, Form } from '../../other/Components/Html';
 
-export default function SendProposal (p) {
-  return <Form mAutoFocus m c {...p} onClick={() => p._user.sendProposal()} />
+export default function SendProposal(p) {
+  return (
+    <ContainerNavigation>
+      <Form mAutoFocus m c {...p} onClick={() => p._user.sendProposal()} />
+    </ContainerNavigation>
+  )
 };
 

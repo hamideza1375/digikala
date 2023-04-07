@@ -10,7 +10,7 @@ export function Toast(p) {
       id2: Math.random(),
       title,
       description,
-      backgroundColor: '#555',
+      backgroundColor: '#555555f5',
       time
     }
     p.set_list(l=>[...l, toastProperties])

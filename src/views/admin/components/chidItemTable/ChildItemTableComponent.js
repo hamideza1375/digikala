@@ -18,7 +18,7 @@ const ChildItemTableComponent = (p) => {
       color={['#fff', '#eee', 'black']}
       border={[1, '#ccc']}
       header={['تخفیف', 'حذف', 'موجودیت', 'ویرایش', 'قیمت', 'عنوان']}
-      body={['off', 'حذف', 'title', 'ویرایش', 'price', 'title']}
+      body={['off', '❌', 'موجودیت', '📝', 'price', 'title']}
       btn1={'#e63'}
       btn1onClick={() => { p.navigation.navigate('SetOffer', { id: childItemsTable[0]._id }) }}
       btn2={'#e33'}

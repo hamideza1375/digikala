@@ -18,14 +18,17 @@
 import push from 'push.js';
 let promise
 
-export const create = (title = '', body = '', icon = '') => {
-    promise = push.create(title, {
-      body,
-      icon,
-      onClick: function () {
+export const create = (title = '', body = '', icon = '', onClick) => {
+  promise = push.create(title, {
+    body,
+    icon,
+    onClick:
+      function () {
         window.focus();
         this.close();
-    }
-    });
-  }
-  export const close = () => { promise && promise.then(function (notification) { notification.close() }) }
+        if (onClick) onClick()
+      }
+
+  });
+}
+export const close = () => { promise && promise.then(function (notification) { notification.close() }) }

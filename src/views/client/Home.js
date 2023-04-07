@@ -23,9 +23,9 @@ function Home(p) {
     <Column h='100%' >
 
       <Scroll>
-        <Div>
+        <Column>
           <Slider data={p.slider} {...p} onClick={() => { p.navigation.navigate('ChildOffers') }} />
-        </Div>
+        </Column>
 
         <Span>
           <Category {...p} />

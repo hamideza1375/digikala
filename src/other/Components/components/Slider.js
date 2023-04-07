@@ -69,26 +69,36 @@ function Slider({ width, style, onClick, data }) {
 
     <Span style={style} >
 
-      <Press w='80%' h='100%' pos='absolute' as='center' z={100000} bgcolor='transparent' onClick={onClick} />
+      <Row w='80%' h='100%' pos='absolute' as='center' jc='space-between' z={100000} >
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+        <Press w='10%' h='100%' onClick={onClick} />
+      </Row>
 
       <ScrollView dir='ltr' horizontal ref={ref}
         contentContainerStyle={{ overflow: 'hidden', }}
         style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
         {data.map((image, index) => (
-          ((image) && (badgeActive === index)) && <View key={index} style={{ width }} ><AnimationImage image={image} width={width} /></View>
+          ((image) && (badgeActive === index)) ? <View key={index} style={{ width }} ><AnimationImage image={image} width={width} /></View> : <View key={index} />
         ))
         }
       </ScrollView>
-      <Press pl={6} pb={1} opc={.7} style={{backgroundColor: '#fafafa', borderRadius: 50, justifyContent: 'center' , width: 35, height: 35, position: 'absolute', zIndex: 10, alignItems: 'center', left: 10, top: 130,}} >
+      <Press pl={6} pb={1} opc={.7} style={{ backgroundColor: '#fafafa', borderRadius: 50, justifyContent: 'center', width: 35, height: 35, position: 'absolute', zIndex: 10, alignItems: 'center', left: 10, top: 130, }} >
         <M_icon onClick={right} size={20} name="arrow-back-ios" style={{ color: '#222' }} />
       </Press>
-      <Press pl={2} pb={1} opc={.7} style={{backgroundColor: '#fafafa', borderRadius: 50, justifyContent: 'center' , width: 35, height: 35, position: 'absolute', zIndex: 10, alignItems: 'center', right: 10, top: 130,}} >
+      <Press pl={2} pb={1} opc={.7} style={{ backgroundColor: '#fafafa', borderRadius: 50, justifyContent: 'center', width: 35, height: 35, position: 'absolute', zIndex: 10, alignItems: 'center', right: 10, top: 130, }} >
         <M_icon onClick={left} size={20} name="arrow-forward-ios" style={{ color: '#222' }} />
       </Press>
 
       <Row fd='row-reverse' pos='absolute' b={15} w='100%' jc='center' >
         {data.map((image, index) => (
-          data.length - 1 !== index && <Span key={index} w={18} ><Badge h={7} w={12} bgcolor={badgeActive === index ? '#0cf' : '#fff8'} /></Span>
+          data.length - 1 !== index ? <Span key={index} w={18} ><Badge h={7} w={12} bgcolor={badgeActive === index ? '#0cf' : '#fff8'} /></Span> : <View key={index} />
         ))
         }
       </Row>

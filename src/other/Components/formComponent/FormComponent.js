@@ -52,8 +52,11 @@ export const CheckBox = (props) => {
     style={[{ borderRadius:br,width: 20, height: 20, borderWidth: border[0], borderColor: border[1], textAlign: 'center', margin: m, alignSelf, marginTop: mt, marginBottom: mb, marginLeft: ml, marginRight: mr, marginHorizontal: mh, marginVertical: mv }, { backgroundColor: props.show === false ? '#fff' : bgcolor }, props.style]} />;
 };
 
+let a 
+
 export const CheckBoxRadius = (p) => {
-  const { item={}, index, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onPressIn, style, refObject , bgcolor = "#2c1"} = p;
+  const {id, refMap, item={}, index, setshow, show, alignSelf, m, mt, mb, ml, mr, mv, mh, border = [1], onPressIn, style, refObject , bgcolor = "#2c1"} = p;
+  // const refMap = useRef(new Map())
 
   const ref = useRef();
   //! const show = useRef({show:false});
@@ -66,10 +69,24 @@ export const CheckBoxRadius = (p) => {
     refObject && refObject(showValue.current)
   }, [show])
 
+
   useEffect(() => {
-    if (item?.filterValue === '' /* || index === 0 */ ) {
+     if ( item?.filterValue === '' /* || index === 0 */ ) {
       ref.current?.setNativeProps({ style: { backgroundColor: bgcolor } })
       showValue.current.show = true
+    }
+    if (item?.filterValue === refMap?.current?.get(id)) {
+      ref.current?.setNativeProps({ style: { backgroundColor: bgcolor } })
+      showValue.current.show = true
+
+      setshow(!show)
+      setTimeout(() => {
+        ref.current?.setNativeProps({ style: { backgroundColor: '#2c1' } })
+        showValue.current.show = true
+        refMap?.current?.set(id, showValue.current.filterValue)
+        refObject && refObject(showValue.current)
+      }, 200);
+
     }
   }, [])
 
@@ -83,6 +100,7 @@ export const CheckBoxRadius = (p) => {
         setTimeout(() => {
           ref.current?.setNativeProps({ style: { backgroundColor: '#2c1' } })
           showValue.current.show = true
+          refMap?.current?.set(id, showValue.current.filterValue)
           refObject && refObject(showValue.current)
         }, 200);
       }}

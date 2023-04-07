@@ -12,7 +12,7 @@ const GroupItemsTableComponent = (p) => {
       color={['#fff', '#eee', 'black']}
       border={[1, '#ccc']}
       header={['حذف', 'ویرایش', ' نمایش محصولات', 'عنوان']}
-      body={['حذف', 'ویرایش', 'نمایش', 'title']}
+      body={['❌', '📝', 'نمایش', 'title']}
       btn1={'#d00'}
       btn1onClick={() => { deleteCategory(categoryTable[0]._id) }}
       btn2={'orange'}

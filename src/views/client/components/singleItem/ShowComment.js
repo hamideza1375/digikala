@@ -71,7 +71,7 @@ const ShowComment = (p) => {
   const disLike = (commentid) => p._client.disLike(commentid)
 
   const [current, setcurrent] = useState([])
-  const [pageLimit] = useState(7)
+  const [pageLimit] = useState(6)
 
   return (
     // '#f1f'

@@ -87,7 +87,9 @@ export function initial() {
   const [input7, setinput7] = useState('') // waranty
   const [input8, setinput8] = useState([]) // color
   const [input9, setinput9] = useState('') // display
-  const [input10, setinput10] = useState('') // display
+  const [input10, setinput10] = useState('') // operatingSystem
+  const [input11, setinput11] = useState('') // battery
+  const [input12, setinput12] = useState('') // network
 
   const [sliderImage1, setsliderImage1] = useState({})
   const [sliderImage2, setsliderImage2] = useState({})
@@ -155,6 +157,8 @@ export function initial() {
     input8, setinput8,
     input9, setinput9,
     input10, setinput10,
+    input11, setinput11,
+    input12, setinput12,
     
     offerTime, setofferTime,
     offerValue, setofferValue,

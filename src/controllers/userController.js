@@ -74,15 +74,15 @@ export function userController(p) {
     const { data } = await login({ phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember, captcha: p.captcha })
     await AsyncStorage.removeItem("several")
     await AsyncStorage.removeItem('getMinutes')
-    if (!data?.token) {
+    if (!data?.value) {
       this.deleteTimerThreeMinut()
       this.timerThreeMinut(() => { })
       p.navigation.navigate('GetCode', { login: true })
     }
     else {
-      await AsyncStorage.setItem('token', data.value.token)
-      axios.defaults.headers.common["Authorization"] = data.value.token
-      const user = jwtDecode(data.value.token)
+      await AsyncStorage.setItem('token', data.value)
+      axios.defaults.headers.common["Authorization"] = data.value
+      const user = jwtDecode(data.value)
       p.settokenValue(user)
 
       if (p.route.params?.payment) p.navigation.replace('BeforePayment')
@@ -93,9 +93,9 @@ export function userController(p) {
 
   this.verifyCodeLoginForAdmin = async () => {
     const { data } = await verifyCodeLoginForAdmin({ code: p.code, phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember })
-    await AsyncStorage.setItem('token', data.value.token)
-    axios.defaults.headers.common["Authorization"] = data.value.token
-    const user = jwtDecode(data.value.token)
+    await AsyncStorage.setItem('token', data.value)
+    axios.defaults.headers.common["Authorization"] = data.value
+    const user = jwtDecode(data.value)
     p.settokenValue(user)
     this.deleteTimerThreeMinut()
     if (p.route.params?.payment) p.navigation.replace('BeforePayment')
@@ -162,9 +162,9 @@ export function userController(p) {
 
   this.verifycodeResetSpecification = async () => {
     const { data } = await verifycodeResetSpecification({ code: p.code })
-    await AsyncStorage.setItem("token", data.value.token)
-    axios.defaults.headers.common["Authorization"] = data.value.token;
-    const user = jwtDecode(data.value.token);
+    await AsyncStorage.setItem("token", data.value)
+    axios.defaults.headers.common["Authorization"] = data.value;
+    const user = jwtDecode(data.value);
     p.settokenValue(user);
     this.deleteTimerThreeMinut()
     p.navigation.replace('Profile')

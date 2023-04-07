@@ -1,7 +1,7 @@
 import moment from 'moment-jalaali';
 import React, { useRef, useState } from 'react';
 import { FlatList } from 'react-native';
-import { Icon, Input, Container, P, Img, Column, Row, M_icon, Dropdown, A_icon, Modal, Card2, Button, Form } from '../../other/Components/Html';
+import { Icon, Input, Container, P, Img, Column, Row, M_icon, Dropdown, A_icon, Modal, Card2, Button, Form, ContainerNavigation } from '../../other/Components/Html';
 import _Alert from '../../other/utils/alert';
 import { localhost } from '../../other/utils/axios/axios';
 import { imagePicker } from '../../other/utils/imagePicer';
@@ -24,8 +24,8 @@ const PvTicket = (p) => {
   const ref = useRef()
 
   return (
-    <Container style={{}} >
-      {p.answersTicket.length &&
+    <ContainerNavigation style={{}} >
+      {p.answersTicket.length ?
         <FlatList
           inverted
           ref={ref}
@@ -70,7 +70,10 @@ const PvTicket = (p) => {
                 </Column>
               </Column>
           )}
-        />}
+        />
+      :
+      <></>
+      }
 
       <Column style={{ marginTop: 'auto', paddingTop: 15, borderRadius: 5, minWidth: '100%', height: '20%', minHeight: 80, maxHeight: 80, alignSelf: 'center', backgroundColor: '#aac', }}>
         <Column style={{ borderRadius: 5, width: '91%', alignSelf: 'center' }}>
@@ -103,7 +106,7 @@ const PvTicket = (p) => {
         <Form m im edit onClick={() => editAnswer(itemId)} />
       </Modal>
 
-    </Container>
+    </ContainerNavigation>
   )
 }
 export default PvTicket

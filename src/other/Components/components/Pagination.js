@@ -1,6 +1,7 @@
-import React, { useCallback, useEffect } from 'react';
+import { useRoute } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
-import {useFocusEffect} from '@react-navigation/native'
+
 const range = (from, to) => {
   const range = [];
   for (let i = from; i <= to; i++) {
@@ -9,7 +10,9 @@ const range = (from, to) => {
   return range;
 }
 
-function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, item, ass, setass }) {
+function _Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, item, ass, setass }) {
+
+  const route = useRoute()
 
   const fetchPageNumbers = () => {
     const totalPages = Math.ceil(item.length / pageLimit);
@@ -34,27 +37,51 @@ function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimi
     return range(1, totalPages);
   }
 
+
   const gotoPage = (page) => {
-  setcurrentPage(page);
-  setcurrent( item.filter((f,i)=> (
-    i >= (page - 1) * pageLimit) && 
-    (i < (page - 1) * pageLimit + pageLimit))
-   )
+
+    const filterItem = item.filter((f, i) => (
+      i >= (page - 1) * pageLimit) &&
+      (i < (page - 1) * pageLimit + pageLimit))
+
+    const filterItem2 = item.filter((f, i) => (
+      i >= (page - 2) * pageLimit) &&
+      (i < (page - 2) * pageLimit + pageLimit))
+
+    const filterItem3 = item.filter((f, i) => (
+      i >= (page - 3) * pageLimit) &&
+      (i < (page - 3) * pageLimit + pageLimit))
+
+    if (filterItem.length) {
+      setcurrentPage(page);
+      setcurrent(filterItem)
+    } else if (filterItem2.length) {
+      setcurrentPage(page - 1)
+      setcurrent(filterItem2)
+    }
+    else {
+      setcurrentPage(page - 2)
+      setcurrent(filterItem3)
+    }
   }
 
   const handleClick = (page) => gotoPage(page);
 
   const handleMoveLeft = () => gotoPage(currentPage - (pageNeighbours * 2) - 1);
 
-  const handleMoveRight = () => gotoPage(currentPage + (pageNeighbours * 2) + 1);
+  const handleMoveRight = () => {
+    let total = Math.ceil(item.length / pageLimit)
+    if (currentPage < total)
+      gotoPage(currentPage + (pageNeighbours * 2) + 1);
+  }
 
-  useEffect(() => {setass(!ass)}, [item])
+  useEffect(() => { gotoPage(1); setpage(1) }, [route.params?.id])
 
-  useEffect(() => { gotoPage(page) }, [ass])
-  // useFocusEffect(useCallback(() => { gotoPage(page) }, [ass]))
+  useEffect(() => { gotoPage(page); }, [item])
+
 
   const pages = fetchPageNumbers();
-  let total = (item.length / pageLimit)
+  let total = Math.ceil(item.length / pageLimit)
   if (total <= 1) return null;
 
   return (
@@ -75,7 +102,7 @@ function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimi
         );
 
         return (
-          <Pressable onPressIn={() => { setpage(page) }} onPress={() => handleClick(page)} key={index} style={[styles.pageitem, { backgroundColor: currentPage === page ? '#6cf' : '#efffff33' }]}>
+          <Pressable onPressIn={() => { setpage(page) }} onPress={() => handleClick(page)} key={index} style={[styles.pageitem, page <= total ? { backgroundColor: currentPage === page ? '#6cf' : '#efffff33' } : { display: 'none' }]}>
             <Text style={[styles.pagelink, { color: currentPage === page ? '#24e' : '#555' }]} >{page}</Text>
           </Pressable>
         );
@@ -87,6 +114,15 @@ function Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimi
 
 }
 
+function Pagination(p) {
+  return (
+    p.item.length
+      ?
+      <_Pagination {...p} />
+      :
+      <View />
+  )
+}
 
 export default Pagination
 
@@ -94,7 +130,7 @@ export default Pagination
 const styles = StyleSheet.create({
   pagination: {
     flexDirection: 'row',
-    width:'100%',
+    width: '100%',
     height: 45,
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,8 +1,5 @@
-import React, { useEffect } from 'react'
-import { Platform } from 'react-native'
+import React from 'react'
 import { Container, Container2, ContainerTab, Icon, M_icon, P, Scroll, SearchBar, Span } from '../../other/Components/Html'
-import Chat from './components/home/Chat'
-import FilterList from './components/childItem/FilterList'
 import FlatlistChild from './components/childItem/FlatlistChildItem'
 
 const ChildItems = (p) => {
@@ -20,5 +17,3 @@ const ChildItems = (p) => {
 }
 
 export default ChildItems
-
-// هرکس که نظر میده بتونه لایک کنه و اگه لایک کرده بود بزن این کاربر این کالارا پیشنهاد میکند و ستاره رو فقط افرادی که دانلود کردن بتونن بدن

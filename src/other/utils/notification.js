@@ -2,13 +2,13 @@ import notifee, { AndroidStyle } from '@notifee/react-native';
 
 let id = ''
 
-export const create = async (title, body, icon,notificationId) => {
+export const create = async (title, body, icon, notificationId, onClick) => {
   const channelId = await notifee.createChannel({ id: 'default', name: 'Default Channel', });
   await notifee.requestPermission();
-  
+
   id = Math.random().toString()
   const notification = notifee.displayNotification({
-    id:notificationId?notificationId:id,
+    id: notificationId ? notificationId : id,
     title: title,
     body: body,
     android: icon ? {
@@ -30,11 +30,13 @@ export const create = async (title, body, icon,notificationId) => {
         categoryId: "reminder",
 
       },
+    // onClick: (onClick) ? onClick() : () => { }
+
   });
   return notification;
 }
 
 
 export const close = async (notificationId) => {
-  await notifee.cancelNotification(notificationId?notificationId:id);
+  await notifee.cancelNotification(notificationId ? notificationId : id);
 }

@@ -11,6 +11,7 @@ import TableChildItemsPage from './page/TableChildItemsPage';
 import ProfilePage from './page/ProfilePage';
 import PanelAdminPage from './page/PanelAdminPage';
 import SellerPage from './page/SellersPage';
+import SellerPanelPage from './page/SellerPanelPage';
 import AddressPage from './page/AddressPage';
 
 
@@ -72,6 +73,9 @@ export const Layout = (p) => {
           p.route.name === 'Sellers' &&
           <SellerPage {...p} bottom={bottom} />
           ||
+          p.route.name === 'SellerPanel' &&
+          <SellerPanelPage {...p} bottom={bottom} />
+          ||
           p.route.name === 'Address' &&
           <AddressPage {...p} bottom={bottom} />
           ||
@@ -81,6 +85,7 @@ export const Layout = (p) => {
     </View>
   )
 }
+//! navigation.getState().routes[0].name
 
 export const header = () => {
   const navigation = useNavigation();

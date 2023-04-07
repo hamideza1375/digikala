@@ -49,7 +49,7 @@ const Form = ({
   tIconLeft, tIconRight, prIconLeft, prIconRight, iIconLeft, iIconRight, imIconLeft, imIconRight, phIconLeft, phIconRight,
   phoreIconLeft, phoreIconRight, codeIconLeft, codeIconRight, vIconLeft, vIconRight,
   slider = false, fourImage, offer,
-  in1, in2, in3, in4, in5, in6, in7, in8, in9, in10,
+  in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12,
   ...props
 }) => {
 
@@ -59,7 +59,8 @@ const Form = ({
     postalCode, setpostalCode, plaque, setplaque, unit, setunit, address, setaddress, message, setmessage, code, setcode, captcha, setcaptcha,
     setremember, star1, setstar1, star2, setstar2, star3, setstar3, star4, setstar4, star5, setstar5, fiveStar, setfiveStar, refInput, rand, setRand,
 
-    input1, setinput1, input2, setinput2, input3, setinput3, input4, setinput4, input5, setinput5, input6, setinput6, input7, setinput7, input8, setinput8, input9, setinput9, input10, setinput10
+    input1, setinput1, input2, setinput2, input3, setinput3, input4, setinput4, input5, setinput5, input6, setinput6, input7, setinput7, input8, setinput8, input9, setinput9, 
+    input10, setinput10, input11, setinput11, input12, setinput12
     , sliderImage1, setsliderImage1, sliderImage2, setsliderImage2, sliderImage3, setsliderImage3, sliderImage4, setsliderImage4, sliderImage5, setsliderImage5, sliderImage6, setsliderImage6,
     image1, setimage1, image2, setimage2, image3, setimage3, image4, setimage4, offerTime, setofferTime, offerValue, setofferValue,
     state, setstate, City, setCity,
@@ -294,7 +295,9 @@ const Form = ({
   const [_input7, set_Input7] = useState()
   const [_input8, set_Input8] = useState()
   const [_input9, set_Input9] = useState()
-  // const [_input10, set_Input10] = useState()
+  const [_input10, set_Input10] = useState()
+  const [_input11, set_Input11] = useState()
+  const [_input12, set_Input12] = useState()
 
 
   newObj.phone = phone;
@@ -328,7 +331,9 @@ const Form = ({
   newObj.input7 = input7;
   // newObj.input8 = input8;
   newObj.input9 = input9;
-  // newObj.input10 = input10;
+  newObj.input10 = input10;
+  newObj.input11 = input11;
+  newObj.input12 = input12;
 
 
 
@@ -365,7 +370,9 @@ const Form = ({
   var inpt7 = in7 ? newObj.input7 === input7 : true
   // var inpt8 = in8 ? newObj.input8 === input8 : true
   var inpt9 = in9 ? newObj.input9 === input9 : true
-  // var inpt10 = in10 ? newObj.input10 === input10 : true
+  var inpt10 = in10 ? newObj.input10 === input10 : true
+  var inpt11 = in11 ? newObj.input11 === input11 : true
+  var inpt12 = in12 ? newObj.input12 === input12 : true
 
 
 
@@ -952,12 +959,12 @@ const Form = ({
           }
 
 
-          {/* {in10 &&
+{in10 &&
             <Frm
               autoComplete="off"
               icon="sort-numeric-up-alt"
               plackTextTop={plackTextTop}
-              p='تعداد محصول'
+              p='نوع سیستم عامل'
               state={input10}
               setState={setinput10}
               getBlur={_input10}
@@ -966,7 +973,41 @@ const Form = ({
               yub={inpt10}
               styles={styles}
             />
-          } */}
+          }
+
+
+{in11 &&
+            <Frm
+              autoComplete="off"
+              icon="sort-numeric-up-alt"
+              plackTextTop={plackTextTop}
+              p='ظرفیت باتری به میلی آمپر'
+              state={input11}
+              setState={setinput11}
+              getBlur={_input11}
+              setBlur={set_Input11}
+              newObj={newObj.input11}
+              yub={inpt11}
+              styles={styles}
+            />
+          }
+
+
+{in12 &&
+            <Frm
+              autoComplete="off"
+              icon="sort-numeric-up-alt"
+              plackTextTop={plackTextTop}
+              p='نوع شبکه اینترنت'
+              state={input12}
+              setState={setinput12}
+              getBlur={_input12}
+              setBlur={set_Input12}
+              newObj={newObj.input12}
+              yub={inpt12}
+              styles={styles}
+            />
+          }
 
 
 
@@ -1536,12 +1577,14 @@ const Form = ({
                   set_Input7(true)
                   // set_Input8(true)
                   set_Input9(true)
-                  // set_Input10(true)
+                  set_Input10(true)
+                  set_Input11(true)
+                  set_Input12(true)
 
                 }}
                 onPress={async () => {
                   if(in8 && !Object.values(input8).length) return toast.error('','یک رنگ انتخاب کنید')
-                  if ((stct) && (flm && eml && opsd, psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt9 /* && inpt8  && inpt10 */)) {
+                  if ((stct) && (flm && eml && opsd, psd && cfpsd && plq && unt && adrs && pst && msg && cap && show && titl && prc && cod && img && vdo && inf && offTime && offValue && pon && poe && star1 && inpt1 && inpt2 && inpt3 && inpt4 && inpt5 && inpt6 && inpt7 && inpt9 && inpt10  && inpt11 && inpt12)) {
 
                     setdisableClick(true)
 

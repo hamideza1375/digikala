@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Platform } from 'react-native'
 import { Column, ContainerTab, Form, P } from '../../other/Components/Html'
 
 const Login = (p) => {
   const login = () => p._user.login()
+
   return (
     <ContainerTab ai='center' jc='center' bgcolor='#fafafa'>
       <Column w='90%' f={.98} border={[1, 'silver']} p={8} sh={{ r: 7, o: .3, c: '#aaa' }}>

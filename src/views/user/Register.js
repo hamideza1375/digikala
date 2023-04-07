@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { Platform } from 'react-native'
 import { ContainerTab, Form, Span } from '../../other/Components/Html'
 
 const Register = (p) => {

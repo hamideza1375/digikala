@@ -74,7 +74,7 @@ const B_icon = ({ as, p, pt, pb, pl, pr, pv, ph, m, mt, mb, ml, mr, mv, mh, colo
           
           icon && <Icon name={icon} color={color ? color : 'white'} size={iconSize ? iconSize : 28} iconPress={iconPress} /> ||
           a_icon && <Icon2 name={a_icon} color={color ? color : 'white'} size={iconSize ? iconSize : 28} iconPress={iconPress} /> ||
-          m_icon &&  <Icon3 name={m_icon} color={color ? color : 'white'} size={iconSize ? iconSize : 28} iconPress={iconPress} /> 
+          m_icon ?  <Icon3 name={m_icon} color={color ? color : 'white'} size={iconSize ? iconSize : 28} iconPress={iconPress} /> : <></>
         }
       </Pressable>
     </Animated.View>

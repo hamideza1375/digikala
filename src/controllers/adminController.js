@@ -1,4 +1,4 @@
-import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, sendDisablePost, setAdmin, getAllUser, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable, getPostPrice, sendPostPrice } from "../services/adminService"
+import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, setAdmin, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable, getPostPrice, sendPostPrice, getQuitsForSeller } from "../services/adminService"
 import { getSingleItem } from "../services/clientService"
 import _useEffect from "./_initial"
 import _Alert from "../other/utils/alert"
@@ -6,9 +6,14 @@ import { useEffect } from "react"
 
 
 export function adminController(p) {
-
+  //! Seller
   this.createSeller = async () => {
-    await createSeller({ brand: p.input2, phone: p.phone })
+    const { data } = await createSeller({ brand: p.input2, phone: p.phone })
+    p.setsellerTable(seller => {
+      const _seller = [...seller]
+      _seller.push(data.value)
+      return _seller
+    })
   }
 
 
@@ -21,6 +26,7 @@ export function adminController(p) {
     }, [])
   }
 
+
   this.deleteSeller = async (id) => {
     _Alert.alert(
       "برای تایید کلیک کنید",
@@ -30,12 +36,13 @@ export function adminController(p) {
         {
           text: "OK", onPress: async () => {
             await deleteSeller(id)
-            p.setsellerTable((curentSeller) => curentSeller.filter(s => s._id !== id))
+            p.setsellerTable((seller) => seller.filter(s => s._id !== id))
           }
         }
       ]
     )
   }
+
 
   this.setSellerAvailable = async (id) => {
     _Alert.alert(
@@ -47,27 +54,38 @@ export function adminController(p) {
           text: "OK", onPress: async () => {
             const { data } = await setSellerAvailable(id)
             p.setsellerTable((curentSeller) => {
+              const _curentSeller = [...curentSeller]
               const findIndex = curentSeller.findIndex(s => s._id === id)
-              curentSeller[findIndex].available = data.value
-              return curentSeller
+              _curentSeller[findIndex].available = data.value
+              return _curentSeller
             })
           }
         }
       ]
     )
   }
+  //! Seller
+
+
+
+  //! Category
+  this.createCategory = async () => {
+    const { data } = await createCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
+    p.setcategory(category => {
+      const _category = [...category]
+      _category.push(data.value)
+      return _category
+    })
+  }
+
 
   this.getCategory = () => {
-    _useEffect(() => {
+    useEffect(() => {
       (async () => {
         const { data } = await getCategory(p.route.params.id)
         p.setcategory(data.value)
       })()
     }, [])
-  }
-
-  this.createCategory = async () => {
-   const {data} = await createCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
   }
 
 
@@ -83,7 +101,15 @@ export function adminController(p) {
 
 
   this.editCategory = async () => {
-   const {data} = await editCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
+    const { data } = await editCategory(p.route.params.id, { title: p.title, imageUrl: p.imageUrl })
+    try {
+      const _category = [...p.category]
+      const index = _category.findIndex(c => c._id === p.route.params.id)
+      if (!index) throw new Error()
+      _category[index].title = data.value.title
+      _category[index].imageUrl = data.value.imageUrl
+      p.setcategory(_category)
+    } catch (error) { console.error(error); }
   }
 
 
@@ -103,6 +129,25 @@ export function adminController(p) {
     )
   }
 
+  //! Category
+
+  //! ChildItem
+  this.createChildItem = async () => {
+    const { data } = await createChildItem(p.route.params.id, p.route.params.sellerId, {
+      image1: p.image1,
+      image2: p.image2,
+      image3: p.image3,
+      image4: p.image4,
+      offerTime: p.offerTime ? p.offerTime : 0,
+      offerValue: p.offerValue ? p.offerValue : 0,
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9
+      , operatingSystem: p.input10,
+      battery: p.input11,
+      network: p.input12,
+    })
+    p.setchildItem(childItem => childItem.concat(data.value))
+  }
+
 
   this.getChildItemsTable = () => {
     useEffect(() => {
@@ -113,42 +158,6 @@ export function adminController(p) {
       })()
     }, [])
   }
-
-  this.createChildItem = async () => {
-  const {data} =  await createChildItem(p.route.params.id, p.route.params.sellerId, {
-      image1: p.image1,
-      image2: p.image2,
-      image3: p.image3,
-      image4: p.image4,
-      offerTime: p.offerTime ? p.offerTime : 0,
-      offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9
-    })
-  }
-
-
-  this.getSingleItem = () => {
-    _useEffect(() => {
-      (async () => {
-        const { data } = await getSingleItem(p.route.params.id)
-        p.settitle(data.value.title)
-        p.setprice(data.value.price)
-        p.setimage1({ name: data.value.imageUrl1 })
-        p.setimage2({ name: data.value.imageUrl2 })
-        p.setimage3({ name: data.value.imageUrl3 })
-        p.setimage4({ name: data.value.imageUrl4 })
-        p.setinfo(data.value.info)
-        p.setinput3(data.value.ram)
-        p.setinput4(data.value.cpuCore)
-        p.setinput5(data.value.camera)
-        p.setinput6(data.value.storage)
-        p.setinput7(data.value.warranty)
-        p.setinput8(data.value.color)
-        p.setinput9(data.value.display)
-      })()
-    }, [])
-  }
-
 
 
 
@@ -161,14 +170,14 @@ export function adminController(p) {
       image4: p.image4,
       offerTime: p.offerTime ? p.offerTime : 0,
       offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9
+      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9,
+      operatingSystem: p.input10,
+      battery: p.input11,
+      network: p.input12,
     })
   }
 
 
-  this.setOffer = async () => {
-   const {data} = await setOffer(p.route.params.id, { offerTime: p.offerTime ? p.offerTime : 0, offerValue: p.offerValue ? p.offerValue : 0 })
-  }
 
 
 
@@ -212,6 +221,12 @@ export function adminController(p) {
     )
   }
 
+  this.setOffer = async () => {
+    const { data } = await setOffer(p.route.params.id, { offerTime: p.offerTime ? p.offerTime : 0, offerValue: p.offerValue ? p.offerValue : 0 })
+  }
+  //! ChildItem
+
+
 
   this.listUnAvailable = () => {
     _useEffect(() => {
@@ -223,31 +238,40 @@ export function adminController(p) {
   }
 
 
-
-  this.createNotification = async () => {
-    await createNotification({ title: p.title, message: p.message })
+  //!SingleItem
+  this.getSingleItem = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getSingleItem(p.route.params.id)
+        p.settitle(data.value.title)
+        p.setprice(data.value.price)
+        p.setimage1({ name: data.value.imageUrl1 })
+        p.setimage2({ name: data.value.imageUrl2 })
+        p.setimage3({ name: data.value.imageUrl3 })
+        p.setimage4({ name: data.value.imageUrl4 })
+        p.setinfo(data.value.info)
+        p.setinput3(data.value.ram)
+        p.setinput4(data.value.cpuCore)
+        p.setinput5(data.value.camera)
+        p.setinput6(data.value.storage)
+        p.setinput7(data.value.warranty)
+        p.setinput8(data.value.color)
+        p.setinput9(data.value.display)
+        p.setinput10(data.value.operatingSystem)
+        p.setinput11(data.value.battery)
+        p.setinput12(data.value.network)
+      })()
+    }, [])
   }
+  //!SingleItem
 
 
 
-  this.deleteNotification = async () => {
-    _Alert.alert(
-      "برای تایید کلیک کنید",
-      "",
-      [
-        { text: "cancel", onPress: () => { } },
-        {
-          text: "OK", onPress: async () => {
-            await deleteNotification()
-          }
-        }
-      ]
-    )
-  }
 
 
+  //! Admin
   this.setAdmin = async () => {
-   await setAdmin({ phoneOrEmail: p.phoneOrEmail })
+    await setAdmin({ phoneOrEmail: p.phoneOrEmail })
   }
 
 
@@ -294,8 +318,10 @@ export function adminController(p) {
       ]
     )
   }
+  //! Admin
 
 
+  //! Proposal
   this.getProposal = async () => {
     _useEffect(() => {
       getProposal().then(({ data }) => {
@@ -314,32 +340,48 @@ export function adminController(p) {
         {
           text: "OK", onPress: async () => {
             await deleteMultiProposal({ proposalId: p.proposalId })
+            p.proposalId.map(pId => (
+              p.setproposal(proposal => proposal.filter((pr) => pr._id !== pId))
+            ))
           }
         }
       ]
     )
   }
+  //! Proposal
 
 
+  //! Notification
+  this.createNotification = async () => {
+    await createNotification({ title: p.title, message: p.message })
+  }
+
+
+
+  this.deleteNotification = async () => {
+    _Alert.alert(
+      "برای تایید کلیک کنید",
+      "",
+      [
+        { text: "cancel", onPress: () => { } },
+        {
+          text: "OK", onPress: async () => {
+            await deleteNotification()
+          }
+        }
+      ]
+    )
+  }
+  //! Notification
+
+
+  //! Address Payment
   this.getAllAddress = async () => {
     useEffect(() => {
       (async () => {
         const { data } = await getAllAddress()
         p.setallAddress(data.value)
         p.setnewSearchAddressArray(data.value)
-      })()
-    }, [])
-  }
-
-
-  this.getDataForChart = async () => {
-    _useEffect(() => {
-      (async () => {
-        const { data } = await getDataForChart()
-        p.setaddress7DeyForChart(data.getAddress7DeyForChart)
-        p.setusers7DeyForChart(data.getUsers7DeyForChart)
-        p.setaddress1YearsForChart(data.getAddress1YearsForChart)
-        p.setusersLength(data.getUsersLength)
       })()
     }, [])
   }
@@ -373,18 +415,16 @@ export function adminController(p) {
           text: "OK", onPress: async () => {
             const { data } = await postQueue(id)
             p.setallAddress(allAddres => {
-              const index = allAddres.findIndex(a => a._id === id)
-              allAddres[index].queueSend = data.value
-              return allAddres
+              const _allAddres = [...allAddres]
+              const index = _allAddres.findIndex(a => a._id === id)
+              _allAddres[index].queueSend = data.value
+              return _allAddres
             })
           }
         }
       ]
     )
   }
-
-
-
 
 
   this.getAllPaymentSuccessFalseAndTrue = async () => {
@@ -395,23 +435,40 @@ export function adminController(p) {
       })()
     }, [])
   }
+  //! Address Payment
 
 
 
-  // this.sendDisablePost = async () => {
-  //   await sendDisablePost(p.route.params.id)
-  // }
+  //! QuitsForSeller
+  this.getQuitsForSeller = async () => {
+    useEffect(() => {
+      (async () => {
+        const { data } = await getQuitsForSeller()
+        p.setallAddress(data.value)
+        p.setnewSearchAddressArray(data.value)
+        console.log(data.value);
+      })()
+    }, [])
+  }
+  //! QuitsForSeller
 
 
+
+
+  //! PostPrice
   this.sendPostPrice = () => {
     sendPostPrice({ price: p.price }).then(() => { })
   }
 
+  this.getPostPrice = (p) => {
+    useEffect(() => { setTimeout(() => { getPostPrice().then(({ data }) => { p.setpostPrice(data.value) }) }, 200); }, [])
+  }
+  
+  //! PostPrice
 
 
 
-
-
+  //! TicketBox
   this.adminTicketBox = async () => {
     _useEffect(() => {
       adminTicketBox().then(({ data }) => {
@@ -419,8 +476,25 @@ export function adminController(p) {
       })
     }, [])
   }
+  //! TicketBox
 
 
+  //! DataForChart
+  this.getDataForChart = async () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getDataForChart()
+        p.setaddress7DeyForChart(data.getAddress7DeyForChart)
+        p.setusers7DeyForChart(data.getUsers7DeyForChart)
+        p.setaddress1YearsForChart(data.getAddress1YearsForChart)
+        p.setusersLength(data.getUsersLength)
+      })()
+    }, [])
+  }
+  //! DataForChart
+
+
+  //!SocketIoSeen
   this.getSocketIoSeen = () => {
     _useEffect(() => {
       (async () => {
@@ -429,18 +503,20 @@ export function adminController(p) {
       })()
     }, [])
   }
+  //!SocketIoSeen
 
 
-
+  //! createSlider
   this.createSlider = () => {
     createSlider({
-      sliderImage1: p.sliderImage1,
-      sliderImage2: p.sliderImage2,
-      sliderImage3: p.sliderImage3,
-      sliderImage4: p.sliderImage4,
-      sliderImage5: p.sliderImage5,
-      sliderImage6: p.sliderImage6,
+      image1: p.sliderImage1,
+      image2: p.sliderImage2,
+      image3: p.sliderImage3,
+      image4: p.sliderImage4,
+      image5: p.sliderImage5,
+      image6: p.sliderImage6,
     }).then(() => { })
   }
+  //! createSlider
 
 }

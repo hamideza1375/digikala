@@ -21,7 +21,7 @@ const Sellers = (p) => {
           color={['#fff', '#eee', 'black']}
           border={[1, '#ccc']}
           header={['حدف', 'موجودیت', ' نمایش محصولات', 'تلفن', 'نام تجاری']}
-          body={['حدف', 'فعال', 'نمایش', 'phone', 'brand']}
+          body={['❌', 'فعال', 'نمایش', 'phone', 'brand']}
           btn1={'#f55'}
           btn1onClick={() => { deleteSeller(_sellerTable[0]._id) }}
           btn2={'#1e1'}

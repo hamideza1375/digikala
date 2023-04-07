@@ -2,10 +2,10 @@ const yub = {
   get: (target, propName) => {
     if (propName === 'fullname') {
       if (typeof target[propName] === 'string') {
-        if (target[propName].length < 3) {
+        if (target[propName]?.length < 3) {
           return ('نام نباید کوچک تر از ۳ کلمه باشد')
         }
-        if (target[propName].length > 15) {
+        if (target[propName]?.length > 15) {
           return ('نام نباید بزرگ تر از ۱۵ کلمه باشد')
         }
         else {
@@ -18,13 +18,13 @@ const yub = {
     }
     if (propName === 'email') {
       if (typeof target[propName] === 'string') {
-        if (!target[propName].length) {
+        if (!target[propName]?.length) {
           return ('ایمیل نباید خالی باشد')
         }
-        else if (target[propName].length < 5) {
+        else if (target[propName]?.length < 5) {
           return ('ایمیل وارد شده صحیح نمیباشد')
         }
-        else if (target[propName].length > 50) {
+        else if (target[propName]?.length > 50) {
           return ('ایمیل وارد شده صحیح نمیباشد')
         }
         else if (!target[propName].includes("@") || !target[propName].includes(".")) {
@@ -42,13 +42,13 @@ const yub = {
 
     if (propName === 'phone') {
       if (Number(target[propName])) {
-        if (!target[propName].length) {
+        if (!target[propName]?.length) {
           return ('شماره تلفن نباید خالی باشد')
         }
-        else if (target[propName].length < 11) {
+        else if (target[propName]?.length < 11) {
           return ('شماره ی وارد شده صحیح نمیباشد')
         }
-        else if (target[propName].length > 11) {
+        else if (target[propName]?.length > 11) {
           return ('شماره ی وارد شده صحیح نمیباشد')
         }
         else {
@@ -69,12 +69,12 @@ const yub = {
         return ('کادر نباید خالی باشد')
       }
       else if (target[propName].includes('@') || isNaN(target[propName])) {
-        if (target[propName].length < 5 || !target[propName].includes('.')) {
+        if (target[propName]?.length < 5 || !target[propName].includes('.')) {
           return ('ایمیل وارد شده صحیح نمیباشد')
         }
         else return target[propName]
       }
-      else if (target[propName].length > 11 || target[propName].length < 11) {
+      else if (target[propName]?.length > 11 || target[propName]?.length < 11) {
         return ('شماره ی وارد شده صحیح نمیباشد')
       }
       else {
@@ -85,10 +85,10 @@ const yub = {
 
     if (propName === 'oldPassword') {
       if (typeof target[propName] === 'string') {
-        if (target[propName].length < 4) {
+        if (target[propName]?.length < 4) {
           return ('رمز عبور نباید کوچک تر از ۴ کلمه باشد')
         }
-        else if (target[propName].length > 20) {
+        else if (target[propName]?.length > 20) {
           return ('رمز عبور نباید بزرگ تر از ۲۰ کلمه باشد')
         }
         else {
@@ -104,10 +104,10 @@ const yub = {
 
     if (propName === 'password') {
       if (typeof target[propName] === 'string') {
-        if (target[propName].length < 4) {
+        if (target[propName]?.length < 4) {
           return ('رمز عبور نباید کوچک تر از ۴ کلمه باشد')
         }
-        else if (target[propName].length > 20) {
+        else if (target[propName]?.length > 20) {
           return ('رمز عبور نباید بزرگ تر از ۲۰ کلمه باشد')
         }
         else {
@@ -135,10 +135,10 @@ const yub = {
 
     if (propName === 'title') {
       if (typeof target[propName] === 'string') {
-        if (target[propName].length < 3) {
+        if (target[propName]?.length < 3) {
           return ('عنوان نباید کوچک تر از ۳ کلمه باشد')
         }
-        if (target[propName].length > 40) {
+        if (target[propName]?.length > 40) {
           return ('عنوان نباید بزرگ تر از ۴۰ کلمه باشد')
         }
         else {
@@ -151,7 +151,7 @@ const yub = {
     }
     if (propName === 'price') {
       if (Number(target[propName])) {
-        if (target[propName].length < 3 || target[propName] < 100) {
+        if (target[propName]?.length < 3 || target[propName] < 100) {
           return ('قیمت وارد شده صحیح نمیباشد')
         }
         else {
@@ -167,7 +167,7 @@ const yub = {
 
 
     if (propName === 'code') {
-      if (target[propName].length !== 5) {
+      if (target[propName]?.length !== 5) {
         return ('تعداد اعداد را صحیح وارد کنید')
       }
       else {
@@ -194,7 +194,7 @@ const yub = {
     }
     if (propName === 'info') {
       if (typeof target[propName] === 'string') {
-        if (target[propName].length < 10) {
+        if (target[propName]?.length < 10) {
           return ('توضیحات نباید کوچک تر از 10 کلمه باشد')
         }
         else {
@@ -210,10 +210,10 @@ const yub = {
     if (propName === 'message') {
       if (typeof target[propName] === 'string') {
 
-        if (target[propName].length < 4) {
+        if (target[propName]?.length < 4) {
           return ('پیام نباید کوچک تر از ۴ کلمه باشد')
         }
-        else if (target[propName].length > 1000) {
+        else if (target[propName]?.length > 1000) {
           return ('پیام بزرک تر از حد مجاز هست')
         }
         else {
@@ -275,7 +275,7 @@ const yub = {
 
 
     if (propName === 'input1') {
-      if (target[propName].length < 11 || target[propName].length > 11) {
+      if (target[propName]?.length < 11 || target[propName]?.length > 11) {
         return ('شماره تماس باید یازده رقم باشد')
       }
       else {
@@ -285,7 +285,7 @@ const yub = {
 
 
     if (propName === 'input2') {
-       if (target[propName].length < 3) {
+       if (target[propName]?.length < 3) {
         return ('برند نباید کوچک تر از ۳ کلمه باشد')
       }
       else {
@@ -363,7 +363,7 @@ const yub = {
     //   if (parseInt(target[propName])) {
     //     return ('نباید در این کادر از اعداد استفاده کرد')
     //   }
-    //   else if (target[propName].length < 2) {
+    //   else if (target[propName]?.length < 2) {
     //     return ('رنگ نباید کوچک تر از ۲ کلمه باشد')
     //   }
     //   else if (target[propName].includes('_')) {
@@ -388,11 +388,38 @@ const yub = {
     }
 
 
-    if (propName === 'input10') { // availableCount
+    if (propName === 'input10') { // operatingSystem
+      if (Number(target[propName])) {
+        return ('این کادر باید به حروف نوشته شود')
+      }
+      else if (target[propName]?.length < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+
+    if (propName === 'input11') { // batry
       if (isNaN(target[propName])) {
         return ('این کادر باید به عدد نوشته شود')
       }
-      else if (target[propName] < 1) {
+      else if (target[propName]?.length < 1) {
+        return ('لطفا این کادر را پر کنید')
+      }
+      else {
+        return target[propName]
+      }
+    }
+
+
+    if (propName === 'input12') { // network
+      if (Number(target[propName])) {
+        return ('این کادر باید به حروف نوشته شود')
+      }
+      else if (target[propName]?.length < 1) {
         return ('لطفا این کادر را پر کنید')
       }
       else {
@@ -426,10 +453,10 @@ const yub = {
 
 
     if (propName === 'address') {
-      if (isNaN(target[propName]) && target[propName].length >= 8) {
+      if (isNaN(target[propName]) && target[propName]?.length >= 8) {
         return target[propName]
       }
-      else if(target[propName].length < 8){
+      else if(target[propName]?.length < 8){
         return ('آدرس نباید به این کوتاهی باشد')
       }
       else {

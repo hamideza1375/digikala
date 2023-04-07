@@ -1,34 +1,176 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { Span, P, List as _list, Switch, CheckBoxRadius, Scroll, M_icon, Button } from '../../../../other/Components/Html'
 
 const FilterList = (p) => {
 
+  // const [brandFilterValue, setbrandFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'سامسونگ', filterValue: 'samsung' },
+  //   { _id: '3', value: 'آیفون', filterValue: 'iphone' },
+  //   { _id: '4', value: 'شیایومی', filterValue: 'shiyaomi' },
+  //   { _id: '5', value: 'هوآوی', filterValue: 'huawi' },
+  //   { _id: '6', value: 'نوکیا', filterValue: 'nokia' },
+  // ])
+
+  // const [priceFilterValue, setpriceFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'زیر 2000000', filterValue: [0, 2000000] },
+  //   { _id: '3', value: '2000000 تا 4000000', filterValue: [2000000, 4000000] },
+  //   { _id: '4', value: '4000000 تا 7000000', filterValue: [4000000, 7000000] },
+  //   { _id: '5', value: '7000000 تا 10000000', filterValue: [7000000, 10000000] },
+  //   { _id: '6', value: '10000000 تا 15000000', filterValue: [10000000, 15000000] },
+  //   { _id: '7', value: '15000000 به بالا', filterValue: [1000000, Infinity] },
+  // ])
+
+  // const [ramFilterValue, setramFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'زیر 2', filterValue: [0, 2] },
+  //   { _id: '3', value: '2 تا 4', filterValue: [2, 4] },
+  //   { _id: '4', value: '4 تا 8', filterValue: [4, 8] },
+  //   { _id: '5', value: '8 تا 12', filterValue: [8, 12] },
+  //   { _id: '6', value: '12 به بالا', filterValue: [12, Infinity] },
+  // ])
+
+
+  // const [cpuCoreFilterValue, setcpuCoreFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'زیر 4', filterValue: [0, 4] },
+  //   { _id: '3', value: '4 تا 6', filterValue: [4, 6] },
+  //   { _id: '4', value: '6 تل 8', filterValue: [6, 8] },
+  //   { _id: '5', value: '8 به بالا', filterValue: [8, Infinity] },
+  // ])
+
+
+  // const [networkFilterValue, setnetworkFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: '2G', filterValue: '2G' },
+  //   { _id: '3', value: '3G', filterValue: '3G' },
+  //   { _id: '4', value: '4G', filterValue: '4G' },
+  //   { _id: '5', value: '5G', filterValue: '5G' },
+  // ])
+
+
+  // const [memoryFilterValue, setmemoryFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'زیر 8', filterValue: [0, 8] },
+  //   { _id: '3', value: '8 تا 16', filterValue: [8, 16] },
+  //   { _id: '4', value: '16 تا 36', filterValue: [16, 36] },
+  //   { _id: '5', value: '36 تا 64', filterValue: [36, 64] },
+  //   { _id: '6', value: '64 تا 128', filterValue: [64, 128] },
+  //   { _id: '7', value: '128 به بالا', filterValue: [128, Infinity] },
+  // ])
+
+
+  // const [cameraFilterValue, setcameraFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'زیر 8', filterValue: [0, 8] },
+  //   { _id: '3', value: '8 تا 16', filterValue: [8, 16] },
+  //   { _id: '4', value: '16 تا 25', filterValue: [16, 25] },
+  //   { _id: '5', value: '25 تا 36', filterValue: [25, 36] },
+  //   { _id: '6', value: '36 تا 64', filterValue: [36, 64] },
+  //   { _id: '7', value: '64 تا 108', filterValue: [64, 108] },
+  //   { _id: '8', value: '108 به بالا', filterValue: [108, Infinity] },
+  // ])
+
+
+
+  // const [displayFilterValue, setdisplayFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'زیر 5 اینچ', filterValue: [0, 5] },
+  //   { _id: '3', value: '5 تا 7', filterValue: [5, 7] },
+  //   { _id: '4', value: '7 تا 9', filterValue: [7, 9] },
+  //   { _id: '5', value: '9 به بالا', filterValue: [9, Infinity] },
+  // ])
+
+
+  // const [batteryFilterValue, setbatteryFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'زیر 200 آمپر', filterValue: [0, 200] },
+  //   { _id: '3', value: '200 تا 400 آمپر', filterValue: [200, 400] },
+  //   { _id: '4', value: '400 تا 600 آمپر', filterValue: [400, 600] },
+  //   { _id: '5', value: 'بالای 600 آمپر', filterValue: [600, Infinity] },
+  // ])
+
+
+  // const [colorFilterValue, setcolorFilterValue] = useState([
+  //   { _id: '1', value: '', filterValue: '' },
+  //   { _id: '2', value: 'قرمز', filterValue: 'red' },
+  //   { _id: '3', value: 'آبی', filterValue: 'blue' },
+  //   { _id: '4', value: 'سبز', filterValue: 'green' },
+  //   { _id: '5', value: 'زرد', filterValue: 'yellow' },
+  //   { _id: '6', value: 'نقره ای', filterValue: 'silver' },
+  //   { _id: '7', value: 'طلایی', filterValue: 'gold' },
+  //   { _id: '8', value: 'بنفش', filterValue: 'purple' },
+  //   { _id: '9', value: 'قهوه ای', filterValue: 'brown' },
+  //   { _id: '10', value: 'سیاه', filterValue: 'black' },
+  //   { _id: '11', value: 'سفید', filterValue: 'white' },
+  //   { _id: '12', value: 'نارنجی', filterValue: 'orange' },
+  // ])
+
+  // const [operatingSystemFilterValue, setoperatingSystemFilterValue] = useState([
+  //   { _id: '1', value: 'همه', filterValue: '' },
+  //   { _id: '2', value: 'اندروید', filterValue: 'android' },
+  //   { _id: '3', value: 'ios', filterValue: 'ios' },
+  // ])
+
+
+  // const [p.isEnabled, p.setIsEnabled] = useState(false);
+  // const [p.showCheckboxBrandFilter, p.setshowCheckboxBrandFilter] = useState(false);
+  // const [p.showCheckboxPriceFilter, p.setshowCheckboxPriceFilter] = useState(false);
+  // const [p.showCheckboxRamFilter, p.setshowCheckboxRamFilter] = useState(false);
+  // const [p.showCheckboxcpuCoreFilter, p.setshowCheckboxcpuCoreFilter] = useState(false);
+  // const [p.showCheckboxNetworkFilter, p.setshowCheckboxNetworkFilter] = useState(false);
+  // const [p.showCheckboxOperatingSystemFilter, p.setshowCheckboxOperatingSystemFilter] = useState(false);
+  // const [p.showCheckboxDisplayFilter, p.setshowCheckboxDisplayFilter] = useState(false)
+  // const [p.showCheckboxColorFilter, p.setshowCheckboxColorFilter] = useState(false)
+  // const [p.showCheckboxBatryFilter, p.setshowCheckboxBatryFilter] = useState(false)
+  // const [p.showCheckboxCameraFilter, p.setshowCheckboxCameraFilter] = useState(false)
+  // const [p.showCheckboxMemoryFilter, p.setshowCheckboxMemoryFilter] = useState(false)
+
+
+  // const [p.brandFilter, p.setbrandFilter] = useState('')
+  // const [p.priceFilter, p.setpriceFilter] = useState('')
+  // const [p.networkFilter, p.setnetworkFilter] = useState('')
+  // const [p.storageFilter, p.setstorageFilter] = useState('')
+  // const [p.ramFilter, p.setramFilter] = useState('')
+  // const [p.cpuCoreFilter, p.setcpuCoreFilter] = useState('')
+  // const [p.cameraFilter, p.setcameraFilter] = useState('')
+  // const [p.displayFilter, p.setdisplayFilter] = useState('')
+  // const [p.batteryFilter, p.setbatteryFilter] = useState('')
+  // const [p.colorFilter, p.setcolorFilter] = useState('')
+  // const [p.operatingSystemFilter, p.setoperatingSystemFilter] = useState('')
+
+
+  // const p.refMap = useRef(new Map())
+
   const [hidden, sethidden] = useState(false)
-  const [isEnabled, setIsEnabled] = useState(false);
-  const [showCheckboxBrandFilter, setshowCheckboxBrandFilter] = useState(false);
-  const [showCheckboxPriceFilter, setshowCheckboxPriceFilter] = useState(false);
-  const [showCheckboxRamFilter, setshowCheckboxRamFilter] = useState(false);
-  const [showCheckboxcpuCoreFilter, setshowCheckboxcpuCoreFilter] = useState(false);
-  const [showCheckboxNetworkFilter, setshowCheckboxNetworkFilter] = useState(false);
-  const [showCheckboxOperatingSystemFilter, setshowCheckboxOperatingSystemFilter] = useState(false);
-  const [showCheckboxDisplayFilter, setshowCheckboxDisplayFilter] = useState(false)
-  const [showCheckboxColorFilter, setshowCheckboxColorFilter] = useState(false)
-  const [showCheckboxBatryFilter, setshowCheckboxBatryFilter] = useState(false)
-  const [showCheckboxCameraFilter, setshowCheckboxCameraFilter] = useState(false)
-  const [showCheckboxMemoryFilter, setshowCheckboxMemoryFilter] = useState(false)
 
 
-  const [brandFilter, setbrandFilter] = useState('')
-  const [priceFilter, setpriceFilter] = useState('')
-  const [networkFilter, setnetworkFilter] = useState('')
-  const [memoryFilter, setmemoryFilter] = useState('')
-  const [ramFilter, setramFilter] = useState('')
-  const [cpuCoreFilter, setcpuCoreFilter] = useState('')
-  const [cameraFilter, setcameraFilter] = useState('')
-  const [displayFilter, setdisplayFilter] = useState('')
-  const [batteryFilter, setbatteryFilter] = useState('')
-  const [colorFilter, setcolorFilter] = useState('')
-  const [operatingSystemFilter, setoperatingSystemFilter] = useState('')
+
+  useEffect(() => {
+
+    const filterArray = p.newSearchArray.filter((f, i) => (
+      ((p.brandFilter) ? (f.title?.toLowerCase().match(p.brandFilter?.toLowerCase())) : (f.title)) &&
+      ((p.ramFilter) ? (f.ram >= p.ramFilter[0] && f.ram <= p.ramFilter[1]) : (f.ram)) &&
+      ((p.cameraFilter) ? (f.camera >= p.cameraFilter[0] && f.camera <= p.cameraFilter[1]) : (f.camera)) &&
+      ((p.storageFilter) ? (f.storage >= p.storageFilter[0] && f.storage <= p.storageFilter[1]) : (f.storage)) &&
+      ((p.displayFilter) ? (f.display >= p.displayFilter[0] && f.display <= p.displayFilter[1]) : (f.display)) &&
+      ((p.cpuCoreFilter) ? (f.cpuCore >= p.cpuCoreFilter[0] && f.cpuCore <= p.cpuCoreFilter[1]) : (f.cpuCore)) &&
+      ((p.operatingSystemFilter) ? (f.operatingSystem?.toLowerCase() === p.operatingSystemFilter?.toLowerCase()) : (f.operatingSystem)) &&
+      ((p.networkFilter) ? (f.network?.toLowerCase().match(p.networkFilter?.toLowerCase())) : (f.network)) &&
+      ((p.batteryFilter) ? (f.battery >= p.batteryFilter[0] && f.battery <= p.batteryFilter[1]) : (f.battery)) &&
+      ((p.colorFilter) ? (f.color.find((c) => c.color?.toLowerCase() === p.colorFilter?.toLowerCase())) : (f.color)) &&
+      ((p.priceFilter) ? (f.price >= p.priceFilter[0] && f.price <= p.priceFilter[1]) : (f.price)) &&
+      ((p.isEnabled === false ) ? (f.title ) : (f.available === 1 && f.available > 0)) 
+    ))
+
+    p.setchildItem(filterArray);
+
+  }, [p.brandFilter, p.ramFilter, p.cameraFilter, p.storageFilter, p.displayFilter, p.cpuCoreFilter, p.cpuCoreFilter, p.operatingSystemFilter, p.operatingSystemFilter, p.networkFilter, p.batteryFilter,p.colorFilter,p.priceFilter, p.isEnabled])
+  
+
+  
+
 
 
   return (
@@ -41,25 +183,25 @@ const FilterList = (p) => {
       >
         <Scroll minw='105%' >
 
-          <Span fd={!isEnabled ? 'row' : 'row-reverse'} jc={'center'} mb={5} ph={7} >
-            {!isEnabled ?
+          <Span fd={!p.isEnabled ? 'row' : 'row-reverse'} jc={'center'} mb={5} ph={7} >
+            {!p.isEnabled ?
               <P mt={1} ml={5} fs={11} >نمایش دستگاه های موجود</P>
               :
               <P mt={1} mr={5} fs={11} >نمایش همه </P>}
-            <Switch isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
+            <Switch isEnabled={p.isEnabled} setIsEnabled={p.setIsEnabled} />
           </Span>
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'برند'} bodyRow={
                 <Span>
                   {p.brandFilterValue && p.brandFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setbrandFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check1' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setbrandFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxBrandFilter} setshow={setshowCheckboxBrandFilter}
+                        show={p.showCheckboxBrandFilter} setshow={p.setshowCheckboxBrandFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -71,15 +213,15 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'قیمت'} bodyRow={
                 <Span>
                   {p.priceFilterValue && p.priceFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setpriceFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check2' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setpriceFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxPriceFilter} setshow={setshowCheckboxPriceFilter}
+                        show={p.showCheckboxPriceFilter} setshow={p.setshowCheckboxPriceFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -91,16 +233,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'مقدار رم'}
               bodyRow={
                 <Span>
                   {p.ramFilterValue && p.ramFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setramFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check3' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setramFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxRamFilter} setshow={setshowCheckboxRamFilter}
+                        show={p.showCheckboxRamFilter} setshow={p.setshowCheckboxRamFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -112,16 +254,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'تعداد هسته پردازشگر(cpu)'}
               bodyRow={
                 <Span>
                   {p.cpuCoreFilterValue && p.cpuCoreFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setcpuCoreFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check4' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setcpuCoreFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxcpuCoreFilter} setshow={setshowCheckboxcpuCoreFilter}
+                        show={p.showCheckboxcpuCoreFilter} setshow={p.setshowCheckboxcpuCoreFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -133,16 +275,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'حافظه'}
               bodyRow={
                 <Span>
                   {p.memoryFilterValue && p.memoryFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setmemoryFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check5' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setstorageFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxMemoryFilter} setshow={setshowCheckboxMemoryFilter}
+                        show={p.showCheckboxMemoryFilter} setshow={p.setshowCheckboxMemoryFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -154,16 +296,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'نوع شبکه اینترنت'}
               bodyRow={
                 <Span>
                   {p.networkFilterValue && p.networkFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setnetworkFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check6' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setnetworkFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxNetworkFilter} setshow={setshowCheckboxNetworkFilter}
+                        show={p.showCheckboxNetworkFilter} setshow={p.setshowCheckboxNetworkFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -175,16 +317,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'سیستم عامل'}
               bodyRow={
                 <Span>
                   {p.operatingSystemFilterValue && p.operatingSystemFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setoperatingSystemFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check7' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setoperatingSystemFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxOperatingSystemFilter} setshow={setshowCheckboxOperatingSystemFilter}
+                        show={p.showCheckboxOperatingSystemFilter} setshow={p.setshowCheckboxOperatingSystemFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -196,16 +338,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'دوربین'}
               bodyRow={
                 <Span>
                   {p.cameraFilterValue && p.cameraFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setcameraFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check8' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setcameraFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxCameraFilter} setshow={setshowCheckboxCameraFilter}
+                        show={p.showCheckboxCameraFilter} setshow={p.setshowCheckboxCameraFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -217,16 +359,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'اندازه ی صفحه نمایش'}
               bodyRow={
                 <Span>
                   {p.displayFilterValue && p.displayFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setdisplayFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check9' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setdisplayFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxDisplayFilter} setshow={setshowCheckboxDisplayFilter}
+                        show={p.showCheckboxDisplayFilter} setshow={p.setshowCheckboxDisplayFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -238,16 +380,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'رنگ'}
               bodyRow={
                 <Span>
                   {p.colorFilterValue && p.colorFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setcolorFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check10' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setcolorFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxColorFilter} setshow={setshowCheckboxColorFilter}
+                        show={p.showCheckboxColorFilter} setshow={p.setshowCheckboxColorFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -259,16 +401,16 @@ const FilterList = (p) => {
 
 
           <Span>
-            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ddd' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
+            <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'باطری'}
               bodyRow={
                 <Span>
                   {p.batteryFilterValue && p.batteryFilterValue.map((child, index) => (
                     <Span key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
-                      <CheckBoxRadius item={child} refObject={(ref) => { if (ref.show) { setbatteryFilter(ref.filterValue) } }}
+                      <CheckBoxRadius id='check11' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { p.setbatteryFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
-                        show={showCheckboxBatryFilter} setshow={setshowCheckboxBatryFilter}
+                        show={p.showCheckboxBatryFilter} setshow={p.setshowCheckboxBatryFilter}
                         style={{ transform: [{ scale: .9 }] }} />
                     </Span>
                   ))
@@ -279,25 +421,26 @@ const FilterList = (p) => {
           </Span>
         </Scroll>
 
-
+       {/* //! lovercase */}
         <Span w={'100%'} ai='center' >
-          <Button mt={10} w={86} as='center' outline h={37}
+          <Button mt={10} w={'95%'} as='center' outline h={37} bgcolor='#ff77ccee'
             onClick={() => {
-              const filterArray = p.childItem.filter((f, i) => (
-                ((brandFilter) ? (f.brand === brandFilter) : (f.brand)) &&
-                ((ramFilter) ? (f.ram >= ramFilter[0] && f.ram <= ramFilter[1]) : (f.ram)) &&
-                ((cameraFilter) ? (f.camera >= cameraFilter[0] && f.camera <= cameraFilter[1]) : (f.camera)) &&
-                ((memoryFilter) ? (f.memory >= memoryFilter[0] && f.memory <= memoryFilter[1]) : (f.memory)) &&
-                ((displayFilter) ? (f.display >= displayFilter[0] && f.display <= displayFilter[1]) : (f.memory)) &&
-                ((cpuCoreFilter) ? (f.cpuCore >= cpuCoreFilter[0] && f.cpuCore <= cpuCoreFilter[1]) : (f.cpuCore)) &&
-                ((operatingSystemFilter) ? (f.operatingSystem === operatingSystemFilter) : (f.operatingSystem)) &&
-                ((networkFilter) ? (f.network === networkFilter) : (f.network)) &&
-                ((batteryFilter) ? (f.battery >= batteryFilter[0] && f.battery <= batteryFilter[1]) : (f.battery)) &&
-                ((colorFilter) ? (f.color.find((c) => c === colorFilter)) : (f.color)) &&
-                ((priceFilter) ? (f.price >= priceFilter[0] && f.price <= priceFilter[1]) : (f.price)) &&
-                ((Boolean(isEnabled) === true) ? (Boolean(f.available)) : (typeof Boolean(f.available) === 'boolean'))
+              const filterArray = p.newSearchArray.filter((f, i) => (
+                ((p.brandFilter) ? (f.title?.toLowerCase().match(p.brandFilter?.toLowerCase())) : (f.title)) &&
+                ((p.ramFilter) ? (f.ram >= p.ramFilter[0] && f.ram <= p.ramFilter[1]) : (f.ram)) &&
+                ((p.cameraFilter) ? (f.camera >= p.cameraFilter[0] && f.camera <= p.cameraFilter[1]) : (f.camera)) &&
+                ((p.storageFilter) ? (f.storage >= p.storageFilter[0] && f.storage <= p.storageFilter[1]) : (f.storage)) &&
+                ((p.displayFilter) ? (f.display >= p.displayFilter[0] && f.display <= p.displayFilter[1]) : (f.display)) &&
+                ((p.cpuCoreFilter) ? (f.cpuCore >= p.cpuCoreFilter[0] && f.cpuCore <= p.cpuCoreFilter[1]) : (f.cpuCore)) &&
+                ((p.operatingSystemFilter) ? (f.operatingSystem?.toLowerCase() === p.operatingSystemFilter?.toLowerCase()) : (f.operatingSystem)) &&
+                ((p.networkFilter) ? (f.network?.toLowerCase().match(p.networkFilter?.toLowerCase())) : (f.network)) &&
+                ((p.batteryFilter) ? (f.battery >= p.batteryFilter[0] && f.battery <= p.batteryFilter[1]) : (f.battery)) &&
+                ((p.colorFilter) ? (f.color.find((c) => c.color?.toLowerCase() === p.colorFilter?.toLowerCase())) : (f.color)) &&
+                ((p.priceFilter) ? (f.price >= p.priceFilter[0] && f.price <= p.priceFilter[1]) : (f.price)) &&
+                ((p.isEnabled === false ) ? (f.title ) : (f.available === 1 && f.available > 0)) 
               ))
-              p.setshowFilterModal(false)
+              // p.setshowDrawer(false)
+              p.setchildItem(filterArray);
             }}
           >انجام شد</Button>
         </Span>
@@ -308,327 +451,3 @@ const FilterList = (p) => {
 }
 
 export default FilterList
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// <Modal
-// onClick={() => { p.setshowDropdownFilter(!p.showDropdownFilter); /* setTimeout(() => {p.setshowDropdownFilter(false);}, 200);  */ }}
-// style={{ width: '100%', height: 'auto' }} setshow={p.setshowFilterModal} show={p.showFilterModal} >
-// <Scroll w='100%' h={400} ccStyle={{ alignItems: 'center', flexWrap: 'wrap', justifyContent: 'center', flexGrow: 1, }} >
-
-
-//   <Span mt={12} w='100%' ai='center' id='1' >
-//     <Span ai='flex-start' w={270}>
-//       <Span ><P textAlign='right' >قیمت</P></Span>
-//       <Span w='100%' fd='row'  >
-//         <Span h={30} mt='auto' mb={-5} ml={5}>
-//           <Dropdown2 bodyStyle={{ right: 20 }}
-//             onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('1').$({ zIndex: 10 }) }}
-//             show={p.showDropdownFilter}
-//             setshow={p.setshowDropdownFilter}
-//             h={25}
-//           >
-//             <Span ph={9} w={150}>
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 {/* <P onClick={()=>{ p.$input.get('input1FromTextId').setNativeProps({text:'sddcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcs'}) }} fs={12}>زیر 1 ملیون</P > */}
-//                 <P onClick={() => { p.setpriceFilter(0); p.setpriceFilterTo(1000000); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12}>زیر 1 ملیون</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setpriceFilter(1000000); p.setpriceFilterTo(2000000); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >از 1 ملیون تا 2 ملیون</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setpriceFilter(2000000); p.setpriceFilterTo(4000000); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >از 2 ملیون تا 4 ملیون</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setpriceFilter(4000000); p.setpriceFilterTo(8000000); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >از 4 ملیون تا 8 ملیون</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setpriceFilter(8000000); p.setpriceFilterTo(16000000); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >از 8 ملیون تا 16 ملیون</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setpriceFilter(16000000); p.setpriceFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >از 16 ملیون به بالا</P >
-//               </Span>
-
-//               <Span style={{ padding: 5 }} >
-//                 <P onClick={() => { p.setshowDropdownFilter(!p.showDropdownFilter); p.setpriceFilter(''); p.setpriceFilterTo(''); p.$input.get('input1FromTextId').focus() }} fs={12} >وارد کردن به صورت دستی</P >
-//               </Span>
-
-//             </Span>
-//           </Dropdown2>
-//         </Span>
-
-//         {/* //! اگه غیر از عدد چیز دیگه ای وارد کرد به صورت قرمز بنویس فقط عدد وارد کنید */}
-
-//         <Input border={[2]} $input={p.$input} textId='input1FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.priceFilter.toString()} onChangeText={(text) => { p.setpriceFilter(text) }} />
-//         <Input keyboardType='numeric' fs={p.priceFilterTo == Infinity ? 18 : 11} w={100} placeholder='تا' value={p.priceFilterTo == Infinity ? '♾' : p.priceFilterTo.toString()} onChangeText={(text) => { p.setpriceFilterTo(text) }} />
-//         <Span mr={5} ai='center' jc='center' >تومان</Span>
-//       </Span>
-//     </Span>
-//   </Span>
-
-
-//   <Span mt={12} w='100%' ai='center' id='2'>
-//     <Span ai='flex-start' w={270}>
-//       <Span><P textAlign='right' >فضای حافظه</P></Span>
-//       <Span w='100%' fd='row' jc='flex-start' >
-
-//         <Span h={30} mt='auto' mb={-5} ml={5} >
-//           <Dropdown2 h={25} bodyStyle={{ right: 20 }}
-//             onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('2').$({ zIndex: 10 }) }}
-//             show={p.showDropdownFilter}
-//             setshow={p.setshowDropdownFilter}
-//           >
-//             <Span ph={9} w={150}>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setsdCardFilter(0); p.setsdCardFilterTo(8); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12}> 8 به پایین</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setsdCardFilter(8); p.setsdCardFilterTo(16); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >8 تا 16</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setsdCardFilter(16); p.setsdCardFilterTo(32); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 تا 32</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setsdCardFilter(32); p.setsdCardFilterTo(64); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >32 تا 64</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setsdCardFilter(64); p.setsdCardFilterTo(128); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >64 تا 128</P >
-//               </Span>
-
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setsdCardFilter(128); p.setsdCardFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >128 به بالا</P >
-//               </Span>
-
-//               <Span style={{ padding: 5 }} >
-//                 <P onClick={() => { p.setshowDropdownFilter(!p.showDropdownFilter); p.setsdCardFilter(''); p.setsdCardFilterTo(''); p.$input.get('input2FromTextId').focus() }} fs={12} >وارد کردن به صورت دستی</P >
-//               </Span>
-
-//             </Span>
-//           </Dropdown2>
-//         </Span>
-//         <Input $input={p.$input} textId='input2FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.sdCardFilter.toString()} onChangeText={(text) => { p.setsdCardFilter(text) }} />
-//         <Input keyboardType='numeric' fs={p.sdCardFilterTo == Infinity ? 18 : 11} value={p.sdCardFilterTo == Infinity ? '♾' : p.sdCardFilterTo.toString()} w={100} placeholder='تا' onChangeText={(text) => { p.setsdCardFilterTo(text) }} />
-//         <Span mr={5} ai='center' jc='center' >گیگابایت</Span>
-//       </Span>
-//     </Span>
-//   </Span>
-
-//   <Span mt={12} w='100%' ai='center' id='3'>
-//     <Span ai='flex-start' w={270}>
-//       <Span><P textAlign='right' >رم</P></Span>
-//       <Span w='100%' fd='row' >
-
-//         <Span h={30} mt='auto' mb={-5} ml={5}>
-//           <Dropdown2 h={25} bodyStyle={{ right: 20 }}
-//             onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('3').$({ zIndex: 10 }) }}
-//             show={p.showDropdownFilter}
-//             setshow={p.setshowDropdownFilter}
-
-//           >
-//             <Span ph={9} w={150}>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setramFilter(0); p.setramFilterTo(2); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12}> 2 به پایین</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setramFilter(2); p.setramFilterTo(4); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >2 تا 4</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setramFilter(4); p.setramFilterTo(8); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >4 تا 8</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setramFilter(8); p.setramFilterTo(16); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >8 تا 16</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setramFilter(16); p.setramFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 به بالا</P >
-//               </Span>
-
-//               <Span style={{ padding: 5 }} >
-//                 <P onClick={() => { p.setshowDropdownFilter(!p.showDropdownFilter); p.setramFilter(''); p.setramFilterTo(''); p.$input.get('input3FromTextId').focus() }} fs={12} >وارد کردن به صورت دستی</P >
-//               </Span>
-
-//             </Span>
-//           </Dropdown2>
-//         </Span>
-//         <Input $input={p.$input} textId='input3FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.ramFilter.toString()} onChangeText={(text) => { p.setramFilter(text) }} />
-//         <Input keyboardType='numeric' fs={p.ramFilterTo === Infinity ? 18 : 11} w={100} placeholder='تا' value={p.ramFilterTo == Infinity ? '♾' : p.ramFilterTo.toString()} onChangeText={(text) => { p.setramFilterTo(text) }} />
-//         <Span mr={5} ai='center' jc='center' >گیگابایت</Span>
-//       </Span>
-//     </Span>
-//   </Span>
-
-
-//   <Span mt={12} w='100%' ai='center' id='4'>
-//     <Span ai='flex-start' w={270}>
-//       <Span><P textAlign='right' >cpu</P></Span>
-//       <Span w='100%' fd='row'>
-
-//         <Span h={30} mt='auto' mb={-5} ml={5}>
-
-//           <Dropdown2 h={25} bodyStyle={{ right: 20 }}
-//             onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('4').$({ zIndex: 10 }) }}
-//             show={p.showDropdownFilter}
-//             setshow={p.setshowDropdownFilter}
-
-//           >
-//             <Span ph={9} w={150}>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcpuCoreFilter(0); p.setcpuCoreFilterTo(2); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12}> 2 به پایین</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcpuCoreFilter(2); p.setcpuCoreFilterTo(4); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >2 تا 4</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcpuCoreFilter(4); p.setcpuCoreFilterTo(8); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >4 تا 8</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcpuCoreFilter(8); p.setcpuCoreFilterTo(16); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >8 تا 16</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcpuCoreFilter(16); p.setcpuCoreFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 به بالا</P >
-//               </Span>
-
-//               <Span style={{ padding: 5 }} >
-//                 <P onClick={() => { p.setshowDropdownFilter(!p.showDropdownFilter); p.setcpuCoreFilter(''); p.setcpuCoreFilterTo(''); p.$input.get('input4FromTextId').focus() }} fs={12} >وارد کردن به صورت دستی</P >
-//               </Span>
-
-//             </Span>
-//           </Dropdown2>
-//         </Span>
-//         <Input $input={p.$input} textId='input4FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.cpuCoreFilter.toString()} onChangeText={(text) => { p.setcpuCoreFilter(text) }} />
-//         <Input keyboardType='numeric' fs={p.cpuCoreFilterTo == Infinity ? 18 : 11} w={100} placeholder='تا' value={p.cpuCoreFilterTo == Infinity ? '♾' : p.cpuCoreFilterTo.toString()} onChangeText={(text) => { p.setcpuCoreFilterTo(text) }} />
-//         <Span mr={5} ai='center' jc='center' >هسته</Span>
-//       </Span>
-//     </Span>
-//   </Span>
-
-
-//   <Span mt={12} w='100%' ai='center' id='5'>
-//     <Span ai='flex-start' w={270}>
-//       <Span><P textAlign='right' >دوربین</P></Span>
-//       <Span w='100%' fd='row' >
-
-//         <Span h={30} mt='auto' mb={-5} ml={5}>
-
-//           <Dropdown2 h={25} bodyStyle={{ right: 20 }}
-//             onClick={() => { let arrayId = ['1', '2', '3', '4', '5']; arrayId.map((id) => p.$.id(id) && p.$.id(id).$({ zIndex: 1 })); p.$.id('5').$({ zIndex: 10 }) }}
-//             show={p.showDropdownFilter}
-//             setshow={p.setshowDropdownFilter}
-
-//           >
-//             <Span ph={9} w={150}>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcameraFilter(0); p.setcameraFilterTo(8); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12}> 8 به پایین</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcameraFilter(8); p.setcameraFilterTo(16); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >8 تا 16</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcameraFilter(16); p.setcameraFilterTo(32); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >16 تا 32</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcameraFilter(32); p.setcameraFilterTo(64); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >32 تا 64</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcameraFilter(64); p.setcameraFilterTo(108); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >64 تا 108</P >
-//               </Span>
-
-//               <Span style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
-//                 <P onClick={() => { p.setcameraFilter(108); p.setcameraFilterTo(Infinity); p.setshowDropdownFilter(!p.showDropdownFilter); }} fs={12} >108 به بالا</P >
-//               </Span>
-
-//               <Span style={{ padding: 5 }} >
-//                 <P onClick={() => { p.setshowDropdownFilter(!p.showDropdownFilter); p.setcameraFilter(''); p.setcameraFilterTo(''); p.$input.get('input5FromTextId').focus() }} fs={12} >وارد کردن به صورت دستی</P >
-//               </Span>
-
-//             </Span>
-//           </Dropdown2>
-//         </Span>
-//         <Input $input={p.$input} textId='input5FromTextId' keyboardType='numeric' fs={11} w={100} placeholder='از' value={p.cameraFilter.toString()} onChangeText={(text) => { p.setcameraFilter(text) }} />
-//         <Input keyboardType='numeric' fs={p.cameraFilterTo == Infinity ? 18 : 11} w={100} placeholder='تا' value={p.cameraFilterTo == Infinity ? '♾' : p.cameraFilterTo.toString()} onChangeText={(text) => { p.setcameraFilterTo(text) }} />
-//         <Span mr={5} ai='center' jc='center' >مگاپیکسل</Span>
-//       </Span>
-//     </Span>
-//   </Span>
-
-//   {/* //! کادر اول رو که وارد میکنه تشخیص بده که کادر دوم رو گزینه هایی که میاره بالا تر از اون باشه */}
-
-//   <Span ai='flex-start' w={270} mr={30}>
-//     <Span><P textAlign='right' >نوع شبکه اینترنت</P></Span>
-//     <Span fd='row' w={200} jc='center'>
-//       <Press border={[1, 'silver']} w={60} h={60} br={4} ai='center' jc='center' bgcolor={p.fourG ? '#0de' : 'white'} onClick={() => p.setfourG(!p.fourG)} >4G</Press>
-//       <Press border={[1, 'silver']} w={60} h={60} br={4} mr={10} ai='center' jc='center' bgcolor={p.fiveG ? '#0de' : 'white'} onClick={() => p.setfiveG(!p.fiveG)} >5G</Press>
-//     </Span>
-//   </Span>
-
-
-//   <Span ai='flex-start' w={270} mr={30}>
-//     <Span fd='row' w={200} jc='center'>
-//       <Button mt={10} w={100}
-//         onClick={() => {
-//           const filterArray = array.filter((f) =>
-//             ((f.price >= p.priceFilter) && (p.priceFilterTo ? (f.price <= p.priceFilterTo) : f.price <= Infinity)) &&
-//             ((f.sdCard >= p.sdCardFilter) && (p.sdCardFilterTo ? f.sdCard <= p.sdCardFilterTo : f.sdCard <= Infinity)) &&
-//             ((f.ram >= p.ramFilter) && (p.ramFilterTo ? f.ram <= p.ramFilterTo : f.ram <= Infinity)) &&
-//             ((f.cpuCore >= p.cpuCoreFilter) && (p.cpuCoreFilterTo ? f.cpuCore <= p.cpuCoreFilterTo : f.cpuCore <= Infinity)) &&
-//             ((f.camera >= p.cameraFilter) && (p.cameraFilterTo ? f.camera <= p.cameraFilterTo : f.camera <= Infinity)) &&
-//             ((!p.fourG && !p.fiveG) ? f.network : (p.fourG && f.network === '4G') || (p.fiveG && f.network === '5G'))
-//           )
-//           console.log(filterArray);
-//           p.setshowFilterModal(false)
-//         }}
-//       >تایید</Button>
-//     </Span>
-//   </Span>
-
-
-//   {/* p.setarray(filterArray) */}
-
-
-// </Scroll>
-// </Modal>

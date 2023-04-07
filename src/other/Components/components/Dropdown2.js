@@ -30,12 +30,15 @@ const Dropdown = ({bodyStyle,displayFlex,$input,textId,h, child, border = [.5, '
         }}
 
         style={[{ flexDirection: 'row', padding: 2, position: 'relative',paddingHorizontal:5, height:h }, style]} >
-        {!iconFalse && <Icon color={color} name={top ? 'caret-up' : 'caret-down'} style={[{ top: 3, position: 'relative', right: 1 }, { fontSize: 22.5 }]}></Icon>}
+        {!iconFalse ? <Icon color={color} name={top ? 'caret-up' : 'caret-down'} style={[{ top: 3, position: 'relative', right: 1 }, { fontSize: 22.5 }]}></Icon> : <></> }
 
         {icon && <Icon color={color} name={icon ? icon : 'trash'} style={[{ fontSize: 22.5 }]}></Icon> ||
           a_icon && <A_icon color={color} name={a_icon ? a_icon : 'trash'} style={[{ fontSize: 22.5 }]}></A_icon> ||
           m_icon && <M_icon color={color} name={m_icon ? m_icon : 'trash'} style={[{ fontSize: 22.5 }]}></M_icon> ||
-          child && <View style={{ marginTop: 3 }}>{child}</View>}
+          child ? <View style={{ marginTop: 3 }}>{child}</View>
+          :
+        <></>
+        }
 
       </Pressable>
 

@@ -8,6 +8,7 @@ const PanelAdminDrawer = (p) => {
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
             <Press mt={10} onClick={() => p.navigation.navigate('Address')} ><Py>فیش سفارشات</Py></Press>
             <Press mt={10} onClick={() => p.navigation.navigate('AllPayment')} ><Py> خرید های موفق و غیر موفق</Py></Press>
+            <Press mt={10} onClick={() => p.navigation.navigate('QuitsForSeller')} ><Py>پرداخت به فروشندگان</Py></Press>
           </Span>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
             <Press fd='row' onClick={() => p.navigation.navigate('AdminTicketBox')} ><Py>صندوق تیکت ها</Py>{p.ticketSeen?<Badge left={5} top={.5} />:<></>}</Press>

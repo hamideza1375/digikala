@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Column, FlatList, M_icon, Press, Span } from '../../other/Components/Html'
+import { Card, Column, ContainerNavigation, FlatList, M_icon, Press, Span } from '../../other/Components/Html'
 import { localhost } from '../../other/utils/axios/axios'
 import spacePrice from '../../other/utils/spacePrice'
 
@@ -10,7 +10,7 @@ const SavedItems = (p) => {
   const removeSavedItem = (itemId) => p._user.removeSavedItem(itemId)
 
   return (
-    <Span>
+    <ContainerNavigation>
       <FlatList
         data={p.savedItems}
         renderItem={({ item, index }) => (
@@ -24,7 +24,7 @@ const SavedItems = (p) => {
             />
         )}
       />
-    </Span>
+    </ContainerNavigation>
   )
 }
 

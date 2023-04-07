@@ -8,7 +8,7 @@ import { getSingleSeller } from '../../../../services/clientService';
 
 const Description = (p) => {
 
-  const [availableSeller, setavailableSeller] = useState(1)
+  const [availableSeller, setavailableSeller] = useState(true)
 
   p._client.setColor()
 
@@ -21,7 +21,7 @@ const Description = (p) => {
   _useEffect(() => {
     p.singleItem.sellerId &&
       getSingleSeller(p.singleItem.sellerId).then(({ data }) => {
-        setavailableSeller(data.available);
+        setavailableSeller(data.value?.available);
       })
   }, [p.singleItem.sellerId])
 
@@ -105,7 +105,7 @@ const Description = (p) => {
               <Column w='70%' h={'100%'} jc='center' >
                 <Button disable={p.productBasket[p.route.params.id]?.number} onClick={() =>
 
-                  ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (availableSeller === 1 )) ?
+                  ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (availableSeller)) ?
                     p.setproductBasket(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }

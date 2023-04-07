@@ -67,6 +67,7 @@ export const Layout = (p) => {
   )
 }
 
+//! navigation.getState().routes[0].name
 export const header = () => {
   const navigation = useNavigation();
   return (

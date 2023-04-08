@@ -50,6 +50,7 @@ const Form = ({
   phoreIconLeft, phoreIconRight, codeIconLeft, codeIconRight, vIconLeft, vIconRight,
   slider = false, fourImage, offer,
   in1, in2, in3, in4, in5, in6, in7, in8, in9, in10, in11, in12,
+  editMessage,
   ...props
 }) => {
 
@@ -350,7 +351,7 @@ const Form = ({
   var plq = $plaque ? newObj.plaque === plaque : true
   var adrs = $address ? newObj.address === address : true
   var pst = postal ? newObj.postalCode === postalCode : true
-  var msg = m ? newObj.message === message : true
+  var msg = ((m) && (!editMessage)) ? newObj.message === message : true
   var cap = c ? (rand == captcha) ? true : false : true
   var titl = t ? newObj.title === title : true
   var prc = pr ? newObj.price === price : true
@@ -962,7 +963,7 @@ const Form = ({
 {in10 &&
             <Frm
               autoComplete="off"
-              icon="sort-numeric-up-alt"
+              m_icon="android"
               plackTextTop={plackTextTop}
               p='نوع سیستم عامل'
               state={input10}
@@ -979,9 +980,9 @@ const Form = ({
 {in11 &&
             <Frm
               autoComplete="off"
-              icon="sort-numeric-up-alt"
+              m_icon="battery-std"
               plackTextTop={plackTextTop}
-              p='ظرفیت باتری به میلی آمپر'
+              p='ظرفیت باطری به میلی آمپر'
               state={input11}
               setState={setinput11}
               getBlur={_input11}
@@ -996,7 +997,7 @@ const Form = ({
 {in12 &&
             <Frm
               autoComplete="off"
-              icon="sort-numeric-up-alt"
+              m_icon="network-cell"
               plackTextTop={plackTextTop}
               p='نوع شبکه اینترنت'
               state={input12}

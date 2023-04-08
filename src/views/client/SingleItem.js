@@ -4,7 +4,6 @@ import { Platform } from 'react-native'
 import _useEffect from '../../controllers/_initial';
 import { Br, Button, Container2, ContainerTab, Div, Icon, Loading, M_icon, P, Row, Scroll, Span } from '../../other/Components/Html'
 import share from '../../other/utils/share';
-import { getSingleSavedItems } from '../../services/userService';
 import Chat from './components/home/Chat'
 
 const Obligations = lazy(() => import('./components/singleItem/Obligations'));
@@ -22,7 +21,7 @@ const SingleItem = (p) => {
   p._client.getChildItemComments()
   p._client.getSimilars()
   p._client.getSingleSavedItems()
-  const savedItem = () => p._user.savedItem()
+  const savedItem = () => p._client.savedItem()
 
   return (
     <ContainerTab>

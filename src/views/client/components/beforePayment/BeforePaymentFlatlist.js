@@ -5,7 +5,6 @@ import BeforePaymentCatd from '../beforePayment/BeforePaymentCatd'
 
 const BeforePaymentFlatlist = (p) => {
 
-
   return (
     <Span f={2} border={[1, 'red']} >
       {Object.entries(p.productBasket).length ?

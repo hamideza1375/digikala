@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { FlatList, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 import CardItem from '../_layoutComponents/CardItem'
@@ -23,4 +23,4 @@ const FlatlistChild = (p) => {
   )
 }
 
-export default FlatlistChild
+export default memo(FlatlistChild)

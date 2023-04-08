@@ -1,22 +1,45 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import jwtDecode from "jwt-decode";
 import { useEffect } from "react";
 import { BackHandler, Platform, ToastAndroid } from "react-native";
 import _Alert from "../other/utils/alert";
-import { addBuyBasket, commentDisLike, commentLike, confirmPayment, createComment, createCommentAnswer, deleteComment, deleteCommentAnswer, disLikeAnswer, editComment, editCommentAnswer, geocode, getCategory, getChildItemComments, getChildItems, getOffers, getPopulars, getSimilars, getSingleComment, getSingleCommentAnswer, getSingleItem, getSlider, likeAnswer, offers, reverse } from "../services/clientService";
-import { getSingleSavedItems } from "../services/userService";
+import backgroundTimer from "../other/utils/backgroundTimer";
+import { create } from "../other/utils/notification";
+import { truncate } from "../other/utils/truncate";
+import { getSingleSavedItems, commentDisLike, commentLike, confirmPayment, createComment, createCommentAnswer, deleteComment, deleteCommentAnswer, disLikeAnswer, editComment, editCommentAnswer, geocode, getCategory, getChildItemComments, getChildItems, getNotification, getOffers, getPopulars, getSendStatus, getSimilars, getSingleComment, getSingleCommentAnswer, getSingleItem, getSlider, getSocketIoSeenUser, likeAnswer, offers, reverse, getSingleSeller } from "../services/clientService";
+import { savedItem } from "../services/userService";
 import _useEffect from "./_initial";
 
 export function clientController(p) {
 
-
+  //! getSlider
   this.getSlider = () => {
-    // _useEffect(() => {
-    //   getSlider().then(({ data }) => {
-    //     data && p.setslider(Object.values(data.value))
-    //   })
-    // }, [])
+    _useEffect(() => {
+      getSlider().then(({ data }) => {
+        data && p.setslider(Object.values(data.value))
+      })
+    }, [])
   }
+  //! getSlider
 
+
+  //! SendStatusForClientBuy
+  this.getSendStatus = () => {
+    const navigation = useNavigation()
+    _useEffect(() => {
+      setTimeout(() => {
+        if((navigation.getCurrentRoute()?.name === 'Home') || (navigation.getCurrentRoute()?.name === 'ChildItems') || navigation.getCurrentRoute()?.name === 'SingleItem')
+        getSendStatus().then(({ data }) => {
+          if (data.checkSend === 1) p.toast.show('', 'سفارش شما ثبت شده و در حال برسی برای ارسال هست')
+          else if (data.queueSend === 1) p.toast.success(data.queueSend, 'سفارش شما در صف ارسال قرار گرفت')
+        })
+      }, 400);
+    }, [])
+  }
+  //! SendStatusForClientBuy
+
+  //! Category
   this.getCategory = () => {
     _useEffect(() => {
       (async () => {
@@ -25,8 +48,9 @@ export function clientController(p) {
       })()
     }, [])
   }
+  //! Category
 
-
+  //! product
   this.getChildItems = () => {
     useEffect(() => {
       (async () => {
@@ -38,24 +62,25 @@ export function clientController(p) {
   }
 
 
-  this.getSingleItem = () => {
-    _useEffect(() => {
-      (async () => {
-        const { data } = await getSingleItem(p.route.params.id)
-        p.setsingleItem(data.value)
-      })()
-      return () => p.setsingleItem({})
-    }, [p.route.params])
-  }
-
-
   this.getOffers = () => {
-    _useEffect(() => {
+    useEffect(() => {
       (async () => {
         const { data } = await getOffers()
         p.setoffers(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setnewSearchOffershArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
       })()
-    }, [])
+    }, [p.route.params.id])
+  }
+
+
+  this.getPopulars = () => {
+    useEffect(() => {
+      (async () => {
+        const { data } = await getPopulars()
+        p.setpopulars(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        p.setnewSearchPopularsArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
+      })()
+    }, [p.route.params.id])
   }
 
 
@@ -67,18 +92,22 @@ export function clientController(p) {
       })()
     }, [p.route.params])
   }
+  //! product
 
-
-  this.getPopulars = () => {
+  //! singleProduct
+  this.getSingleItem = () => {
     _useEffect(() => {
       (async () => {
-        const { data } = await getPopulars()
-        p.setpopulars(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
+        const { data } = await getSingleItem(p.route.params.id)
+        p.setsingleItem(data.value)
       })()
-    }, [])
+      return () => p.setsingleItem({})
+    }, [p.route.params])
   }
+  //! singleProduct
 
 
+  //! comment
   this.createComment = async () => {
     const { data } = await createComment(p.route.params.id, { message: p.message, fiveStar: p.fiveStar })
     p.setchildItemComment(comment => {
@@ -86,6 +115,7 @@ export function clientController(p) {
       _comment.push(data.value);
       return _comment
     })
+    p.navigation.goBack()
   }
 
   this.createCommentAnswer = async () => {
@@ -97,6 +127,7 @@ export function clientController(p) {
       _comment[index].answer.push(data.value)
       return _comment
     })
+    p.navigation.goBack()
   }
 
   this.getChildItemComments = async () => {
@@ -134,8 +165,9 @@ export function clientController(p) {
         _comment[findIndex].message = data.value.message
         _comment[findIndex].fiveStar = data.value.fiveStar
         return _comment
-      } catch (err) { console.error('catch',err);}
+      } catch (err) { console.error('catch', err); }
     })
+    p.navigation.goBack()
   }
 
 
@@ -149,6 +181,7 @@ export function clientController(p) {
       answer[answerIndex].message = p.message
       return _comment
     })
+    p.navigation.goBack()
   }
 
 
@@ -196,9 +229,10 @@ export function clientController(p) {
   this.like = async (commentid) => {
     const { data } = await commentLike(commentid)
     p.setchildItemComment(comment => {
-      let findIndex = comment.findIndex(c => c._id === commentid)
-      comment[findIndex].likeCount = data.value
-      return comment
+      const _comment = [...comment]
+      let findIndex = _comment.findIndex(c => c._id === commentid)
+      _comment[findIndex].likeCount = data.value
+      return _comment
     })
   }
 
@@ -207,9 +241,10 @@ export function clientController(p) {
   this.disLike = async (commentid) => {
     const { data } = await commentDisLike(commentid)
     p.setchildItemComment(comment => {
-      let findIndex = comment.findIndex(c => c._id === commentid)
-      comment[findIndex].disLikeCount = data.value
-      return comment
+      const _comment = [...comment]
+      let findIndex = _comment.findIndex(c => c._id === commentid)
+      _comment[findIndex].disLikeCount = data.value
+      return _comment
     })
   }
 
@@ -238,38 +273,100 @@ export function clientController(p) {
       return _comment
     })
   }
+  //! comment
 
 
-  this.reverse = async () => {
-    await reverse({ lat: p.latlng.lat, lng: p.latlng.lng })
+
+  //! getNotifee
+  this.getNotifee = () => {
+    useEffect(() => {
+      (async () => {
+        let newNotification = await AsyncStorage.getItem('notification')
+        const { data } = await getNotification()
+        if (data)
+          if (data.message && newNotification !== data.message) {
+            create(data.title, data.message, require('../other/assets/images/logo.png'))
+            await AsyncStorage.setItem('notification', data.message)
+          }
+      })();
+      backgroundTimer(async () => {
+        (async () => {
+          let newNotification = await AsyncStorage.getItem('notification')
+          const { data } = await getNotification()
+          if (data)
+            if (data.message && newNotification !== data.message) {
+              create(data.title, data.message, require('../other/assets/images/logo.png'))
+              await AsyncStorage.setItem('notification', data.message)
+            }
+        })();
+      }, 20000)
+    }, [])
   }
+  //! getNotifee
 
+  //! seenAndSendNotificationForSocketIo
+  this.seenAndSendNotificationForSocketIo = () => {
+    const navigation = useNavigation()
+    useEffect(() => {
+      setTimeout(async () => {
+        const socketTocken = await AsyncStorage.getItem('socketTocken')
+        const { data } = await getSocketIoSeenUser(socketTocken)
+        let newNotification = await AsyncStorage.getItem('msgNotification')
+        if (data)
+          if (data.message && !p.tokenValue.isAdmin && newNotification !== data.message) {
+            create('جواب پیام شما', truncate(data.message, 30, false), require('../other/assets/images/logo.png'),
+              () => {
+                window.focus();
+                navigation.navigate('SocketIo')
+              }
+            )
+            await AsyncStorage.setItem('msgNotification', data.message)
+          }
 
-  this.geocode = async () => {
-    await geocode({ loc: p.loc })
+        AsyncStorage.getItem("token").then(async (token) => {
+          if (token) {
+            const user = jwtDecode(token);
+            const socketTocken = await AsyncStorage.getItem('socketTocken')
+            const { data } = await getSocketIoSeenUser(socketTocken)
+            const getTime = await AsyncStorage.getItem('socketDate')
+            if (data && !user.isAdmin && data.getTime > JSON.parse(getTime)) p.setsocketIoSeen(true)
+          }
+        })
+
+      }, 2000)
+    }, [])
   }
+  //! seenAndSendNotificationForSocketIo
 
 
+
+
+  //! getSingleSeller for check available
+  this.getSingleSeller = () => {
+    _useEffect(() => {
+      p.singleItem.sellerId &&
+        getSingleSeller(p.singleItem.sellerId).then(({ data }) => {
+          p.setavailableSeller(data.value?.available);
+        })
+      return () => p.setavailableSeller(true)
+    }, [p.singleItem.sellerId])
+  }
+  //! getSingleSeller for check available
+
+
+
+  //!SavedItem
   this.getSingleSavedItems = () => {
     _useEffect(() => {
       getSingleSavedItems(p.route.params.id).then(({ data }) => { p.setbookmark(data.value) })
       return () => p.setbookmark(false)
     }, [p.route.params])
   }
+  //!SavedItem
 
 
-  this.setColor = () => {
 
-    _useEffect(() => {
-      p.singleItem.title && p.setcolor((color) => {
-        const c = { ...color }
-        c[p.route.params.id] = color[p.route.params.id] ? color[p.route.params.id] : p.singleItem.color.find(c => c.value > 0).color
-        return c
-      })
-    }, [p.singleItem])
-  }
-
-
+  //! payment
   this.confirmPayment = async (city) => {
     const { data } = await confirmPayment({
       productBasket: p.productBasket,
@@ -307,8 +404,18 @@ export function clientController(p) {
     }
     p.navigation.replace('FramePayment', { url: data.value })
   }
+  //! payment
 
 
+  this.setColor = () => {
+    _useEffect(() => {
+      p.singleItem.title && p.setcolor((color) => {
+        const c = { ...color }
+        c[p.route.params.id] = color[p.route.params.id] ? color[p.route.params.id] : p.singleItem.color.find(c => c.value > 0).color
+        return c
+      })
+    }, [p.singleItem])
+  }
 
 
   this.backHandler = () => {
@@ -333,14 +440,11 @@ export function clientController(p) {
   }
 
 
+  this.savedItem = async () => {
+    const { data } = await savedItem(p.route.params.id)
+    p.setbookmark(data.value)
+  }
 
-  // countMap.forEach((item, index) => ())
-  // countMap.keys()
-  // countMap.values()
-  // countMap.entries()
-  // console.log(Object.keys(number));
-  // console.log(Object.values(number));
-  // console.log(Object.entries(number)); //! object change to array
 
 }
 

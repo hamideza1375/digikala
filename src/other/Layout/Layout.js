@@ -13,6 +13,8 @@ import PanelAdminPage from './page/PanelAdminPage';
 import SellerPage from './page/SellersPage';
 import SellerPanelPage from './page/SellerPanelPage';
 import AddressPage from './page/AddressPage';
+import ChildOffersPage from './page/ChildOffersPage';
+import ChildPopulars from './page/ChildPopulars';
 
 
 export const Layout = (p) => {
@@ -58,6 +60,12 @@ export const Layout = (p) => {
           p.route.name === 'ChildItems' &&
           <ChildItemPage {...p} bottom={bottom} />
           ||
+          p.route.name === 'ChildOffers' &&
+          <ChildOffersPage {...p} bottom={bottom} />
+          ||
+          p.route.name === 'Childpopular' &&
+          <ChildPopulars {...p} bottom={bottom} />
+          ||
           p.route.name === 'TableChildItems' &&
           <TableChildItemsPage {...p} bottom={bottom} />
           ||
@@ -99,4 +107,5 @@ export const header = () => {
     </Pressable>
   );
 };
+  //   if(navigation.getCurrentRoute() && navigation.getCurrentRoute().params && navigation.getCurrentRoute().params.key && (navigation.getCurrentRoute().params.key !== 'user')) _user = {}
 // getCurrentRoute

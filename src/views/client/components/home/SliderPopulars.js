@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Platform } from 'react-native'
-import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
+import { A_icon, Card2, Div, Icon, Img, P, Press, Py, Row, ScrollSlider, Span } from '../../../../other/Components/Html'
 import LinearGradient from '../../../../other/Components/other/LinearGradient'
 import spacePrice from '../../../../other/utils/spacePrice'
 import s from '../../style/client.module.scss'
 import CardItem from '../_layoutComponents/CardItem'
 
 const SliderPopulars = (p) => {
+  
   return (
     <>
       <Span h={330} >
@@ -30,13 +31,14 @@ const SliderPopulars = (p) => {
           data={p.populars}
           renderItem={({ item, index }) => (
             <Span /* mh='auto' */ mh={6} minw={155} fg={1} h={260} col2={{ marginHorizontal: 3 }}>
-              <CardItem item={item} spacePrice={spacePrice} w={170} onClick={()=>{p.navigation.navigate('SingleItem',{id:item._id})}}/>
+              <CardItem item={item} spacePrice={spacePrice} w={170} onClick={() => { p.navigation.navigate('SingleItem', { id: item._id }) }} />
             </Span>
           )}
         />
+        <Press fd='row' onClick={() => p.navigation.navigate('ChildPopulars') } pos='absolute' b={10} l={10} z={2}><Py color='#fff' >نمایش بیشتر </Py><P mt={1} mr={2} color='#fff' >↩</P></Press>
       </Span>
     </>
   )
 }
 
-export default SliderPopulars
+export default memo(SliderPopulars)

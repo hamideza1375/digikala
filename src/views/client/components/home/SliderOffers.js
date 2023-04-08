@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import { Platform } from 'react-native'
 import _useEffect from '../../../../controllers/_initial'
-import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
+import { A_icon, Card2, Div, Icon, Img, P, Press, Py, ScrollSlider, Span } from '../../../../other/Components/Html'
 import LinearGradient from '../../../../other/Components/other/LinearGradient'
 import seconder from '../../../../other/utils/seconder'
 import spacePrice from '../../../../other/utils/spacePrice'
@@ -37,11 +37,11 @@ const SliderOffers = (p) => {
               </Span>
             )}
           />
-
         </Span>
+        <Press fd='row' onClick={() => p.navigation.navigate('ChildOffers') } pos='absolute' b={10} l={10} z={2}><Py color='#fff' >نمایش بیشتر </Py><P mt={1} mr={2} color='#fff' >↩</P></Press>
       </Span>
     </>
   )
 }
 
-export default SliderOffers
+export default memo(SliderOffers)

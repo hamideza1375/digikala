@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { axios, localhost } from '../../other/utils/axios/axios'
 // import axios from 'axios';
 
@@ -6,7 +6,7 @@ import { axios, localhost } from '../../other/utils/axios/axios'
 
 const Location = (p) => {
 
-  const disable = useRef(true)
+  const [disable, setdisable] = useState(true)
 
   useEffect(() => {
 
@@ -21,24 +21,15 @@ const Location = (p) => {
     map.addLayer(layer);
     //! map
 
-
-    //! onload
-    // const street = 'شهر تهران بخش مرکزی شهرستان تهران'
-    // marker.bindPopup(street).openPopup()
-    // marker.bindPopup(street).openPopup()
-    //! onload
-
-
     //! map dragstart
     map.on('dragstart', async (ev) => {
       document.getElementById('bottomDiv').style.display = 'flex'
     });
     //! map dragstart
 
-
     //! marker dragstart
     marker.on('dragstart', async (ev) => {
-      disable.current = true
+      setdisable(true)
       document.getElementById('bottomDiv').style.display = 'flex'
     });
     //! marker dragstart
@@ -56,7 +47,7 @@ const Location = (p) => {
           const street = one + ' ' + two + ' ' + three
 
           marker.bindPopup(street).openPopup()
-          disable.current = false
+          setdisable(false)
 
         }
       }
@@ -76,11 +67,11 @@ const Location = (p) => {
           map.setView({ lat: data[0].latitude, lng: data[0].longitude });
           marker.setLatLng({ lat: data[0].latitude, lng: data[0].longitude })
           marker.bindPopup(street.trim() ? street : '!پیدا نشد').openPopup()
-          disable.current = false
+          setdisable(false)
         }
         else {
           marker.bindPopup('!پیدا نشد ').openPopup()
-          disable.current = true
+          setdisable(true)
         }
       }
     }
@@ -105,7 +96,7 @@ const Location = (p) => {
             setTimeout(() => { marker.bindPopup(street).openPopup() }, 500)
             document.getElementById('bottomDiv').style.display = 'none'
             map.stopLocate()
-            disable.current = false
+            setdisable(false)
           }
         }
       })()
@@ -140,7 +131,7 @@ const Location = (p) => {
       <div id="map" style={{ width: '100%', height: 'calc(99vh)', position: 'fixed', bottom: 0, left: 0 }}></div>
 
       <div id='bottomDiv' style={{ display: 'flex', flexDirection: 'row', visibility: 'visible', zIndex: 10000, position: 'fixed', bottom: 0, width: '100%', height: 42, background: '#fff', padding: '6px 5px 0px', boxSizing: 'border-box' }}>
-        <button disabled={disable.current} id='btnPayment' onClick={() => p.navigation.replace('SetAddressInTehran')} style={{ display: 'block', border: '1px solid #07f', background: "#fff", color: '#07f', height: '30px', width: '90%', margin: '0 auto', fontSize: '16px', borderRadius: '5px', cursor: !disable.current ? 'pointer' : '' }} >تایید</button>
+        <button disabled={disable} id='btnPayment' onClick={() => p.navigation.replace('SetAddressInTehran')} style={{ display: 'block', border: '1px solid #07f', background: "#fff", color: '#07f', height: '30px', width: '90%', margin: '0 auto', fontSize: '16px', borderRadius: '5px', cursor: !disable ? 'pointer' : '' }} >تایید</button>
       </div>
 
     </div>

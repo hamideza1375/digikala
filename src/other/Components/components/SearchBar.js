@@ -83,7 +83,7 @@ function SearchInput({ table, iconBack, children, drawer, showDrawer, setshowDra
               onSubmitEditing={() => { searcher(textSearch.toLowerCase()); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}
               iconPress={() => { searcher(textSearch.toLowerCase()) }}
               dropdown={
-                !address && !table ?
+                (home || product && (!table)) ?
                   <Dropdown2
                     displayFlex
                     $input={p.$input}

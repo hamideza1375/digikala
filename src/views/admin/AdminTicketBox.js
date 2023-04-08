@@ -5,13 +5,13 @@ import { truncate } from '../../other/utils/truncate'
 
 
 const AdminTicketBox = (p) => {
-  p._user.ticketBox()
+  p._admin.adminTicketBox()
   const deleteTicket = (ticketId) => p._user.deleteTicket(ticketId)
 
   return (
     <ContainerNavigation>
       <FlatList
-        data={p.userTicketBox}
+        data={p.adminTicketBox}
         renderItem={({ item, index }) => (
           <Column mv={8} mh={6} maxw={500} bgcolor='#ddd' border={[1, '#ddd']} br={4} p={8} >
             <Column ai='flex-end' pl={8} >

@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { FlatList, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistPopulars = (p) => {
+  p._client.getPopulars()
+
   return (
     <FlatList
       column1={1} column2={2} column3={2} column4={2}
@@ -18,4 +20,4 @@ const FlatlistPopulars = (p) => {
   )
 }
 
-export default FlatlistPopulars
+export default memo(FlatlistPopulars)

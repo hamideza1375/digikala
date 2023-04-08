@@ -3,16 +3,17 @@ import { Card, P, Press, Row, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 import convertColor from '../../../../other/utils/convertColor'
 import _Alert from '../../../../other/utils/alert'
+import { localhost } from '../../../../other/utils/axios/axios'
 
 const BeforePaymentCatd = (p) => {
 
   return (
     <Card
       imgClick={() => p.navigation.navigate('SingleItem', { id: p.item[0] })}
-      style={{ maxWidth: 550 }}
+      style={{ maxWidth: 550, width:'90%', marginRight:-2 }}
       dr='ltr'
       bgcolor='white'
-      img={require('../../../../other/assets/images/a1.jpg')}
+      img={`${localhost}/upload/childItem/${p.item[1].imageUrl1}`}
       headerRow={
         <Span minh='100%' >
           <P onClick={() => p.navigation.navigate('SingleItem', { id: p.item[0] })} >{p.item[1].title}</P>

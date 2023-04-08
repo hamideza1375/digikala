@@ -31,6 +31,8 @@ export const getAllPaymentSuccessFalseAndTrue = () => axios.get(`${localhost}/ge
 export const sendPostPrice = (body) => axios.post(`${localhost}/sendPostPrice`, body)
 export const getPostPrice = () => axios.get(`${localhost}/getPostPrice`)
 export const adminTicketBox = () => axios.get(`${localhost}/adminTicketBox`)
+export const getAdminTicketSeen = () => axios.get(`${localhost}/getAdminTicketSeen`)
+export const getSingleItem = (id) => axios.get(`${localhost}/admin/getSingleItem/${id}`)
 export const getSocketIoSeen = () => axios.get(`${localhost}/getSocketIoSeen`)
 export const createSeller = (body) => axios.post(`${localhost}/createSeller`, body)
 export const getAllSellers = () => axios.get(`${localhost}/getAllSellers`)

@@ -10,7 +10,7 @@ const range = (from, to) => {
   return range;
 }
 
-function _Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, item, ass, setass }) {
+function _Pagination({ currentPage, current, setcurrent, setcurrentPage, pageLimit, pageNeighbours = 1, page, setpage, item }) {
 
   const route = useRoute()
 

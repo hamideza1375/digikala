@@ -3,7 +3,6 @@ import { Platform } from 'react-native'
 import { Container, Scroll, Span, P, Row, Card2, Column, Icon, M_icon, A_icon, Py } from '../../other/Components/Html'
 import { localhost } from '../../other/utils/axios/axios'
 const Profile = (p) => {
-  p._user.getTicketSeen()
   p._user.getImageProfile()
   p._user.getUserSpecification()
   const sendImageProfile = () => p._user.sendImageProfile()

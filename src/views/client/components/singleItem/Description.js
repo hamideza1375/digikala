@@ -3,12 +3,10 @@ import { Badge, Button, Card2, Column, Div, Icon, P, Pfa, Press, Py, Row, Span }
 import spacePrice from '../../../../other/utils/spacePrice'
 import _useEffect from '../../../../controllers/_initial';
 import convertColor from '../../../../other/utils/convertColor'
-import { getSingleSeller } from '../../../../services/clientService';
 
 
 const Description = (p) => {
 
-  const [availableSeller, setavailableSeller] = useState(true)
 
   p._client.setColor()
 
@@ -17,14 +15,7 @@ const Description = (p) => {
     price = parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue))
   else price = p.singleItem.price
 
-
-  _useEffect(() => {
-    p.singleItem.sellerId &&
-      getSingleSeller(p.singleItem.sellerId).then(({ data }) => {
-        setavailableSeller(data.value?.available);
-      })
-  }, [p.singleItem.sellerId])
-
+  p._client.getSingleSeller()
 
 
   return (
@@ -63,7 +54,7 @@ const Description = (p) => {
 
             <Span fg={1} fd='row' pr={12} ai='center' >
               <P mb={-6}>موجود در انبار: </P>
-              {((p.singleItem.available) && (availableSeller) && (p.singleItem.availableCount > 0)) ?
+              {((p.singleItem.available) && (p.availableSeller) && (p.singleItem.availableCount > 0)) ?
                 <P fs={10} color={p.singleItem.availableCount < 10 ? '#f44c' : '#0ce'} mb={-6}>{p.singleItem.availableCount < 10 ? `تنها ${p.singleItem.availableCount} عدد در انبار موجود هست` : 'موجود هست'}</P>
                 :
                 <P fs={10} color={'#f44c'} mb={-6}>ناموجود</P>
@@ -105,7 +96,7 @@ const Description = (p) => {
               <Column w='70%' h={'100%'} jc='center' >
                 <Button disable={p.productBasket[p.route.params.id]?.number} onClick={() =>
 
-                  ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (availableSeller)) ?
+                  ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (p.availableSeller)) ?
                     p.setproductBasket(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }

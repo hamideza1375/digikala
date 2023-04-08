@@ -11,7 +11,7 @@ const BeforePayment = (p) => {
   
   return (
     <ContainerNavigation >
-      <Scroll ccStyle={{ flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 71, backgroundColor: 'silver', flex:1 }} >
+      <Scroll ccStyle={{ flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 71, backgroundColor: 'silver', flexGrow:1 }} >
 
         <BeforePaymentFlatlist {...p} />
 

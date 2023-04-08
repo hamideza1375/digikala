@@ -1,7 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Card2, Column, Modal, P, Press, Row, Scroll, Span } from '../../../../other/Components/Html'
 
 const Specifications = (p) => {
+
+  const [showModal, setshowModal] = useState(false)
+
   return (
     <Span minw={280} w='100%' ai='center' jc='center' >
       <Card2 h={320} w='100%' style={{ borderColor: 'silver', backgroundColor: 'white' }}
@@ -48,7 +51,7 @@ const Specifications = (p) => {
 
         c6={.5} coulumn6={
           <Span f={.8} jc='center'>
-            <Press onClick={() => { p.setshowModal(true) }} ml={12} as='flex-end'>
+            <Press onClick={() => { setshowModal(true) }} ml={12} as='flex-end'>
               <P fs={10.5} color='#333'>نمایش مشخصات کامل کلیک کنید »</P>
             </Press>
           </Span>
@@ -56,7 +59,7 @@ const Specifications = (p) => {
       >
       </Card2>
 
-        <Modal show={p.showModal} setshow={p.setshowModal} style={{ width: '90%', height: 400, paddingTop: 33 }} >
+        <Modal show={showModal} setshow={setshowModal} style={{ width: '90%', height: 400, paddingTop: 33 }} >
           <P fs={11} style={{ lineHeight: 30 }} color='#333' >{p.singleItem.info}</P>
         </Modal>
     </Span>

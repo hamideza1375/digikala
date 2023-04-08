@@ -78,4 +78,5 @@ export const header = () => {
     </Pressable>
   );
 };
+  //   if(navigation.getCurrentRoute() && navigation.getCurrentRoute().params && navigation.getCurrentRoute().params.key && (navigation.getCurrentRoute().params.key !== 'user')) _user = {}
 // getCurrentRoute

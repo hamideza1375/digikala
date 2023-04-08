@@ -25,11 +25,14 @@ const ProfileDrawer = (p) => {
       <Span as='center' pv={15} ph={10} w='95%' border={[1, '#047']}>
         <Press mt={5} onClick={() => p.navigation.navigate('ResetSpecification')} ><Py>تغییر رمز عبور و مشخصات</Py></Press>
       </Span>
-      <Span as='center' pv={15} ph={10} w='95%' border={[1, '#047']}>
+     {!p.tokenValue.isAdmin? <Span as='center' pv={15} ph={10} w='95%' border={[1, '#047']}>
         <Press onClick={() => p.navigation.navigate('SendTicket')} ><Py>ارسال تیکت</Py></Press>
         <Press mt={10} fd='row' onClick={() => p.navigation.navigate('TicketBox')} ><Py>صندوق تیکت های دریافتی</Py>{p.ticketSeen ? <Badge left={10} /> : <></>}</Press>
         <Press mt={10} onClick={() => p.navigation.navigate('SendProposal')} ><Py>ارسال انتقادات و پیشنهادات</Py></Press>
       </Span>
+    :
+    <></>  
+    }
       <Span as='center' pv={15} ph={10} w='95%' border={[1, '#047']}>
         <Press onClick={() => p.navigation.navigate('ShowActiveOrder')} ><Py>نمایش سفارشات فعال</Py></Press>
         <Press mt={10} onClick={() => p.navigation.navigate('ShowLastOrder')} ><Py>نمایش خرید های قبل</Py></Press>

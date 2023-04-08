@@ -4,6 +4,8 @@ import { Card2, Img, Press, Scroll, Span } from '../../../../other/Components/Ht
 import { localhost } from '../../../../other/utils/axios/axios'
 
 const ImageDisplay = (p) => {
+  let imageMap = []
+   imageMap = [p.singleItem.imageUrl1, p.singleItem.imageUrl2, p.singleItem.imageUrl3, p.singleItem.imageUrl4]
 
   _useEffect(() => {
     p.$.id(imageMap[0])?.setNativeProps({ style: { borderWidth: 1, borderColor: 'aqua' } })
@@ -17,7 +19,6 @@ const ImageDisplay = (p) => {
   }, [p.singleItem])
   
 
-  const imageMap = [p.singleItem.imageUrl1, p.singleItem.imageUrl2, p.singleItem.imageUrl3, p.singleItem.imageUrl4]
 
   return (
     <Span minw={250} w='100%' ai='center' jc='center'>

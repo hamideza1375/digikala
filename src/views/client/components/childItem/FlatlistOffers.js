@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import _useEffect from '../../../../controllers/_initial'
 import { FlatList, Span } from '../../../../other/Components/Html'
 import seconder from '../../../../other/utils/seconder'
@@ -6,6 +6,7 @@ import spacePrice from '../../../../other/utils/spacePrice'
 import CardItem from '../_layoutComponents/CardItem'
 
 const FlatlistOffers = (p) => {
+  p._client.getOffers()
 
   const [dt, setdt] = useState()
 
@@ -31,4 +32,4 @@ const FlatlistOffers = (p) => {
   )
 }
 
-export default FlatlistOffers
+export default memo(FlatlistOffers)

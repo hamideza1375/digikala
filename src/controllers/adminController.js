@@ -1,8 +1,8 @@
-import { createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, setAdmin, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable, getPostPrice, sendPostPrice, getQuitsForSeller } from "../services/adminService"
-import { getSingleItem } from "../services/clientService"
+import { getSingleItem, getAdminTicketSeen, createSlider, getCategory, changeAvailable, changeMainAdmin, createCategory, createChildItem, createNotification, deleteAddressForOneAdmin, deleteAdmin, deleteAllAddress, deleteCategory, deleteChildItem, deleteMultiProposal, deleteNotification, editCategory, editChildItem, getAllAddress, getAllAdmin, getProposal, listUnAvailable, setAdmin, adminTicketBox, getSocketIoSeen, createSeller, getAllSellers, setSellerAvailable, deleteSeller, getSinleCategory, postedOrder, getAllPaymentSuccessFalseAndTrue, postQueue, getAllAddressForChart, setOffer, getUserForChart, getDataForChart, getChildItems, getChildItemsTable, getPostPrice, sendPostPrice, getQuitsForSeller } from "../services/adminService"
 import _useEffect from "./_initial"
 import _Alert from "../other/utils/alert"
 import { useEffect } from "react"
+import axios from "axios"
 
 
 export function adminController(p) {
@@ -109,6 +109,7 @@ export function adminController(p) {
       _category[index].title = data.value.title
       _category[index].imageUrl = data.value.imageUrl
       p.setcategory(_category)
+      p.navigation.goBack()
     } catch (error) { console.error(error); }
   }
 
@@ -175,6 +176,7 @@ export function adminController(p) {
       battery: p.input11,
       network: p.input12,
     })
+    p.navigation.goBack()
   }
 
 
@@ -221,8 +223,19 @@ export function adminController(p) {
     )
   }
 
+
   this.setOffer = async () => {
     const { data } = await setOffer(p.route.params.id, { offerTime: p.offerTime ? p.offerTime : 0, offerValue: p.offerValue ? p.offerValue : 0 })
+
+    p.setchildItem((childItem) => {
+      const findIndex = childItem.findIndex(s => s._id === p.route.params.id)
+      if (findIndex !== -1) {
+        childItem[findIndex].offerTime = data.value.offerTime
+        childItem[findIndex].offerValue = data.value.offerValue
+      }
+      return childItem
+    })
+    p.navigation.goBack()
   }
   //! ChildItem
 
@@ -304,6 +317,15 @@ export function adminController(p) {
   }
 
 
+
+  this.logout = async () => {
+    await AsyncStorage.removeItem("token");
+    p.settokenValue({})
+    axios.defaults.headers.common["Authorization"] = ''
+    p.navigation.replace("Home")
+  }
+
+
   this.changeMainAdmin = async () => {
     _Alert.alert(
       "برای تایید کلیک کنید",
@@ -313,6 +335,7 @@ export function adminController(p) {
         {
           text: "OK", onPress: async () => {
             await changeMainAdmin({ adminPhone: p.adminPhone, newAdminPhone: p.newAdminPhone })
+            this.logout()
           }
         }
       ]
@@ -354,6 +377,7 @@ export function adminController(p) {
   //! Notification
   this.createNotification = async () => {
     await createNotification({ title: p.title, message: p.message })
+    p.navigation.goBack()
   }
 
 
@@ -446,7 +470,6 @@ export function adminController(p) {
         const { data } = await getQuitsForSeller()
         p.setallAddress(data.value)
         p.setnewSearchAddressArray(data.value)
-        console.log(data.value);
       })()
     }, [])
   }
@@ -457,13 +480,14 @@ export function adminController(p) {
 
   //! PostPrice
   this.sendPostPrice = () => {
-    sendPostPrice({ price: p.price }).then(() => { })
+    sendPostPrice({ price: p.price }).then(() => {
+      p.navigation.goBack()
+    })
   }
 
-  this.getPostPrice = (p) => {
-    useEffect(() => { setTimeout(() => { getPostPrice().then(({ data }) => { p.setpostPrice(data.value) }) }, 200); }, [])
+  this.getPostPrice = () => {
+    useEffect(() => { setTimeout(() => { getPostPrice().then(({ data }) => { p.setpostPrice(data.value) }) }, 500); }, [])
   }
-  
   //! PostPrice
 
 
@@ -476,6 +500,17 @@ export function adminController(p) {
       })
     }, [])
   }
+
+
+  this.getAdminTicketSeen = () => {
+    _useEffect(() => {
+      (async () => {
+        const { data } = await getAdminTicketSeen()
+        p.setticketSeen(data.seen)
+      })()
+    }, [])
+  }
+
   //! TicketBox
 
 
@@ -515,7 +550,9 @@ export function adminController(p) {
       image4: p.sliderImage4,
       image5: p.sliderImage5,
       image6: p.sliderImage6,
-    }).then(() => { })
+    }).then(() => {
+      p.navigation.goBack()
+    })
   }
   //! createSlider
 

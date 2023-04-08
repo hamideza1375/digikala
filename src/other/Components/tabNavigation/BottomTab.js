@@ -2,7 +2,7 @@ import React, { useCallback, useState } from 'react'
 import { View, StyleSheet, Keyboard, Platform } from 'react-native'
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { useFocusEffect, useNavigation } from '@react-navigation/native';
-import { Badge, Py } from '../Html';
+import { Badge, Press, Py } from '../Html';
 
 const BottomTab = ({ productBasket, group, children, name, style, bgcolor = '#fff', color = "#777", activeColor = "#47f", socketIoSeen }) => {
   const navigation = useNavigation()
@@ -32,7 +32,7 @@ const BottomTab = ({ productBasket, group, children, name, style, bgcolor = '#ff
             <View style={[styles.pressableActive, { alignItems: 'center' }, { backgroundColor: 'transparent' }]} >
               <Icon
                 onPress={() => { navigation.navigate(!r.navigate ? (r.mainTitle ? r.mainTitle : r.title) : r.navigate, { ...r.params }) }}
-                name={r.icon} size={r.icon === 'comments' ? 18 : 18} style={{ color: name == r.title ? activeColor : color, marginTop: r.name ? 0 : 4 }} />
+                name={r.icon} size={r.icon === 'comments' ? 18 : 18} style={{ color: name == r.title ? activeColor : color, marginTop: r.name ? 0 : 4, width:30, textAlign:'center' }} />
               {(r.icon === 'comments') && socketIoSeen ? <Badge bgcolor='#0e5' top={5} scale={.8} mr={25} /> : <></>}
               {(r.icon === 'shopping-cart') && (productBasket && Object.values(productBasket).length) ? <Badge bgcolor='#0e5' top={5} scale={.8} mr={-25} /> : <></>}
               {r.name ?
@@ -40,7 +40,7 @@ const BottomTab = ({ productBasket, group, children, name, style, bgcolor = '#ff
                   onClick={() => { navigation.navigate(!r.navigate ? (r.mainTitle ? r.mainTitle : r.title) : r.navigate, { ...r.params }) }}
                   fw='100' fs={8} mt={4} color={name == r.title ? activeColor : color} >{r.name}</Py>
                 :
-                <></>
+                <Press w={18} h={18} onClick={() => { navigation.navigate(!r.navigate ? (r.mainTitle ? r.mainTitle : r.title) : r.navigate, { ...r.params }) }}/>
               }
             </View>
           </View>

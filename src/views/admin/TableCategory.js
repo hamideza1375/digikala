@@ -5,7 +5,6 @@ import GroupItemsTableComponent from './components/tableGroupItems/GroupItemsTab
 
 
 const TableCategory = function (p) {
-  // p._food.setPagination()
   p._admin.getCategory()
 
   return (

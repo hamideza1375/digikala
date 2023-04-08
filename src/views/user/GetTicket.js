@@ -1,7 +1,7 @@
 import moment from 'moment-jalaali';
 import React, { useRef, useState } from 'react';
 import { FlatList } from 'react-native';
-import { Icon, Input, Container, P, Img, Column, Row, M_icon, Dropdown, A_icon, Modal, Card2, Button, Form, ContainerNavigation } from '../../other/Components/Html';
+import { Icon, Input, Container, P, Img, Column, Row, M_icon, Dropdown, A_icon, Modal, Card2, Button, Form, ContainerNavigation, Py } from '../../other/Components/Html';
 import _Alert from '../../other/utils/alert';
 import { localhost } from '../../other/utils/axios/axios';
 import { imagePicker } from '../../other/utils/imagePicer';
@@ -15,7 +15,7 @@ const PvTicket = (p) => {
   p._user.getAnswersTicket()
   const getSingleAnswerTicket = (itemId) => p._user.getSingleAnswerTicket(itemId)
   const sendAnswer = () => {
-    if (p.imageUrl.name || p.message) p._user.sendTicketAnswer(() => { setTimeout(() => { ref.current?.scrollToEnd() }, 1000); });
+    if (p.imageUrl.name || p.message) p._user.sendTicketAnswer(() => {  });
     else p.toast.error('خطا', 'هنوز چیزی تایپ نکردین')
   }
   const deleteAnswer = (ticketId) => p._user.deleteAnswerTicket(ticketId)
@@ -36,7 +36,7 @@ const PvTicket = (p) => {
               <Row w='100%' jc='space-between' >
                 <P ta='right' fs={9} color='#999' >شما</P>
                 <Row >
-                  <Column w={50} ai='flex-start' ><P fs={12} color='#ccce' >{moment(item.date).format('jM/jD')}</P></Column>
+                  <Column w={60} ai='flex-start' ><Py fs={11} fw='100' color='#ccce' >{moment(item.date).format('jYYYY/jM/jD')}</Py></Column>
                   {index !== p.answersTicket.length - 1 &&
                     <>
                       <M_icon name='delete' size={18} onClick={() => { deleteAnswer(item._id) }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
@@ -55,13 +55,7 @@ const PvTicket = (p) => {
                 <Row w='100%' jc='space-between' >
                   <P ta='right' fs={9} color='#999' ></P>
                   <Row >
-                    <Column w={50} ai='flex-start' ><P fs={12} color='#ccce' >{moment(item.date).format('jM/jD')}</P></Column>
-                    {index !== p.answersTicket.length - 1 &&
-                      <>
-                        <M_icon name='delete' size={18} onClick={() => { deleteAnswer(item._id) }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
-                        <M_icon name='edit' size={18} onClick={() => { setshowModalEditTicket(true); getSingleAnswerTicket(item._id); setitemId(item._id) }} color='#999' style={{ paddingHorizontal: 4, marginHorizontal: 4 }} />
-                      </>
-                    }
+                    <Column w={60} ai='flex-start' ><Py fs={11} fw='100' color='#ccce' >{moment(item.date).format('jYYYY/jM/jD')}</Py></Column>
                   </Row>
                 </Row>
                 <Column>
@@ -103,7 +97,7 @@ const PvTicket = (p) => {
       </Column>
 
       <Modal show={showModalEditTicket} setshow={setshowModalEditTicket} onHidden={() => { p.setimageUrl({}); p.setmessage('') }} >
-        <Form m im edit onClick={() => editAnswer(itemId)} />
+        <Form editMessage m im edit onClick={() => editAnswer(itemId)} />
       </Modal>
 
     </ContainerNavigation>

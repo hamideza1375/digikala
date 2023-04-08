@@ -24,10 +24,13 @@ export const create = (title = '', body = '', icon = '', onClick) => {
     icon,
     onClick:
       function () {
-        window.focus();
-        this.close();
-        if (onClick) onClick()
-      }
+        if (!onClick){
+          window.focus();
+          this.close();
+        } 
+       else
+         onClick()
+  }
 
   });
 }

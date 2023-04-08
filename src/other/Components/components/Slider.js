@@ -85,7 +85,7 @@ function Slider({ width, style, onClick, data }) {
         contentContainerStyle={{ overflow: 'hidden', }}
         style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
         {data.map((image, index) => (
-          ((image) && (badgeActive === index)) ? <View key={index} style={{ width }} ><AnimationImage image={image} width={width} /></View> : <View key={index} />
+          ((image) && (badgeActive === index)) ? <View key={index} style={{ width }} ><AnimationImage image={image} width={width} style={index === 0 ?{opacity:1}:{}} /></View> : <View key={index} />
         ))
         }
       </ScrollView>
@@ -109,7 +109,7 @@ function Slider({ width, style, onClick, data }) {
 
 
 
-function AnimationImage({ image, width }) {
+function AnimationImage({ image, width, style }) {
 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
@@ -128,7 +128,7 @@ function AnimationImage({ image, width }) {
   };
 
   return (
-    <Animated.View onLayout={() => setOpacity()} style={{ width, opacity: fadeAnim }}  ><View style={{ width }} ><Img w='100%' style={{ resizeMode: 'stretch' }} h={300} src={`${localhost}/upload/slider/${image}`} /></View></Animated.View>
+    <Animated.View onLayout={() => setOpacity()} style={[{ width, opacity: fadeAnim },style]}  ><View style={{ width }} ><Img w='100%' style={{ resizeMode: 'stretch' }} h={300} src={`${localhost}/upload/slider/${image}`} /></View></Animated.View>
   )
 }
 

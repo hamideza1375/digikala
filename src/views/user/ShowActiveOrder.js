@@ -20,7 +20,7 @@ const ShowActiveOrder = (p) => {
             style={{ maxWidth: 550 }}
             dr='ltr'
             bgcolor='white'
-            img={require('../../other/assets/images/a1.jpg')}
+            img={`${localhost}/upload/childItem/${p.item[1].imageUrl1}`}
             headerRow={
               <Span minh='100%' >
                 <P onClick={() => p.navigation.navigate('SingleItem', { id: item[0] })} >{item[1].title}</P>

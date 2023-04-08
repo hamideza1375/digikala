@@ -76,7 +76,8 @@ const ShowComment = (p) => {
   return (
     // '#f1f'
     < >
-      <Button w='99%' mt={-3} mb={7} as='center' style={{ borderStyle: 'dashed' }} outline onClick={() => p.navigation.navigate('CreateComment', { id: p.route.params.id })} >ارسال نظر</Button>
+      <Button w='99%' mt={-3} mb={7} as='center' style={{ borderStyle: 'dashed' }} outline 
+      onClick={() => p.tokenValue.fullname? p.navigation.navigate('CreateComment', { id: p.route.params.id }) : p.toast.warning('','برای ارسال نظر اول وارد حسابتان شوید') } >ارسال نظر</Button>
 
       <Span bgcolor='#fff' >
 

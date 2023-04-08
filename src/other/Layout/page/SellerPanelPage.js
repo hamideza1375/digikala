@@ -6,9 +6,9 @@ const SellerPanelPage = (p) => {
 
   return (
     <>
-      <SearchBar product table newSearchArray={p.newSearchArray}
+      <SearchBar product table newSearchArray={p.newSearchSellerArray}
         sort show={show} setshow={setshow} bgcolor='#f9f' icon={'arrow-left'}
-        iconPress={() => { setshow(!show) }} array={p.childItem} setarray={p.setchildItem} >
+        iconPress={() => { setshow(!show) }} array={p.sellerItems} setarray={p.setsellerItems} >
         {p.children}
       </SearchBar>
     </>

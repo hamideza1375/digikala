@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
 import _useEffect from '../../controllers/_initial';
 import { ContainerNavigation, Table } from '../../other/Components/Html';
-import { getAllProductForSeller } from '../../services/userService';
 
 const SellerPanel = (p) => {
-  const [childItemsTable, setchildItemsTable] = useState([])
+  const [setsellerItemsTable, setsetsellerItemsTable] = useState([])
 
-  _useEffect(() => {
-    getAllProductForSeller().then(({ data }) => {
-      p.setchildItem(data.value)
-      p.setnewSearchArray(data.value)
-      console.log(data.value);
-    })
-  }, [])
-
+  p._user.getAllProductForSeller()
 
 
   return (
@@ -28,9 +20,9 @@ const SellerPanel = (p) => {
         btn4={'#0d5'}
         btn4onClick={() => { }}
         btn4Opacity
-        titleClick={() => { p.navigation.navigate('SingleItem', { id: childItemsTable[0]._id }) }}
-        object={p.childItem}
-        setobject={setchildItemsTable}
+        titleClick={() => { p.navigation.navigate('SingleItem', { id: setsellerItemsTable[0]._id }) }}
+        object={p.sellerItems}
+        setobject={setsetsellerItemsTable}
       />
     </ContainerNavigation>
   )

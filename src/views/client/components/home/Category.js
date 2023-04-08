@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { Platform } from 'react-native'
 import { Column, Img, P, Press, ScrollSlider, Span } from '../../../../other/Components/Html'
 import LinearGradient from '../../../../other/Components/other/LinearGradient'
@@ -33,4 +33,4 @@ const Category = (p) => {
     </Span>)
 }
 
-export default Category
+export default memo(Category)

@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Alert from '../other/utils/alert';
-import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen, getTicketSeen, getSavedItem, savedItem, getSavedItems, removeSavedItem, resetSpecification, getUserSpecification, verifycodeResetSpecification } from '../services/userService'
+import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen, getTicketSeen, getSavedItem, savedItem, getSavedItems, removeSavedItem, resetSpecification, getUserSpecification, verifycodeResetSpecification, getAllProductForSeller } from '../services/userService'
 import _useEffect from './_initial';
 import _Alert from '../other/utils/alert';
 import seconder from '../other/utils/seconder';
@@ -8,6 +8,9 @@ import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { imagePicker } from '../other/utils/imagePicer';
 import { localhost } from '../other/utils/axios/axios';
+import { useNavigation } from '@react-navigation/native';
+import { create } from '../other/utils/notification';
+import { truncate } from '../other/utils/truncate';
 
 
 export function userController(p) {
@@ -54,6 +57,7 @@ export function userController(p) {
     }, [])
   }
 
+  // ! Register
   this.getCodeForRegister = async () => {
     await getCodeForRegister({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, password: p.password })
     this.deleteTimerThreeMinut()
@@ -67,9 +71,10 @@ export function userController(p) {
     this.deleteTimerThreeMinut()
     p.navigation.replace('Login')
   }
+  // ! Register
 
 
-
+  // ! login
   this.login = async () => {
     const { data } = await login({ phoneOrEmail: p.phoneOrEmail, password: p.password, remember: p.remember, captcha: p.captcha })
     await AsyncStorage.removeItem("several")
@@ -101,8 +106,10 @@ export function userController(p) {
     if (p.route.params?.payment) p.navigation.replace('BeforePayment')
     else p.navigation.replace('PanelAdmin')
   }
+  // ! login
 
 
+  //! changePassword
   this.getCodeForgetPass = async () => {
     await getCodeForgetPass(p.route.params?.newCode, { phoneOrEmail: p.phoneOrEmail })
     this.deleteTimerThreeMinut()
@@ -116,6 +123,13 @@ export function userController(p) {
     this.deleteTimerThreeMinut()
     p.navigation.replace('ResetPass')
   }
+
+
+  this.resetPassword = async () => {
+    await resetPassword({ password: p.password, confirmPassword: p.confirmPassword })
+    p.navigation.navigate('Login')
+  }
+  //! changePassword
 
 
   this.verifycode = async () => {
@@ -134,12 +148,8 @@ export function userController(p) {
   }
 
 
-  this.resetPassword = async () => {
-    await resetPassword({ password: p.password, confirmPassword: p.confirmPassword })
-    p.navigation.navigate('Login')
-  }
 
-
+  //! changeSpecification
   this.getUserSpecification = async () => {
     _useEffect(() => {
       (async () => {
@@ -169,14 +179,15 @@ export function userController(p) {
     this.deleteTimerThreeMinut()
     p.navigation.replace('Profile')
   }
+  //! changeSpecification
 
 
-
+  //! imageProfile
   this.sendImageProfile = async () => {
     imagePicker().then(async (res) => {
       const { data } = await sendImageProfile({ imageUrl: res })
       setTimeout(() => {
-        p.$.id('card2Image').$({ src: `${localhost}/upload/profile/${data.imageUrl}` })
+        p.$.id('card2Image')?.$({ src: `${localhost}/upload/profile/${data.imageUrl}` })
       }, 3000);
     })
   }
@@ -190,13 +201,16 @@ export function userController(p) {
       })()
     }, [])
   }
+  //! imageProfile
 
 
+  //! sendProposal
   this.sendProposal = async () => {
     await sendProposal({ message: p.message })
   }
+  //! sendProposal
 
-
+  //! getLastPayment
   this.getLastPayment = () => {
     _useEffect(() => {
       (async () => {
@@ -205,8 +219,10 @@ export function userController(p) {
       })()
     }, [])
   }
+  //! getLastPayment
 
 
+  //! Ticket
   this.getAnswersTicket = () => {
     _useEffect(() => {
       (async () => {
@@ -321,16 +337,30 @@ export function userController(p) {
   }
 
 
-  this.getTicketSeen = () => {
+   this.sendTicketNotifeeAndSeen = () => {
+    const navigation = useNavigation()
     _useEffect(() => {
-      (async () => {
+      setTimeout(async () => {
         const { data } = await getTicketSeen()
         p.setticketSeen(data.seen)
-      })()
+        let newNotification = await AsyncStorage.getItem('ticketNotification')
+        if (data?.ticket)
+          if (data.ticket.message && !p.tokenValue.isAdmin && newNotification !== data.ticket.message) {
+            create('جواب تیکت جدید', truncate(data.ticket.message, 30, false), require('../other/assets/images/logo.png'),
+              () => {
+                window.focus();
+                navigation.navigate(`TicketBox`)
+              }
+            )
+            await AsyncStorage.setItem('ticketNotification', data.ticket.message)
+          }
+      }, 1000)
     }, [])
   }
+  //! Ticket
 
 
+  //! savedItem
   this.savedItem = async () => {
     const { data } = await savedItem(p.route.params.id)
     p.setbookmark(data.value)
@@ -361,6 +391,20 @@ export function userController(p) {
       })
     }, [])
   }
+  //! savedItem
+
+
+  //! getAllProductForSeller
+  this.getAllProductForSeller = () => {
+    _useEffect(() => {
+      getAllProductForSeller().then(({ data }) => {
+        p.setsellerItems(data.value)
+        p.setnewSearchSellerArray(data.value)
+        console.log(data.value);
+      })
+    }, [])
+  }
+  //! getAllProductForSeller
 
 
 

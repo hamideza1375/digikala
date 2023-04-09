@@ -3,7 +3,6 @@ import Alert from '../other/utils/alert';
 import { getCodeForRegister, getNewCode, verifycodeRegister, login, verifyCodeLoginForAdmin, getCodeForgetPass, verifycodeForgetPass, resetPassword, sendImageProfile, getImageProfile, sendProposal, getLastPayment, singleTicket, ticketAnswer, sendNewTicket, ticketBox, deleteTicket, editTicket, sendTicketAnswer, getAnswersTicket, getSingleAnswerTicket, editAnswerTicket, deleteAnswerTicket, ticketSeen, getTicketSeen, getSavedItem, savedItem, getSavedItems, removeSavedItem, resetSpecification, getUserSpecification, verifycodeResetSpecification, getAllProductForSeller } from '../services/userService'
 import _useEffect from './_initial';
 import _Alert from '../other/utils/alert';
-import seconder from '../other/utils/seconder';
 import axios from 'axios';
 import jwtDecode from 'jwt-decode';
 import { imagePicker } from '../other/utils/imagePicer';
@@ -11,24 +10,10 @@ import { localhost } from '../other/utils/axios/axios';
 import { useNavigation } from '@react-navigation/native';
 import { create } from '../other/utils/notification';
 import { truncate } from '../other/utils/truncate';
+import { timerThreeMinut } from '../other/utils/timerThreeMinuts';
 
 
 export function userController(p) {
-
-
-  this.timerThreeMinut = async (call) => {
-    const localDate = await AsyncStorage.getItem('localDate')
-    const oldDate = localDate && localDate > new Date().getTime() ? JSON.parse(localDate) : new Date().getTime() + (1000 * 60 * 3)
-    seconder(new Date(oldDate), async ({ days, hours, minutes, seconds, interval }) => {
-      call(interval)
-      p.settwoMinut(minutes + ':' + seconds)
-      if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) setTimeout(() => { p.settwoMinut(0) }, 2000);
-      if ((!minutes && !seconds) || (minutes <= 0 && seconds <= 0)) await AsyncStorage.removeItem('localDate')
-    })
-    await AsyncStorage.setItem('localDate', JSON.parse(oldDate))
-    p.settimerToMinutTrueFalse(true)
-  }
-
 
   this.deleteTimerThreeMinut = async () => {
     await AsyncStorage.removeItem('localDate')
@@ -40,7 +25,7 @@ export function userController(p) {
     p.setshowActivity(true)
     await getNewCode(p.route.params?.newCode)
     this.deleteTimerThreeMinut()
-    this.timerThreeMinut(() => { })
+    timerThreeMinut(p.settwoMinut,() => { })
   }
 
 
@@ -50,7 +35,7 @@ export function userController(p) {
       (async () => {
         const localDate = await AsyncStorage.getItem('localDate')
         if (localDate > new Date().getTime()) {
-          this.timerThreeMinut((interval) => timerInterwal = interval)
+          timerThreeMinut(p.settwoMinut,(interval) => timerInterwal = interval)
         } else p.settwoMinut(0)
       })()
       return () => { p.setcode(''); timerInterwal && clearInterval(timerInterwal) }
@@ -61,8 +46,8 @@ export function userController(p) {
   this.getCodeForRegister = async () => {
     await getCodeForRegister({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, password: p.password })
     this.deleteTimerThreeMinut()
-    this.timerThreeMinut(() => { })
-    p.navigation.navigate('GetCode', { register: true })
+    timerThreeMinut(p.settwoMinut,() => { })
+    p.navigation.navigate('GetCode', { register: 'true' })
   }
 
 
@@ -81,15 +66,17 @@ export function userController(p) {
     await AsyncStorage.removeItem('getMinutes')
     if (!data?.value) {
       this.deleteTimerThreeMinut()
-      this.timerThreeMinut(() => { })
-      p.navigation.navigate('GetCode', { login: true })
+      timerThreeMinut(p.settwoMinut,() => { })
+      p.navigation.navigate('GetCode', { login: 'true' })
     }
     else {
       await AsyncStorage.setItem('token', data.value)
       axios.defaults.headers.common["Authorization"] = data.value
       const user = jwtDecode(data.value)
       p.settokenValue(user)
-
+      p.setphoneOrEmail('')
+      p.setpassword('')
+      p.setcaptcha('')
       if (p.route.params?.payment) p.navigation.replace('BeforePayment')
       else p.navigation.replace('Profile')
     }
@@ -102,6 +89,9 @@ export function userController(p) {
     axios.defaults.headers.common["Authorization"] = data.value
     const user = jwtDecode(data.value)
     p.settokenValue(user)
+    p.setphoneOrEmail('')
+    p.setpassword('')
+    p.setcaptcha('')
     this.deleteTimerThreeMinut()
     if (p.route.params?.payment) p.navigation.replace('BeforePayment')
     else p.navigation.replace('PanelAdmin')
@@ -113,20 +103,24 @@ export function userController(p) {
   this.getCodeForgetPass = async () => {
     await getCodeForgetPass(p.route.params?.newCode, { phoneOrEmail: p.phoneOrEmail })
     this.deleteTimerThreeMinut()
-    this.timerThreeMinut(() => { })
-    p.navigation.navigate('GetCode', { forgetPass: true, newCode: 'true' })
+    timerThreeMinut(p.settwoMinut,() => { })
+    p.setphoneOrEmail('')
+    p.navigation.navigate('GetCode', { forgetPass: 'true', newCode: 'true' })
   }
 
 
   this.verifycodeForgetPass = async () => {
     await verifycodeForgetPass({ code: p.code })
     this.deleteTimerThreeMinut()
+    p.setcode('')
     p.navigation.replace('ResetPass')
   }
 
 
   this.resetPassword = async () => {
     await resetPassword({ password: p.password, confirmPassword: p.confirmPassword })
+    p.setpassword('')
+    p.setconfirmPassword('')
     p.navigation.navigate('Login')
   }
   //! changePassword
@@ -157,6 +151,10 @@ export function userController(p) {
         p.setfullname(data.fullname)
         p.setphoneOrEmail(data.phoneOrEmail)
       })()
+      return()=>{
+        p.setfullname('')
+        p.setphoneOrEmail('')
+      }
     }, [])
   }
 
@@ -164,8 +162,12 @@ export function userController(p) {
   this.resetSpecification = async () => {
     await resetSpecification({ fullname: p.fullname, phoneOrEmail: p.phoneOrEmail, oldPassword: p.oldPassword, password: p.password })
     this.deleteTimerThreeMinut()
-    this.timerThreeMinut(() => { })
-    p.navigation.navigate('GetCode', { resetSpecification: true, newCode: 'true' })
+    timerThreeMinut(p.settwoMinut,() => { })
+    p.setfullname('')
+    p.setphoneOrEmail('')
+    p.setpassword('')
+    p.setoldPassword('')
+    p.navigation.navigate('GetCode', { resetSpecification: 'true', newCode: 'true' })
   }
 
 
@@ -177,7 +179,8 @@ export function userController(p) {
     const user = jwtDecode(data.value);
     p.settokenValue(user);
     this.deleteTimerThreeMinut()
-    p.navigation.replace('Profile')
+    p.setcode('')
+    p.navigation.replace('Profile', {active:'yess'})
   }
   //! changeSpecification
 
@@ -186,9 +189,7 @@ export function userController(p) {
   this.sendImageProfile = async () => {
     imagePicker().then(async (res) => {
       const { data } = await sendImageProfile({ imageUrl: res })
-      setTimeout(() => {
-        p.$.id('card2Image')?.$({ src: `${localhost}/upload/profile/${data.imageUrl}` })
-      }, 3000);
+      setTimeout(() => {p.$.id('card2Image')?.$({ src: `${localhost}/upload/profile/${data.imageUrl}` })}, 3000);
     })
   }
 
@@ -207,6 +208,7 @@ export function userController(p) {
   //! sendProposal
   this.sendProposal = async () => {
     await sendProposal({ message: p.message })
+    p.setmessage('')
   }
   //! sendProposal
 
@@ -229,6 +231,7 @@ export function userController(p) {
         const { data } = await getAnswersTicket(p.route.params.id)
         p.setanswersTicket(data.value)
       })()
+      return()=>p.setanswersTicket([])
     }, [])
   }
 
@@ -240,6 +243,9 @@ export function userController(p) {
       ticket.unshift(data.value)
       return ticket
     })
+    p.settitle('')
+    p.setmessage('')
+    p.setimageUrl('')
     p.navigation.navigate('Profile')
   }
 
@@ -416,7 +422,6 @@ export function userController(p) {
         [{ text: 'no', onPress: () => { p.navigation.goBack() } },
         {
           text: 'yes', onPress: async () => {
-            p.settoken(false)
             await AsyncStorage.removeItem("token");
             p.settokenValue({})
             axios.defaults.headers.common["Authorization"] = ''

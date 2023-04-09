@@ -22,7 +22,7 @@ const PanelAdminDrawer = (p) => {
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
             <Press onClick={() => p.navigation.navigate('AddAdmin')} ><Py>اضافه کردن ادمین</Py></Press>
             <Press mt={10} onClick={() => p.navigation.navigate('DeleteAdmin')} ><Py>حذف ادمین</Py></Press>
-            <Press mt={10} onClick={() => p.navigation.navigate('ChangeAdmin')} ><Py>تغییر ادمین اصلی</Py></Press>
+            <Press mt={10} onClick={() => p.navigation.navigate('ChangeMainAdmin')} ><Py>تغییر ادمین اصلی</Py></Press>
           </Span>
           <Span as='center' pv={15} ph={10} w='100%' border={[1, '#047']}>
             <Press onClick={() => p.navigation.navigate('Notifee')} ><Py>ارسال نوتیفیکیشن</Py></Press>

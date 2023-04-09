@@ -77,11 +77,11 @@ function SearchInput({ table, iconBack, children, drawer, showDrawer, setshowDra
                 settextSearch(e.nativeEvent.text.toLowerCase());
                 p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 1 }] } })
 
-                if (e.nativeEvent.text.length < 1) searcher(e.nativeEvent.text.toLowerCase())
+                if (e.nativeEvent.text.length < 1 && !home) searcher(e.nativeEvent.text.toLowerCase())
 
               }}
-              onSubmitEditing={() => { searcher(textSearch.toLowerCase()); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }}
-              iconPress={() => { searcher(textSearch.toLowerCase()) }}
+              onSubmitEditing={!home ? () => { searcher(textSearch.toLowerCase()); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }: ()=>{}}
+              iconPress={() => { !home && searcher(textSearch.toLowerCase()) }}
               dropdown={
                 (home || product && (!table)) ?
                   <Dropdown2
@@ -95,11 +95,11 @@ function SearchInput({ table, iconBack, children, drawer, showDrawer, setshowDra
 
                     {
                       textSearch ? newSearchArray.map((item, index) => (
-                        <Column key={index}>
+                        <Column minw={200} key={index}>
                           {!brand ?
 
                             ((item.title?.includes(textSearch) && newSearchArray.filter(f => f.title.includes(textSearch)).length <= 10) || (item.phone?.includes(textSearch) && newSearchArray.filter(f => f.phone.includes(textSearch)).length <= 10) ?
-                              <Press ai='center' fd='row' onClick={() => { navigation.navigate('SingleItem', { id: item._id }); settextSearch(''); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }} jc='space-between' style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
+                              <Press ai='center' fd='row' onClick={() => { navigation.navigate('SingleItem', { id: item._id }); settextSearch(''); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }} jc='space-between' style={{ padding: 5, borderBottomWidth: newSearchArray.length -1 !== index?1:0, borderColor: 'silver' }} >
                                 <P fs={12} ml={15} >{item.title}</P >
                                 {item.imageUrl1 ? <Img br={4} w={45} h={45} src={`${localhost}/upload/childItem/${item.imageUrl1}`} /> : <></>}
                               </Press>
@@ -109,7 +109,7 @@ function SearchInput({ table, iconBack, children, drawer, showDrawer, setshowDra
                             :
 
                             ((item.brand?.includes(textSearch) && newSearchArray.filter(f => f.brand.includes(textSearch)).length <= 10) || (item.phone?.includes(textSearch) && newSearchArray.filter(f => f.phone.includes(textSearch)).length <= 10) ?
-                              <Press ai='center' fd='row' onClick={() => { navigation.navigate('SingleItem', { id: item._id }); settextSearch(''); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }} jc='space-between' style={{ padding: 5, borderBottomWidth: 1, borderColor: 'silver' }} >
+                              <Press ai='center' fd='row' onClick={() => { navigation.navigate('SingleItem', { id: item._id }); settextSearch(''); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }} jc='space-between' style={{ padding: 5, borderBottomWidth: newSearchArray.length -1 !== index?1:0, borderColor: 'silver' }} >
                                 <P fs={12} ml={15} >{item.brand}</P >
                                 {item.imageUrl1 ? <Img br={4} w={45} h={45} src={`${localhost}/upload/childItem/${item.imageUrl1}`} /> : <></>}
                               </Press>

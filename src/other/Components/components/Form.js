@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { KeyboardAvoidingView, Pressable, View,  TextInput, Image, StyleSheet, ScrollView, Dimensions, Animated, Platform, FlatList } from 'react-native'
 import { Input, Button, CheckBox, Swiper, CheckBoxRadius, List, Column, Row, Py, Br, P, Scroll } from '../Html'
 import yub from '../../utils/yub'
+import {localhost} from '../../utils/axios/axios'
 import A_icon from 'react-native-vector-icons/dist/AntDesign';
 import M_icon from 'react-native-vector-icons/dist/MaterialIcons';
 const newObj = new Proxy({}, yub);
@@ -75,6 +76,11 @@ const Form = ({
   const [disableClick, setdisableClick] = useState(false)
   const [hidden, sethidden] = useState(false)
   const [show1, setshow1] = useState(false)
+  const [topRandom1, settopRandom1] = useState(0)
+  const [topRandom2, settopRandom2] = useState(0)
+  const [randomArrayNumber] = useState([1, -1, 4, -4, 8, -8])
+
+
 
   const [selectStatesValues] = useState([
     "آذربایجان شرقی", "آذربایجان غربی", "اردبیل", "اصفهان", "البرز", "ایلام",
@@ -1394,16 +1400,18 @@ const Form = ({
               <KeyboardAvoidingView behavior={"height"} style={{ height: 50, minHeight: 50, marginVertical: 8, marginHorizontal: 10 }}>
                 <View style={[styles.viewCaptcha, { height: 28, alignItems: 'center' }]}>
 
-<View style={{width:115, height:2, backgroundColor:'#900', position:'absolute', zIndex:1000, transform:[{rotate:'-8deg'}]}} />
-<View style={{width:111, height:2, backgroundColor:'#009', position:'absolute', zIndex:1000, transform:[{rotate:'22deg'}]}} />
+                  <View style={{width:112, height:2, marginTop:topRandom1, marginRight:topRandom2, backgroundColor:'#900', position:'absolute', zIndex:1000, transform:[{rotate:'-8deg'}]}} />
+                  <View style={{width:111, height:2, marginTop:topRandom2, marginRight:topRandom1, backgroundColor:'#009', position:'absolute', zIndex:1000, transform:[{rotate:'22deg'}]}} />
 
-                  <Image source={{ uri: `${host}/captcha.png/${rand}` }} style={styles.imageCaptcha} />
+                  <Image source={{ uri: `${localhost}/captcha.png/${rand}` }} style={styles.imageCaptcha} />
                   <M_icon name="refresh" color="#66bbff" size={22}
                     onPressIn={() => setchangeRand(true)}
                     onPress={() => {
                       setchangeRand(true)
                       setShow2(!show2)
                       setcaptcha('')
+                      settopRandom1(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
+                      settopRandom2(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
                     }} />
                   <TextInput
                     ref={refInput}
@@ -1640,6 +1648,8 @@ const Form = ({
                   else {
                     setRand(parseInt(Math.random() * 9000 + 1000))
                     setcaptcha('')
+                    settopRandom1(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
+                    settopRandom2(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
                     toast.error("خطا", "کادر های قرمز را تصحیح کنید")
                   }
                 }}

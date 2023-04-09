@@ -27,8 +27,9 @@ export function initial() {
   const [phone, setphone] = useState('')
   const [phoneOrEmail, setphoneOrEmail] = useState('')
   const [password, setpassword] = useState('')
+  const [oldPassword, setoldPassword] = useState('')
   const [confirmPassword, setconfirmPassword] = useState('')
-  const [remember, setremember] = useState(60000 * 60 * 24 * 365)
+  const [remember, setremember] = useState()
   const [checkbox, setcheckbox] = useState()
   const [stateCity, setstateCity] = useState([])
   const [title, settitle] = useState('')
@@ -129,6 +130,7 @@ export function initial() {
     remember, setremember,
     confirmPassword, setconfirmPassword,
     password, setpassword,
+    oldPassword, setoldPassword,
     phone, setphone,
     phoneOrEmail, setphoneOrEmail,
     email, setemail,

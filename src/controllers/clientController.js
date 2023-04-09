@@ -15,7 +15,7 @@ export function clientController(p) {
 
   //! getSlider
   this.getSlider = () => {
-    _useEffect(() => {
+    useEffect(() => {
       getSlider().then(({ data }) => {
         data && p.setslider(Object.values(data.value))
       })
@@ -27,7 +27,7 @@ export function clientController(p) {
   //! SendStatusForClientBuy
   this.getSendStatus = () => {
     const navigation = useNavigation()
-    _useEffect(() => {
+    useEffect(() => {
       setTimeout(() => {
         if((navigation.getCurrentRoute()?.name === 'Home') || (navigation.getCurrentRoute()?.name === 'ChildItems') || navigation.getCurrentRoute()?.name === 'SingleItem')
         getSendStatus().then(({ data }) => {
@@ -41,7 +41,7 @@ export function clientController(p) {
 
   //! Category
   this.getCategory = () => {
-    _useEffect(() => {
+    useEffect(() => {
       (async () => {
         const { data } = await getCategory()
         p.setcategory(data.value)
@@ -85,7 +85,7 @@ export function clientController(p) {
 
 
   this.getSimilars = () => {
-    _useEffect(() => {
+    useEffect(() => {
       (async () => {
         const { data } = await getSimilars(p.route.params.id)
         p.setsimilar(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
@@ -93,6 +93,7 @@ export function clientController(p) {
     }, [p.route.params])
   }
   //! product
+
 
   //! singleProduct
   this.getSingleItem = () => {
@@ -115,6 +116,8 @@ export function clientController(p) {
       _comment.push(data.value);
       return _comment
     })
+    p.setmessage('')
+    p.setfiveStar()
     p.navigation.goBack()
   }
 
@@ -122,11 +125,15 @@ export function clientController(p) {
     const { data } = await createCommentAnswer(p.route.params.commentId,
       { message: p.message, to: JSON.parse(p.route.params.userphoneOrEmail).map((u, i) => u.slice(0, u.lastIndexOf(i))).join('') })
     p.childItemComment.length && p.setchildItemComment(comment => {
+      try {
       const _comment = [...comment]
       const index = _comment.findIndex((c) => c._id === p.route.params.commentId)
+      if(index === -1 ) throw new Error()
       _comment[index].answer.push(data.value)
       return _comment
+    } catch (error) {console.error(error);}
     })
+    p.setmessage('')
     p.navigation.goBack()
   }
 
@@ -135,6 +142,7 @@ export function clientController(p) {
       getChildItemComments(p.route.params.id).then(({ data }) => {
         p.setchildItemComment(data.value)
       })
+      return()=> p.setchildItemComment([])
     }, [p.route.params])
   }
 
@@ -152,6 +160,10 @@ export function clientController(p) {
           p.setfiveStar(data.value.fiveStar);
         })
       }
+      return()=>{
+        p.setmessage('')
+        p.setfiveStar()
+      }
     }, [])
   }
 
@@ -167,6 +179,8 @@ export function clientController(p) {
         return _comment
       } catch (err) { console.error('catch', err); }
     })
+    p.setmessage('')
+    p.setfiveStar()
     p.navigation.goBack()
   }
 
@@ -181,6 +195,7 @@ export function clientController(p) {
       answer[answerIndex].message = p.message
       return _comment
     })
+    p.setmessage('')
     p.navigation.goBack()
   }
 
@@ -374,7 +389,7 @@ export function clientController(p) {
       unit: p.unit,
       plaque: p.plaque,
       postalCode: p.postalCode,
-      address: `${p.state}, ${city ? city : p.City}, ${p.address}`,
+      address: `${p.state}${(city) ? (city) : (', ' + p.City)}, ${p.address}`,
       latlng: p.latlng,
       description: p.description
     })

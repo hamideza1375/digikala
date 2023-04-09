@@ -14,9 +14,9 @@ function State() {
 
 
   this.init = { ...init.all }
-  this.user = { ...init.all, ..._user.user }
-  this.client = { ...init.all, ..._client.client }
-  this.admin = { ...init.all, ..._admin.admin, }
+  this.user = {..._user.user,  ...init.all }
+  this.client = {..._client.client,  ...init.all }
+  this.admin = {..._admin.admin,  ...init.all }
 
 }
 export const states = () => new State()

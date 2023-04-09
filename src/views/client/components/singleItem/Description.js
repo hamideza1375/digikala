@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Badge, Button, Card2, Column, Div, Icon, P, Pfa, Press, Py, Row, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 import _useEffect from '../../../../controllers/_initial';
 import convertColor from '../../../../other/utils/convertColor'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const Description = (p) => {
 
+  const setAsyncStorage = async (productBasket) => {
+    await AsyncStorage.setItem('productBasket', JSON.stringify(productBasket))
+  }
 
   p._client.setColor()
 
@@ -66,9 +70,9 @@ const Description = (p) => {
                 <P >انتخاب رنگ: </P>
               </Span>
               <Div fg={1} fd='row' pr={12} pb={0} ai='center'>
-                
+
                 {p.singleItem.color?.map((item, index) => (
-                 item.value > 0 && <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
+                  item.value > 0 && <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
                     <Press onClick={() => {
                       p.setcolor((color) => {
                         const c = { ...color }
@@ -77,6 +81,7 @@ const Description = (p) => {
                         p.productBasket[p.route.params.id] && p.setproductBasket(addNumber => {
                           const obj = { ...addNumber }
                           obj[p.route.params.id].color = item.color
+                          setAsyncStorage(obj)
                           return obj
                         })
                         return c
@@ -100,6 +105,7 @@ const Description = (p) => {
                     p.setproductBasket(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }
+                      setAsyncStorage(obj)
                       return obj
                     })
                     :
@@ -117,6 +123,7 @@ const Description = (p) => {
                     p.setproductBasket(addNumber => {
                       const obj = { ...addNumber }
                       obj[p.route.params.id].number = obj[p.route.params.id].number + 1
+                      setAsyncStorage(obj)
                       return obj
                     })
 
@@ -137,6 +144,7 @@ const Description = (p) => {
                         const obj = { ...addNumber }
                         obj[p.route.params.id].number = obj[p.route.params.id].number - 1
                         if (obj[p.route.params.id].number === 0) delete obj[p.route.params.id]
+                        setAsyncStorage(obj)
                         return obj
                       })
 

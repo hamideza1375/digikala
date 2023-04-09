@@ -3,15 +3,26 @@ import { ContainerNavigation, Pfa, Scroll } from '../../other/Components/Html'
 import BottomTabBeforePayment from './components/beforePayment/BottomTabBeforePayment'
 import BeforePaymentFlatlist from './components/beforePayment/BeforePaymentFlatlist'
 import spacePrice from '../../other/utils/spacePrice'
+import _useEffect from '../../controllers/_initial'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { getSendStatus } from '../../services/clientService'
 
 
 const BeforePayment = (p) => {
 
-  useEffect(() => { setTimeout(() => {p.navigation.setOptions({ headerTitleStyle: { color: 'black', fontFamily:'B Baran Regular', fontWeight:'bold' }, title: `هزینه ی ارسال به سراسر ایران فقط ${spacePrice(p.postPrice)} تومان`})}, 220);}, [])
-  
+  _useEffect(() => {
+    getSendStatus().then(async ({ data }) => {
+      if (data.checkSend === 1) {
+        await AsyncStorage.removeItem('productBasket');
+        p.setproductBasket([])
+      }
+    })
+  }, [])
+
+
   return (
     <ContainerNavigation >
-      <Scroll ccStyle={{ flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 71, backgroundColor: 'silver', flexGrow:1 }} >
+      <Scroll ccStyle={{ flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 71, backgroundColor: 'silver', flexGrow: 1 }} >
 
         <BeforePaymentFlatlist {...p} />
 

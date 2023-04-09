@@ -114,8 +114,8 @@ export function allChildren({client, user, admin}) {
         AsyncStorage.getItem("token").then((token) => {
           const _user = token ? jwtDecode(token) : {}
           user.settokenValue(_user);
-          if (props.route.params?.page === 'login' && props.route.params?.page === 'register' && (_user?.fullname)) return props.navigation.replace('Home')
-          if (!props.route.params?.page && (!_user?.fullname)) return props.navigation.replace('Home')
+          if (props.route.params?.active === 'no' && (_user?.fullname)) return props.navigation.replace('Home')
+          if (!props.route.params?.active && (!_user?.fullname)) return props.navigation.replace('Home')
         })
       }, [])
       useEffect(() => { if (props.route.params?.id && !idValidator(props.route.params.id)) return props.navigation.navigate('NotFound') })
@@ -169,8 +169,8 @@ export function allChildren({client, user, admin}) {
 //           const user = token ? jwtDecode(token) : {}
 //           p.settokenValue(user);
 //           if (props.route.params?.key === 'admin' && (!user?.isAdmin)) return props.navigation.replace('Home')
-//           if (props.route.params?.page === 'login' && props.route.params?.page === 'register' && (user?.fullname)) return props.navigation.replace('Home')
-//           if (props.route.params?.key === 'user' && !props.route.params?.page && (!user?.fullname)) return props.navigation.replace('Home')
+//           if (props.route.params?.active === 'no' && (user?.fullname)) return props.navigation.replace('Home')
+//           if (props.route.params?.key === 'user' && !props.route.params?.active && (!user?.fullname)) return props.navigation.replace('Home')
 //         })
 //       }, [])
 

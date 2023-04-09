@@ -6,7 +6,7 @@ import { getAddress } from '../../services/clientService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-function Location(p) {
+function SetAddressForm(p) {
   const confirmPayment = () => p._client.confirmPayment()
 
   _useEffect(() => {
@@ -41,4 +41,4 @@ function Location(p) {
     </Container>
   )
 }
-export default Location;
+export default SetAddressForm;

@@ -10,7 +10,6 @@ const Address = (p) => {
 
 	return (
 		<Container>
-			<Input border={[1, '#888']} w={'90%'} mt={10} alignSelf={'center'} value={p.textSearch} onChangeText={(text) => { p.settextSearch(text); const fd = p._address.filter(f => f.fullname.includes(text) || f.phone == text); p.setallAddress(fd) }} p="جستجو" icon={'search'} />
 			<FlatList
 				data={p.allPaymentSuccessFalseAndTrue}
 				ccStyle={{ paddingBottom: 55, }}

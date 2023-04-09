@@ -63,7 +63,7 @@ export const Layout = (p) => {
           p.route.name === 'ChildOffers' &&
           <ChildOffersPage {...p} bottom={bottom} />
           ||
-          p.route.name === 'Childpopular' &&
+          p.route.name === 'ChildPopulars' &&
           <ChildPopulars {...p} bottom={bottom} />
           ||
           p.route.name === 'TableChildItems' &&

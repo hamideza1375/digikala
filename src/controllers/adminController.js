@@ -14,6 +14,8 @@ export function adminController(p) {
       _seller.push(data.value)
       return _seller
     })
+    p.setinput2('')
+    p.setphone('')
   }
 
 
@@ -76,6 +78,8 @@ export function adminController(p) {
       _category.push(data.value)
       return _category
     })
+    p.settitle('')
+    p.setimageUrl({})
   }
 
 
@@ -89,6 +93,7 @@ export function adminController(p) {
   }
 
 
+
   this.getSinleCategory = () => {
     _useEffect(() => {
       (async () => {
@@ -96,6 +101,10 @@ export function adminController(p) {
         p.settitle(data.value.title)
         p.setimageUrl({ name: data.value.imageUrl })
       })()
+      return () => {
+        p.settitle('')
+        p.setimageUrl({})
+      }
     }, [])
   }
 
@@ -109,6 +118,8 @@ export function adminController(p) {
       _category[index].title = data.value.title
       _category[index].imageUrl = data.value.imageUrl
       p.setcategory(_category)
+      p.settitle('')
+      p.setimageUrl({})
       p.navigation.goBack()
     } catch (error) { console.error(error); }
   }
@@ -129,8 +140,8 @@ export function adminController(p) {
       ]
     )
   }
-
   //! Category
+
 
   //! ChildItem
   this.createChildItem = async () => {
@@ -147,6 +158,23 @@ export function adminController(p) {
       network: p.input12,
     })
     p.setchildItem(childItem => childItem.concat(data.value))
+    p.settitle('')
+    p.setprice('')
+    p.setimage1({})
+    p.setimage2({})
+    p.setimage3({})
+    p.setimage4({})
+    p.setinfo('')
+    p.setinput3('')
+    p.setinput4('')
+    p.setinput5('')
+    p.setinput6()
+    p.setinput7('')
+    p.setinput8('')
+    p.setinput9('')
+    p.setinput10('')
+    p.setinput11('')
+    p.setinput12('')
   }
 
 
@@ -157,7 +185,7 @@ export function adminController(p) {
         p.setchildItem(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
         p.setnewSearchArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
       })()
-    }, [])
+    }, [p.route.params.id])
   }
 
 
@@ -176,6 +204,23 @@ export function adminController(p) {
       battery: p.input11,
       network: p.input12,
     })
+    p.settitle('')
+    p.setprice('')
+    p.setimage1({})
+    p.setimage2({})
+    p.setimage3({})
+    p.setimage4({})
+    p.setinfo('')
+    p.setinput3('')
+    p.setinput4('')
+    p.setinput5('')
+    p.setinput6()
+    p.setinput7('')
+    p.setinput8('')
+    p.setinput9('')
+    p.setinput10('')
+    p.setinput11('')
+    p.setinput12('')
     p.navigation.goBack()
   }
 
@@ -235,6 +280,8 @@ export function adminController(p) {
       }
       return childItem
     })
+    p.setofferTime('')
+    p.offerValue('')
     p.navigation.goBack()
   }
   //! ChildItem
@@ -274,17 +321,35 @@ export function adminController(p) {
         p.setinput11(data.value.battery)
         p.setinput12(data.value.network)
       })()
+      return () => {
+        p.settitle('')
+        p.setprice('')
+        p.setimage1({})
+        p.setimage2({})
+        p.setimage3({})
+        p.setimage4({})
+        p.setinfo('')
+        p.setinput3('')
+        p.setinput4('')
+        p.setinput5('')
+        p.setinput6()
+        p.setinput7('')
+        p.setinput8('')
+        p.setinput9('')
+        p.setinput10('')
+        p.setinput11('')
+        p.setinput12('')
+      }
     }, [])
   }
   //!SingleItem
 
 
 
-
-
   //! Admin
   this.setAdmin = async () => {
     await setAdmin({ phoneOrEmail: p.phoneOrEmail })
+    p.setphoneOrEmail('')
   }
 
 
@@ -335,6 +400,8 @@ export function adminController(p) {
         {
           text: "OK", onPress: async () => {
             await changeMainAdmin({ adminPhone: p.adminPhone, newAdminPhone: p.newAdminPhone })
+            p.setadminPhone('')
+            p.setnewAdminPhone('')
             this.logout()
           }
         }
@@ -377,6 +444,8 @@ export function adminController(p) {
   //! Notification
   this.createNotification = async () => {
     await createNotification({ title: p.title, message: p.message })
+    p.settitle('')
+    p.setmessage('')
     p.navigation.goBack()
   }
 
@@ -401,7 +470,7 @@ export function adminController(p) {
 
   //! Address Payment
   this.getAllAddress = async () => {
-    useEffect(() => {
+    _useEffect(() => {
       (async () => {
         const { data } = await getAllAddress()
         p.setallAddress(data.value)
@@ -481,12 +550,13 @@ export function adminController(p) {
   //! PostPrice
   this.sendPostPrice = () => {
     sendPostPrice({ price: p.price }).then(() => {
+      p.setprice('')
       p.navigation.goBack()
     })
   }
 
   this.getPostPrice = () => {
-    useEffect(() => { setTimeout(() => { getPostPrice().then(({ data }) => { p.setpostPrice(data.value) }) }, 500); }, [])
+    useEffect(() => { setTimeout(() => { getPostPrice().then(({ data }) => { p.setpostPrice(data.value) }) }, 100); }, [])
   }
   //! PostPrice
 
@@ -510,7 +580,6 @@ export function adminController(p) {
       })()
     }, [])
   }
-
   //! TicketBox
 
 
@@ -551,9 +620,14 @@ export function adminController(p) {
       image5: p.sliderImage5,
       image6: p.sliderImage6,
     }).then(() => {
+      p.setsliderImage1({})
+      p.setsliderImage2({})
+      p.setsliderImage3({})
+      p.setsliderImage4({})
+      p.setsliderImage5({})
+      p.setsliderImage6({})
       p.navigation.goBack()
     })
   }
   //! createSlider
-
 }

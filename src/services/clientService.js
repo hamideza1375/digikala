@@ -31,6 +31,7 @@ export const getSocketIoSeenUser = (id) => axios.get(`${localhost}/getSocketIoSe
 export const getSingleSeller = (id) => axios.get(`${localhost}/getSingleSeller?id=${id}`)
 export const getSendStatus = () => axios.get(`${localhost}/getSendStatus`)
 export const getSingleSavedItems = (id) => axios.get(`${localhost}/getSingleSavedItems/${id}`)
+export const allProduct = () => axios.get(`${localhost}/allProduct`)
 
 
 

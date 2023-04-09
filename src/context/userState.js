@@ -6,9 +6,7 @@ export function user() {
   const [ticketSeen, setticketSeen] = useState()
   const [savedItems, setsavedItems] = useState([])
   const [imageProfile,setimageProfile] = useState('')
-  const [oldPassword, setoldPassword] = useState('')
   const [twoMinut, settwoMinut] = useState()
-  const [timerToMinutTrueFalse, settimerToMinutTrueFalse] = useState(false)
   const [answersTicket, setanswersTicket] = useState([])
   const [bookmark, setbookmark] = useState(false)
   const [lastPayment, setlastPayment] = useState([])
@@ -24,10 +22,8 @@ export function user() {
     savedItems, setsavedItems,
     ticketSeen, setticketSeen,
     userTicketBox, setuserTicketBox,
-    oldPassword, setoldPassword,
     imageProfile,setimageProfile,
     twoMinut, settwoMinut,
-    timerToMinutTrueFalse, settimerToMinutTrueFalse,
     answersTicket, setanswersTicket,
   }
 }

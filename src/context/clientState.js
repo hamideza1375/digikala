@@ -23,8 +23,10 @@ export function client() {
   const [availableSeller, setavailableSeller] = useState(true)
   const [newSearchArray, setnewSearchArray] = useState([])
   const [newSearchHomeArray, setnewSearchHomeArray] = useState([])
-
+  const [allProduct, setallProduct] = useState([])
+  
   this.client = {
+    allProduct, setallProduct,
     newSearchHomeArray, setnewSearchHomeArray,
     newSearchArray, setnewSearchArray,
     availableSeller, setavailableSeller,

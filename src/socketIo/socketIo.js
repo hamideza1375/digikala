@@ -56,7 +56,7 @@ const SocketIo = (p) => {
 
 
   useFocusEffect(useCallback(() => {
-    if(!tokenValue.current.isAdmin) p.setsocketIoSeen(false)
+    if (!tokenValue.current.isAdmin) p.setsocketIoSeen(false)
 
     socket.current.on("online", (users) => {
       const user = users.find((user) => (user.user.isAdmin === 1))
@@ -67,7 +67,7 @@ const SocketIo = (p) => {
 
     socket.current.on("mongoMsg", async (messages) => {
       if (!localstoragetrue) {
-        setPvChatMessage(messages)
+        setPvChatMessage([...messages, { userId: tokenSocket.current, message: 'چطوری میتوانم کمکتان کنم؟', _id: 'a1' }])
 
         if (tokenValue.current.isAdmin) {
           let titleMessage = []
@@ -188,14 +188,13 @@ const SocketIo = (p) => {
             data={pvChatMessage}
             renderItem={({ item, index }) => (
               ((item.userId == tokenSocket.current) || (adminId === socket.current.id) || (item.to === tokenSocket.current)) &&
-              <Span key={index} style={{ marginVertical: 10, marginHorizontal: 2, width: '70%', minHeight: 45, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: item.to === to ? '#f8f8f8' : '#fff', borderWidth: 1, alignSelf: item.to !== to ? 'flex-end' : 'flex-start', borderRadius: 10, borderWidth: 'silver' }} >
+              <Span key={index} style={{ opacity: (pvChatMessage.find(pv => (pv._id !== 'a1' ) && (pv.userId == tokenSocket.current)) && item._id === 'a1') ? 0 : 1, marginVertical: 10, marginHorizontal: 2, width: '70%', minHeight: 45, justifyContent: 'center', paddingHorizontal: 8, backgroundColor: item.to === to ? '#f8f8f8' : '#fff', borderWidth: 1, alignSelf: (item.to === to || item._id === 'a1') ? 'flex-start' : 'flex-end', borderRadius: 10, borderWidth: 'silver' }} >
                 <Row fd='row-reverse' jc='flex-end' pt={3}>
-                  <P mr={20} style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >{moment(item.date).format('jM/jD hh:mm')}</P>
-                  {item.userId === tokenSocket.current &&
-                    <P style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >شما</P>
-                  }
+                  { pvChatMessage.find(pv => (pv._id !== 'a1' && (pv.userId == tokenSocket.current) )) && <P mr={20} style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >{moment(item.date).format('jM/jD hh:mm')}</P>}
+                  {(pvChatMessage.find(pv => (pv._id !== 'a1' && (pv.userId == tokenSocket.current) )) && (item.userId === tokenSocket.current)) && <P style={{ fontSize: 9, paddingRight: 3, color: 'silver' }} >شما</P>}
                 </Row>
                 <P>{item.message}</P>
+                {(pvChatMessage.length - 1 === index && item._id === 'a1') && <Badge bgcolor={'#0d8'} right={2} />}
               </Span>
             )}
           />

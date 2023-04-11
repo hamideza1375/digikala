@@ -1,12 +1,12 @@
 import React from 'react'
-import { ContainerNavigation, Form } from '../../other/Components/Html';
+import { Column, Form } from '../../other/Components/Html';
 
 const CreateCategory = (p) => {
 
   return (
-    <ContainerNavigation>
+    <Column f={1} >
       <Form t im onClick={() => { p._admin.createCategory() }} />
-    </ContainerNavigation>
+    </Column>
   )
 }
 export default CreateCategory

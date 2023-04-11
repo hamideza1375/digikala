@@ -1,14 +1,14 @@
 import React from 'react'
-import {Container2, Form} from '../../other/Components/Html';
+import {Column, Form} from '../../other/Components/Html';
 
 const SetOffer = (p) => {
   p._admin.getSingleItem()
   const setOffer = () => p._admin.setOffer()
 
   return (
-    <Container2>
+    <Column f={1} >
       <Form flexDirection={'row'} offer onClick={setOffer} />
-    </Container2>
+    </Column>
   )
 }
 export default SetOffer

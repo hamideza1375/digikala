@@ -1,6 +1,6 @@
 import React from 'react'
 import _useEffect from '../../controllers/_initial'
-import { Column, ContainerNavigation, Form } from '../../other/Components/Html'
+import { Column, Form } from '../../other/Components/Html'
 import { getPostPrice } from '../../services/adminService'
 
 const SendPostPrice = (p) => {
@@ -11,11 +11,9 @@ const SendPostPrice = (p) => {
   }, [])
 
   return (
-    <ContainerNavigation>
-      <Column fg={1} >
+      <Column f={1} >
         <Form pr {...p} onClick={() => { p._admin.sendPostPrice() }} />
       </Column>
-    </ContainerNavigation>
   )
 }
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ContainerNavigation, Form } from '../../other/Components/Html';
+import { Column, Form } from '../../other/Components/Html';
 import Title from '../../other/utils/setTitle';
 
 const EditCategory = (p) => {
@@ -8,9 +8,9 @@ const EditCategory = (p) => {
   const editCategory = (id) => p._admin.editCategory(id)
 
   return (
-    <ContainerNavigation>
+    <Column f={1} >
       <Form t im edit onClick={() => { editCategory(); }} />
-    </ContainerNavigation>
+    </Column>
   )
 }
 export default EditCategory

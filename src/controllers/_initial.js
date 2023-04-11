@@ -1,24 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useFocusEffect } from '@react-navigation/native'
 import Axios from 'axios'
 import jwtDecode from "jwt-decode";
 import { useCallback, useEffect, useState } from 'react'
-import { Dimensions, View } from 'react-native'
+import { Dimensions } from 'react-native'
 
 import { adminController } from "./adminController";
 import { clientController } from "./clientController";
 import { userController } from "./userController";
 import { Layout } from "../other/Layout/Layout";
-
-import backgroundTimer from '../other/utils/backgroundTimer';
-import { create } from '../other/utils/notification';
-import { getNotification, getSendStatus, getSlider, getSocketIoSeenUser } from '../services/clientService';
-import { getPostPrice } from '../services/adminService';
 import { Loading } from '../other/Components/Html';
 import online from '../other/utils/online';
-import { getTicketSeen } from '../services/userService';
-import { truncate } from '../other/utils/truncate';
-import { localhost } from '../other/utils/axios/axios';
 import { idValidator } from '../other/utils/idValidator';
 
 

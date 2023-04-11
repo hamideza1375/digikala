@@ -1,15 +1,18 @@
+import AsyncStorage from '@react-native-async-storage/async-storage'
 import React from 'react'
-import { Container2 } from '../../other/Components/Html'
+import _useEffect from '../../controllers/_initial'
+import { Column } from '../../other/Components/Html'
 import Frame from '../../other/Components/other/Frame'
 
 const FramePayment = (p) => {
-
-//  p.navigation.setOptions({ header: () => <Button outline onClick={() => p.navigation.navigate('Home')} >click</Button> })
-  
+   _useEffect(() => {
+     AsyncStorage.removeItem('deleteBasket').then(() => { })
+     return () => p.setchangePage(!p.changePage)
+   }, [])
   return (
-    <Container2>
+    <Column f={1} >
       <Frame source={{ uri: p.route.params.url }} />
-    </Container2>
+    </Column>
   )
 }
 

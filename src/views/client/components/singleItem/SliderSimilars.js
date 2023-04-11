@@ -3,8 +3,8 @@ import { Platform } from 'react-native'
 import { A_icon, Card2, Div, Icon, Img, P, ScrollSlider, Span } from '../../../../other/Components/Html'
 import LinearGradient from '../../../../other/Components/other/LinearGradient'
 import spacePrice from '../../../../other/utils/spacePrice'
-import s from '../../style/client.module.scss'
-import CardItem from '../_layoutComponents/CardItem'
+import s from '../../client.module.scss'
+import CardItem from '../CardItem'
 
 const SliderSimilars = (p) => {
   const [x, setx] = useState(0)

@@ -1,30 +1,52 @@
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import { Animated } from 'react-native'
 import { context } from '../../../context/_context'
-import { Span, A_icon } from '../../Components/Html'
+import { Column } from '../../Components/Html'
 
 const Drawer2 = ({ children, show, setshow }) => {
-  const [show2, setshow2] = useState(true)
   const { width } = context()
 
-  const showDrawer = typeof show === 'boolean' ? show : show2
+  const [start, setstart] = useState(false)
+
+  const fadeAnim = useRef(new Animated.Value(-300)).current;
+
+  const open = () => {
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: false
+    }).start();
+    setshow(true)
+  };
+
+  const close = () => {
+    Animated.timing(fadeAnim, {
+      toValue: -300,
+      duration: 200,
+      useNativeDriver: false
+    }).start();
+    setshow(false)
+  };
+
+
+  useEffect(() => {
+    ((start) || (width > 1024)) &&
+    show ? open() : close()
+    setstart(true)
+  }, [show])
+
+  
+
 
   return (
     <>
-      {/* {(width <= 1024) && ((!showDrawer) || (typeof show !== 'boolean')) &&
-        <A_icon onClick={() => { (typeof show === 'boolean') ? (setshow(!show)) : (setshow2(!show2)) }} name={showDrawer ? 'bars' : 'right'} size={22}
-          style={{ position: 'absolute', top: 2, right: showDrawer ? 0 : 195, zIndex: 30 }} />} */}
 
-      {((showDrawer) || ((width <= 1024) && ((!showDrawer) || (typeof show !== 'boolean')))) ?
-        <Span minw={220} maxw={220} h={'100%'} bgcolor='#fff' f={1} z={10}
-          col1={showDrawer ? { right: -300, position: 'absolute' } : { position: 'absolute', right: 0 }}
-          col2={showDrawer ? { right: -300, position: 'absolute' } : { position: 'absolute', right: 0 }}
-          col3={showDrawer ? { right: -300, position: 'absolute' } : { position: 'absolute', right: 0 }}
-          col4={showDrawer ? { right: -300, position: 'absolute' } : { position: 'absolute', right: 0 }}
-        >
-          <>
-            {children}
-          </>
-        </Span>
+      {((show) && (start) && ((width <= 1024))) ? <Column onClick={close} w='100%' h='100%' bgcolor='#8888' pos='absolute' z={100} /> : <></>}
+
+      {((show) || ((width <= 1024))) ?
+        <Animated.View style={[{ zIndex: 200, minWidth: 220, maxWidth: 220, height: 555, backgroundColor: '#fff', height: '100%', right: fadeAnim, position: width > 1024 ? 'relative' : 'absolute' }]}>
+          {children}
+        </Animated.View>
         :
         <></>
       }
@@ -33,3 +55,5 @@ const Drawer2 = ({ children, show, setshow }) => {
 }
 
 export default Drawer2
+
+

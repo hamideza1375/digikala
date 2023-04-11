@@ -1,11 +1,11 @@
 import React from 'react';
-import { Container2, ContainerNavigation, ContainerTab, Form } from '../../other/Components/Html'
+import { Column, Form } from '../../other/Components/Html'
 
 export default function ChangeMainAdmin(p) {
   const sendChangeAdmin = () => p._admin.changeMainAdmin()
   return (
-    <ContainerNavigation>
+    <Column f={1} >
       <Form ph in1 {...p} onClick={() => sendChangeAdmin()} />
-    </ContainerNavigation>
+    </Column>
   )
 }

@@ -101,7 +101,7 @@ export const Component = React.forwardRef((props, ref) => {
       },
       stl, stl2, col, orientation
     ]}
-    onStartShouldSetResponder={props.onClick}
+    
     ref={(e) => { setStyleRef(props, e, ref, setinnerHTML, flatlist, seturi); }}
   >{innerHTML ? ((typeof innerHTML === 'string') ? <Text onPress={props.onClick}>{innerHTML}</Text> : innerHTML) : (typeof props.children === 'string') ? <Text onPress={props.onClick}>{props.children}</Text> : props.children}</Component>;
 });
@@ -175,22 +175,22 @@ export const Init = React.forwardRef((props, ref) => {
 // export const Input = (props) => <Component {...props} Component={_Input} />
 
 
-export const Container = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb : s.Container} {...props} Component={View} />
-export const ContainerFix = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb : s.Container} {...props} Component={View} />
+export const Container = (props) => <Component onStartShouldSetResponder={props.onClick} initalClass={Platform.OS === 'web' ? s.ContainerWeb : s.Container} {...props} Component={View} />
+export const ContainerFix = (props) => <Component onStartShouldSetResponder={props.onClick} initalClass={Platform.OS === 'web' ? s.ContainerWeb : s.Container} {...props} Component={View} />
 
-export const Container2 = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb2 : s.Container} {...props} Component={View} />
-export const ContainerNavigation = (props) => <Component initalClass={Platform.OS === 'web' ? s.ContainerWeb2 : s.Container} {...props} Component={View} />
+export const Container2 = (props) => <Component onStartShouldSetResponder={props.onClick} initalClass={Platform.OS === 'web' ? s.ContainerWeb2 : s.Container} {...props} Component={View} />
+export const ContainerNavigation = (props) => <Component onStartShouldSetResponder={props.onClick} initalClass={Platform.OS === 'web' ? s.ContainerWeb2 : s.Container} {...props} Component={View} />
 
-export const ContainerTab = (props) => <Component initalClass={s.Container} {...props} Component={View} />
+export const ContainerTab = (props) => <Component onStartShouldSetResponder={props.onClick} initalClass={s.Container} {...props} Component={View} />
 
-export const Div = (props) => <Component initalClass={s.div} {...props} Component={View} />
+export const Div = (props) => <Component onStartShouldSetResponder={props.onClick} initalClass={s.div} {...props} Component={View} />
 
-export const Row = (props) => <Component initalClass={s.row} {...props} Component={View} />
+export const Row = (props) => <Component onStartShouldSetResponder={props.onClick} initalClass={s.row} {...props} Component={View} />
 
-export const Column = (props) => <Component {...props} Component={View} />
+export const Column = (props) => <Component onStartShouldSetResponder={props.onClick} {...props} Component={View} />
 
 
-export const Span = (props) => <Component {...props} Component={View} />
+export const Span = (props) => <Component onStartShouldSetResponder={props.onClick} {...props} Component={View} />
 
 export const Press = (props) => <Component onPress={props.onClick} {...props} style={[props.onClick ? { cursor: 'pointer' } : { cursor: '' }, props.style]} Component={Pressable} />
 
@@ -222,11 +222,11 @@ export const ImgBackground = (props) => <Component source={props.src} {...props}
 
 export const Img = (props) => <Component style={[props.style]} source={props.src} {...props} Component={Image} />
 
-export const Scroll = (props) => <Component {...props} Component={ScrollView} />
+export const Scroll = (props) => <Component onStartShouldSetResponder={props.onClick} {...props} Component={ScrollView} />
 
-export const ScrollHorizontal = (props) => <Component {...props} horizontal={true} Component={ScrollView} />
+export const ScrollHorizontal = (props) => <Component onStartShouldSetResponder={props.onClick} {...props} horizontal={true} Component={ScrollView} />
 
-export const FlatList = ({ pageLimit, current, setcurrent, loading = true, column1, column2, column3, column4, column5, column6, renderItem, numColumns, data, keyExtractor, ...props }) => {
+export const FlatList = ({ pageLimit, loading = true, column1, column2, column3, column4, column5, column6, renderItem, numColumns, data, keyExtractor, ...props }) => {
 
   const width = Dimensions.get('window').width
   const [index, setindex] = useState(0)
@@ -243,9 +243,10 @@ export const FlatList = ({ pageLimit, current, setcurrent, loading = true, colum
   const [ass, setass] = useState(true)
   const [page, setpage] = useState(1)
   const [currentPage, setcurrentPage] = useState(1)
+  const [current, setcurrent] = useState([])
 
 
-  if (!current && !pageLimit) {
+  if (!pageLimit) {
     return (
       data?.length
         ?

@@ -1,12 +1,12 @@
 import React from 'react'
-import { Container2, Form } from '../../other/Components/Html'
+import { Column, Form } from '../../other/Components/Html'
 
 const CreateSlider = (p) => {
 
   return (
-    <Container2>
+    <Column f={1} >
       <Form slider flexDirection={'row'} onClick={()=>p._admin.createSlider()} />
-    </Container2>
+    </Column>
   )
 }
 

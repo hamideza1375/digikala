@@ -1,7 +1,6 @@
 import React from 'react';
 import _useEffect from '../../controllers/_initial';
-import Map from './Map';
-import { Column, Container, ContainerNavigation, Form, Icon, M_icon, Press, Py, Row } from '../../other/Components/Html';
+import { Column, Form, M_icon, Press, Py } from '../../other/Components/Html';
 import { getAddress } from '../../services/clientService';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -29,8 +28,8 @@ function SetAddressForm(p) {
   }, [])
 
   return (
-    <Container>
-      <Press onClick={() => p.navigation.navigate('Map')} fd='row' bgcolor='#fff' p={10} pt={12} >
+    <Column f={1}>
+      <Press onClick={() => p.navigation.replace('Map')} fd='row' bgcolor='#fff' p={10} pt={12} >
         <M_icon name={'gps-fixed'} size={19} color='#0cd' />
         <Py pr={5} >انتخاب از روی نقشه</Py>
         <Py fs={11} pr={5} mt={1} color='red' >(فقط مخصوص سفارشات در تهران)</Py>
@@ -38,7 +37,7 @@ function SetAddressForm(p) {
       <Column f={1} >
         <Form f city ph postal $plaque $unit $address flexDirection={'row'} onClick={confirmPayment} />
       </Column>
-    </Container>
+    </Column>
   )
 }
 export default SetAddressForm;

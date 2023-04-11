@@ -1,5 +1,5 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
-import { Span, P, List as _list, Switch, CheckBoxRadius, Scroll, M_icon, Button } from '../../../../other/Components/Html'
+import React, { memo, useEffect, useState } from 'react'
+import { Column, P, List as _list, Switch, CheckBoxRadius, Scroll, Button } from '../../../other/Components/Html'
 
 const FilterList = (p) => {
 
@@ -175,252 +175,252 @@ const FilterList = (p) => {
   return (
     <>
 
-      <Span z={10000000000} minw={150} maxw={200} w={200} mt={10} maxh={p.height - 70} minh={'80%'} bgcolor='#fffe' f={1}
+      <Column z={10000000000} minw={150} maxw={200} w={200} mt={10} maxh={p.height - 70} minh={'80%'} bgcolor='#fffe' f={1}
         col={p.show ? { right: -200, position: 'absolute' } : { position: 'absolute', right: 0 }}
         col1={p.show ? { right: -200, position: 'absolute' } : { position: 'absolute', right: 0 }}
         style={p.show ? { right: -200, position: 'absolute' } : { position: 'absolute', right: 0 }}
       >
         <Scroll minw='105%' >
 
-          <Span fd={!isEnabled ? 'row' : 'row-reverse'} jc={'center'} mb={5} ph={7} >
+          <Column fd={!isEnabled ? 'row' : 'row-reverse'} jc={'center'} mb={5} ph={7} >
             {!isEnabled ?
               <P mt={1} ml={5} fs={11} >نمایش دستگاه های موجود</P>
               :
               <P mt={1} mr={5} fs={11} >نمایش همه </P>}
             <Switch isEnabled={isEnabled} setIsEnabled={setIsEnabled} />
-          </Span>
+          </Column>
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'برند'} bodyRow={
-                <Span>
+                <Column>
                   {brandFilterValue && brandFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check1' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setbrandFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxBrandFilter} setshow={setshowCheckboxBrandFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'قیمت'} bodyRow={
-                <Span>
+                <Column>
                   {priceFilterValue && priceFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check2' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setpriceFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxPriceFilter} setshow={setshowCheckboxPriceFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'مقدار رم'}
               bodyRow={
-                <Span>
+                <Column>
                   {ramFilterValue && ramFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check3' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setramFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxRamFilter} setshow={setshowCheckboxRamFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'تعداد هسته پردازشگر(cpu)'}
               bodyRow={
-                <Span>
+                <Column>
                   {cpuCoreFilterValue && cpuCoreFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check4' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setcpuCoreFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxcpuCoreFilter} setshow={setshowCheckboxcpuCoreFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'حافظه'}
               bodyRow={
-                <Span>
+                <Column>
                   {memoryFilterValue && memoryFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check5' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setstorageFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxMemoryFilter} setshow={setshowCheckboxMemoryFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'نوع شبکه اینترنت'}
               bodyRow={
-                <Span>
+                <Column>
                   {networkFilterValue && networkFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check6' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setnetworkFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxNetworkFilter} setshow={setshowCheckboxNetworkFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'سیستم عامل'}
               bodyRow={
-                <Span>
+                <Column>
                   {operatingSystemFilterValue && operatingSystemFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check7' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setoperatingSystemFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxOperatingSystemFilter} setshow={setshowCheckboxOperatingSystemFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'دوربین'}
               bodyRow={
-                <Span>
+                <Column>
                   {cameraFilterValue && cameraFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check8' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setcameraFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxCameraFilter} setshow={setshowCheckboxCameraFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'اندازه ی صفحه نمایش'}
               bodyRow={
-                <Span>
+                <Column>
                   {displayFilterValue && displayFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check9' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setdisplayFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxDisplayFilter} setshow={setshowCheckboxDisplayFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'رنگ'}
               bodyRow={
-                <Span>
+                <Column>
                   {colorFilterValue && colorFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check10' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setcolorFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxColorFilter} setshow={setshowCheckboxColorFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
 
 
-          <Span>
+          <Column>
             <_list h={45} br={5} sh={{ r: 5, o: .1 }} color='black' bgcolor='#ff77cc22' hidden={hidden} sethidden={sethidden} fontSize={12} iconSize={20} m_icon='arrow-left'
               header={'باطری'}
               bodyRow={
-                <Span>
+                <Column>
                   {batteryFilterValue && batteryFilterValue.map((child, index) => (
-                    <Span key={index} fd='row' jc='space-between'>
+                    <Column key={index} fd='row' jc='space-between'>
                       <P pr={2} fs={11} >{child.value}</P>
                       <CheckBoxRadius id='check11' refMap={p.refMap} item={child} refObject={(ref) => { if (ref.show) { setbatteryFilter(ref.filterValue) } }}
                         border={[1, 'silver']} ml={4}
                         show={showCheckboxBatryFilter} setshow={setshowCheckboxBatryFilter}
                         style={{ transform: [{ scale: .9 }] }} />
-                    </Span>
+                    </Column>
                   ))
                   }
-                </Span>
+                </Column>
               }
             />
-          </Span>
+          </Column>
         </Scroll>
 
        {/* //! lovercase */}
-        <Span w={'100%'} ai='center' >
+        <Column w={'100%'} ai='center' >
           <Button mt={10} w={'95%'} as='center' outline h={37} bgcolor='#ff77ccee'
             onClick={() => {
               const filterArray = p.array.filter((f, i) => (
@@ -441,9 +441,9 @@ const FilterList = (p) => {
               p.setarray(filterArray);
             }}
           >انجام شد</Button>
-        </Span>
+        </Column>
 
-      </Span>
+      </Column>
     </>
   )
 }

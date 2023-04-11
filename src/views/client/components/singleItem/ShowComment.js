@@ -70,9 +70,6 @@ const ShowComment = (p) => {
   const like = (commentid) => p._client.like(commentid)
   const disLike = (commentid) => p._client.disLike(commentid)
 
-  const [current, setcurrent] = useState([])
-  const [pageLimit] = useState(6)
-
   return (
     // '#f1f'
     < >
@@ -92,11 +89,9 @@ const ShowComment = (p) => {
 
 
         <FlatList
-          pageLimit={pageLimit} current={current} setcurrent={setcurrent}
-
+          pageLimit={6}
           data={p.childItemComment}
           renderItem={({ item, index }) => (
-
             <Span w={'98%'} as='center' br={3} mv={8} sh={{ o: 1, r: 8, c: '#ddda' }} >
               <Card
                 bgcolor='#fff' color='black' dr='rtl' border={[1, '#eeee']} headerRow={

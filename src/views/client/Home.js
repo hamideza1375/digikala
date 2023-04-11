@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react'
-import { Span, Slider, Scroll, Div, ContainerTab, Loading, Column } from '../../other/Components/Html'
-import Chat from './components/home/Chat'
+import { Slider, Scroll, Loading, Column } from '../../other/Components/Html'
 import Category from './components/home/Category';
 import _useEffect from '../../controllers/_initial';
 import { allProduct } from '../../services/clientService';
@@ -27,43 +26,41 @@ useEffect(() => {allProduct().then(({data})=>{p.setallProduct(data.value);p.setn
 
 
   return (
-    <Column h='100%' >
-
+    <Column f={1} >
       <Scroll>
         <Column>
           <Slider data={p.slider} {...p} onClick={() => { p.navigation.navigate('ChildOffers') }} />
         </Column>
 
-        <Span>
+        <Column>
           <Category {...p} />
-        </Span>
+        </Column>
 
-        <Span>
-          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+        <Column>
+          <Suspense fallback={<Column w='100%' ai='center' ><Loading /></Column>}>
             <SliderOffers {...p} />
           </Suspense>
-        </Span>
+        </Column>
 
-        <Span mt={9} >
+        <Column mt={9} >
           <Suspense>
             <Banner {...p} />
           </Suspense>
-        </Span>
+        </Column>
 
-        <Div>
-          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+        <Column mt={8} mb={6} >
+          <Suspense fallback={<Column w='100%' ai='center' ><Loading /></Column>}>
             <SliderPopulars {...p} />
           </Suspense>
-        </Div>
+        </Column>
 
-        <Span>
-          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+        <Column>
+          <Suspense fallback={<Column w='100%' ai='center' ><Loading /></Column>}>
             <Footer {...p} />
           </Suspense>
-        </Span>
+        </Column>
 
       </Scroll>
-      {/* <Chat {...p} /> */}
     </Column>
   )
 }

@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import _useEffect from '../../../controllers/_initial'
-import FilterList from '../../../views/client/components/childItem/FilterList'
+import FilterList from '../../../views/client/components/FilterList'
 import { SearchBar } from '../../Components/Html'
 import BottomTab from '../../Components/tabNavigation/BottomTab'
 

@@ -14,7 +14,7 @@ export function initial() {
   const [star3, setstar3] = useState(true)
   const [star4, setstar4] = useState(true)
   const [star5, setstar5] = useState(true)
-  const [fiveStar, setfiveStar] = useState()
+  const [fiveStar, setfiveStar] = useState(5)
   const [plaque, setplaque] = useState('')
   const [unit, setunit] = useState('')
   const [address, setaddress] = useState('')
@@ -29,14 +29,13 @@ export function initial() {
   const [password, setpassword] = useState('')
   const [oldPassword, setoldPassword] = useState('')
   const [confirmPassword, setconfirmPassword] = useState('')
-  const [remember, setremember] = useState()
-  const [checkbox, setcheckbox] = useState()
+  const [remember, setremember] = useState(60 * 1000 * 60 * 24 * 365)
   const [stateCity, setstateCity] = useState([])
   const [title, settitle] = useState('')
   const [price, setprice] = useState('')
   const [imageUrl, setimageUrl] = useState({})
-  const [videoUrl, setvideoUrl] = useState('')
-  const [meanStar, setmeanStar] = useState()
+  const [videoUrl, setvideoUrl] = useState({})
+  const [meanStar, setmeanStar] = useState(0)
   const [info, setinfo] = useState('')
   const [code, setcode] = useState('')
   const [rand, setRand] = useState(parseInt(Math.random() * 9000 + 1000));
@@ -44,8 +43,8 @@ export function initial() {
   const [$, set$] = useState()
   const [$input] = useState(new Map())
   const refInput = useRef()
-  const [dropdownBottom, setdropdownBottom] = useState()
-  const [dropdownRight, setdropdownRight] = useState()
+  const [dropdownBottom, setdropdownBottom] = useState(false)
+  const [dropdownRight, setdropdownRight] = useState(false)
   const [clientX, setclientX] = useState(0)
   const [clientY, setclientY] = useState(0)
   const [dropdownValue, setdropdownValue] = useState('')
@@ -77,10 +76,12 @@ export function initial() {
   const [City, setCity] = useState('')
   const [state, setstate] = useState('')
   const [latlng, setlatlng] = useState({ lat: 0, lng: 0 })
-  const [postPrice, setpostPrice] = useState('')
+  const [postPrice, setpostPrice] = useState(35000)
   const [logoUrl, setlogoUrl] = useState(require('../other/assets/images/logo.png'))
-  
+  const [changePage, setchangePage] = useState(false)
+
   this.all = {
+    changePage, setchangePage,
     logoUrl, setlogoUrl,
     postPrice, setpostPrice,
     latlng, setlatlng,
@@ -126,7 +127,6 @@ export function initial() {
     height, setheight,
     input1, setinput1,
     _list, set_list,
-    checkbox, setcheckbox,
     remember, setremember,
     confirmPassword, setconfirmPassword,
     password, setpassword,
@@ -159,112 +159,81 @@ export function initial() {
 }
 
 
-  // const [host] = useState(localhost)
-  // const [navigate1, setnavigate1] = useState('')
-  // const [navigate2, setnavigate2] = useState('')
-  // const [navigate3, setnavigate3] = useState('')
-  // const [showModalAvailabe, setshowModalAvailabe] = useState(false)
-  // const [showModal, setshowModal] = useState(false)
-  // const [ass, setass] = useState(true)
-  // const [page, setpage] = useState(1)
-  // const [pageLimit] = useState(16)
-  // const [current, setcurrent] = useState([])
-  // const [currentPage, setcurrentPage] = useState(1)
-  // const [token, settoken] = useState('')
-  // const [showForm, setshowForm] = useState(false)
-  // const [myPhone, setmyPhone] = useState('')
-  // const [myCode, setmyCode] = useState('')
-  // const [showActivityHome, setshowActivityHome] = useState(true)
-  // const [changeRegister, setchangeRegister] = useState(false)
-  // const [replaceInput, setreplaceInput] = useState(false)
-  // const [sendMessage, setsendMessage] = useState(true)
-  // const [totalTitle, settotalTitle] = useState([])
-  // const [timeChange, settimeChange] = useState(5)
-  // const [several, setseveral] = useState(0)
-  // const [severalTime, setseveralTime] = useState(5)
-  // const [severalShow, setseveralShow] = useState(true)
-  // const [star, setstar] = useState()
-  // const [list, setlist] = useState([])
-
-    // several, setseveral,
-    // list, setlist,
-    // star, setstar,
-    // severalShow, setseveralShow,
-    // severalTime, setseveralTime,
-    // navigate1, setnavigate1,
-    // navigate2, setnavigate2,
-    // navigate3, setnavigate3,
-    // currentPage, setcurrentPage,
-    // current, setcurrent,
-    // pageLimit,
-    // page, setpage,
-    // ass, setass,
-    // host,
-    // token, settoken,
-    // showModalAvailabe, setshowModalAvailabe,
-    // showModal, setshowModal,
-    // changeRegister, setchangeRegister,
-    // replaceInput, setreplaceInput,
-    // totalTitle, settotalTitle,
-    // sendMessage, setsendMessage,
-    // timeChange, settimeChange,
-    // myCode, setmyCode,
-    // myPhone, setmyPhone,
-    // showActivityHome, setshowActivityHome,
-    // showForm, setshowForm,
 
 
 export const initialPropType = (component) => {
   component.propTypes = {
-    // , phone: PropTypes.number
-    // , star: PropTypes
-    // , captcha: PropTypes.bool
-    // , myCode: PropTypes.number
-    // , token: PropTypes
-    // , price: PropTypes.number
-    // , code: PropTypes.number
-    // , imageUrl: PropTypes.string
-    // , showModalAvailabe: PropTypes.bool
-    // , showModal: PropTypes.bool
-    // , currentPage: PropTypes.number
-    // , current: PropTypes.array
-    // , pageLimit: PropTypes.number
-    // , page: PropTypes.number
-    // , ass: PropTypes.bool
-    // , host: PropTypes.string
-    // , remember: PropTypes.number
-    // showActivityHome: PropTypes.bool
-    // , sendMessage: PropTypes.bool
-    // , timeChange: PropTypes.number
-    // , replaceInput: PropTypes.bool
-    // , totalTitle: PropTypes.array
-    // , myPhone: PropTypes.string
-    // , showForm: PropTypes.bool
-     showActivity: PropTypes.bool
-    // , severalTime: PropTypes.number
-    // , severalShow: PropTypes.bool
-    , rand: PropTypes.number
-    , useEffect: PropTypes.func
-    // , several: PropTypes.number
-    , splash: PropTypes.bool
-    // , list: PropTypes.array
-    , star5: PropTypes.bool
-    , star4: PropTypes.bool
-    , star3: PropTypes.bool
-    , star2: PropTypes.bool
-    , star1: PropTypes.bool
-    , width: PropTypes.number
-    , height: PropTypes.number
-    , input: PropTypes.string
-    , checkbox: PropTypes.bool
-    , confirmPassword: PropTypes.string
-    , password: PropTypes.string
-    , email: PropTypes.string
-    , fullname: PropTypes.string
-    , tokenValue: PropTypes.object
-    , message: PropTypes.string
-    , allstar: PropTypes.number
-    , info: PropTypes.string
-    , title: PropTypes.string
+    changePage:PropTypes.bool,
+    logoUrl: PropTypes.string,
+    postPrice: PropTypes.number,
+    latlng: PropTypes.object,
+    state: PropTypes.string,
+    City: PropTypes.string,
+    image1: PropTypes.object,
+    image2: PropTypes.object,
+    image3: PropTypes.object,
+    image4: PropTypes.object,
+    sliderImage1: PropTypes.object,
+    sliderImage2: PropTypes.object,
+    sliderImage3: PropTypes.object,
+    sliderImage4: PropTypes.object,
+    sliderImage5: PropTypes.object,
+    sliderImage6: PropTypes.object,
+    input1:PropTypes.string, // phone
+    input2: PropTypes.string, // brand
+    input3: PropTypes.string, // ram
+    input4: PropTypes.string, // cpuCore
+    input5: PropTypes.string, // camera
+    input6: PropTypes.string, // storage
+    input7: PropTypes.string, // waranty
+    input8: PropTypes.array, // color
+    input9: PropTypes.string, // display
+    input10: PropTypes.string, // operatingSystem
+    input11: PropTypes.string, // battery
+    input12: PropTypes.string, // network
+    // offerTime: PropTypes.string,
+    // offerValue: PropTypes.string,
+    stateCity: PropTypes.array,
+    dropdownBottom: PropTypes.bool,
+    dropdownRight: PropTypes.bool,
+    clientX: PropTypes.number,
+    clientY: PropTypes.number,
+    dropdownValue: PropTypes.any,
+    shownDropdown: PropTypes.bool,
+    splash: PropTypes.bool,
+    star5: PropTypes.bool,
+    star4: PropTypes.bool,
+    star3: PropTypes.bool,
+    star2: PropTypes.bool,
+    star1: PropTypes.bool,
+    fiveStar: PropTypes.number,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    _list: PropTypes.array,
+    remember: PropTypes.number,
+    confirmPassword: PropTypes.string,
+    password: PropTypes.string,
+    oldPassword: PropTypes.string,
+    phone: PropTypes.string,
+    phoneOrEmail: PropTypes.string,
+    email: PropTypes.string,
+    fullname: PropTypes.string,
+    tokenValue: PropTypes.object,
+    unit: PropTypes.string,
+    plaque: PropTypes.string,
+    address: PropTypes.string,
+    postalCode: PropTypes.string,
+    message: PropTypes.string,
+    captcha: PropTypes.string,
+    refInput: PropTypes.any,
+    showActivity: PropTypes.bool,
+    rand: PropTypes.number,
+    code: PropTypes.string,
+    info: PropTypes.string,
+    meanStar: PropTypes.number,
+    imageUrl: PropTypes.object,
+    videoUrl: PropTypes.object,
+    // price: PropTypes.string,
+    title: PropTypes.string,
   }
 }

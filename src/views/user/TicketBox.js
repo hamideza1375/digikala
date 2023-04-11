@@ -1,6 +1,6 @@
 import moment from 'moment-jalaali'
 import React from 'react'
-import { Badge, Column, Container, ContainerNavigation, FlatList, M_icon, P, Press, Py, Row, Span } from '../../other/Components/Html'
+import { Badge, Column, FlatList, M_icon, P, Py } from '../../other/Components/Html'
 import { truncate } from '../../other/utils/truncate'
 
 
@@ -9,7 +9,7 @@ const TicketBox = (p) => {
   const deleteTicket = (ticketId) => p._user.deleteTicket(ticketId)
 
   return (
-    <ContainerNavigation>
+    <Column f={1} >
       <FlatList
         data={p.userTicketBox}
         renderItem={({ item, index }) => (
@@ -26,7 +26,7 @@ const TicketBox = (p) => {
           </Column>
         )}
       />
-    </ContainerNavigation>
+    </Column>
   )
 }
 

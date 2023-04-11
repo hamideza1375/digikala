@@ -1,6 +1,6 @@
 import React from 'react';
 import _useEffect from '../../controllers/_initial';
-import { Column, ContainerNavigation, Form, Icon, M_icon, P, Press, Row } from '../../other/Components/Html'
+import { Column, Form, M_icon, P, Press } from '../../other/Components/Html'
 
 const Notifee = (p) => {
   _useEffect(() => { return () => { p.settitle(''); p.setinfo('') } }, [])
@@ -10,7 +10,7 @@ const Notifee = (p) => {
   const deleteNotification = () => p._admin.deleteNotification()
 
   return (
-    <ContainerNavigation>
+    <Column f={1} >
       <Form webStyle={{ height: 'calc(100vh - 68px)' }} t m {...p} onClick={createNotifee} >
         <Column w='100%' h='100%' pr={10} jc='center' >
           <Press onClick={deleteNotification} fd='row' bgcolor='#a00a' w={120} br={3} h={30} ai='center' jc='center' >
@@ -19,7 +19,7 @@ const Notifee = (p) => {
           </Press>
         </Column>
       </Form>
-    </ContainerNavigation>
+    </Column>
   )
 }
 export default Notifee

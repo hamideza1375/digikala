@@ -83,7 +83,7 @@ function SearchInput({ table, iconBack, children, drawer, showDrawer, setshowDra
               onSubmitEditing={!home ? () => { searcher(textSearch.toLowerCase()); p.$input.get('dropdownDrawer')?.current?.setNativeProps({ style: { display: 'flex', transform: [{ scale: 0 }] } }) }: ()=>{}}
               iconPress={() => { !home && searcher(textSearch.toLowerCase()) }}
               dropdown={
-                (home || product && (!table)) ?
+                ((home || product) && (textSearch) && (!table)) ?
                   <Dropdown2
                     displayFlex
                     $input={p.$input}
@@ -142,6 +142,8 @@ function SearchInput({ table, iconBack, children, drawer, showDrawer, setshowDra
           }
 
           {iconBack && navigation.canGoBack() ? <Press onClick={() => { navigation.goBack() }} w={45} h={39} br={5} mt={7} jc='center' ai='center' ><Icon name='arrow-left' color='#222' size={20} /></Press> : <Column w={10} />}
+
+          {((!sort) && (!iconBack) && (title) )?<Span style={[styles.containAscDesc, { width: 60 }]}/> : <></>}
 
         </Span>
       </Span>

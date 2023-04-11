@@ -27,29 +27,3 @@ export function user() {
     answersTicket, setanswersTicket,
   }
 }
-
-    // singleTicket, setsingleTicket,
-    // singleAnswer, setsingleAnswer,
-    // phone, setphone,
-    // code, setcode,
-    // fullname, setfullname,
-    // email, setemail,
-    // remember, setremember,
-    // confirmPassword, setconfirmPassword,
-    // imageUrl, setimageUrl,
-    // message, setmessage,
-    // phoneOrEmail, setphoneOrEmail,
-    // password, setpassword,
-    
-  // const [singleAnswer, setsingleAnswer] = useState({})
-  // const [singleTicket, setsingleTicket] = useState({})
-  // const [phone, setphone] = useState('')
-  // const [code, setcode] = useState('')
-  // const [fullname, setfullname] = useState('')
-  // const [email, setemail] = useState('')
-  // const [confirmPassword, setconfirmPassword] = useState('')
-  // const [imageUrl, setimageUrl] = useState('')
-  // const [message, setmessage] = useState('')
-  // const [remember, setremember] = useState('')
-  // const [phoneOrEmail, setphoneOrEmail] = useState('')
-  // const [password, setpassword] = useState('')

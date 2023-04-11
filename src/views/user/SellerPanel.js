@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import _useEffect from '../../controllers/_initial';
-import { ContainerNavigation, Table } from '../../other/Components/Html';
+import { Column, Table } from '../../other/Components/Html';
 
 const SellerPanel = (p) => {
   const [setsellerItemsTable, setsetsellerItemsTable] = useState([])
@@ -9,7 +9,7 @@ const SellerPanel = (p) => {
 
 
   return (
-    <ContainerNavigation>
+    <Column f={1}>
       <Table
         color={['#fff', '#eee', 'black']}
         border={[1, '#ccc']}
@@ -24,7 +24,7 @@ const SellerPanel = (p) => {
         object={p.sellerItems}
         setobject={setsetsellerItemsTable}
       />
-    </ContainerNavigation>
+    </Column>
   )
 }
 

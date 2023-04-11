@@ -1,14 +1,14 @@
 import React from 'react'
-import { Container2, Form } from '../../other/Components/Html'
+import { Column, Form } from '../../other/Components/Html'
 
 const EditComment = (p) => {
 
   p._client.getSingleComment()
 
   return (
-    <Container2>
+    <Column f={1} >
       <Form mAutoFocus s={!p.route.params.commentId ? true : false} m onClick={()=>!p.route.params.commentId ? p._client.editComment() : p._client.editCommentAnswer()} />
-    </Container2>
+    </Column>
   )
 }
 

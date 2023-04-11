@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import { Container2, Form, Span } from '../../other/Components/Html'
+import React from 'react'
+import { Form, Column } from '../../other/Components/Html'
 
 const createComment = (p) => {
   return (
-    <Container2>
+    <Column f={1} >
       <Form mAutoFocus s={!p.route.params.commentId ? true : false} m onClick={!p.route.params.commentId ? p._client.createComment : p._client.createCommentAnswer} />
-    </Container2>
+    </Column>
   )
 }
 

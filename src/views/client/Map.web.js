@@ -1,7 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { axios, localhost } from '../../other/utils/axios/axios'
-// import axios from 'axios';
-
 
 
 const Location = (p) => {

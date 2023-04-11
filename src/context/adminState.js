@@ -44,25 +44,3 @@ export function admin() {
     sellerTable, setsellerTable,
   }
 }
-
-
-    // chartUserLength, setchartUserLength,
-    // chartData, setchartData,
-    // showProgressChartDropdown, setshowProgressChartDropdown,
-    // currentSellerTable, setcurrentSellerTable,
-    // childItemsTable, setchildItemsTable,
-    // childItemTable, setchildItemTable,
-    // currentChildItemsTable, setcurrentChildItemsTable,
-    // currentGroupItemTable, setcurrentGroupItemTable,
-    // groupItemTable, setGroupItemTable,
-
-
-  // const [chartData, setchartData] = useState([])
-  // const [chartUserLength, setchartUserLength] = useState([])
-  // const [showProgressChartDropdown, setshowProgressChartDropdown] = useState()
-  // const [currentSellerTable, setcurrentSellerTable] = useState([])
-  // const [currentChildItemsTable, setcurrentChildItemsTable] = useState([])
-  // const [childItemsTable, setchildItemsTable] = useState([])
-  // const [childItemTable, setchildItemTable] = useState([])
-  // const [currentGroupItemTable, setcurrentGroupItemTable] = useState([])
-  // const [groupItemTable, setGroupItemTable] = useState([])

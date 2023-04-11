@@ -1,7 +1,7 @@
 import React from 'react'
-import { View } from 'react-native';
-import { Container, Input, FlatList } from '../../other/Components/Html';
-import CardAddress from './components/Address/CardAddress';
+import { Text, View } from 'react-native';
+import { Button, Column, FlatList, P, Py, Row, Scroll } from '../../other/Components/Html';
+import spacePrice from '../../other/utils/spacePrice';
 
 const addressMap = new Map()
 
@@ -9,12 +9,11 @@ const QuitsForSeller = (p) => {
   p._admin.getQuitsForSeller()
 
   return (
-    <Container>
+    <Column f={1} >
       <FlatList
         data={p.allAddress}
         contentContainerStyle={{ paddingBottom: 55, }}
         renderItem={({ item, index }) => (
-          item.deleteForUser !== p.tokenValue.userId &&
           <View
             key={item._id} style={{
               alignSelf: 'center',
@@ -26,11 +25,41 @@ const QuitsForSeller = (p) => {
               backgroundColor: '#f5f5f5',
               borderRadius: 4
             }}>
-            <CardAddress {...p} addressMap={addressMap} item={item} />
+            <Card {...p} addressMap={addressMap} item={item} />
           </View>
         )} />
-    </Container>
+    </Column>
   )
 }
 
 export default QuitsForSeller
+function Card(p) {
+  return (
+    <>
+      <Scroll ccStyle={[{ flexDirection:'row', flexWrap:'wrap' }]} >
+
+        <Row jc='center' ai='center' minw={150} h={55} f={1} >
+          <Py >برند : </Py><P >{p.item.brand}</P>
+        </Row>
+
+        <Row jc='center' ai='center' minw={150} h={55} f={1} >
+          <Py >محصول : </Py><P>{p.item.titles}</P>
+        </Row>
+
+        <Row jc='center' ai='center' minw={150} h={55} f={1} >
+          <Py >شماره تلفن: </Py><P >{p.item.phone}</P>
+        </Row>
+
+        <Row jc='center' ai='center' minw={150} h={55} f={1} >
+          <Py >قیمت : </Py><P >{spacePrice(p.item.price)}</P>
+        </Row>
+
+        <Row jc='center' ai='center' minw={150} h={55} f={1} >
+          <Button h={30} fs={11} >پرداخت</Button>
+        </Row>
+      </Scroll>
+
+    </>
+  )
+}
+

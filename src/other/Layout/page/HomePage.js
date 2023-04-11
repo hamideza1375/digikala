@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ProfileDrawer from '../../../views/user/components/ProfileDrawer'
+import HomeDrawer from '../../../views/client/components/HomeDrawer'
 import { SearchBar } from '../../Components/Html'
 import BottomTab from '../../Components/tabNavigation/BottomTab'
 import _useEffect from '../../../controllers/_initial'
@@ -10,7 +10,7 @@ const HomePage = (p) => {
 
   return (
     <>
-      <SearchBar icon={'bars'} drawer={<ProfileDrawer {...p} />} showDrawer={show} setshowDrawer={setshow}
+      <SearchBar icon={'bars'} drawer={<HomeDrawer {...p} />} showDrawer={show} setshowDrawer={setshow}
         home newSearchArray={p.newSearchHomeArray} bgcolor='#ee4499fa'
          src={p.logoUrl}
         iconPress={() => { setshow(!show) }} array={p.allProduct} setarray={p.setallProduct} >

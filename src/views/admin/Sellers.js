@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Column, Container2, ContainerTab, Table } from '../../other/Components/Html'
+import { Button, Column, Table } from '../../other/Components/Html'
 
 const Sellers = (p) => {
 
@@ -8,16 +8,12 @@ const Sellers = (p) => {
   const deleteSeller = (id) => p._admin.deleteSeller(id)
   const setSellerAvailable = (id) => p._admin.setSellerAvailable(id)
 
-  const [current, setcurrent] = useState([])
-  const [pageLimit] = useState(15)
-
-
   return (
-    <ContainerTab>
+    <Column f={1} >
       <Button onClick={() => p.navigation.navigate('AddSeller')} >اضاف کردن فروشنده</Button>
       <Column f={1} w='95%' ai='center' as='center' >
         <Table
-          pageLimit={pageLimit} current={current} setcurrent={setcurrent}
+          pageLimit={15}
           color={['#fff', '#eee', 'black']}
           border={[1, '#ccc']}
           header={['حدف', 'موجودیت', ' نمایش محصولات', 'تلفن', 'نام تجاری']}
@@ -33,7 +29,7 @@ const Sellers = (p) => {
           setobject={_setsellerTable}
         />
       </Column>
-    </ContainerTab>
+    </Column>
   )
 }
 

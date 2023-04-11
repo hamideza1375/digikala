@@ -1,10 +1,7 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import React, { lazy, Suspense, useState } from 'react'
-import { Platform } from 'react-native'
+import React, { lazy, Suspense } from 'react'
 import _useEffect from '../../controllers/_initial';
-import { Br, Button, Container2, ContainerTab, Div, Icon, Loading, M_icon, P, Row, Scroll, Span } from '../../other/Components/Html'
+import { Br, Icon, Loading, M_icon, P, Row, Scroll, Column } from '../../other/Components/Html'
 import share from '../../other/utils/share';
-import Chat from './components/home/Chat'
 
 const Obligations = lazy(() => import('./components/singleItem/Obligations'));
 const Description = lazy(() => import('./components/singleItem/Description'));
@@ -24,7 +21,7 @@ const SingleItem = (p) => {
   const savedItem = () => p._client.savedItem()
 
   return (
-    <ContainerTab>
+    <Column f={1} >
       <Scroll >
         <Row bgcolor='#fff' w='100%' h={50} jc='space-between' >
           <P pr={10} mt={14} fw='bold'>{p.singleItem.title}</P>
@@ -39,58 +36,64 @@ const SingleItem = (p) => {
           </Row>
         </Row>
         <Br />
-        <Span>
-          <Span fd='row-reverse' fw={'wrap'} w='100%' jc='space-between' bgcolor='#fff' pb={25} >
+        <Column>
+          <Column fd='row-reverse' fw={'wrap'} w='100%' jc='space-between' bgcolor='#fff' pb={25} >
 
-            <Span fg={1} mt={20}>
-              <Span w='98.5%'>
+            <Column fg={1} mt={20}>
+              <Column w='98.5%'>
                 <Suspense>
                   <Description {...p} />
                 </Suspense>
-              </Span>
-            </Span>
+              </Column>
+            </Column>
 
-            <Span fg={1} mt={20}>
-              <Span w='98.5%'>
+            <Column fg={1} mt={20}>
+              <Column w='98.5%'>
                 <Suspense>
                   <ImageDisplay {...p} />
                 </Suspense>
-              </Span>
-            </Span>
+              </Column>
+            </Column>
 
-            <Span ai='center' fg={1} mt={20}>
-              <Span ai='center' w='98%' as='center'>
+            <Column ai='center' fg={1} mt={20}>
+              <Column ai='center' w='98%' as='center'>
                 <Suspense>
                   <Specifications {...p} />
                 </Suspense>
 
-                <Suspense style={{ backgroundColor: 'red' }} fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+                <Suspense style={{ backgroundColor: 'red' }} fallback={<Column w='100%' ai='center' ><Loading /></Column>}>
                   <Obligations mt={15} {...p} />
                 </Suspense>
-              </Span>
-            </Span>
+              </Column>
+            </Column>
 
-          </Span>
-        </Span>
+          </Column>
+        </Column>
         <Br />
-        <Span>
+
+      {/* {p.similar.length? */}
+        <Column>
           <Suspense>
             <SliderSimilars {...p} />
           </Suspense>
-        </Span>
-        <Div>
-          <Suspense fallback={<Span w='100%' ai='center' ><Loading /></Span>}>
+        </Column>
+      {/* :
+      <></>  
+      } */}
+
+        <Column mv={8} >
+          <Suspense fallback={<Column w='100%' ai='center' ><Loading /></Column>}>
             <ShowComment {...p} />
           </Suspense>
-        </Div>
-        <Span>
+        </Column>
+        <Column>
           <Suspense>
             <Footer {...p} />
           </Suspense>
-        </Span>
+        </Column>
       </Scroll>
       {/* <Chat {...p} /> */}
-    </ContainerTab>
+    </Column>
   )
 }
 

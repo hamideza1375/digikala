@@ -29,11 +29,11 @@ export function clientController(p) {
     const navigation = useNavigation()
     useEffect(() => {
       setTimeout(() => {
-        if((navigation.getCurrentRoute()?.name === 'Home') || (navigation.getCurrentRoute()?.name === 'ChildItems') || navigation.getCurrentRoute()?.name === 'SingleItem')
-        getSendStatus().then(({ data }) => {
-          if (data.checkSend === 1) p.toast.show('', 'سفارش شما ثبت شده و در حال برسی برای ارسال هست')
-          else if (data.queueSend === 1) p.toast.success(data.queueSend, 'سفارش شما در صف ارسال قرار گرفت')
-        })
+        if ((navigation.getCurrentRoute()?.name === 'Home') || (navigation.getCurrentRoute()?.name === 'ChildItems') || navigation.getCurrentRoute()?.name === 'SingleItem' || navigation.getCurrentRoute()?.name === 'BeforePayment')
+          getSendStatus().then(({ data }) => {
+            if (data.checkSend === 1) p.toast.show('', 'سفارش شما ثبت شده و در حال برسی برای ارسال هست')
+            else if (data.queueSend === 1) p.toast.success(data.queueSend, 'سفارش شما در صف ارسال قرار گرفت')
+          })
       }, 400);
     }, [])
   }
@@ -126,12 +126,12 @@ export function clientController(p) {
       { message: p.message, to: JSON.parse(p.route.params.userphoneOrEmail).map((u, i) => u.slice(0, u.lastIndexOf(i))).join('') })
     p.childItemComment.length && p.setchildItemComment(comment => {
       try {
-      const _comment = [...comment]
-      const index = _comment.findIndex((c) => c._id === p.route.params.commentId)
-      if(index === -1 ) throw new Error()
-      _comment[index].answer.push(data.value)
-      return _comment
-    } catch (error) {console.error(error);}
+        const _comment = [...comment]
+        const index = _comment.findIndex((c) => c._id === p.route.params.commentId)
+        if (index === -1) throw new Error()
+        _comment[index].answer.push(data.value)
+        return _comment
+      } catch (error) { console.error(error); }
     })
     p.setmessage('')
     p.navigation.goBack()
@@ -142,7 +142,7 @@ export function clientController(p) {
       getChildItemComments(p.route.params.id).then(({ data }) => {
         p.setchildItemComment(data.value)
       })
-      return()=> p.setchildItemComment([])
+      return () => p.setchildItemComment([])
     }, [p.route.params])
   }
 
@@ -160,7 +160,7 @@ export function clientController(p) {
           p.setfiveStar(data.value.fiveStar);
         })
       }
-      return()=>{
+      return () => {
         p.setmessage('')
         p.setfiveStar()
       }
@@ -458,6 +458,60 @@ export function clientController(p) {
   this.savedItem = async () => {
     const { data } = await savedItem(p.route.params.id)
     p.setbookmark(data.value)
+  }
+
+
+  this.removeAsyncStorage = () => {
+    useEffect(() => {
+      setTimeout(async () => {
+        const product = await AsyncStorage.getItem('productBasket')
+        const deleteBasket = await AsyncStorage.getItem('deleteBasket')
+        product && p.setproductBasket(JSON.parse(product))
+        getSendStatus().then(async ({ data }) => {
+          if (product && data.checkSend === 1 && !deleteBasket) {
+            _Alert.alert(
+              'سفارش قبلی از حالت ذخیره پاک شود',
+              '',
+              [
+                {
+                  text: 'no', onPress: async () => {
+                    await AsyncStorage.setItem('deleteBasket', 'true');
+                  }
+                },
+                {
+                  text: 'OK', onPress: async () => {
+                    await AsyncStorage.removeItem('productBasket');
+                    await AsyncStorage.setItem('deleteBasket', 'true');
+                    p.setproductBasket({})
+                  }
+                }
+              ]
+            )
+          }
+        })
+      }, 400)
+    }, [p.changePage])
+  }
+
+
+  this.deleteProduct = (item) => {
+    _Alert.alert(
+      "از حذف مطمئنید",
+      "",
+      [
+        { text: 'Cancel', onPress: () => { } },
+        {
+          text: 'OK', onPress: () => {
+            p.setproductBasket((addNumber) => {
+              const obj = { ...addNumber }
+              delete obj[item]
+              AsyncStorage.setItem('productBasket', JSON.stringify(obj)).then(() => { })
+              return obj
+            })
+          }
+        }
+      ]
+    )
   }
 
 

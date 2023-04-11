@@ -16,6 +16,7 @@ export function adminController(p) {
     })
     p.setinput2('')
     p.setphone('')
+    p.navigation.goBack()
   }
 
 
@@ -150,9 +151,7 @@ export function adminController(p) {
       image2: p.image2,
       image3: p.image3,
       image4: p.image4,
-      offerTime: p.offerTime ? p.offerTime : 0,
-      offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9
+      title: p.title, price: Number(p.price), info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9
       , operatingSystem: p.input10,
       battery: p.input11,
       network: p.input12,
@@ -170,7 +169,7 @@ export function adminController(p) {
     p.setinput5('')
     p.setinput6()
     p.setinput7('')
-    p.setinput8('')
+    p.setinput8([])
     p.setinput9('')
     p.setinput10('')
     p.setinput11('')
@@ -197,9 +196,7 @@ export function adminController(p) {
       image2: p.image2,
       image3: p.image3,
       image4: p.image4,
-      offerTime: p.offerTime ? p.offerTime : 0,
-      offerValue: p.offerValue ? p.offerValue : 0,
-      title: p.title, price: p.price, info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9,
+      title: p.title, price: Number(p.price), info: p.info, ram: p.input3, cpuCore: p.input4, camera: p.input5, storage: p.input6, warranty: p.input7, color: JSON.stringify(p.input8), display: p.input9,
       operatingSystem: p.input10,
       battery: p.input11,
       network: p.input12,
@@ -216,7 +213,7 @@ export function adminController(p) {
     p.setinput5('')
     p.setinput6()
     p.setinput7('')
-    p.setinput8('')
+    p.setinput8([])
     p.setinput9('')
     p.setinput10('')
     p.setinput11('')
@@ -270,7 +267,7 @@ export function adminController(p) {
 
 
   this.setOffer = async () => {
-    const { data } = await setOffer(p.route.params.id, { offerTime: p.offerTime ? p.offerTime : 0, offerValue: p.offerValue ? p.offerValue : 0 })
+    const { data } = await setOffer(p.route.params.id, { offerTime: Number(p.offerTime) , offerValue: Number(p.offerValue) })
 
     p.setchildItem((childItem) => {
       const findIndex = childItem.findIndex(s => s._id === p.route.params.id)
@@ -281,7 +278,7 @@ export function adminController(p) {
       return childItem
     })
     p.setofferTime('')
-    p.offerValue('')
+    p.setofferValue('')
     p.navigation.goBack()
   }
   //! ChildItem
@@ -334,7 +331,7 @@ export function adminController(p) {
         p.setinput5('')
         p.setinput6()
         p.setinput7('')
-        p.setinput8('')
+        p.setinput8([])
         p.setinput9('')
         p.setinput10('')
         p.setinput11('')
@@ -417,6 +414,7 @@ export function adminController(p) {
       getProposal().then(({ data }) => {
         p.setproposal(data.value)
       })
+      return () => p.setproposalId([])
     }, [])
   }
 
@@ -549,7 +547,7 @@ export function adminController(p) {
 
   //! PostPrice
   this.sendPostPrice = () => {
-    sendPostPrice({ price: p.price }).then(() => {
+    sendPostPrice({ price: Number(p.price) }).then(() => {
       p.setprice('')
       p.navigation.goBack()
     })

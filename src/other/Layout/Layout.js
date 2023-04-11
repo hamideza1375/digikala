@@ -2,8 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { Platform, SafeAreaView, Pressable, View } from 'react-native';
 import TopTab from '../Components/tabNavigation/TopTab';
-import BottomTab from '../Components/tabNavigation/BottomTab';
-import { Icon } from '../Components/Html';
+import { ContainerTab, Icon } from '../Components/Html';
 import HomePage from './page/HomePage';
 import ChildItemPage from './page/ChildItemPage';
 import SingleItemPage from './page/SingleItemPage';
@@ -42,17 +41,8 @@ export const Layout = (p) => {
       <SafeAreaView />
       <View style={{ flex: 1, overflow: 'hidden' }}>
         {
-          p.route.name === 'Login' && (
-              <TopTab name={'Login'} group={topUser} >
-                {p.children}
-              </TopTab>
-          )
-          ||
-          p.route.name === 'Register' && (
-              <TopTab name={'Register'} group={topUser} >
-                {p.children}
-              </TopTab>
-          )
+          p.route.params.active === 'no' && (
+          <TopTab name={p.route.name} group={topUser} >{p.children}</TopTab>)
           ||
           p.route.name === 'Home' &&
           <HomePage {...p} bottom={bottom} />
@@ -72,11 +62,11 @@ export const Layout = (p) => {
           p.route.name === 'SingleItem' &&
           <SingleItemPage {...p} bottom={bottom} />
           ||
-          p.route.name === 'Profile' &&
-          <ProfilePage {...p} bottom={bottom} />
-          ||
-          p.route.name === 'PanelAdmin' &&
+          (p.route.params.key === 'admin') && (!p.route.params.set) && (p.route.name !== 'Address') && (p.route.name !== 'Sellers') &&
           <PanelAdminPage {...p} bottom={bottom} />
+          ||
+          (p.route.params.key === 'user') && (!p.route.params.view) && (p.route.name !== 'SellerPanel') && (!p.route.params.active) &&
+          <ProfilePage {...p} bottom={bottom} />
           ||
           p.route.name === 'Sellers' &&
           <SellerPage {...p} bottom={bottom} />
@@ -87,7 +77,7 @@ export const Layout = (p) => {
           p.route.name === 'Address' &&
           <AddressPage {...p} bottom={bottom} />
           ||
-          <View flex={1} >{p.children}</View>
+          <ContainerTab >{p.children}</ContainerTab>
         }
       </View>
     </View>
@@ -109,3 +99,5 @@ export const header = () => {
 };
   //   if(navigation.getCurrentRoute() && navigation.getCurrentRoute().params && navigation.getCurrentRoute().params.key && (navigation.getCurrentRoute().params.key !== 'user')) _user = {}
 // getCurrentRoute
+
+

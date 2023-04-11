@@ -1,7 +1,7 @@
 import moment from 'moment-jalaali';
 import React, { useRef, useState } from 'react';
 import { FlatList } from 'react-native';
-import { Icon, Input, Container, P, Img, Column, Row, M_icon, Dropdown, A_icon, Modal, Card2, Button, Form, ContainerNavigation, Py } from '../../other/Components/Html';
+import { Icon, Input, P, Img, Column, Row, M_icon, A_icon, Modal, Form, Py } from '../../other/Components/Html';
 import _Alert from '../../other/utils/alert';
 import { localhost } from '../../other/utils/axios/axios';
 import { imagePicker } from '../../other/utils/imagePicer';
@@ -24,7 +24,7 @@ const PvTicket = (p) => {
   const ref = useRef()
 
   return (
-    <ContainerNavigation style={{}} >
+    <Column f={1}>
       {p.answersTicket.length ?
         <FlatList
           inverted
@@ -100,7 +100,7 @@ const PvTicket = (p) => {
         <Form editMessage m im edit onClick={() => editAnswer(itemId)} />
       </Modal>
 
-    </ContainerNavigation>
+    </Column>
   )
 }
 export default PvTicket

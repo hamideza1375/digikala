@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { Badge, Button, Card2, Column, Div, Icon, P, Pfa, Press, Py, Row, Span } from '../../../../other/Components/Html'
+import React from 'react'
+import { Badge, Button, Card2, Column, Div, Icon, P, Pfa, Press, Row, Span } from '../../../../other/Components/Html'
 import spacePrice from '../../../../other/utils/spacePrice'
 import _useEffect from '../../../../controllers/_initial';
 import convertColor from '../../../../other/utils/convertColor'
@@ -8,18 +8,78 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Description = (p) => {
 
-  const setAsyncStorage = async (productBasket) => {
-    await AsyncStorage.setItem('productBasket', JSON.stringify(productBasket))
-  }
-
   p._client.setColor()
+  p._client.getSingleSeller()
+
 
   let price = 0
   if (p.singleItem.offerTime?.exp > new Date().getTime())
     price = parseInt(p.singleItem.price - ((p.singleItem.price / 100) * p.singleItem.offerValue))
   else price = p.singleItem.price
 
-  p._client.getSingleSeller()
+
+  const setAsyncStorage = async (productBasket) => {
+    await AsyncStorage.setItem('productBasket', JSON.stringify(productBasket))
+  }
+
+
+  _useEffect(() => {
+    p.productBasket[p.route.params.id]?.color &&
+       p.setcolor(color => {
+        const c = { ...color }
+        c[p.route.params.id] = p.productBasket[p.route.params.id]?.color
+        return c
+      })
+  }, [p.productBasket[p.route.params.id]])
+
+
+  const addToBasked = () => {
+    ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (p.availableSeller)) ?
+      p.setproductBasket(addNumber => {
+        const obj = { ...addNumber }
+        obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }
+        setAsyncStorage(obj)
+        return obj
+      })
+      :
+      p.toast.warning('خطا', 'محصول مورد نظر موجود نمیباشد')
+  }
+
+  const plus = () => {
+    (p.singleItem.availableCount && p.productBasket[p.route.params.id].number < p.singleItem.availableCount) &&
+      p.setproductBasket(addNumber => {
+        const obj = { ...addNumber }
+        obj[p.route.params.id].number = obj[p.route.params.id].number + 1
+        setAsyncStorage(obj)
+        return obj
+      })
+  }
+
+  const minus = () => {
+    p.productBasket[p.route.params.id]?.number &&
+      p.setproductBasket(addNumber => {
+        const obj = { ...addNumber }
+        obj[p.route.params.id].number = obj[p.route.params.id].number - 1
+        if (obj[p.route.params.id].number === 0) delete obj[p.route.params.id]
+        setAsyncStorage(obj)
+        return obj
+      })
+  }
+
+
+  const setColor = (item) => {
+    p.setcolor((color) => {
+      const c = { ...color }
+      c[p.route.params.id] = item.color
+      p.productBasket[p.route.params.id] && p.setproductBasket(addNumber => {
+        const obj = { ...addNumber }
+        obj[p.route.params.id].color = item.color
+        setAsyncStorage(obj)
+        return obj
+      })
+      return c
+    })
+  }
 
 
   return (
@@ -73,20 +133,7 @@ const Description = (p) => {
 
                 {p.singleItem.color?.map((item, index) => (
                   item.value > 0 && <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
-                    <Press onClick={() => {
-                      p.setcolor((color) => {
-                        const c = { ...color }
-                        c[p.route.params.id] = item.color
-
-                        p.productBasket[p.route.params.id] && p.setproductBasket(addNumber => {
-                          const obj = { ...addNumber }
-                          obj[p.route.params.id].color = item.color
-                          setAsyncStorage(obj)
-                          return obj
-                        })
-                        return c
-                      })
-                    }} ai='center' h={30} mt={6}>
+                    <Press onClick={() => { setColor(item) }} ai='center' h={30} mt={6}>
                       <Badge bgcolor={p.color[p.route.params.id] !== item.color ? '#fff' : (item.color === 'white' ? '#f5f5f5' : item.color)} border={item.color === 'white' ? [2, '#f5f5f5'] : [2, item.color]} w={30} h={30} /></Press>
                     <Span><P fs={10} >{convertColor(item.color)}</P></Span>
                   </Span>
@@ -99,36 +146,12 @@ const Description = (p) => {
             <Row fg={1} mb={10} jc='space-around' ai='center'>
 
               <Column w='70%' h={'100%'} jc='center' >
-                <Button disable={p.productBasket[p.route.params.id]?.number} onClick={() =>
-
-                  ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (p.availableSeller)) ?
-                    p.setproductBasket(addNumber => {
-                      const obj = { ...addNumber }
-                      obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }
-                      setAsyncStorage(obj)
-                      return obj
-                    })
-                    :
-                    p.toast.warning('خطا', 'محصول مورد نظر موجود نمیباشد')
-
-
-                } w='100%' bgcolor='#909' style={{ alignSelf: 'center' }} >افزودن به سبد خرید</Button>
+                <Button disable={p.productBasket[p.route.params.id]?.number} onClick={() => { addToBasked() }} w='100%' bgcolor='#909' style={{ alignSelf: 'center' }} >افزودن به سبد خرید</Button>
               </Column>
 
               {p.productBasket[p.route.params.id]?.number ? <Column h={'100%'} jc='center' >
                 <Column style={{ height: 20, width: 20 }} >
-                  <Icon name='plus' color='#0ad' size={20} onClick={() =>
-
-                    (p.singleItem.availableCount && p.productBasket[p.route.params.id].number < p.singleItem.availableCount) &&
-                    p.setproductBasket(addNumber => {
-                      const obj = { ...addNumber }
-                      obj[p.route.params.id].number = obj[p.route.params.id].number + 1
-                      setAsyncStorage(obj)
-                      return obj
-                    })
-
-
-                  } />
+                  <Icon name='plus' color='#0ad' size={20} onClick={() => { plus() }} />
                 </Column>
 
                 <Column style={{ height: 17, width: 20 }} >
@@ -137,18 +160,7 @@ const Description = (p) => {
 
 
                 <Column style={{ height: 20, width: 20 }} >
-                  <Icon name='minus' color='#e11' size={20} onClick={() => {
-
-                    p.productBasket[p.route.params.id]?.number &&
-                      p.setproductBasket(addNumber => {
-                        const obj = { ...addNumber }
-                        obj[p.route.params.id].number = obj[p.route.params.id].number - 1
-                        if (obj[p.route.params.id].number === 0) delete obj[p.route.params.id]
-                        setAsyncStorage(obj)
-                        return obj
-                      })
-
-                  }} />
+                  <Icon name='minus' color='#e11' size={20} onClick={() => { minus() }} />
                 </Column>
               </Column>
                 :

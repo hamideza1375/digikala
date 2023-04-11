@@ -1,12 +1,12 @@
 import React from 'react'
-import { Column, ContainerNavigation, Form, Icon, Input, M_icon, P, Press, Row } from '../../other/Components/Html'
+import { Column, Form, M_icon, P, Press, Row } from '../../other/Components/Html'
 
 const SendTicket = (p) => {
 
   const sendNewTicket = () => p._user.sendNewTicket()
 
   return (
-    <ContainerNavigation>
+    <Column f={1}>
       <Column style={{ transform: [{ scaleY: .8 }] }} >
 
         <Form top={0} mt={0} pb={0} t m plackTextTop={false} onClick={sendNewTicket} {...p} >
@@ -26,7 +26,7 @@ const SendTicket = (p) => {
         </Form>
 
       </Column>
-    </ContainerNavigation>
+    </Column>
   )
 }
 

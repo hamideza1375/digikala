@@ -1,12 +1,16 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import _useEffect from '../../../controllers/_initial'
-import PanelAdminDrawer from '../../../views/user/components/PanelAdminDrawer'
+import PanelAdminDrawer from '../../../views/admin/components/PanelAdminDrawer'
 import { SearchBar } from '../../Components/Html'
 
 const PanelAdminPage = (p) => {
 
   const [show, setshow] = useState(true)
 
+  useEffect(() => {
+    if(p.width <= 1024 ) setshow(false)
+    else setshow(true)
+   }, [p.route.name])
 
   return (
     <>

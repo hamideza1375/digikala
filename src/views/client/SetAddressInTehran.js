@@ -1,7 +1,6 @@
 import React from 'react';
 import _useEffect from '../../controllers/_initial';
-import Map from './Map';
-import { Column, Container, ContainerNavigation, Form, Icon, M_icon, Press, Py, Row } from '../../other/Components/Html';
+import { Column, Form } from '../../other/Components/Html';
 import { getAddress } from '../../services/clientService';
 
 
@@ -37,12 +36,12 @@ function SetAddressInTehran(p) {
 
 
   return (
-    <Container>
+    <Column f={1} >
       <Form f ph $plaque $unit $address flexDirection='row' onClick={() => p.latlng.lat ?
         confirmPayment()
         :
         p.toast.show('', 'برگردین روی نقشه موقعیتتان را مشخص کنید')} />
-    </Container>
+    </Column>
   )
 }
 export default SetAddressInTehran;

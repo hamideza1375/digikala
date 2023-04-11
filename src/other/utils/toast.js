@@ -111,15 +111,15 @@ const ToastProvider = (p) => {
           onLayout={() => { start(); }}
           style={[{ ...shadow }, {
             zIndex: 1111,
-            position: Platform.OS === 'web'?'fixed':'absolute', top: i * 115, left: fadeAnim, width: 300, minHeight: 5, maxHeight: 115,paddingBottom:8, maxWidth: '88%',
+            position: Platform.OS === 'web'?'fixed':'absolute', top: i * 115, left: fadeAnim, width: 300, maxWidth:'90%', minHeight: 5, maxHeight: 115,paddingBottom:8,
             display: 'flex',
              backgroundColor: toast.backgroundColor, borderRadius: 5,
           },Platform.OS === 'ios' ?{marginTop:55}:{marginTop:15}]}>
           <Span style={{ paddingHorizontal: 14, paddingTop: 8 }} >
             <P style={{ padding: 6, color: 'white', position: 'absolute', top: 1, alignSelf: 'flex-end' }}
               onClick={() => { let filter = p._list.filter((l) => l.id !== toast.id); p.set_list(filter); }}>X</P>
-            <P style={{ width: '95%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', paddingTop: 2 }} >{toast.title}</P>
-            <P style={{ width: '95%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', fontSize: toast.description === '√'?25: 12, fontWeight: '200', paddingTop: 8, paddingBottom: 5, paddingRight: toast.description === '√'?5: 1 }} >{toast.description}</P>
+            <P style={{ width: '90%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', paddingTop: 2 }} >{toast.title}</P>
+            <P style={{ width: '98%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', fontSize: toast.description === '√'?25: 12, fontWeight: '200', paddingTop:toast.title?8: 14, paddingBottom: 8, paddingRight: toast.description === '√'?5: 1 }} >{toast.description}</P>
           </Span>
         </Animated.View>
       ))

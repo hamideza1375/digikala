@@ -1,39 +1,39 @@
 import React from 'react'
-import { Column, Container, ContainerNavigation, FlatList, P, Span } from '../../other/Components/Html'
+import { Column, FlatList, P, Row } from '../../other/Components/Html'
 import moment from 'moment-jalaali';
 import { Text, View } from 'react-native';
 import spacePrice from '../../other/utils/spacePrice';
 
 const CartAllPayment = (p) => {
 
-  const containerColumn = { borderBottomWidth: .2, borderColor: '#888', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }
+  const containerColumn = { borderBottomWidth: .2, borderColor: 'silver', paddingVertical: 15, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 15, }
 
   return (
     p.item?.fullname ?
       <>
-        <View style={[containerColumn, { paddingVertical: 0, paddingBottom: 20 }]} >
-          <Text ><Text style={[{ fontWeight: 'bold', textAlign: 'left' }]} >نام: </Text>{p.item.fullname}</Text>
-          <View style={{ flexDirection: 'row' }}>
-            <Text >شماره تلفن: </Text><Text  >{p.item.phone}</Text></View>
-        </View>
-        <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
-          <Text   ><Text >آدرس: </Text >{p.item.formattedAddress}</Text>
-        </View>
-        <View style={containerColumn} >
-          <Text  ><Text style={{ fontWeight: 'bold' }} >پلاک: </Text>{p.item.plaque}</Text>
-          <Text  ><Text style={{ fontWeight: 'bold' }} >طبقه: </Text>{p.item.unit}</Text>
-          <Text  ><Text style={{ fontWeight: 'bold' }} >شماره: </Text>{p.item.id}</Text>
-        </View>
+        <Row style={[containerColumn, { paddingVertical: 0, paddingBottom: 20, paddingTop:4}]} >
+          <P  mb={-4}><P style={[{ fontWeight: 'bold', PAlign: 'left' }]} >نام: </P>{p.item.fullname}</P>
+          <Row mb={-4} style={{ flexDirection: 'row' }}>
+            <P >شماره تلفن: </P><P  >{p.item.phone}</P></Row>
+        </Row>
+        <Row style={{ borderBottomWidth: .2, borderColor: 'silver', padding: 15, width: '100%' }} >
+          <P   ><P >آدرس: </P >{p.item.address}</P>
+        </Row>
+        <Row style={containerColumn} >
+          <P  ><P style={{ fontWeight: 'bold' }} >پلاک: </P>{p.item.plaque}</P>
+          <P  ><P style={{ fontWeight: 'bold' }} >طبقه: </P>{p.item.unit}</P>
+          <P  ><P style={{ fontWeight: 'bold' }} >شماره: </P>{p.item.id}</P>
+        </Row>
 
-        <View style={{ borderBottomWidth: .2, borderColor: '#888', padding: 15, width: '100%' }} >
-          <Text   ><Text >اسامی سفارش: </Text >{p.item.titles}</Text>
-        </View>
+        <Row style={{ borderBottomWidth: .2, borderColor: 'silver', padding: 15, width: '100%' }} >
+          <P   ><P >اسامی سفارش: </P >{p.item.titles}</P>
+        </Row>
 
-        <View style={containerColumn} >
-          <Text  ><Text style={{ fontWeight: 'bold' }} >قیمت: </Text>{spacePrice(p.item.price)} تومان</Text>
-          <Text style={{ color: '#ababab', }}>{moment(p.item.date).format('jYYYY/jM/jD hh:mm')}</Text>
-          {/* <Text style={{ color: '#ababab', }}>{new Date().toString().split(" ")[4]}</Text> */}
-        </View>
+        <Row style={[containerColumn,{borderBottomWidth:0, paddingBottom:5}]} >
+          <P  ><P style={{ fontWeight: 'bold' }} >قیمت: </P>{spacePrice(p.item.price)} تومان</P>
+          <P style={{ color: '#ababab', }}>{moment(p.item.date).format('jYYYY/jM/jD hh:mm')}</P>
+          {/* <P style={{ color: '#ababab', }}>{new Date().toString().split(" ")[4]}</P> */}
+        </Row>
       </>
       :
       <></>
@@ -49,25 +49,25 @@ const ShowLastOrder = (p) => {
   p._user.getLastPayment()
 
   return (
-    <ContainerNavigation>
+    <Column f={1} >
       <FlatList
         data={p.lastPayment}
         renderItem={({ item, index }) => (
           <View key={item._id} style={{
             alignSelf: 'center',
             borderWidth: .3,
-            borderColor: '#888',
-            width: '90%',
-            marginVertical: 15,
+            borderColor: 'silver',
+            width: '95%',
+            marginVertical: 10,
             padding: 15,
-            backgroundColor: '#f5f5f5',
+            backgroundColor: '#fff',
             borderRadius: 4
           }}>
             <CartAllPayment {...p} item={item} />
           </View>
         )}
       />
-    </ContainerNavigation>
+    </Column>
   )
 }
 

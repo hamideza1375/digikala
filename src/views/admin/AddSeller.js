@@ -1,12 +1,12 @@
 import React from 'react'
-import { ContainerNavigation, Form } from '../../other/Components/Html'
+import { Column, Form } from '../../other/Components/Html'
 
 const AddSeller = (p) => {
 
   return (
-    <ContainerNavigation>
+    <Column f={1} >
       <Form ph in2 /*brand*/ onClick={()=>p._admin.createSeller()} />
-    </ContainerNavigation>
+    </Column>
   )
 }
 

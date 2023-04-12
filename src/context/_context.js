@@ -1,9 +1,8 @@
-import { createContext, useContext, useEffect } from 'react';
+import { createContext, useContext } from 'react';
 import { initial } from './_initialState';
 import { client } from './clientState';
 import { admin } from './adminState';
 import { user } from './userState';
-import { useNavigation } from '@react-navigation/native';
 
 function State() {
 
@@ -22,11 +21,3 @@ function State() {
 export const states = () => new State()
 export const contextStates = createContext(states);
 export const context = () => useContext(contextStates)
-
-
-
-export const propTypes = (component) => {
-  component.propTypes = {
-
-  }
-}

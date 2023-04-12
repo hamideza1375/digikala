@@ -116,7 +116,7 @@ const Mobile = () => {
               <Init ref={(e) => allState.init.set$(e)} id={'s'} />
               <Tab.Navigator screenOptions={() => { return { headerTitleStyle: { color: 'transparent' }, headerTitleAlign: 'center', ...icon } }} >
                 <Tab.Group>
-                  <Tab.Screen initialParams={{ key: 'client' }} name="Home" options={{ title: 'خانه', headerShown: false }} {...clientChildren(Home, '1')} />
+                  <Tab.Screen initialParams={{ key: 'client' }} name="Home" options={{ title: 'دیجی کالا', headerShown: false }} {...clientChildren(Home, '1')} />
                   <Tab.Screen initialParams={{ key: 'client' }} name="ChildItems" options={{ title: 'محصولات', headerShown: false }} {...clientChildren(ChildItems, '1')} />
                   <Tab.Screen initialParams={{ key: 'client' }} name="ChildOffers" options={{ title: 'تخفیف ها', headerShown: false }} {...clientChildren(ChildOffers, '1')} />
                   <Tab.Screen initialParams={{ key: 'client' }} name="ChildPopulars" options={{ title: 'محبوب ها', headerShown: false }} {...clientChildren(ChildPopulars, '1')} />

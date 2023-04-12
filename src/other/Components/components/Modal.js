@@ -6,14 +6,14 @@ import { Scroll } from "../Html";
 
 export default function Modal({ style, children, setshow, show, onClick, onHidden }) {
 
-  useEffect(() => {
-    if (onHidden && !show) onHidden()
-  }, [show])
+  // useEffect(() => {
+  //   if (onHidden && !show) onHidden()
+  // }, [show])
 
 
   return (
     <Pressable onPress={Platform.OS === 'web' ? onClick : () => { }} style={{ height: 0 }}>
-      <_Modal supportedOrientations={['portrait', 'landscape']}
+      <_Modal onDismiss={onHidden} supportedOrientations={['portrait', 'landscape']}
         animationType="fade" transparent={true} visible={show}>
         <ScrollView onTouchMove={Platform.OS !== 'web' ? onClick : () => { }} contentContainerStyle={[styles.centeredView, { backgroundColor: '#6669' }]}>
           <View style={[styles.modalView, style]}>

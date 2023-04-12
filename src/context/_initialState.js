@@ -191,8 +191,6 @@ export const initialPropType = (component) => {
     input10: PropTypes.string, // operatingSystem
     input11: PropTypes.string, // battery
     input12: PropTypes.string, // network
-    // offerTime: PropTypes.string,
-    // offerValue: PropTypes.string,
     stateCity: PropTypes.array,
     dropdownBottom: PropTypes.bool,
     dropdownRight: PropTypes.bool,
@@ -233,7 +231,9 @@ export const initialPropType = (component) => {
     meanStar: PropTypes.number,
     imageUrl: PropTypes.object,
     videoUrl: PropTypes.object,
-    // price: PropTypes.string,
     title: PropTypes.string,
+    // price: PropTypes.string,
+    // offerTime: PropTypes.string,
+    // offerValue: PropTypes.string,
   }
 }

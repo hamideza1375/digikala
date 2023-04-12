@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import { Column, P, List as _list, Switch, CheckBoxRadius, Scroll, Button } from '../../../other/Components/Html'
 
-const FilterList = (p) => {
+const FilterListDrawer = (p) => {
 
   const [brandFilterValue, setbrandFilterValue] = useState([
     { _id: '1', value: 'همه', filterValue: '' },
@@ -448,4 +448,4 @@ const FilterList = (p) => {
   )
 }
 
-export default memo(FilterList)
+export default memo(FilterListDrawer)

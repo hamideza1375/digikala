@@ -44,6 +44,7 @@ export function clientController(p) {
     useEffect(() => {
       (async () => {
         const { data } = await getCategory()
+        if (!data?.value) return
         p.setcategory(data.value)
       })()
     }, [])
@@ -55,6 +56,7 @@ export function clientController(p) {
     useEffect(() => {
       (async () => {
         const { data } = await getChildItems(p.route.params.id)
+        if (!data?.value) return
         p.setchildItem(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
         p.setnewSearchArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
       })()
@@ -66,6 +68,7 @@ export function clientController(p) {
     useEffect(() => {
       (async () => {
         const { data } = await getOffers()
+        if (!data?.value) return
         p.setoffers(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
         p.setnewSearchOffershArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
       })()
@@ -77,6 +80,7 @@ export function clientController(p) {
     useEffect(() => {
       (async () => {
         const { data } = await getPopulars()
+        if (!data?.value) return
         p.setpopulars(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
         p.setnewSearchPopularsArray(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })));
       })()
@@ -88,6 +92,7 @@ export function clientController(p) {
     useEffect(() => {
       (async () => {
         const { data } = await getSimilars(p.route.params.id)
+        if (!data?.value) return
         p.setsimilar(data.value.map(item => ({ ...item, imageUrl: item.imageUrl1 })))
       })()
     }, [p.route.params])
@@ -100,6 +105,7 @@ export function clientController(p) {
     _useEffect(() => {
       (async () => {
         const { data } = await getSingleItem(p.route.params.id)
+        if (!data?.value) return
         p.setsingleItem(data.value)
       })()
       return () => p.setsingleItem({})
@@ -151,11 +157,13 @@ export function clientController(p) {
     _useEffect(() => {
       if (!p.route.params.commentId) {
         getSingleComment(p.route.params.id).then(({ data }) => {
+        if (!data?.value) return
           p.setmessage(data.value.message);
           p.setfiveStar(data.value.fiveStar);
         })
       } else {
         getSingleCommentAnswer(p.route.params.id, p.route.params.commentId).then(({ data }) => {
+          if (!data?.value) return
           p.setmessage(data.value.message);
           p.setfiveStar(data.value.fiveStar);
         })

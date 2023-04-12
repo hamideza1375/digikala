@@ -73,7 +73,7 @@ function ScrollSlider(p) {
           {...p}
           renderItem={renderItem}
           contentContainerStyle={[{ flexGrow: 1, direction: 'rtl' }, ccStyle]}
-          onLayout={(e) => { let int = setInterval(sum, 4000); function sum() { if (scroll2 && !(count.current.count >= data.length)) { open() } else clearInterval(int) } interval.current.interval = int }}
+          onLayout={(e) => { let int = setInterval(sum, 3000); function sum() { if (scroll2 && !(count.current.count >= data.length)) { open() } else clearInterval(int) } interval.current.interval = int }}
           // scrollEventThrottle={0}
           // alwaysBounceHorizontal={false}
           // alwaysBounceVertical={false}

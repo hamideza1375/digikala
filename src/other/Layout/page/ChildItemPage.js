@@ -1,6 +1,6 @@
 import React, { memo, useState } from 'react'
 import _useEffect from '../../../controllers/_initial'
-import FilterList from '../../../views/client/components/FilterList'
+import FilterListDrawer from '../../../views/client/components/FilterListDrawer'
 import { SearchBar } from '../../Components/Html'
 import BottomTab from '../../Components/tabNavigation/BottomTab'
 
@@ -11,7 +11,7 @@ const ChildItemPage = (p) => {
 
   return (
     <>
-      <SearchBar drawer={<FilterList setshowDrawer={setshow} {...p} array={p.newSearchArray} setarray={p.setchildItem} />} showDrawer={show} setshowDrawer={setshow}
+      <SearchBar drawer={<FilterListDrawer setshowDrawer={setshow} {...p} array={p.newSearchArray} setarray={p.setchildItem} />} showDrawer={show} setshowDrawer={setshow}
        product newSearchArray={p.newSearchArray} sort bgcolor='#ee4499fa' icon={'bars'} src={p.logoUrl}
         iconPress={() => { setshow(!show) }} array={p.childItem} setarray={p.setchildItem} >
 

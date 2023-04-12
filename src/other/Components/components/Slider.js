@@ -1,5 +1,5 @@
 import { useFocusEffect } from '@react-navigation/native';
-import React, { useCallback, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { Animated, ScrollView, TouchableHighlight, TouchableNativeFeedback, View } from 'react-native';
 import { localhost } from '../../utils/axios/axios';
 import { Img, Span, M_icon, Press, Badge, Row } from '../Html'
@@ -13,6 +13,7 @@ var count = 0,
 function Slider({ width, style, onClick, data }) {
 
   const [badgeActive, setbadgeActive] = useState(0)
+  const [showOpacity, setshowOpacity] = useState(false)
 
   const ref = useRef()
 
@@ -40,16 +41,11 @@ function Slider({ width, style, onClick, data }) {
 
 
 
-  // if (_width !== width) {
-  //   ref.current && ref.current.scrollTo({ x: 0, y: 0, animated: true });
-  //   count = 1
-  //   interval && clearInterval(interval)
-  // }
 
   useFocusEffect(useCallback(() => {
 
     _width = width
-    interval = setInterval(sum, 6000);
+    interval = setInterval(sum, 5000);
     function sum() {
       open()
     }
@@ -63,6 +59,17 @@ function Slider({ width, style, onClick, data }) {
       clearInterval(interval)
     }
   }, []))
+
+
+
+
+  useEffect(() => {
+    setTimeout(() => {
+      setshowOpacity(true)
+    }, 1000);
+  }, [])
+
+
 
 
   return (
@@ -85,7 +92,7 @@ function Slider({ width, style, onClick, data }) {
         contentContainerStyle={{ overflow: 'hidden', }}
         style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
         {data.map((image, index) => (
-          ((image) && (badgeActive === index)) ? <View key={index} style={{ width }} ><AnimationImage image={image} width={width} style={index === 0 ?{opacity:1}:{}} /></View> : <View key={index} />
+          ((image) && (badgeActive === index)) ? <View key={index} style={{ width }} ><AnimationImage image={image} width={width} style={!showOpacity ? { opacity: 1 } : {}} /></View> : <View key={index} />
         ))
         }
       </ScrollView>
@@ -128,7 +135,7 @@ function AnimationImage({ image, width, style }) {
   };
 
   return (
-    <Animated.View onLayout={() => setOpacity()} style={[{ width, opacity: fadeAnim },style]}  ><View style={{ width }} ><Img w='100%' style={{ resizeMode: 'stretch' }} h={300} src={`${localhost}/upload/slider/${image}`} /></View></Animated.View>
+    <Animated.View onLayout={() => setOpacity()} style={[{ width, opacity: fadeAnim }, style]}  ><View style={{ width }} ><Img w='100%' style={{ resizeMode: 'stretch' }} h={300} src={`${localhost}/upload/slider/${image}`} /></View></Animated.View>
   )
 }
 

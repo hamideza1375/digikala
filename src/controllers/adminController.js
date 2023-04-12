@@ -535,8 +535,7 @@ export function adminController(p) {
     useEffect(() => {
       (async () => {
         const { data } = await getQuitsForSeller()
-        p.setallAddress(data.value)
-        p.setnewSearchAddressArray(data.value)
+        p.setallQuitsSeller(data.value)
       })()
     }, [])
   }

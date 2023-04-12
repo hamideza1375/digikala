@@ -2,8 +2,8 @@ import React from 'react'
 import { Text, View } from 'react-native';
 import { Button, Column, FlatList, P, Py, Row, Scroll } from '../../other/Components/Html';
 import spacePrice from '../../other/utils/spacePrice';
+import { sendQuitForSeller } from '../../services/adminService';
 
-const addressMap = new Map()
 
 const QuitsForSeller = (p) => {
   p._admin.getQuitsForSeller()
@@ -11,21 +11,21 @@ const QuitsForSeller = (p) => {
   return (
     <Column f={1} >
       <FlatList
-        data={p.allAddress}
+        data={p.allQuitsSeller}
         contentContainerStyle={{ paddingBottom: 55, }}
         renderItem={({ item, index }) => (
           <View
             key={item._id} style={{
               alignSelf: 'center',
               borderWidth: .3,
-              borderColor: '#888',
-              width: '90%',
-              marginVertical: 15,
+              borderColor: 'silver',
+              width: '95%',
+              marginVertical: 10,
               padding: 15,
-              backgroundColor: '#f5f5f5',
+              backgroundColor: '#fff',
               borderRadius: 4
             }}>
-            <Card {...p} addressMap={addressMap} item={item} />
+            <Card {...p} item={item} />
           </View>
         )} />
     </Column>
@@ -34,28 +34,39 @@ const QuitsForSeller = (p) => {
 
 export default QuitsForSeller
 function Card(p) {
+
+  const sendQuits = async (item) => {
+    await sendQuitForSeller(item.productId, item.number, item._id)
+    p.setallQuitsSeller(allQuitsSeller => allQuitsSeller.filter(q => q._id !== item._id))
+
+  }
+
   return (
     <>
-      <Scroll ccStyle={[{ flexDirection:'row', flexWrap:'wrap' }]} >
+      <Scroll ccStyle={[{ flexDirection: 'row', flexWrap: 'wrap' }]} >
 
-        <Row jc='center' ai='center' minw={150} h={55} f={1} >
+        <Row jc='center' ai='center' minw={150} minh={55} f={1} >
           <Py >برند : </Py><P >{p.item.brand}</P>
         </Row>
 
-        <Row jc='center' ai='center' minw={150} h={55} f={1} >
-          <Py >محصول : </Py><P>{p.item.titles}</P>
-        </Row>
-
-        <Row jc='center' ai='center' minw={150} h={55} f={1} >
+        <Row jc='center' ai='center' minw={150} minh={55} f={1} >
           <Py >شماره تلفن: </Py><P >{p.item.phone}</P>
         </Row>
 
-        <Row jc='center' ai='center' minw={150} h={55} f={1} >
-          <Py >قیمت : </Py><P >{spacePrice(p.item.price)}</P>
+        <Row jc='center' ai='center' minw={150} minh={55} f={1} >
+          <Py >محصول : </Py><P>{p.item.product}</P>
         </Row>
 
-        <Row jc='center' ai='center' minw={150} h={55} f={1} >
-          <Button h={30} fs={11} >پرداخت</Button>
+        <Row jc='center' ai='center' minw={150} minh={55} f={1} >
+          <Py >تعداد : </Py><P >{spacePrice(p.item.number)}</P>
+        </Row>
+
+        <Row jc='center' ai='center' minw={150} minh={55} f={1} >
+          <Py >قیمت کل : </Py><P >{spacePrice(p.item.totalPrice)}</P>
+        </Row>
+
+        <Row jc='center' ai='center' minw={150} minh={55} f={1} >
+          <Button onClick={() => sendQuits(p.item)} h={30} fs={11} >پرداخت</Button>
         </Row>
       </Scroll>
 

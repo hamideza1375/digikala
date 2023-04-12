@@ -2,6 +2,8 @@ import React, { useCallback, useState, useRef } from "react";
 import { ActivityIndicator, View, Text, Animated, Easing, Platform } from "react-native";
 import Icon from 'react-native-vector-icons/dist/FontAwesome5';
 import { useFocusEffect } from '@react-navigation/native';
+import {P} from '../Html';
+
 
 let qq
 const Loading = ({ style, text, h, setshowActivity, time = 7100, scale, androidScale, left, right, top, bottom, pos, ...p }) => {
@@ -63,7 +65,7 @@ const Loading = ({ style, text, h, setshowActivity, time = 7100, scale, androidS
           :
           <View style={{ alignItems: 'center', width: '100%' }}>
             <Icon name="frown-open" size={55} style={[{ marginBottom: 10 }]} />
-            <Text children={text ? text : 'متأستفانه چیزی پیدا نشد'} />
+            <P children={text ? text : 'متأستفانه چیزی پیدا نشد'} />
           </View>
         }
       </View>

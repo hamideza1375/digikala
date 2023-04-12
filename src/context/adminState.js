@@ -18,6 +18,7 @@ export function admin() {
   const [ticketSeen, setticketSeen] = useState(false)
   const [category,setcategory] =useState([])
   const [childItem, setchildItem] = useState([])
+  const [allQuitsSeller, setallQuitsSeller] = useState([])
   const [newSearchArray, setnewSearchArray] = useState([])
   const [newSearchSellerArray, setnewSearchSellerArray] = useState([])
   const [newSearchAddressArray, setnewSearchAddressArray] = useState([])
@@ -25,6 +26,7 @@ export function admin() {
   this.admin = {
     newSearchAddressArray, setnewSearchAddressArray,
     newSearchSellerArray, setnewSearchSellerArray,
+    allQuitsSeller, setallQuitsSeller,
     childItem, setchildItem,
     newSearchArray, setnewSearchArray,
     category,setcategory,

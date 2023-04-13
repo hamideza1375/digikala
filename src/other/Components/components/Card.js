@@ -454,9 +454,9 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   maxWidth: '20%',
                 }, dr === 'ltr' ? { left: 5, paddingLeft: 10 } : { right: 5, paddingRight: 10 }]} >
 
-                <Pressable onPress={imgClick} style={{ width: 70, height: 70, borderRadius: 50, alignSelf: 'center', top: 15, position: 'absolute', cursor: imgClick ? 'pointer' : '' }} >
+                <Pressable onPress={imgClick} style={{ width: 75, height: 75, borderRadius: 50, alignSelf: 'center', top: 15, position: 'absolute', cursor: imgClick ? 'pointer' : '' }} >
                   <Image source={img} style={[{
-                    width: 70, height: 70, borderRadius: 50, alignSelf: 'center', resizeMode: 'stretch',
+                    width: 75, height: 75, borderRadius: 50, alignSelf: 'center', resizeMode: 'stretch',
                   }, imageStyle]}
                   />
                 </Pressable>
@@ -635,9 +635,9 @@ function Card({ imgClick, style, header, body, footer, bgcolor = 'white', color,
                   maxWidth: '20%',
                 }, dr === 'ltr' ? { left: 5, paddingLeft: 10 } : { right: 5, paddingRight: 10 }]} >
 
-                  <Pressable onPress={imgClick} style={{ width: 70, height: 70, borderRadius: 50, alignSelf: 'center', top: 15, position: 'absolute', cursor: imgClick ? 'pointer' : '' }} >
+                  <Pressable onPress={imgClick} style={{ width: 75, height: 75, borderRadius: 50, alignSelf: 'center', top: 15, position: 'absolute', cursor: imgClick ? 'pointer' : '' }} >
                     <Image source={img} style={[{
-                      width: 70, height: 70, borderRadius: 50, alignSelf: 'center', resizeMode: 'stretch',
+                      width: 75, height: 75, borderRadius: 50, alignSelf: 'center', resizeMode: 'stretch',
                     }, imageStyle]}
                     />
                   </Pressable>

@@ -37,7 +37,7 @@ const Description = (p) => {
     ((p.singleItem.availableCount > 0) && (p.singleItem.available) && (p.availableSeller)) ?
       p.setproductBasket(addNumber => {
         const obj = { ...addNumber }
-        obj[p.route.params.id] = { number: 1, ...p.singleItem, price: price, color: p.color[p.route.params.id] }
+        obj[p.route.params.id] = { ...p.singleItem, price: price, color: p.color[p.route.params.id], number: 1 }
         setAsyncStorage(obj)
         return obj
       })
@@ -111,12 +111,12 @@ const Description = (p) => {
         c2={3} coulumn2={
           <Span w={'100%'} f={1}>
 
-            <Span fg={1} fd='row' pr={12} ai='center'>
+            <Span h={50} fg={1} fd='row' pr={12} ai='center'>
               <P mb={-6}>گارانتی: </P>
               <P fs={11} mb={-6}>{p.singleItem.warranty} ماه شرکتی</P>
             </Span >
 
-            <Span fg={1} fd='row' pr={12} ai='center' >
+            <Span h={50} fg={1} fd='row' pr={12} ai='center' >
               <P mb={-6}>موجود در انبار: </P>
               {((p.singleItem.available) && (p.availableSeller) && (p.singleItem.availableCount > 0)) ?
                 <P fs={10} color={p.singleItem.availableCount < 10 ? '#f44c' : '#0ce'} mb={-6}>{p.singleItem.availableCount < 10 ? `تنها ${p.singleItem.availableCount} عدد در انبار موجود هست` : 'موجود هست'}</P>
@@ -125,11 +125,11 @@ const Description = (p) => {
               }
             </Span >
 
-            <Span fg={1} pr={12}>
+            <Span h={110} fg={1} pr={12}>
               <Span t={20} >
                 <P >انتخاب رنگ: </P>
               </Span>
-              <Div fg={1} fd='row' pr={12} pb={0} ai='center'>
+              <Span mt={20} fg={1} fd='row' pr={12} ai='center'>
 
                 {p.singleItem.color?.map((item, index) => (
                   item.value > 0 && <Span key={index} br={4} border={[1, '#ddd']} w={57} h={57} ai='center' mh={3} >
@@ -139,22 +139,23 @@ const Description = (p) => {
                   </Span>
                 ))}
 
-              </Div >
+              </Span >
 
             </Span >
 
-            <Row fg={1} mb={10} jc='space-around' ai='center'>
+            <Row h={70} fg={1} mb={10} jc='space-around' ai='center'>
 
               <Column w='70%' h={'100%'} jc='center' >
-                <Button disable={p.productBasket[p.route.params.id]?.number} onClick={() => { addToBasked() }} w='100%' bgcolor='#909' style={{ alignSelf: 'center' }} >افزودن به سبد خرید</Button>
+                <Button disable={p.productBasket[p.route.params.id]?.number}  onClick={() => { addToBasked() }} w='100%' bgcolor='#909' style={{ alignSelf: 'center' }} >افزودن به سبد خرید</Button>
               </Column>
 
-              {p.productBasket[p.route.params.id]?.number ? <Column h={'100%'} jc='center' >
+              {p.productBasket[p.route.params.id]?.number ?
+               <Column h={'100%'} jc='center' >
                 <Column style={{ height: 20, width: 20 }} >
                   <Icon name='plus' color='#0ad' size={20} onClick={() => { plus() }} />
                 </Column>
 
-                <Column style={{ height: 17, width: 20 }} >
+                <Column style={{ height: 20, width: 20 }} >
                   <P mt={3} ta='center' >{p.productBasket[p.route.params.id]?.number}</P>
                 </Column>
 

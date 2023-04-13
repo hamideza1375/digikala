@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, useEffect } from 'react'
-import { Slider, Scroll, Loading, Column } from '../../other/Components/Html'
+import { Slider, Scroll, Loading, Column, Button, P } from '../../other/Components/Html'
 import Category from './components/home/Category';
 import _useEffect from '../../controllers/_initial';
 import { allProduct } from '../../services/clientService';
@@ -20,13 +20,14 @@ function Home(p) {
   p._client.backHandler()
 
 
-useEffect(() => {allProduct().then(({data})=>{p.setallProduct(data.value);p.setnewSearchHomeArray(data.value)})}, [])
+  useEffect(() => { allProduct().then(({ data }) => { p.setallProduct(data.value); p.setnewSearchHomeArray(data.value) }) }, [])
 
 
 
 
   return (
     <Column f={1} >
+      
       <Scroll>
         <Column>
           <Slider data={p.slider} {...p} onClick={() => { p.navigation.navigate('ChildOffers') }} />

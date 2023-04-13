@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FlatList, Column, Scroll, Button, Icon, P, Press, Py, Row, Card } from '../../other/Components/Html'
 import _useEffect from '../../controllers/_initial'
 import spacePrice from '../../other/utils/spacePrice'
@@ -10,7 +10,7 @@ import { localhost } from '../../other/utils/axios/axios'
 const BeforePayment = (p) => {
   return (
     <Column f={1} >
-      <Scroll ccStyle={{ flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 71, backgroundColor: 'silver', flexGrow: 1 }} >
+      <Scroll fg={1} ccStyle={{ flexDirection: 'row', flexWrap: 'wrap', paddingBottom: 71, backgroundColor: 'silver', flexGrow: 1 }} >
         <BeforePaymentFlatlist {...p} />
       </Scroll>
       <BottomTabBeforePayment {...p} />
@@ -23,7 +23,7 @@ export default BeforePayment
 
 const BeforePaymentFlatlist = (p) => {
   return (
-    <Column f={2} border={[1, 'red']} >
+    <Column fg={1} h='100%' border={[1, 'red']} >
       {Object.entries(p.productBasket).length ?
         <FlatList
           column1={1} column2={1} column3={1} column4={2}
@@ -47,15 +47,23 @@ const BeforePaymentFlatlist = (p) => {
 
 function BeforePaymentCatd(p) {
   const deleteProduct = () => p._client.deleteProduct(p.item[0])
+
+  useEffect(() => {
+  console.log(`${localhost}/upload/childItem/${p.item[1].imageUrl1}`);
+  }, [])
+  
+
   return (
     <Card
       imgClick={() => p.navigation.navigate('SingleItem', { id: p.item[0] })}
-      style={{ maxWidth: 550, width: '90%', marginRight: -2 }}
+      style={{ maxWidth: 550, width: '90%', marginRight: -3 }}
       dr='ltr'
       bgcolor='white'
       img={`${localhost}/upload/childItem/${p.item[1].imageUrl1}`}
+      // img={require('../../other/assets/images/a1.jpg')}
+      imageStyle={{marginRight:-20, height:78,width:78}}
       headerRow={
-        <Column minh='100%' >
+        <Column minh='100%' h={25} ai='flex-start' >
           <P onClick={() => p.navigation.navigate('SingleItem', { id: p.item[0] })} >{p.item[1].title}</P>
         </Column>}
       bodyRow={
@@ -72,6 +80,9 @@ function BeforePaymentCatd(p) {
     />
   )
 }
+
+
+
 
 
 

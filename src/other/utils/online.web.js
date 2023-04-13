@@ -1,4 +1,4 @@
 
 export default function online() {
-  return navigator.onLine
+  this.isConnected = navigator.onLine
 }

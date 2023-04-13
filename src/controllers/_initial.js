@@ -17,6 +17,7 @@ import { idValidator } from '../other/utils/idValidator';
 var _show = false
 export const _initController = (p) => {
   const [show, setshow] = useState(false)
+ const net = new online()
 
   useEffect(() => {
     var toastOK = (data) => { typeof data !== 'string' ? p.toast.success('موفق آمیز', '√', 2500) : p.toast.success('موفق آمیز', data, 3500); p.setRand(parseInt(Math.random() * 9000 + 1000)); p.refInput.current && p.refInput.current.setNativeProps({ text: '' }); p.setcaptcha('') }
@@ -25,8 +26,7 @@ export const _initController = (p) => {
     var toastNetworkError = () => { p.toast.error('خطا ی شبکه', 'اتصال اینترنتتان را برسی کنید') }
     var toastServerError = () => { p.toast.warning('سرور در حال تعمیر', 'لطفا چند دقیقه دیگر امتحان کنید') }
 
-
-    if (online() !== false) {
+    if (net.isConnected !== false) {
 
       Axios.interceptors.response.use(function (response) {
         p.setshowActivity(false)

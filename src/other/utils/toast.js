@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { Animated, Platform } from "react-native";
-import { Span, P } from "../Components/Html";
+import { Column, P, Swiper } from "../Components/Html";
 let toastProperties;
 
 export function Toast(p) {
@@ -106,21 +106,27 @@ const ToastProvider = (p) => {
   return (
     <>
       {p._list && p._list.map((toast, i) => (
-        <Animated.View key={i}
+        <Animated.View
+        onMoveShouldSetResponder={() => { setTimeout(() => { let filter = p._list.filter((l) => l.id !== toast.id); p.set_list(filter);}, 300); }}
+        key={i}
           ref={() => { if (i === 0) { fadeAnim.setValue(-270) } }}
           onLayout={() => { start(); }}
           style={[{ ...shadow }, {
-            zIndex: 1111,
-            position: Platform.OS === 'web'?'fixed':'absolute', top: i * 115, left: fadeAnim, width: 300, maxWidth:'90%', minHeight: 5, maxHeight: 115,paddingBottom:8,
+            zIndex: 99999,
+            position: 'absolute', top: i * 115, left: fadeAnim, width: 310, maxWidth:'95%', minHeight: 5, maxHeight: 115,paddingBottom:8, overflow:'hidden',
             display: 'flex',
              backgroundColor: toast.backgroundColor, borderRadius: 5,
           },Platform.OS === 'ios' ?{marginTop:55}:{marginTop:15}]}>
-          <Span style={{ paddingHorizontal: 14, paddingTop: 8 }} >
+    <Swiper iconRight={<Column/>} >
+
+          <Column pr={11} style={{ paddingTop: 8 }} w='100%' >
             <P style={{ padding: 6, color: 'white', position: 'absolute', top: 1, alignSelf: 'flex-end' }}
               onClick={() => { let filter = p._list.filter((l) => l.id !== toast.id); p.set_list(filter); }}>X</P>
-            <P style={{ width: '90%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', paddingTop: 2 }} >{toast.title}</P>
-            <P style={{ width: '98%', color: 'white', textAlign: Platform.OS !== 'web' ?'left':'right', fontSize: toast.description === '√'?25: 12, fontWeight: '200', paddingTop:toast.title?8: 14, paddingBottom: 8, paddingRight: toast.description === '√'?5: 1 }} >{toast.description}</P>
-          </Span>
+            <P ta='right' style={{ width: '90%', color: 'white', paddingTop: 2 }} >{toast.title}</P>
+            <P ta='right' style={{ width: '95%', color: 'white', fontSize: toast.description === '√'?25: 12, fontWeight: '200', paddingTop:toast.title?8: 14, paddingBottom: 8, paddingRight: toast.description === '√'?5: 1 }} >{toast.description}</P>
+          </Column>
+    </Swiper>
+
         </Animated.View>
       ))
       }

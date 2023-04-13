@@ -164,7 +164,6 @@ export function initial() {
 export const initialPropType = (component) => {
   component.propTypes = {
     changePage:PropTypes.bool,
-    logoUrl: PropTypes.string,
     postPrice: PropTypes.number,
     latlng: PropTypes.object,
     state: PropTypes.string,
@@ -235,5 +234,6 @@ export const initialPropType = (component) => {
     // price: PropTypes.string,
     // offerTime: PropTypes.string,
     // offerValue: PropTypes.string,
+    // logoUrl: PropTypes.string,
   }
 }

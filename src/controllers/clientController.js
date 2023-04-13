@@ -157,7 +157,7 @@ export function clientController(p) {
     _useEffect(() => {
       if (!p.route.params.commentId) {
         getSingleComment(p.route.params.id).then(({ data }) => {
-        if (!data?.value) return
+          if (!data?.value) return
           p.setmessage(data.value.message);
           p.setfiveStar(data.value.fiveStar);
         })
@@ -313,15 +313,13 @@ export function clientController(p) {
           }
       })();
       backgroundTimer(async () => {
-        (async () => {
-          let newNotification = await AsyncStorage.getItem('notification')
-          const { data } = await getNotification()
-          if (data)
-            if (data.message && newNotification !== data.message) {
-              create(data.title, data.message, require('../other/assets/images/logo.png'))
-              await AsyncStorage.setItem('notification', data.message)
-            }
-        })();
+        let newNotification = await AsyncStorage.getItem('notification')
+        const { data } = await getNotification()
+        if (data)
+          if (data.message && newNotification !== data.message) {
+            create(data.title, data.message, require('../other/assets/images/logo.png'))
+            await AsyncStorage.setItem('notification', data.message)
+          }
       }, 20000)
     }, [])
   }
@@ -405,8 +403,7 @@ export function clientController(p) {
     const address = await AsyncStorage.getItem('address')
 
 
-    if (address !== p.address) {
-      if (p.route.name === 'Location') {
+    if (address !== p.address || !address) {
         _Alert.alert(
           "آدرس جدید در مرورگر ذخیره شود؟",
           "",
@@ -423,7 +420,6 @@ export function clientController(p) {
             }
           ]
         )
-      }
     }
     p.navigation.replace('FramePayment', { url: data.value })
   }
@@ -442,8 +438,8 @@ export function clientController(p) {
 
 
   this.backHandler = () => {
-    if (Platform.OS === 'android') {
-      p.useEffect(() => {
+    useEffect(() => {
+      if (Platform.OS === 'android') {
         let current = 0
         BackHandler.addEventListener("hardwareBackPress", () => {
           if (p.route.name === 'Home' && p.navigation?.getState()?.index === 0) {
@@ -456,10 +452,9 @@ export function clientController(p) {
             return true
           }
         })
-      }, [])
-    }
-    else return null
-    return () => Platform.OS === 'android' && BackHandler.removeEventListener('hardwareBackPress')
+        return () => Platform.OS === 'android' && BackHandler.removeEventListener('hardwareBackPress')
+      }
+    }, [])
   }
 
 

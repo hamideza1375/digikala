@@ -78,7 +78,8 @@ const Form = ({
   const [show1, setshow1] = useState(false)
   const [topRandom1, settopRandom1] = useState(0)
   const [topRandom2, settopRandom2] = useState(0)
-  const [randomArrayNumber] = useState([1, -1, 4, -4, 8, -8])
+  const [randomArrayNumber] = useState([2, -2, 6, -6, 10, -10])
+  const [randomArrayNumber2] = useState([2, -2, 6, -6, 10, -10])
 
 
 
@@ -454,21 +455,34 @@ const Form = ({
   }, [input8]))
 
 
+  const [scrollEnabled, setscrollEnabled]=useState(true)
+  const [changeScroll, setchangeScroll]=useState(true)
+
+const scrollCount = useRef(0)
+
+  const setScroll = () => {
+    
+      scrollCount.current += 1
+      if (scrollCount.current === 2) { setchangeScroll(false)}
+      if (!changeScroll && scrollCount.current === 2) { setscrollEnabled(true)}
+      setTimeout(() => {
+        scrollCount.current = 0
+      }, 2000);
+    }
+  
 
 
   return (
-    <ScrollView contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]} style={[{ backgroundColor: bgcolor, borderRadius: 3, marginTop: mt }, Platform.OS === 'web' ? webStyle : nativeStyle]} >
+    <ScrollView onMoveShouldSetResponder={setScroll} scrollEnabled={Platform.OS !== 'web' ? scrollEnabled : true } contentContainerStyle={[{ flexGrow: 1 }, contentContainerStyle]} style={[{ backgroundColor: bgcolor, borderRadius: 3, marginTop: mt }, Platform.OS === 'web' ? webStyle : nativeStyle]} >
 
       <View style={[styles.viewContainer, { paddingTop: top }, style]} >
         <View style={[{ transform: [{ scaleY: sizeY }], padding: 10, paddingBottom: pb, paddingTop: pt }, flexDirection === 'row' && Platform.OS === 'web' ? { flexDirection: 'row', flexWrap: 'wrap' } : {}]}>
 
 
-
-
           {city &&
-            <View style={[{ borderWidth: (!stct && _stateCity) ? 1 : 0, borderColor: 'red', width: '100%', height: height / 1.7, minHeight: height / 1.7, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, flexDirection: 'row-reverse' }]}>
+            <View onStartShouldSetResponderCapture={()=>{setchangeScroll(true);setscrollEnabled(false)}} style={[{ borderWidth: (!stct && _stateCity) ? 1 : 0, borderColor: 'red', width: '100%', height: height / 1.7, maxHeight: 280, marginVertical: 10, marginHorizontal: 10, flexGrow: 1, flexDirection: 'row-reverse' }]}>
 
-              <Column h='100%' jc='center' mt={2} ph={9} >
+              <Column onMoveShouldSetResponder={()=>setscrollEnabled(true)} h='100%' jc='center' mt={2} ph={9} >
                 <Column ai='center' jc='center' >
                   <Py as='flex-start' ph={8} ta='center' >استان:</Py>
                   <Column ai='center' jc='center' bgcolor='#fff' border={[1, 'silver']} br={4} >
@@ -476,7 +490,7 @@ const Form = ({
                   </Column>
                 </Column>
 
-                <Column ai='center' jc='center' mt={7} >
+                <Column onMoveShouldSetResponder={()=>setscrollEnabled(true)} ai='center' jc='center' mt={7} >
                   <Py as='flex-start' ph={8} ta='center' >شهر:</Py>
                   <Column ai='center' jc='center' bgcolor='#fff' border={[1, 'silver']} br={4} >
                     <Input value={City} onChangeText={(text) => setCity(text)} fw='100' fs={11} ta='center' style={{ maxWidth: 90, height: 33 }} />
@@ -487,12 +501,12 @@ const Form = ({
               <Column f={1}>
                 <Py ml={8} ph={8} ta='center' >انتخاب استان و شهر:</Py>
 
-                <FlatList
-                  ref={flatlistRef}
+                <FlatList 
+                ref={flatlistRef}
                   data={selectStatesValues}
                   renderItem={({ item, index }) => (
                     <Column m={3} >
-                      <List onClick={() => { setstate(item); setTimeout(() => { flatlistRef.current?.scrollToIndex({ index: index, animate: true }) }, 330) }} h={42} fontSize={12} header={item} header2={item === state ? City : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
+                      <List onClick={() => { setstate(item); setTimeout(() => { flatlistRef.current?.scrollToIndex({ index: index, animate: true }) }, 330) }} h={46} fontSize={12} header={item} header2={item === state ? City : ''} bgcolor={'white'} color='black' border={[1, 'silver']} hidden={hidden} sethidden={sethidden}
                         bodyRow={
                           ((loadCity.length) && (state === item)) &&
                           loadCity.map((item2, index) =>
@@ -520,7 +534,7 @@ const Form = ({
 
 
           {f &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               textContentType={autoComplete ? "username" : 'none'}
               autoComplete={autoComplete ? "username" : 'off'}
@@ -538,7 +552,7 @@ const Form = ({
           }
 
           {e &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               textContentType={autoComplete ? "emailAddress" : 'none'}
               autoComplete={autoComplete ? "autoComplete" : 'off'}
@@ -558,7 +572,7 @@ const Form = ({
           }
 
           {ph &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               textContentType={autoComplete ? "telephoneNumber" : 'none'}
               autoComplete={autoComplete ? "tel" : 'off'}
@@ -579,7 +593,7 @@ const Form = ({
 
 
           {phore &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               icon="phone"
               p='ایمیل یا شماره تلفن'
@@ -596,7 +610,7 @@ const Form = ({
           }
 
           {op &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               textContentType={'none'}
               autoComplete={'off'}
@@ -615,7 +629,7 @@ const Form = ({
           }
 
           {p &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               textContentType={autoComplete ? "password" : 'none'}
               autoComplete={autoComplete ? "password" : 'off'}
@@ -637,7 +651,7 @@ const Form = ({
           }
 
           {cp &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               textContentType={autoComplete ? "password" : 'none'}
               autoComplete={autoComplete ? "password" : 'off'}
@@ -661,7 +675,7 @@ const Form = ({
           <Br style={{ height: 0, padding: 0, margin: 0 }} />
 
           {$address &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               initialHeight
               multiline
               plackTextTop={plackTextTop}
@@ -681,7 +695,7 @@ const Form = ({
 
 
           {postal &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               textContentType="postalCode"
               autoComplete="postal-code"
@@ -705,9 +719,8 @@ const Form = ({
 
           <Row w='100%' jc='space-around' >
             {$plaque &&
-              <Frm
+              <Frm setscrollEnabled={setscrollEnabled}
                 plackTextTop={plackTextTop}
-                // icon={'money-check'}
                 p="پلاک"
                 state={plaque}
                 setState={setplaque}
@@ -723,10 +736,8 @@ const Form = ({
 
 
             {$unit &&
-              <Frm
+              <Frm setscrollEnabled={setscrollEnabled}
                 plackTextTop={plackTextTop}
-                // m_icon={'margin'}
-                // iconSize={29}
                 p="واحد"
                 state={unit}
                 setState={setunit}
@@ -746,7 +757,7 @@ const Form = ({
 
 
           {t &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               m_icon="title"
               p="عنوان "
@@ -763,7 +774,7 @@ const Form = ({
           }
 
           {pr &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               plackTextTop={plackTextTop}
               icon="dollar-sign"
               p=" قیمت "
@@ -782,7 +793,7 @@ const Form = ({
           }
 
           {$code &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               $input={$input}
               textId='inputCodeId'
               plackTextTop={plackTextTop}
@@ -808,7 +819,7 @@ const Form = ({
 
 
           {in1 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               textContentType="telephoneNumber"
               autoComplete="off"
               icon="phone"
@@ -827,7 +838,7 @@ const Form = ({
 
 
           {in2 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               m_icon="business-center"
               plackTextTop={plackTextTop}
@@ -844,7 +855,7 @@ const Form = ({
 
 
           {in3 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               icon="memory"
               iconSize={17}
@@ -862,7 +873,7 @@ const Form = ({
 
 
           {in4 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               m_icon="memory"
               plackTextTop={plackTextTop}
@@ -879,7 +890,7 @@ const Form = ({
 
 
           {in5 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               icon="camera"
               iconSize={17}
@@ -897,7 +908,7 @@ const Form = ({
 
 
           {in6 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               icon="hdd"
               iconSize={17}
@@ -915,7 +926,7 @@ const Form = ({
 
 
           {in7 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               icon="award"
               plackTextTop={plackTextTop}
@@ -932,7 +943,7 @@ const Form = ({
 
           {/* 
           {in8 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               m_icon="color-lens"
               plackTextTop={plackTextTop}
@@ -950,7 +961,7 @@ const Form = ({
 
 
           {in9 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               m_icon="fit-screen"
               plackTextTop={plackTextTop}
@@ -967,7 +978,7 @@ const Form = ({
 
 
 {in10 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               m_icon="android"
               plackTextTop={plackTextTop}
@@ -984,7 +995,7 @@ const Form = ({
 
 
 {in11 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               m_icon="battery-std"
               plackTextTop={plackTextTop}
@@ -1001,7 +1012,7 @@ const Form = ({
 
 
 {in12 &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               autoComplete="off"
               m_icon="network-cell"
               plackTextTop={plackTextTop}
@@ -1015,7 +1026,6 @@ const Form = ({
               styles={styles}
             />
           }
-
 
 
           {im && <InputImage
@@ -1236,7 +1246,7 @@ const Form = ({
 
 
           {i &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               w='100%'
               plackTextTop={plackTextTop}
               multiline
@@ -1255,7 +1265,7 @@ const Form = ({
           }
 
           {m &&
-            <Frm
+            <Frm setscrollEnabled={setscrollEnabled}
               w='100%'
               plackTextTop={plackTextTop}
               p="پیام"
@@ -1351,7 +1361,7 @@ const Form = ({
 
           {offer &&
             <>
-              <Frm
+              <Frm setscrollEnabled={setscrollEnabled}
                 plackTextTop={plackTextTop}
                 m_icon="timer"
                 p="مدت زمان تخفیف به ساعت"
@@ -1365,7 +1375,7 @@ const Form = ({
                 keyboardType={'numeric'}
               />
 
-              <Frm
+              <Frm setscrollEnabled={setscrollEnabled}
                 plackTextTop={plackTextTop}
                 m_icon="money-off"
                 p="درصد تخفیف به عدد"
@@ -1411,7 +1421,7 @@ const Form = ({
                       setShow2(!show2)
                       setcaptcha('')
                       settopRandom1(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
-                      settopRandom2(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
+                      settopRandom2(randomArrayNumber2[Math.floor(Math.random() * randomArrayNumber2.length)])
                     }} />
                   <TextInput
                     ref={refInput}
@@ -1649,7 +1659,7 @@ const Form = ({
                     setRand(parseInt(Math.random() * 9000 + 1000))
                     setcaptcha('')
                     settopRandom1(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
-                    settopRandom2(randomArrayNumber[Math.floor(Math.random() * randomArrayNumber.length)])
+                    settopRandom2(randomArrayNumber2[Math.floor(Math.random() * randomArrayNumber2.length)])
                     toast.error("خطا", "کادر های قرمز را تصحیح کنید")
                   }
                 }}
@@ -1763,8 +1773,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     width: 200,
     alignSelf: 'center',
-    minHeight: 40,
-    maxHeight: 45,
+    height: 45,
     elevation: 2,
     shadowColor: "#000",
     shadowOpacity: .6,

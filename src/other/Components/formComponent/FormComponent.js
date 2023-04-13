@@ -75,7 +75,7 @@ export const CheckBoxRadius = (p) => {
       ref.current?.setNativeProps({ style: { backgroundColor: bgcolor } })
       showValue.current.show = true
     }
-    if (item?.filterValue === refMap?.current?.get(id)) {
+    if (refMap?.current &&item?.filterValue === refMap?.current?.get(id)) {
       ref.current?.setNativeProps({ style: { backgroundColor: bgcolor } })
       showValue.current.show = true
 

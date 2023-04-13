@@ -88,7 +88,9 @@ function Slider({ width, style, onClick, data }) {
         <Press w='10%' h='100%' onClick={onClick} />
       </Row>
 
-      <ScrollView dir='ltr' horizontal ref={ref}
+      <ScrollView 
+          showsHorizontalScrollIndicator={false}
+      dir='ltr' horizontal ref={ref}
         contentContainerStyle={{ overflow: 'hidden', }}
         style={{ height: 260, width: width - 2, alignSelf: 'center', borderRadius: 5, overflow: 'hidden', flexWrap: 'wrap' }} >
         {data.map((image, index) => (

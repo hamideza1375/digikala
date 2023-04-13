@@ -13,7 +13,7 @@ import SellerPage from './page/SellersPage';
 import SellerPanelPage from './page/SellerPanelPage';
 import AddressPage from './page/AddressPage';
 import ChildOffersPage from './page/ChildOffersPage';
-import ChildPopulars from './page/ChildPopulars';
+import ChildPopularsPage from './page/ChildPopularsPage';
 
 
 export const Layout = (p) => {
@@ -54,7 +54,7 @@ export const Layout = (p) => {
           <ChildOffersPage {...p} bottom={bottom} />
           ||
           p.route.name === 'ChildPopulars' &&
-          <ChildPopulars {...p} bottom={bottom} />
+          <ChildPopularsPage {...p} bottom={bottom} />
           ||
           p.route.name === 'TableChildItems' &&
           <TableChildItemsPage {...p} bottom={bottom} />

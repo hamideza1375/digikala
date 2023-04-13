@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, Text, TouchableNativeFeedback, TouchableOpacity } from 'react-native';
+import { Platform, Pressable, TouchableOpacity } from 'react-native';
 import { P } from '../Html';
 
 const _Button = React.forwardRef((props, ref) => {
@@ -23,17 +23,17 @@ const _Button = React.forwardRef((props, ref) => {
           alignSelf: props.as,
         }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableOpacity>
       :
-      <TouchableNativeFeedback
-        ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
-        {...props} onPress={() => { }} onPressIn={() => { }} onPressOut={() => { }} style={[{
-          paddingHorizontal: 10, paddingVertical:6, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
-          alignSelf: props.as, opacity:.8,
-        }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></TouchableNativeFeedback>
+      <Pressable
+      ref={e => { if (e) { e.className = Array.isArray(props.class) ? (e.className + ' ' + props.class[0] + ' ' + props.class[1]) : (e.className + ' ' + props.class); }; ref && ref(e); }}
+       onPress={()=>{}} {...props} style={[{
+        paddingHorizontal: 10, paddingVertical:6, justifyContent: 'center', alignItems: 'center', borderWidth: 1, borderRadius: 5, textAlign: 'center',
+        alignSelf: props.as, opacity:.8,
+      }, props.style, stl, stl2]}><P style={[{ width: '100%', textAlign: 'center' }, props.textStyle]}>{props.children}</P></Pressable>
 
   );
 })
 
-const Button = React.forwardRef(({ textStyle, maxw, minw, maxh, minh, as, style, outline, fs = 13, p = 5, pt, pb, pl, pr, pv, ph, h, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
+const Button = React.forwardRef(({pos,l,r,t,b, textStyle, maxw, minw, maxh, minh, as, style, outline, fs = 13, p = 5, pt, pb, pl, pr, pv, ph, h, w, m, mt, mb, ml, mr, mv, mh, color, bgcolor, border = [], fg, f, ...props }, ref) => {
 
   return (
     !outline ?
@@ -41,6 +41,7 @@ const Button = React.forwardRef(({ textStyle, maxw, minw, maxh, minh, as, style,
         ref={ref}
         {...props}
         style={[
+          {position:pos,left:l,right:r,top:t,bottom:b},
           {
             backgroundColor: (bgcolor == 'red') && '#f33' ||
               (!bgcolor) && '#0099ff' ||
@@ -78,6 +79,7 @@ const Button = React.forwardRef(({ textStyle, maxw, minw, maxh, minh, as, style,
         ref={ref}
         {...props}
         style={[
+          {position:pos,left:l,right:r,top:t,bottom:b},
           ,
           bgcolor == 'white' ? {} :
             { borderColor: !border[1] && (bgcolor == 'yellow' && '#fc3' || bgcolor || '#3399ff') || border[1] },
